@@ -25,3 +25,5 @@ hs_err_pid*
 /FLAT.iml
 /FLAT/
 /target/
+/target/*
+target/*
