@@ -102,8 +102,8 @@ public class AbstractSyntaxTreeUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "tests/ast/" + testName + ".in";
-        String expName = "tests/ast/" + testName + ".out";
+        String inName = "testdata/ast/" + testName + ".in";
+        String expName = "testdata/ast/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;

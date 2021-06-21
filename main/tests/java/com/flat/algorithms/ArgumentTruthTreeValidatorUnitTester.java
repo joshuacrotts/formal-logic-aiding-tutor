@@ -104,8 +104,8 @@ public class ArgumentTruthTreeValidatorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "tests/argumenttruthtreevalidator/" + testName + ".in";
-        String expName = "tests/argumenttruthtreevalidator/" + testName + ".out";
+        String inName = "testdata/argumenttruthtreevalidator/" + testName + ".in";
+        String expName = "testdata/argumenttruthtreevalidator/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;

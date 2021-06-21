@@ -106,8 +106,8 @@ public class BoundVariableDetectorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "tests/bound/" + testName + ".in";
-        String expName = "tests/bound/" + testName + ".out";
+        String inName = "testdata/bound/" + testName + ".in";
+        String expName = "testdata/bound/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;

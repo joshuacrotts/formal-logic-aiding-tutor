@@ -107,8 +107,8 @@ public class PredicateTruthTreeGeneratorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "tests/predicatetree/" + testName + ".in";
-        String expName = "tests/predicatetree/" + testName + ".out";
+        String inName = "testdata/predicatetree/" + testName + ".in";
+        String expName = "testdata/predicatetree/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;

@@ -107,8 +107,8 @@ public class PropositionalTruthTreeGeneratorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "tests/propositionaltree/" + testName + ".in";
-        String expName = "tests/propositionaltree/" + testName + ".out";
+        String inName = "testdata/propositionaltree/" + testName + ".in";
+        String expName = "testdata/propositionaltree/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;
