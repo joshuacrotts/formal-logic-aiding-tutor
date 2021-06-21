@@ -1,7 +1,6 @@
-package com.flat.algorithms;
+package flat.algorithms;
 
-import com.flat.algorithms.models.TruthTree;
-import com.flat.algorithms.predicate.PredicateTruthTreeGenerator;
+import com.flat.algorithms.predicate.BoundVariableDetector;
 import com.flat.input.FLATParserListener;
 import com.flat.input.tests.ParserTest;
 import com.flat.models.treenode.WffTree;
@@ -19,9 +18,9 @@ import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class PredicateTruthTreeGeneratorUnitTester {
+public class BoundVariableDetectorUnitTester {
 
-    private static PredicateTruthTreeGenerator truthTreeGenerator;
+    private static BoundVariableDetector boundVariableDetector;
 
     /**
      * Helper function to count number of newlines in a string
@@ -107,8 +106,8 @@ public class PredicateTruthTreeGeneratorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "testdata/predicatetree/" + testName + ".in";
-        String expName = "testdata/predicatetree/" + testName + ".out";
+        String inName = "testdata/bound/" + testName + ".in";
+        String expName = "testdata/bound/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;
@@ -119,9 +118,8 @@ public class PredicateTruthTreeGeneratorUnitTester {
         if (parser == null)
             throw new AssertionFailedError("Failed reading test input file " + inName);
         WffTree syntaxTree = parser.getSyntaxTrees().get(0);
-        truthTreeGenerator = new PredicateTruthTreeGenerator(syntaxTree);
-        TruthTree tt = truthTreeGenerator.getTruthTree();
-        System.out.println(truthTreeGenerator.print(tt));
+        boundVariableDetector = new BoundVariableDetector(syntaxTree);
+        System.out.println(boundVariableDetector.getBoundVariables());
         System.setErr(origErr);
         System.setOut(origOut);
         byte[] actual = captureOut.toByteArray();
@@ -132,6 +130,7 @@ public class PredicateTruthTreeGeneratorUnitTester {
         } catch (IOException e) {
             throw new AssertionFailedError("Missing expected output file " + expName);
         }
+
         compare(actual, expected);
     }
 
@@ -173,100 +172,5 @@ public class PredicateTruthTreeGeneratorUnitTester {
     @Test
     public void test008() {
         goodFileTest("test008");
-    }
-
-    @Test
-    public void test009() {
-        goodFileTest("test009");
-    }
-
-    @Test
-    public void test010() {
-        goodFileTest("test010");
-    }
-
-    @Test
-    public void test011() {
-        goodFileTest("test011");
-    }
-
-    @Test
-    public void test012() {
-        goodFileTest("test012");
-    }
-
-    @Test
-    public void test013() {
-        goodFileTest("test013");
-    }
-
-    @Test
-    public void test014() {
-        goodFileTest("test014");
-    }
-
-    @Test
-    public void test015() {
-        goodFileTest("test015");
-    }
-
-    @Test
-    public void test016() {
-        goodFileTest("test016");
-    }
-
-    @Test
-    public void test017() {
-        goodFileTest("test017");
-    }
-
-    @Test
-    public void test018() {
-        goodFileTest("test018");
-    }
-
-    @Test
-    public void test019() {
-        goodFileTest("test019");
-    }
-
-    @Test
-    public void test020() {
-        goodFileTest("test020");
-    }
-
-    @Test
-    public void test021() {
-        goodFileTest("test021");
-    }
-
-    @Test
-    public void test022() {
-        goodFileTest("test022");
-    }
-
-    @Test
-    public void test023() {
-        goodFileTest("test023");
-    }
-
-    @Test
-    public void test024() {
-        goodFileTest("test024");
-    }
-
-    @Test
-    public void test025() {
-        goodFileTest("test025");
-    }
-
-    @Test
-    public void test026() {
-        goodFileTest("test026");
-    }
-
-    @Test
-    public void test027() {
-        goodFileTest("test027");
     }
 }

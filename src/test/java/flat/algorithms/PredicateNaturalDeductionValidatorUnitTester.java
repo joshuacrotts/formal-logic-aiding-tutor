@@ -1,10 +1,9 @@
-package com.flat.algorithms;
+package flat.algorithms;
 
-import com.flat.algorithms.models.TruthTree;
-import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
+import com.flat.algorithms.models.NDWffTree;
+import com.flat.algorithms.predicate.PredicateNaturalDeductionValidator;
 import com.flat.input.FLATParserListener;
 import com.flat.input.tests.ParserTest;
-import com.flat.models.treenode.WffTree;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
@@ -14,14 +13,15 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class PropositionalTruthTreeGeneratorUnitTester {
+public class PredicateNaturalDeductionValidatorUnitTester {
 
-    private static PropositionalTruthTreeGenerator truthTreeGenerator;
+    private static PredicateNaturalDeductionValidator naturalDeductionValidator;
 
     /**
      * Helper function to count number of newlines in a string
@@ -107,8 +107,8 @@ public class PropositionalTruthTreeGeneratorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "testdata/propositionaltree/" + testName + ".in";
-        String expName = "testdata/propositionaltree/" + testName + ".out";
+        String inName = "testdata/predicatend/" + testName + ".in";
+        String expName = "testdata/predicatend/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;
@@ -118,10 +118,13 @@ public class PropositionalTruthTreeGeneratorUnitTester {
         FLATParserListener parser = ParserTest.parseFromFile(inName);
         if (parser == null)
             throw new AssertionFailedError("Failed reading test input file " + inName);
-        WffTree syntaxTree = parser.getSyntaxTrees().get(0);
-        truthTreeGenerator = new PropositionalTruthTreeGenerator(syntaxTree);
-        TruthTree tt = truthTreeGenerator.getTruthTree();
-        System.out.println(truthTreeGenerator.print(tt));
+        naturalDeductionValidator = new PredicateNaturalDeductionValidator(parser.getSyntaxTrees());
+        ArrayList<NDWffTree> ndArgs = naturalDeductionValidator.getNaturalDeductionProof();
+        for (int i = 0; i < ndArgs.size(); i++) {
+            NDWffTree wff = ndArgs.get(i);
+            System.out.println((i + 1) + ": " + wff);
+        }
+        System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "\t\t■");
         System.setErr(origErr);
         System.setOut(origOut);
         byte[] actual = captureOut.toByteArray();
@@ -184,4 +187,103 @@ public class PropositionalTruthTreeGeneratorUnitTester {
     public void test010() {
         goodFileTest("test010");
     }
+
+    @Test
+    public void test011() {
+        goodFileTest("test011");
+    }
+
+    @Test
+    public void test012() {
+        goodFileTest("test012");
+    }
+
+    @Test
+    public void test013() {
+        goodFileTest("test013");
+    }
+//
+//    @Test
+//    public void test014() {
+//        goodFileTest("test014");
+//    }
+//
+//    @Test
+//    public void test015() {
+//        goodFileTest("test015");
+//    }
+//
+//    @Test
+//    public void test016() {
+//        goodFileTest("test016");
+//    }
+//
+//    @Test
+//    public void test017() {
+//        goodFileTest("test017");
+//    }
+//
+//    @Test
+//    public void test018() {
+//        goodFileTest("test018");
+//    }
+//
+//    @Test
+//    public void test019() {
+//        goodFileTest("test019");
+//    }
+//
+//    @Test
+//    public void test020() {
+//        goodFileTest("test020");
+//    }
+//
+//    @Test
+//    public void test021() {
+//        goodFileTest("test021");
+//    }
+//
+//    @Test
+//    public void test022() {
+//        goodFileTest("test022");
+//    }
+//
+//    @Test
+//    public void test023() {
+//        goodFileTest("test023");
+//    }
+//
+//    @Test
+//    public void test024() {
+//        goodFileTest("test024");
+//    }
+//
+//    @Test
+//    public void test025() {
+//        goodFileTest("test025");
+//    }
+//
+//    @Test
+//    public void test026() {
+//        goodFileTest("test026");
+//    }
+//
+//    @Test
+//    public void test027() {
+//        goodFileTest("test027");
+//    }
+//    @Test
+//    public void test028() {
+//        goodFileTest("test028");
+//    }
+//
+//    @Test
+//    public void test029() {
+//        goodFileTest("test029");
+//    }
+//
+//    @Test
+//    public void test030() {
+//        goodFileTest("test030");
+//    }
 }

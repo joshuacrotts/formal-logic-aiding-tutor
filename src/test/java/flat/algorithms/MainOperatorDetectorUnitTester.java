@@ -1,5 +1,6 @@
-package com.flat.algorithms;
+package flat.algorithms;
 
+import com.flat.algorithms.MainOperatorDetector;
 import com.flat.input.FLATParserListener;
 import com.flat.input.tests.ParserTest;
 import com.flat.models.treenode.WffTree;

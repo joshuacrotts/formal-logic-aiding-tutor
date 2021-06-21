@@ -1,9 +1,9 @@
-package com.flat.algorithms;
+package flat.algorithms;
 
-import com.flat.algorithms.models.NDWffTree;
-import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
+import com.flat.algorithms.predicate.FreeVariableDetector;
 import com.flat.input.FLATParserListener;
 import com.flat.input.tests.ParserTest;
+import com.flat.models.treenode.WffTree;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
@@ -13,15 +13,14 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class PropositionalNaturalDeductionValidatorUnitTester {
+public class FreeVariableDetectorUnitTester {
 
-    private static PropositionalNaturalDeductionValidator naturalDeductionValidator;
+    private static FreeVariableDetector freeVariableDetector;
 
     /**
      * Helper function to count number of newlines in a string
@@ -107,8 +106,8 @@ public class PropositionalNaturalDeductionValidatorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "testdata/propositionalnd/" + testName + ".in";
-        String expName = "testdata/propositionalnd/" + testName + ".out";
+        String inName = "testdata/free/" + testName + ".in";
+        String expName = "testdata/free/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;
@@ -118,13 +117,9 @@ public class PropositionalNaturalDeductionValidatorUnitTester {
         FLATParserListener parser = ParserTest.parseFromFile(inName);
         if (parser == null)
             throw new AssertionFailedError("Failed reading test input file " + inName);
-        naturalDeductionValidator = new PropositionalNaturalDeductionValidator(parser.getSyntaxTrees());
-        ArrayList<NDWffTree> ndArgs = naturalDeductionValidator.getNaturalDeductionProof();
-        for (int i = 0; i < ndArgs.size(); i++) {
-            NDWffTree wff = ndArgs.get(i);
-            System.out.println((i + 1) + ": " + wff);
-        }
-        System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "\t\t■");
+        WffTree syntaxTree = parser.getSyntaxTrees().get(0);
+        freeVariableDetector = new FreeVariableDetector(syntaxTree);
+        System.out.println(freeVariableDetector.getFreeVariables());
         System.setErr(origErr);
         System.setOut(origOut);
         byte[] actual = captureOut.toByteArray();
@@ -135,6 +130,7 @@ public class PropositionalNaturalDeductionValidatorUnitTester {
         } catch (IOException e) {
             throw new AssertionFailedError("Missing expected output file " + expName);
         }
+
         compare(actual, expected);
     }
 
@@ -176,145 +172,5 @@ public class PropositionalNaturalDeductionValidatorUnitTester {
     @Test
     public void test008() {
         goodFileTest("test008");
-    }
-
-    @Test
-    public void test009() {
-        goodFileTest("test009");
-    }
-
-    @Test
-    public void test010() {
-        goodFileTest("test010");
-    }
-
-    @Test
-    public void test011() {
-        goodFileTest("test011");
-    }
-
-    @Test
-    public void test012() {
-        goodFileTest("test012");
-    }
-
-    @Test
-    public void test013() {
-        goodFileTest("test013");
-    }
-
-    @Test
-    public void test014() {
-        goodFileTest("test014");
-    }
-
-    @Test
-    public void test015() {
-        goodFileTest("test015");
-    }
-
-    @Test
-    public void test016() {
-        goodFileTest("test016");
-    }
-
-    @Test
-    public void test017() {
-        goodFileTest("test017");
-    }
-
-    @Test
-    public void test018() {
-        goodFileTest("test018");
-    }
-
-    @Test
-    public void test019() {
-        goodFileTest("test019");
-    }
-
-    @Test
-    public void test020() {
-        goodFileTest("test020");
-    }
-
-    @Test
-    public void test021() {
-        goodFileTest("test021");
-    }
-
-    @Test
-    public void test022() {
-        goodFileTest("test022");
-    }
-
-    @Test
-    public void test023() {
-        goodFileTest("test023");
-    }
-
-    @Test
-    public void test024() {
-        goodFileTest("test024");
-    }
-
-    @Test
-    public void test025() {
-        goodFileTest("test025");
-    }
-
-    @Test
-    public void test026() {
-        goodFileTest("test026");
-    }
-
-    @Test
-    public void test027() {
-        goodFileTest("test027");
-    }
-
-    @Test
-    public void test028() {
-        goodFileTest("test028");
-    }
-
-    @Test
-    public void test029() {
-        goodFileTest("test029");
-    }
-
-    @Test
-    public void test030() {
-        goodFileTest("test030");
-    }
-
-    @Test
-    public void test031() {
-        goodFileTest("test031");
-    }
-
-    @Test
-    public void test032() {
-        goodFileTest("test032");
-    }
-
-    @Test
-    public void test033() {
-        goodFileTest("test033");
-    }
-
-    @Test
-    public void test034() {
-        goodFileTest("test034");
-    }
-
-    @Test
-    public void test035() {
-        goodFileTest("test035");
-    }
-
-    @Test
-    public void test036() {
-        goodFileTest("test036");
     }
 }

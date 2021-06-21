@@ -1,7 +1,9 @@
-package com.flat.input;
+package flat.algorithms;
 
+import com.flat.algorithms.models.NDWffTree;
+import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
+import com.flat.input.FLATParserListener;
 import com.flat.input.tests.ParserTest;
-import com.flat.models.treenode.WffTree;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
@@ -11,12 +13,15 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class AbstractSyntaxTreeUnitTester {
+public class PropositionalNaturalDeductionValidatorUnitTester {
+
+    private static PropositionalNaturalDeductionValidator naturalDeductionValidator;
 
     /**
      * Helper function to count number of newlines in a string
@@ -102,8 +107,8 @@ public class AbstractSyntaxTreeUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "testdata/ast/" + testName + ".in";
-        String expName = "testdata/ast/" + testName + ".out";
+        String inName = "testdata/propositionalnd/" + testName + ".in";
+        String expName = "testdata/propositionalnd/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;
@@ -113,8 +118,13 @@ public class AbstractSyntaxTreeUnitTester {
         FLATParserListener parser = ParserTest.parseFromFile(inName);
         if (parser == null)
             throw new AssertionFailedError("Failed reading test input file " + inName);
-        WffTree syntaxTree = parser.getSyntaxTrees().get(0);
-        syntaxTree.printSyntaxTree();
+        naturalDeductionValidator = new PropositionalNaturalDeductionValidator(parser.getSyntaxTrees());
+        ArrayList<NDWffTree> ndArgs = naturalDeductionValidator.getNaturalDeductionProof();
+        for (int i = 0; i < ndArgs.size(); i++) {
+            NDWffTree wff = ndArgs.get(i);
+            System.out.println((i + 1) + ": " + wff);
+        }
+        System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "\t\t■");
         System.setErr(origErr);
         System.setOut(origOut);
         byte[] actual = captureOut.toByteArray();
@@ -125,7 +135,6 @@ public class AbstractSyntaxTreeUnitTester {
         } catch (IOException e) {
             throw new AssertionFailedError("Missing expected output file " + expName);
         }
-
         compare(actual, expected);
     }
 
@@ -134,7 +143,6 @@ public class AbstractSyntaxTreeUnitTester {
         goodFileTest("test001");
     }
 
-    /*
     @Test
     public void test002() {
         goodFileTest("test002");
@@ -254,5 +262,59 @@ public class AbstractSyntaxTreeUnitTester {
     public void test025() {
         goodFileTest("test025");
     }
-     */
+
+    @Test
+    public void test026() {
+        goodFileTest("test026");
+    }
+
+    @Test
+    public void test027() {
+        goodFileTest("test027");
+    }
+
+    @Test
+    public void test028() {
+        goodFileTest("test028");
+    }
+
+    @Test
+    public void test029() {
+        goodFileTest("test029");
+    }
+
+    @Test
+    public void test030() {
+        goodFileTest("test030");
+    }
+
+    @Test
+    public void test031() {
+        goodFileTest("test031");
+    }
+
+    @Test
+    public void test032() {
+        goodFileTest("test032");
+    }
+
+    @Test
+    public void test033() {
+        goodFileTest("test033");
+    }
+
+    @Test
+    public void test034() {
+        goodFileTest("test034");
+    }
+
+    @Test
+    public void test035() {
+        goodFileTest("test035");
+    }
+
+    @Test
+    public void test036() {
+        goodFileTest("test036");
+    }
 }
