@@ -4,6 +4,7 @@ import com.flat.algorithms.BaseTruthTreeGenerator;
 import com.flat.models.treenode.ConstantNode;
 import com.flat.models.treenode.NodeFlag;
 import com.flat.models.treenode.WffTree;
+import com.flat.tools.FLATUtils;
 
 import java.util.*;
 
@@ -340,7 +341,7 @@ public class TruthTree implements Comparable<TruthTree> {
 
     public TruthTree getCenter() {
         if (this.right != null) {
-            throw new IllegalCallerException("Cannot return center if right child is null.");
+            throw new IllegalStateException("Cannot return center if right child is null.");
         }
 
         return this.left;
@@ -439,7 +440,7 @@ public class TruthTree implements Comparable<TruthTree> {
             return;
         }
 
-        _sb.append("\t".repeat(_indent));
+        _sb.append(FLATUtils.repeatString(_indent, "\t"));
         _sb.append("[");
         _sb.append(_tree.getWff().getTexCommand());
 
@@ -463,7 +464,7 @@ public class TruthTree implements Comparable<TruthTree> {
         }
 
         _sb.append("\n");
-        _sb.append("\t".repeat(_indent) + "]");
+        _sb.append(FLATUtils.repeatString(_indent, "\t") + "]");
     }
 
     /**

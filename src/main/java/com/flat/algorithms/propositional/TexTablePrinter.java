@@ -2,6 +2,7 @@ package com.flat.algorithms.propositional;
 
 import com.flat.algorithms.TexPrinter;
 import com.flat.models.treenode.WffTree;
+import com.flat.tools.FLATUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public final class TexTablePrinter extends TexPrinter {
 
         // Print the preamble stuff.
         sb.append("\\begin{tabular}{");
-        sb.append("c|".repeat(_set.size() - 1));
+        sb.append(FLATUtils.repeatString(_set.size() - 1, "c|"));
         sb.append("c}\n");
 
         // First print the headers.

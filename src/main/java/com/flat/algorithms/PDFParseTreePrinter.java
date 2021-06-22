@@ -1,6 +1,7 @@
 package com.flat.algorithms;
 
 import com.flat.models.treenode.WffTree;
+import com.flat.tools.FLATUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -64,7 +65,7 @@ public class PDFParseTreePrinter extends PDFPrinter {
      * @param _indent
      */
     private void getTexParseTreeHelper(WffTree _tree, StringBuilder _sb, int _indent) {
-        _sb.append("\t".repeat(_indent));
+        _sb.append(FLATUtils.repeatString(_indent, "\t"));
         _sb.append("[");
         _sb.append(_tree.getTexParseCommand());
         for (WffTree ch : _tree.getChildren()) {
@@ -76,7 +77,7 @@ public class PDFParseTreePrinter extends PDFPrinter {
             }
         }
         _sb.append("\n");
-        _sb.append("\t".repeat(_indent));
+        _sb.append(FLATUtils.repeatString(_indent, "\t"));
         _sb.append("]");
     }
 }

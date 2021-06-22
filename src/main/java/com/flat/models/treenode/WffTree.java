@@ -1,5 +1,6 @@
 package com.flat.models.treenode;
 
+import com.flat.tools.FLATUtils;
 import com.flat.tools.TexPrintable;
 
 import java.util.ArrayList;
@@ -126,8 +127,10 @@ public class WffTree implements Copyable, TexPrintable {
         StringBuilder w2 = new StringBuilder(wff2Equiv);
 
         // Check to see if both are identity operators and if so, reverse them.
-        if ((this.isIdentity() && o.isIdentity()) && (w1.compareTo(w2.reverse()) == 0 || w1.reverse().compareTo(w2.reverse()) == 0
-                || w1.reverse().compareTo(w2) == 0)) {
+        if ((this.isIdentity() && o.isIdentity()) 
+                && (FLATUtils.sbCompareTo(w1, w2.reverse()) == 0 
+                  || FLATUtils.sbCompareTo(w1.reverse(), w2.reverse()) == 0 
+                  || FLATUtils.sbCompareTo(w1.reverse(), w2) == 0)) {
             return true;
         } else {
             // This is a bit ugly but hopefully it works...
@@ -136,11 +139,11 @@ public class WffTree implements Copyable, TexPrintable {
             if (this.isNegation() && this.getChild(0).isIdentity()) {
                 StringBuilder i1r = new StringBuilder(w1.substring(1)).reverse();
                 i1r.insert(0, "~");
-                return i1r.compareTo(w2) == 0;
+                return FLATUtils.sbCompareTo(i1r, w2) == 0;
             } else if (o.isNegation() && o.getChild(0).isIdentity()) {
                 StringBuilder i2r = new StringBuilder(w2.substring(1)).reverse();
                 i2r.insert(0, "~");
-                return i2r.compareTo(w1) == 0;
+                return FLATUtils.sbCompareTo(i2r, w1) == 0;
             }
         }
 
@@ -470,7 +473,7 @@ public class WffTree implements Copyable, TexPrintable {
      */
     private StringBuilder printSyntaxTreeHelper(int indent) {
         StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(Math.max(0, indent)));
+        sb.append(FLATUtils.repeatString(Math.max(0, indent), " "));
         sb.append(this.toString());
 
         if (!this.children.isEmpty()) {

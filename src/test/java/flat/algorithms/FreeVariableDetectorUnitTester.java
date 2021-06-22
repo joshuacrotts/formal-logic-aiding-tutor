@@ -106,8 +106,8 @@ public class FreeVariableDetectorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "testdata/free/" + testName + ".in";
-        String expName = "testdata/free/" + testName + ".out";
+        String inName = "src/main/resources/testdata/free/" + testName + ".in";
+        String expName = "src/main/resources/testdata/free/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;

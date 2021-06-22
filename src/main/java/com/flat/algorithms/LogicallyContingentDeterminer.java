@@ -7,9 +7,6 @@ import com.flat.models.treenode.NegNode;
 import com.flat.models.treenode.NodeFlag;
 import com.flat.models.treenode.WffTree;
 
-/**
- *
- */
 public final class LogicallyContingentDeterminer {
 
     /**

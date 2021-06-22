@@ -107,8 +107,8 @@ public class PropositionalNaturalDeductionValidatorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "testdata/propositionalnd/" + testName + ".in";
-        String expName = "testdata/propositionalnd/" + testName + ".out";
+        String inName = "src/main/resources/testdata/propositionalnd/" + testName + ".in";
+        String expName = "src/main/resources/testdata/propositionalnd/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;

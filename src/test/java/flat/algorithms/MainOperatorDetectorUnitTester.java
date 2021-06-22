@@ -106,8 +106,8 @@ public class MainOperatorDetectorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "testdata/mainoperator/" + testName + ".in";
-        String expName = "testdata/mainoperator/" + testName + ".out";
+        String inName = "src/main/resources/testdata/mainoperator/" + testName + ".in";
+        String expName = "src/main/resources/testdata/mainoperator/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;

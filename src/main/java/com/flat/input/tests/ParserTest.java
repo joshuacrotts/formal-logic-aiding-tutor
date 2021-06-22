@@ -181,8 +181,10 @@ public class ParserTest {
             PDFPrinter ttp = new PDFTruthTreePrinter(validator.getTruthTree(), "latex-truth-tree.pdf");
             ttp.outputToFile();
 
-            PDFPrinter ndp = new PDFNaturalDeductionPrinter(ndValidator.getNaturalDeductionProof(), "latex-nd.pdf");
-            ndp.outputToFile();
+            if (ndValidator.getNaturalDeductionProof() != null) {
+                PDFPrinter ndp = new PDFNaturalDeductionPrinter(ndValidator.getNaturalDeductionProof(), "latex-nd.pdf");
+                ndp.outputToFile();
+            }
         }
     }
 

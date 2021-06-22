@@ -1,0 +1,10 @@
+1: ~Bea                                              Ass.
+2: ~Ped                                              Ass.
+3: Febcq                                             Ass.
+4: Ge                                                Ass.
+5: ~Gh                                               Ass.
+6: (~Bea & ~Ped)                                     &I, 1, 2
+7: (Febcq & Ge)                                      &I, 3, 4
+8: ((~Bea & ~Ped) & (Febcq & Ge))                    &I, 6, 7
+9: (∃x)((~Bxa & ~Pxd) & (Fxbcq & Gx))                ∃I, 8
+∴ (∃x)((~Bxa & ~Pxd) & (Fxbcq & Gx))  ■

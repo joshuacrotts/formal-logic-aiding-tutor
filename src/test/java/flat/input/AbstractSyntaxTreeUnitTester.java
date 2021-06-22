@@ -103,8 +103,8 @@ public class AbstractSyntaxTreeUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "testdata/ast/" + testName + ".in";
-        String expName = "testdata/ast/" + testName + ".out";
+        String inName = "src/main/resources/testdata/ast/" + testName + ".in";
+        String expName = "src/main/resources/testdata/ast/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;

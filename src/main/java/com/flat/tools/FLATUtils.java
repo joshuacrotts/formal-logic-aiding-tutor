@@ -53,4 +53,39 @@ public class FLATUtils {
             return false;
         }
     }
+    
+    /**
+     * 
+     * @param _n
+     * @param _str
+     * @return 
+     */
+    public static String repeatString(int _n, String _str) {
+      StringBuilder b = new StringBuilder(_n * _str.length());
+        for (int i = 0; i < _n; ++i) {
+            b.append(_str);
+        }
+        return b.toString();
+    }
+    
+    /**
+     * 
+     * @param _s1
+     * @param _s2
+     * @return 
+     */
+    public static int sbCompareTo(StringBuilder _s1, StringBuilder _s2) {
+      if (_s1.length() > _s2.length()) return 1;
+      else if (_s1.length() < _s2.length()) return -1;
+      else {
+        for (int i = 0; i < _s1.length(); i++) {
+          if (_s1.charAt(i) < _s2.charAt(i)) 
+            return -1;
+          else if (_s1.charAt(i) > _s2.charAt(i)) 
+            return 1;
+        }
+        
+        return 0;
+      }
+    }
 }
