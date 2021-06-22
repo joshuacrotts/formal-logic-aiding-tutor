@@ -99,7 +99,9 @@ constant: CONSTANT;
 variable: VARIABLE;
 universal: (OPEN_PAREN UNIVERSAL variable CLOSE_PAREN) | (OPEN_PAREN variable CLOSE_PAREN);
 existential: OPEN_PAREN EXISTENTIAL variable CLOSE_PAREN;
-predicate: atom(constant|variable)+;
+predicate: atom ((OPEN_PAREN ((constant|variable)+ | (((constant|variable) COMMA)*(constant|variable))) CLOSE_PAREN) |
+                ((constant|variable)+ | (((constant|variable) COMMA)*(constant|variable))));
+
 
 /* Starting rule. */
 predicateWff: predWff;

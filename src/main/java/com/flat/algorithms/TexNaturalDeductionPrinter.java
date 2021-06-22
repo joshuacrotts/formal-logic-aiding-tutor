@@ -9,7 +9,7 @@ public class TexNaturalDeductionPrinter extends TexPrinter {
     /**
      * Template location to read from.
      */
-    private static final String TEX_ND_TEMPLATE = "main/resources/tex_natural_deduction_template.tex";
+    private static final String TEX_ND_TEMPLATE = "src/main/resources/tex_natural_deduction_template.tex";
 
     /**
      *

@@ -17,6 +17,9 @@ public final class LogicallyConsistentDeterminer {
      */
     private final WffTree combinedTree;
 
+    /**
+     *
+     */
     private TruthTree combinedTruthTree;
 
     public LogicallyConsistentDeterminer(WffTree _wffTreeOne, WffTree _wffTreeTwo) {

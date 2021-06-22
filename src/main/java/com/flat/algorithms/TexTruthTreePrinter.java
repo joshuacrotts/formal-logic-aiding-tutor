@@ -9,7 +9,7 @@ public class TexTruthTreePrinter extends TexPrinter {
     /**
      * Template location to read from.
      */
-    private static final String TEX_TREE_TEMPLATE = "main/resources/tex_truth_tree_template.tex";
+    private static final String TEX_TREE_TEMPLATE = "src/main/resources/tex_truth_tree_template.tex";
 
     /**
      * Truth tree to print.

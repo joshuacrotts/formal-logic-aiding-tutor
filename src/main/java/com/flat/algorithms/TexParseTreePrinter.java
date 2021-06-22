@@ -12,7 +12,7 @@ public class TexParseTreePrinter extends TexPrinter {
     /**
      * Template location to read from.
      */
-    private static final String TEX_TREE_TEMPLATE = "main/resources/tex_parse_tree_template.tex";
+    private static final String TEX_TREE_TEMPLATE = "src/main/resources/tex_parse_tree_template.tex";
 
     public TexParseTreePrinter(WffTree _tree, String _outputFile) {
         super(_tree, _outputFile);

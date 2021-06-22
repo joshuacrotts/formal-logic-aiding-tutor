@@ -13,7 +13,7 @@ public final class PDFTruthTablePrinter extends PDFPrinter {
     /**
      * Template location to read from.
      */
-    private static final String TEX_TABLE_TEMPLATE = "main/resources/tex_truth_table_template.tex";
+    private static final String TEX_TABLE_TEMPLATE = "src/main/resources/tex_truth_table_template.tex";
 
     public PDFTruthTablePrinter(WffTree _tree, String _outputFile) {
         super(_tree, _outputFile);

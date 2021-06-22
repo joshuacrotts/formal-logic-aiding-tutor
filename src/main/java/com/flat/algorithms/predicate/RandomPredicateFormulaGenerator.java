@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  *
  */
-public class RandomPredicateFormulaGenerator {
+public final class RandomPredicateFormulaGenerator {
 
     /**
      *
