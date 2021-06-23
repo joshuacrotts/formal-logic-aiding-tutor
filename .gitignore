@@ -29,3 +29,4 @@ target/*
 *.pdf
 /.classpath
 /.project
+/.settings/
