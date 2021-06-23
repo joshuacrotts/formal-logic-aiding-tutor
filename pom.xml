@@ -42,6 +42,11 @@
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>uk.ac.abdn</groupId>
+            <artifactId>SimpleNLG</artifactId>
+            <version>4.5.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
