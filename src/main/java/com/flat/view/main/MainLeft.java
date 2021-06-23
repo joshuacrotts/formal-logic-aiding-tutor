@@ -1,6 +1,6 @@
 package com.flat.view.main;
 
-import com.flat.view.Action.ResizePane;
+import com.flat.view.action.ResizePane;
 import javafx.scene.layout.Pane;
 
 /**

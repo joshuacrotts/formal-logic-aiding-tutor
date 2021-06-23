@@ -1,4 +1,4 @@
-package com.flat.view.Action;
+package com.flat.view.action;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
