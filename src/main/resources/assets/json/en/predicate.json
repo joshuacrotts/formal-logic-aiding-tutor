@@ -1,0 +1,48 @@
+[
+	{
+		"label" : "Universal",
+		"symbols" :
+		{
+			"general" : "∀",
+			"alternate" :
+			[
+				"∀",
+				"()"
+			]
+		},
+		"toolTip" : "Universal Quantification",
+		"description" : "This is the universal quantification button.",
+		"readAs" : "For all; For any; For each; All; Every",
+		"axioms" :
+		{
+			"explanation" : "(∀x)Px or (x)Px means the predicate P holds true for all inputs x from some domain D.",
+			"examples" :
+			[
+				"1. (∀x)Px",
+				"2. (y)(Py & Qay)"
+			]
+		}
+	},
+	{
+		"label" : "Existential",
+		"symbols" :
+		{
+			"general" : "∃",
+			"alternate" :
+			[
+				"∃"
+			]
+		},
+		"toolTip" : "Existential Quantification",
+		"description" : "This is the existential quantification button.",
+		"readAs" : "There exists; Some; Many; At least one",
+		"axioms" :
+		{
+			"explanation" : "(∃x)Px means there is at least one input x in a domain D that satisfies the proposition P (that makes P true).",
+			"examples" :
+			[
+				"1. (∃x)Px"
+			]
+		}
+	}
+]

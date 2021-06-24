@@ -1,0 +1,81 @@
+{
+	"general" : {
+		"label" : "General Logic Algorithms",
+		"content" : {
+			"argumentTruthTreeValidator" : {
+				"label" : "Argument Truth Tree Validator"
+			},
+			"closedTreeDeterminer" : {
+				"label" : "Closed Tree Determiner"
+			},
+			"logicalFalsehoodDeterminer" : {
+				"label" : "Logical Falsehood Determiner"
+			},
+			"logicallyConsistentDeterminer" : {
+				"label" : "Logically Consistent Determiner"
+			},
+			"logicallyContingentDeterminer" : {
+				"label" : "Logically Contingent Determiner"
+			},
+			"logicallyContradictoryDeterminer" : {
+				"label" : "Logically Contradictory Determiner"
+			},
+			"logicallyContraryDeterminer" : {
+				"label" : "Logically Contrary Determiner"
+			},
+			"logicallyEquivalentDeterminer" : {
+				"label" : "Logically Equivalent Determiner"
+			},
+			"logicallyImpliedDeterminer" : {
+				"label" : "Logically Implied Determiner"
+			},
+			"logicalTautologyDeterminer" : {
+				"label" : "Logical Tautology Determiner"
+			},
+			"mainOperatorDetector" : {
+				"label" : "Main Operator Detector"
+			},
+			"openTreeDeterminer" : {
+				"label" : "Open Tree Determiner"
+			}
+			
+		}
+	},
+	"propositional" : {
+		"label" : "Propositional Logic Algorithm",
+		"content" : {
+			"propositionalTruthTreeGenerator" : {
+				"label" : "Propositional Truth Tree Generator"
+			},
+			"randomFormulaGenerator" : {
+				"label" : "Random Formula Generator"
+			},
+			"truthTableGenerator" : {
+				"label" : "Truth Table Generator"
+			}
+		}
+	},
+	"predicate" : {
+		"label" : "Predicate Logic Algorithms",
+		"content" : {
+			"boundVariableDetector" : {
+				"label" : "Bound Variable Detector"
+			},
+			"closedSentenceDeterminer" : {
+				"label" : "Closed Sentence Determiner"
+			},
+			"freeVariableDetector" : {
+				"label" : "Free Variable Detector"
+			},
+			"groundSentenceDeterminer" : {
+				"label" : "Ground Sentence Determiner"
+			},
+			"openSentenceDeterminer" : {
+				"label" : "Open Sentence Determiner"
+			},
+			"predicateTruthTreeGenerator" : {
+				"label" : "Predicate Truth Tree Generator"
+			}
+		}
+	}
+}

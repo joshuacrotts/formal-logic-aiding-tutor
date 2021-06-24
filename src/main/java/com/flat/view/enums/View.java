@@ -1,10 +1,10 @@
-package com.flat.view;
+package com.flat.view.enums;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public enum ViewEnum {
+public enum View {
     MAIN,
     SETTINGS,
     DEFAULT,

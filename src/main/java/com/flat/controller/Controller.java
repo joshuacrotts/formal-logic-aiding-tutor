@@ -1,6 +1,6 @@
 package com.flat.controller;
 
-import com.flat.view.ViewEnum;
+import com.flat.view.enums.View;
 import com.flat.view.main.Main;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -13,12 +13,12 @@ public class Controller {
     private static Stage stage;
 
     // Retrieves view associated with the enum and displays it on stage.
-    public static void changeView (ViewEnum _view) {
+    public static void changeView (View _view) {
         Controller.stage.getScene().setRoot(Controller.getView(_view));
     }
 
     // Returns the view associated with the enum.
-    public static Pane getView (ViewEnum _view) {
+    public static Pane getView (View _view) {
         switch (_view) {
             case MAIN:
                 return new Main().getParentPane();

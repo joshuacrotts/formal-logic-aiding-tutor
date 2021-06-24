@@ -1,7 +1,8 @@
 package com.flat;
 
 import com.flat.controller.Controller;
-import com.flat.view.ViewEnum;
+import com.flat.tools.json.JsonReader;
+import com.flat.view.enums.View;
 import com.flat.view.tools.ResourceManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -26,7 +27,7 @@ public class FLAT extends Application {
         Application.setUserAgentStylesheet(ResourceManager.getDefaultStyle());
         this.initializeStage(_stage);
         Controller.setStage(_stage);
-        Controller.changeView(ViewEnum.MAIN);
+        Controller.changeView(View.MAIN);
         _stage.show();
     }
 
