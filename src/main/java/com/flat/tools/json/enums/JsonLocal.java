@@ -25,7 +25,7 @@ public class JsonLocal {
     }
 
     public enum Paths {
-        ROOT("\\src\\main\\resources\\assets\\json\\");
+        ROOT("/src/main/resources/assets/json/");
 
         private String filePath;
 

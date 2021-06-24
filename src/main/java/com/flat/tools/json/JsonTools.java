@@ -14,10 +14,10 @@ import java.nio.file.Paths;
  *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
-public class JsonReader {
+public class JsonTools {
 
     /**
-     * 
+     *
      * @param <T> List literals.
      * @param _language The Language that is in use. The Language code is used
      * in the file path.
@@ -29,7 +29,7 @@ public class JsonReader {
     public static <T> T[] jsonToObject(Language _language, JsonLocal.File _file, Class<T[]> _class) {
         Path path = Paths.get(System.getProperty("user.dir")
                 + JsonLocal.Paths.ROOT.getFilePath()
-                + _language.getCode() + "\\"
+                + _language.getCode() + "/"
                 + _file.getFileName());
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path.toString()), StandardCharsets.UTF_8))) {
             T[] object = new Gson().fromJson(reader, _class);
