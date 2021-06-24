@@ -1,1 +1,0 @@
-(x)(Rx | Cx), (x)(Cx -> Sx), ~Ra => ((∃x)(~Rx & Sx) | Fbc)

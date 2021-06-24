@@ -94,6 +94,14 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             satisfied = this.satisfyBiconditional(_tree, _parent);
         }
 
+        if (this.findTransposition(_tree, _parent)) {
+            return true;
+        } else if (this.findConstructiveDilemma(_tree, _parent)) {
+            return true;
+        } else if (this.findDestructiveDilemma(_tree, _parent)) {
+            return true;
+        }
+
         // If we couldn't find anything to deduce/reduce the proposition with,
         // try to search for it in the premises list.
         for (NDWffTree ndWffTree : this.PREMISES_LIST) {

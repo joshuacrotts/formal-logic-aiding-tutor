@@ -37,5 +37,4 @@ public class FLAT extends Application {
         _stage.setMinHeight(720);
         _stage.setMinWidth(1280);
     }
-
 }

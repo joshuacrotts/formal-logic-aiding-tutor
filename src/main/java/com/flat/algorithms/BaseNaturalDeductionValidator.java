@@ -286,6 +286,98 @@ public abstract class BaseNaturalDeductionValidator {
     }
 
     /**
+     *
+     * @param _impNode
+     * @param _parent
+     * @return
+     */
+    protected boolean findTransposition(WffTree _impNode, NDWffTree _parent) {
+        if (_impNode.isImp() && !_parent.isTPActive()) {
+            NegNode antecedent = new NegNode();
+            NegNode consequent = new NegNode();
+            ImpNode transpositionNode = new ImpNode();
+            antecedent.addChild(_impNode.getChild(1));
+            consequent.addChild(_impNode.getChild(0));
+            transpositionNode.addChild(antecedent);
+            transpositionNode.addChild(consequent);
+                _parent.setFlags(NDFlag.TP);
+                this.addPremise(new NDWffTree(transpositionNode, NDFlag.TP, NDStep.TP, _parent));
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param _disjNode
+     * @param _parent
+     * @return
+     */
+    protected boolean findConstructiveDilemma(WffTree _disjNode, NDWffTree _parent) {
+        if (_disjNode.isOr() && !_parent.isCDActive()) {
+            WffTree lhs =_disjNode.getChild(0);
+            WffTree rhs = _disjNode.getChild(1);
+            NDWffTree lhsImp = null;
+            NDWffTree rhsImp = null;
+            for (NDWffTree ndWffTree : this.PREMISES_LIST) {
+                WffTree wff = ndWffTree.getWffTree();
+                if (wff.isImp()) {
+                    if (lhs.stringEquals(wff.getChild(0))) {
+                        lhsImp = ndWffTree;
+                    } else if (rhs.stringEquals(wff.getChild(0))) {
+                        rhsImp = ndWffTree;
+                    }
+                }
+            }
+
+            if (lhsImp != null && rhsImp != null) {
+                OrNode orNode = new OrNode();
+                orNode.addChild(lhsImp.getWffTree().getChild(1));
+                orNode.addChild(rhsImp.getWffTree().getChild(1));
+                _parent.setFlags(NDFlag.CD);
+                    this.addPremise(new NDWffTree(orNode, NDFlag.CD, NDStep.CD, lhsImp, rhsImp, _parent));
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param _disjNode
+     * @param _parent
+     * @return
+     */
+    protected boolean findDestructiveDilemma(WffTree _disjNode, NDWffTree _parent) {
+        if (_disjNode.isOr() && !_parent.isDDActive()) {
+            WffTree lhs = _disjNode.getChild(0);
+            WffTree rhs = _disjNode.getChild(1);
+            NDWffTree lhsImp = null;
+            NDWffTree rhsImp = null;
+            for (NDWffTree ndWffTree : this.PREMISES_LIST) {
+                WffTree wff = ndWffTree.getWffTree();
+                if (wff.isImp()) {
+                    if (lhs.stringEquals(BaseTruthTreeGenerator.getFlippedNode(wff.getChild(1)))) {
+                        lhsImp = ndWffTree;
+                    } else if (rhs.stringEquals(BaseTruthTreeGenerator.getFlippedNode(wff.getChild(1)))) {
+                        rhsImp = ndWffTree;
+                    }
+                }
+            }
+
+            if (lhsImp != null && rhsImp != null) {
+                OrNode orNode = new OrNode();
+                orNode.addChild(BaseTruthTreeGenerator.getFlippedNode(lhsImp.getWffTree().getChild(0)));
+                orNode.addChild(BaseTruthTreeGenerator.getFlippedNode(rhsImp.getWffTree().getChild(0)));
+                _parent.setFlags(NDFlag.DD);
+                this.addPremise(new NDWffTree(orNode, NDFlag.DD, NDStep.DD, lhsImp, rhsImp, _parent));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * @param _binopTree
      * @param _parent
      * @return true if we apply a De Morgan's rule, false otherwise.

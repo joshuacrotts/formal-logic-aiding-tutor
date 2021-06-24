@@ -1,0 +1,7 @@
+1: (x)(Px | Qx)                                      Ass.
+2: Ja                                                Ass.
+3: (Pa -> Ja)                                        Ass.
+4: (Qa -> Ka)                                        Ass.
+5: (Pa | Qa)                                         UE, 1
+6: (Ja | Ka)                                         CD, 3, 4, 5
+∴ (Ja | Ka)  ■

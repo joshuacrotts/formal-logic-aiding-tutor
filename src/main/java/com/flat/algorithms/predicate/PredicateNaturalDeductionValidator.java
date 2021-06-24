@@ -97,6 +97,14 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
             satisfiedNDWffTree = this.satisfyDeMorganFOPL(_tree, _parent);
         }
 
+        if (this.findTransposition(_tree, _parent)) {
+            return null;
+        } else if (this.findConstructiveDilemma(_tree, _parent)) {
+            return null;
+        } else if (this.findDestructiveDilemma(_tree, _parent)) {
+            return null;
+        }
+
         // If we couldn't find anything to deduce/reduce the proposition with,
         // try to search for it in the premises list.
         for (NDWffTree ndWffTree : this.PREMISES_LIST) {
@@ -115,9 +123,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private NDWffTree satisfyPredicate(WffTree _tree, NDWffTree _parent) {
         // First, check to see if the premise is a satisfied goal or not.
-        if (this.isGoal(_tree)) {
-            return this.getPremiseNDWffTree(_tree);
-        }
+        if (this.isGoal(_tree)) { return this.getPremiseNDWffTree(_tree); }
 
         // Loop through each other premise.
         for (NDWffTree othNDWffTree : this.PREMISES_LIST) {
@@ -257,7 +263,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         // First check to see if we can break any biconditionals down.
         if (!this.isConclusion(_parent) && _parent.getWffTree().isBicond()) {
             boolean bce = this.findBiconditionalElimination(_bicondTree, _parent);
-            if (bce && _bicondTree.stringEquals(_parent.getWffTree())) return null;
+            if (bce && _bicondTree.stringEquals(_parent.getWffTree())) { return null; }
         }
         // We first have a subgoal of X -> Y and Y -> X.
         ImpNode impLhs = new ImpNode();
@@ -290,7 +296,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private NDWffTree satisfyExistential(WffTree _tree, NDWffTree _parent) {
         // Try to eliminate the existential if it's not a conclusion.
-        if (!_parent.isExisActive() && !this.isConclusion(_parent)) {
+        if (!this.isConclusion(_parent) && !_parent.isExisActive()) {
             this.addExistentialConstant(_parent, ((ExistentialQuantifierNode) _parent.getWffTree()).getVariableSymbolChar());
             return null;
         }
@@ -316,7 +322,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private NDWffTree satisfyUniversal(WffTree _univTree, NDWffTree _parent) {
         // Try to eliminate the universal if it's not a conclusion.
-        if (!_parent.isUnivActive() && !this.isConclusion(_parent)) {
+        if (!this.isConclusion(_parent) && !_parent.isUnivActive()) {
             this.addUniversalConstants(_parent, ((UniversalQuantifierNode) _parent.getWffTree()).getVariableSymbolChar());
             return null;
         }
@@ -341,7 +347,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      * @return
      */
     private NDWffTree satisfyDeMorganFOPL(WffTree _binopTree, NDWffTree _parent) {
-        if (!_parent.isDEMActive() && !this.isConclusion(_parent)) {
+        if (!this.isConclusion(_parent) && !_parent.isDEMActive()) {
             WffTree deMorganNode = null;
             // Negate a biconditional to get ~(X <-> Y) => ~((X->Y) & (Y->X)).
             if (_binopTree.isNegation() && _binopTree.getChild(0).isBicond()) {
@@ -439,9 +445,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private void addUniversalConstants(NDWffTree _universalNDWffTree, char _variableToReplace) {
         // Add a default constant if one is not available to the universal quantifier.
-        if (this.CONSTANTS.isEmpty()) {
-            return;
-        }
+        if (this.CONSTANTS.isEmpty()) { return; }
 
         for (char c : this.CONSTANTS) {
             // Create a copy and replace the selected variable.

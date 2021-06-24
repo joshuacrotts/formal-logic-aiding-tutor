@@ -15,6 +15,9 @@ public class NDWffTree {
      */
     private ArrayList<NDWffTree> derivedParents;
 
+    /**
+     *
+     */
     private ArrayList<Integer> derivedParentIndices;
 
     /**
@@ -174,6 +177,12 @@ public class NDWffTree {
     public boolean isImpIActive() {
         return (this.flags & NDFlag.II) != 0;
     }
+
+    public boolean isTPActive() { return (this.flags & NDFlag.TP) != 0; }
+
+    public boolean isCDActive() { return (this.flags & NDFlag.CD) != 0; }
+
+    public boolean isDDActive() { return (this.flags & NDFlag.DD) != 0; }
 
     public boolean isExisActive() {
         return (this.flags & NDFlag.EX) != 0;
