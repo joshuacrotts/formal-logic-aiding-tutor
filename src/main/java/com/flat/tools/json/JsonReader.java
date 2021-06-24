@@ -18,13 +18,13 @@ public class JsonReader {
 
     /**
      * 
-     * @param <T> Json array objects.
+     * @param <T> List literals.
      * @param _language The Language that is in use. The Language code is used
      * in the file path.
-     * @param _file The file name where the Json array objects are stored.
-     * @param _class The class type of the Json array object. Note: Must be a
+     * @param _file The file name where the Json objects are stored.
+     * @param _class The class type of the Json object. Note: Must be a
      * list literal.
-     * @return 
+     * @return List of objects of param _class type.
      */
     public static <T> T[] jsonToObject(Language _language, JsonLocal.File _file, Class<T[]> _class) {
         Path path = Paths.get(System.getProperty("user.dir")
