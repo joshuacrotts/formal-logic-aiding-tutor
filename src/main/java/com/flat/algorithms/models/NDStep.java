@@ -24,7 +24,10 @@ public enum NDStep {
     EI("∃I", "Existential Introduction", "{$\\exists$}I"),
     EE("∃E", "Existential Elimination", "{$\\exists$}E"),
     UI("UI", "Universal Introduction", "UI"),
-    UE("UE", "Universal Elimination", "UE");
+    UE("UE", "Universal Elimination", "UE"),
+    CD("CD", "Constructive Dilemma", "CD"),
+    DD("DD", "Destructive Dilemma", "DD"),
+    TP("TP", "Transposition", "Trans.");
 
 
     /**

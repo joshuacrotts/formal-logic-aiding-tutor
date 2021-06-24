@@ -75,6 +75,24 @@ public class NDFlag {
      */
     public static final int UN = 0x00002000;
 
+    /**
+     *
+     */
+    public static final int TP = 0x00004000;
+
+    /**
+     *
+     */
+    public static final int CD = 0x00008000;
+
+    /**
+     *
+     */
+    public static final int DD = 0x00010000;
+
+    /**
+     *
+     */
     public static final int SAT = 0x80000000;
 
 }

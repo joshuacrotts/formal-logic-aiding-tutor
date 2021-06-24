@@ -14,7 +14,7 @@ public class SimpleNLPTest {
         Lexicon lexicon = Lexicon.getDefaultLexicon();
         NLGFactory nlgFactory = new NLGFactory(lexicon);
         Realiser realiser = new Realiser(lexicon);
-        NPPhraseSpec subject = nlgFactory.createNounPhrase("someone");
+        NPPhraseSpec subject = nlgFactory.createNounPhrase("philosophers");
         subject.setPlural(true);
         subject.setPreModifier("if");
         VPPhraseSpec verb = nlgFactory.createVerbPhrase("is");

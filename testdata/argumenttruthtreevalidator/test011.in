@@ -1,2 +1,0 @@
-// constructive dilemma
-(P -> Q), (R -> S), (P | R) => (Q | S)

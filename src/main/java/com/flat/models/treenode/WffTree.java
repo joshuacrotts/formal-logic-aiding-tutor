@@ -157,7 +157,6 @@ public class WffTree implements Copyable, TexPrintable {
 
     @Override
     public int hashCode() {
-        System.out.println(this.getStringRep());
         return this.getStringRep().hashCode() ^ (int) System.currentTimeMillis();
     }
 
