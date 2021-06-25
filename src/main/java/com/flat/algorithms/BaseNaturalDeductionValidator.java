@@ -38,14 +38,16 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
         this.ORIGINAL_WFFTREE_LIST = _wffTreeList;
         this.PROOF_TYPE = _proofType;
         this.PREMISES_LIST = new ArrayList<>();
-        this.CONCLUSION_WFF = new NDWffTree(_wffTreeList.get(_wffTreeList.size() - 1).getChild(0), NDStep.C);
+        this.CONCLUSION_WFF = new NDWffTree(_wffTreeList.get(_wffTreeList.size() - 1).getNodeType() == NodeType.ROOT
+                ? _wffTreeList.get(_wffTreeList.size() - 1).getChild(0)
+                : _wffTreeList.get(_wffTreeList.size() - 1), NDStep.C);
 
         // Add all premises to the list. The invariant is that the last element is guaranteed to be the conclusion.
         for (int i = 0; i < _wffTreeList.size() - 1; i++) {
             // Trim ROOT off the node if it's still there from ANTLR processing.
             WffTree wff = _wffTreeList.get(i).getNodeType() == NodeType.ROOT
-                                ? _wffTreeList.get(i).getChild(0)
-                                : _wffTreeList.get(i);
+                    ? _wffTreeList.get(i).getChild(0)
+                    : _wffTreeList.get(i);
             this.addPremise(new NDWffTree(wff, NDFlag.ACTIVE, NDStep.P));
         }
     }
@@ -296,7 +298,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return
      */
     protected boolean findTransposition(WffTree _impNode, NDWffTree _parent) {
-        if (_impNode.isImp() && !_parent.isTPActive()) {
+        if (_impNode.isImp() && !_parent.isTPActive() && !this.isConclusion(_parent)) {
             NegNode antecedent = new NegNode();
             NegNode consequent = new NegNode();
             ImpNode transpositionNode = new ImpNode();
@@ -505,7 +507,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      */
     protected boolean isConclusion(NDWffTree _ndWffTree) {
         return this.CONCLUSION_WFF.getWffTree().stringEquals(_ndWffTree.getWffTree())
-                || this.CONCLUSION_WFF == _ndWffTree;
+                || this.CONCLUSION_WFF == _ndWffTree || _ndWffTree.isAltConclusion();
     }
 
     /**

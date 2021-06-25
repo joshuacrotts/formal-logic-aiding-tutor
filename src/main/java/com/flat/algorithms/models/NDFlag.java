@@ -93,6 +93,11 @@ public class NDFlag {
     /**
      *
      */
+    public static final int ALTC = 0x40000000;
+
+    /**
+     *
+     */
     public static final int SAT = 0x80000000;
 
 }

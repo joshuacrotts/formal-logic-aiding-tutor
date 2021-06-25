@@ -1,2 +1,1 @@
-//exportation
 ((P & Q) -> R) => (P -> (Q -> R))
