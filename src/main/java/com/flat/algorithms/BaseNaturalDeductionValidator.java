@@ -3,6 +3,7 @@ package com.flat.algorithms;
 import com.flat.algorithms.models.NDFlag;
 import com.flat.algorithms.models.NDStep;
 import com.flat.algorithms.models.NDWffTree;
+import com.flat.algorithms.models.ProofType;
 import com.flat.models.treenode.*;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Collections;
 /**
  *
  */
-public abstract class BaseNaturalDeductionValidator {
+public abstract class BaseNaturalDeductionValidator implements NaturalDeductionAlgorithm {
 
     /**
      *
@@ -28,16 +29,23 @@ public abstract class BaseNaturalDeductionValidator {
      */
     protected final NDWffTree CONCLUSION_WFF;
 
-    public BaseNaturalDeductionValidator(ArrayList<WffTree> _wffTreeList) {
+    /**
+     *
+     */
+    protected final ProofType PROOF_TYPE;
+
+    public BaseNaturalDeductionValidator(ArrayList<WffTree> _wffTreeList, ProofType _proofType) {
         this.ORIGINAL_WFFTREE_LIST = _wffTreeList;
+        this.PROOF_TYPE = _proofType;
         this.PREMISES_LIST = new ArrayList<>();
         this.CONCLUSION_WFF = new NDWffTree(_wffTreeList.get(_wffTreeList.size() - 1).getChild(0), NDStep.C);
 
         // Add all premises to the list. The invariant is that the last element is guaranteed to be the conclusion.
         for (int i = 0; i < _wffTreeList.size() - 1; i++) {
             // Trim ROOT off the node if it's still there from ANTLR processing.
-            WffTree wff = _wffTreeList.get(i).getNodeType() == NodeType.ROOT ? _wffTreeList.get(i).getChild(0)
-                    : _wffTreeList.get(i);
+            WffTree wff = _wffTreeList.get(i).getNodeType() == NodeType.ROOT
+                                ? _wffTreeList.get(i).getChild(0)
+                                : _wffTreeList.get(i);
             this.addPremise(new NDWffTree(wff, NDFlag.ACTIVE, NDStep.P));
         }
     }
@@ -49,6 +57,7 @@ public abstract class BaseNaturalDeductionValidator {
      * @return list of NDWffTree "args". These serve as the premises, with the last element in the list being
      * the conclusion.
      */
+    @Override
     public abstract ArrayList<NDWffTree> getNaturalDeductionProof();
 
     /**
@@ -100,7 +109,6 @@ public abstract class BaseNaturalDeductionValidator {
     protected void addPremise(NDWffTree _ndWffTree) {
         // THIS NEEDS TO BE ADAPTED TO WORK WITH CONTRADICTIONS SINCE THOSE WILL FAIL!!!!!!!
         if (!this.PREMISES_LIST.contains(_ndWffTree) && !this.isRedundantTree(_ndWffTree)) {
-            //System.out.println("Adding " + _ndWffTree.getWffTree().getStringRep());
             this.PREMISES_LIST.add(_ndWffTree);
         }
     }
@@ -111,9 +119,7 @@ public abstract class BaseNaturalDeductionValidator {
      */
     protected boolean isGoal(WffTree _wffTree) {
         for (NDWffTree ndWffTree : this.PREMISES_LIST) {
-            if (_wffTree.stringEquals(ndWffTree.getWffTree())) {
-                return true;
-            }
+            if (_wffTree.stringEquals(ndWffTree.getWffTree())) { return true; }
         }
         return _wffTree.stringEquals(this.CONCLUSION_WFF.getWffTree());
     }
@@ -136,9 +142,7 @@ public abstract class BaseNaturalDeductionValidator {
     protected NDWffTree getPremiseNDWffTree(WffTree _tree) {
         for (int i = 0; i < this.PREMISES_LIST.size(); i++) {
             NDWffTree ndWffTree = this.PREMISES_LIST.get(i);
-            if (ndWffTree.getWffTree().stringEquals(_tree)) {
-                return ndWffTree;
-            }
+            if (ndWffTree.getWffTree().stringEquals(_tree)) { return ndWffTree; }
         }
         return null;
     }
@@ -300,9 +304,9 @@ public abstract class BaseNaturalDeductionValidator {
             consequent.addChild(_impNode.getChild(0));
             transpositionNode.addChild(antecedent);
             transpositionNode.addChild(consequent);
-                _parent.setFlags(NDFlag.TP);
-                this.addPremise(new NDWffTree(transpositionNode, NDFlag.TP, NDStep.TP, _parent));
-                return true;
+            _parent.setFlags(NDFlag.TP);
+            this.addPremise(new NDWffTree(transpositionNode, NDFlag.TP, NDStep.TP, _parent));
+            return true;
         }
         return false;
     }
@@ -335,8 +339,8 @@ public abstract class BaseNaturalDeductionValidator {
                 orNode.addChild(lhsImp.getWffTree().getChild(1));
                 orNode.addChild(rhsImp.getWffTree().getChild(1));
                 _parent.setFlags(NDFlag.CD);
-                    this.addPremise(new NDWffTree(orNode, NDFlag.CD, NDStep.CD, lhsImp, rhsImp, _parent));
-                    return true;
+                this.addPremise(new NDWffTree(orNode, NDFlag.CD, NDStep.CD, lhsImp, rhsImp, _parent));
+                return true;
             }
         }
         return false;
@@ -466,7 +470,7 @@ public abstract class BaseNaturalDeductionValidator {
                 }
             }
             // If we performed a MI then add it.
-            if (newWff != null && isGoal(newWff)) {
+            if (newWff != null && this.isGoal(newWff)) {
                 _parent.setFlags(NDFlag.MI);
                 NDWffTree ndWffTree = new NDWffTree(newWff, NDFlag.MI, NDStep.MI, _parent);
                 this.addPremise(ndWffTree);
@@ -512,9 +516,7 @@ public abstract class BaseNaturalDeductionValidator {
         ArrayList<NDWffTree> arguments = new ArrayList<>();
         // First assign the trees to a temporary list.
         for (NDWffTree ndWffTree : this.PREMISES_LIST) {
-            if (ndWffTree.isActive()) {
-                tempArguments.add(ndWffTree);
-            }
+            if (ndWffTree.isActive()) { tempArguments.add(ndWffTree); }
         }
 
         // Now assign the derived parent indices.
@@ -522,9 +524,7 @@ public abstract class BaseNaturalDeductionValidator {
             ArrayList<Integer> indices = new ArrayList<>();
             for (NDWffTree p : ndWffTree.getDerivedParents()) {
                 int idx = tempArguments.indexOf(p);
-                if (idx != -1) {
-                    indices.add(idx + 1);
-                }
+                if (idx != -1) { indices.add(idx + 1); }
             }
             Collections.sort(indices);
             ndWffTree.setDerivedParentIndices(indices);
@@ -535,10 +535,9 @@ public abstract class BaseNaturalDeductionValidator {
         ArrayList<Integer> indices = new ArrayList<>();
         for (NDWffTree p : this.CONCLUSION_WFF.getDerivedParents()) {
             int idx = tempArguments.indexOf(p);
-            if (idx != -1) {
-                indices.add(idx + 1);
-            }
+            if (idx != -1) { indices.add(idx + 1); }
         }
+
         Collections.sort(indices);
         this.CONCLUSION_WFF.setDerivedParentIndices(indices);
         arguments.add(this.CONCLUSION_WFF);

@@ -1,6 +1,7 @@
 package flat.algorithms;
 
 import com.flat.algorithms.models.NDWffTree;
+import com.flat.algorithms.models.ProofType;
 import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
 import com.flat.input.FLATParserListener;
 import com.flat.input.tests.ParserTest;
@@ -118,7 +119,7 @@ public class PropositionalNaturalDeductionValidatorUnitTester {
         FLATParserListener parser = ParserTest.parseFromFile(inName);
         if (parser == null)
             throw new AssertionFailedError("Failed reading test input file " + inName);
-        naturalDeductionValidator = new PropositionalNaturalDeductionValidator(parser.getSyntaxTrees());
+        naturalDeductionValidator = new PropositionalNaturalDeductionValidator(parser.getSyntaxTrees(), ProofType.DIRECT);
         ArrayList<NDWffTree> ndArgs = naturalDeductionValidator.getNaturalDeductionProof();
         for (int i = 0; i < ndArgs.size(); i++) {
             NDWffTree wff = ndArgs.get(i);

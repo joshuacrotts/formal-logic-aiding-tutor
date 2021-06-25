@@ -2,10 +2,7 @@ package com.flat.algorithms.predicate;
 
 import com.flat.algorithms.BaseTruthTreeGenerator;
 import com.flat.algorithms.models.TruthTree;
-import com.flat.models.treenode.ExistentialQuantifierNode;
-import com.flat.models.treenode.IdentityNode;
-import com.flat.models.treenode.UniversalQuantifierNode;
-import com.flat.models.treenode.WffTree;
+import com.flat.models.treenode.*;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
@@ -95,7 +92,7 @@ public final class PredicateTruthTreeGenerator extends BaseTruthTreeGenerator {
      * @param _queue                - priority queue of nodes left to process.
      */
     private void existentialDecomposition(TruthTree _existentialTruthTree, ArrayList<TruthTree> _leaves, PriorityQueue<TruthTree> _queue) {
-        if (!(_existentialTruthTree.getWff() instanceof ExistentialQuantifierNode)) {
+        if (_existentialTruthTree.getWff().getNodeType() != NodeType.EXISTENTIAL) {
             throw new IllegalArgumentException("Error: existential quantifier node expects existential node but got " + _existentialTruthTree.getClass());
         }
 
@@ -122,7 +119,7 @@ public final class PredicateTruthTreeGenerator extends BaseTruthTreeGenerator {
      * @param _queue              - priority queue of nodes left to process.
      */
     private void universalDecomposition(TruthTree _universalTruthTree, ArrayList<TruthTree> _leaves, PriorityQueue<TruthTree> _queue) {
-        if (!(_universalTruthTree.getWff() instanceof UniversalQuantifierNode)) {
+        if (_universalTruthTree.getWff().getNodeType() != NodeType.UNIVERSAL) {
             throw new IllegalArgumentException("Error: universal quantifier node expects universal node but got " + _universalTruthTree.getClass());
         }
 
@@ -148,8 +145,8 @@ public final class PredicateTruthTreeGenerator extends BaseTruthTreeGenerator {
      * @param _queue             - priority queue of truth tree nodes left to check.
      */
     private void identityDecomposition(TruthTree _identityTruthTree, ArrayList<TruthTree> _leaves, PriorityQueue<TruthTree> _queue) {
-        if (!(_identityTruthTree.getWff() instanceof IdentityNode)) {
-            throw new IllegalArgumentException("Error: identity truth tree node expects identity node but got " + _identityTruthTree.getWff().getClass());
+        if (_identityTruthTree.getWff().getNodeType() != NodeType.IDENTITY) {
+            throw new IllegalArgumentException("Error: identity truth tree node expects identity node but got " + _identityTruthTree.getWff().getNodeType());
         }
 
         // Add all possible constants to our list of them.

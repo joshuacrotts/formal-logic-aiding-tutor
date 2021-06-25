@@ -4,6 +4,7 @@ import com.flat.FLATLexer;
 import com.flat.FLATParser;
 import com.flat.algorithms.*;
 import com.flat.algorithms.models.NDWffTree;
+import com.flat.algorithms.models.ProofType;
 import com.flat.algorithms.models.TruthTree;
 import com.flat.algorithms.predicate.*;
 import com.flat.algorithms.propositional.PDFTruthTablePrinter;
@@ -157,17 +158,32 @@ public class ParserTest {
             // Argument validator (truth tree test).
             ArgumentTruthTreeValidator validator = new ArgumentTruthTreeValidator(resultList);
             System.out.println("Deductively valid: " + validator.isValid());
-            BaseNaturalDeductionValidator ndValidator = null;
+            NaturalDeductionAlgorithm ndValidator = null;
             if (resultList.get(0).isPropositionalWff()) {
                 System.out.println("PL Natural Deduction:");
-                ndValidator = new PropositionalNaturalDeductionValidator(resultList);
+                ndValidator = new PropositionalNaturalDeductionValidator(resultList, ProofType.DIRECT);
             } else if (resultList.get(0).isPredicateWff()) {
                 System.out.println("FOPL Natural Deduction:");
-                ndValidator = new PredicateNaturalDeductionValidator(resultList);
+                ndValidator = new PredicateNaturalDeductionValidator(resultList, ProofType.DIRECT);
             }
 
             // Natural deduction prover.
             ArrayList<NDWffTree> ndArgs = ndValidator.getNaturalDeductionProof();
+            if (ndArgs == null) {
+                System.err.println("Either the argument is invalid (check the above result) or it timed out!");
+            } else {
+                for (int i = 0; i < ndArgs.size(); i++) {
+                    NDWffTree wff = ndArgs.get(i);
+                    System.out.println((i + 1) + ": " + wff);
+                }
+                System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
+            }
+
+
+            System.out.println("\n\nIndirect Natural Deduction Proof:");
+            // Indirect proof natural deduction prover.
+            ndValidator = new IndirectProofNaturalDeductionValidator(resultList);
+            ndArgs = ndValidator.getNaturalDeductionProof();
             if (ndArgs == null) {
                 System.err.println("Either the argument is invalid (check the above result) or it timed out!");
             } else {

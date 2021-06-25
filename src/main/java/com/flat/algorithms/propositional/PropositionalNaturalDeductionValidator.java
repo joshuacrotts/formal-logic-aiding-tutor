@@ -5,6 +5,7 @@ import com.flat.algorithms.BaseNaturalDeductionValidator;
 import com.flat.algorithms.models.NDFlag;
 import com.flat.algorithms.models.NDStep;
 import com.flat.algorithms.models.NDWffTree;
+import com.flat.algorithms.models.ProofType;
 import com.flat.models.treenode.*;
 
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
      */
     private static final int TIMEOUT = 1000;
 
-    public PropositionalNaturalDeductionValidator(ArrayList<WffTree> _wffTreeList) {
-        super(_wffTreeList);
+    public PropositionalNaturalDeductionValidator(ArrayList<WffTree> _wffTreeList, ProofType _proofType) {
+        super(_wffTreeList, _proofType);
     }
 
     /**
@@ -37,8 +38,16 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         if (!truthTreeValidator.isValid()) { return null; }
 
         int cycles = 0;
-        while (!this.findConclusion() && !this.findContradictions()
-                && cycles++ <= PropositionalNaturalDeductionValidator.TIMEOUT) {
+        while (true) {
+            // Check for a contradiction, the conclusion, and a timeout.
+            // If we are in an indirect proof, we can only break via contr and timeouts.
+            boolean timeout = cycles++ > PropositionalNaturalDeductionValidator.TIMEOUT;
+            if (this.PROOF_TYPE == ProofType.INDIRECT) {
+                if (this.findContradictions() || timeout) break;
+            } else {
+                if (this.findConclusion() || this.findContradictions() || timeout) break;
+            }
+
             for (int i = 0; i < this.PREMISES_LIST.size(); i++) {
                 NDWffTree premise = this.PREMISES_LIST.get(i);
                 if (this.satisfy(premise.getWffTree(), premise)) {
@@ -49,9 +58,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         }
 
         // The timeout is there to prevent completely insane proofs from never ending.
-        if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) {
-            return null;
-        }
+        if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) { return null; }
 
         // Backtrack from the conclusion to mark all those nodes that were used in the proof.
         this.activateLinks(this.CONCLUSION_WFF);

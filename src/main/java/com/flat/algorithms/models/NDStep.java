@@ -10,6 +10,7 @@ public enum NDStep {
     MP("MP", "Modus Ponens", "MP"),
     II("II", "Implication Introduction", "{$\\to$}I"),
     P("Ass.", "Assumption", "Ass."),
+    PRAA("Ass. for RAA", "Assumption for Reductio Ad Absurdum", "Ass. for RAA"),
     C("C", "Conclusion", ""),
     DS("DS", "Disjunctive Syllogism", "DS"),
     AE("&E", "Conjunction Elimination", "{$\\varland$}E"),

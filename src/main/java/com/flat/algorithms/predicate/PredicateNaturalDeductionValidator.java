@@ -5,6 +5,8 @@ import com.flat.algorithms.BaseTruthTreeGenerator;
 import com.flat.algorithms.models.NDFlag;
 import com.flat.algorithms.models.NDStep;
 import com.flat.algorithms.models.NDWffTree;
+import com.flat.algorithms.models.ProofType;
+import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
 import com.flat.models.treenode.*;
 
 import java.util.ArrayList;
@@ -30,8 +32,8 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private final HashSet<Character> CONCLUSION_CONSTANTS;
 
-    public PredicateNaturalDeductionValidator(ArrayList<WffTree> _wffTreeList) {
-        super(_wffTreeList);
+    public PredicateNaturalDeductionValidator(ArrayList<WffTree> _wffTreeList, ProofType _proofType) {
+        super(_wffTreeList, _proofType);
         // Get all constants and conclusion constants...
         this.CONSTANTS = new HashSet<>();
         this.CONCLUSION_CONSTANTS = new HashSet<>();
@@ -51,8 +53,16 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     @Override
     public ArrayList<NDWffTree> getNaturalDeductionProof() {
         int cycles = 0;
-        while (!this.findConclusion() && !this.findContradictions()
-                && cycles++ <= PredicateNaturalDeductionValidator.TIMEOUT) {
+        while (true) {
+            // Check for a contradiction, the conclusion, and a timeout.
+            // If we are in an indirect proof, we can only break via contr and timeouts.
+            boolean timeout = cycles++ > PredicateNaturalDeductionValidator.TIMEOUT;
+            if (this.PROOF_TYPE == ProofType.INDIRECT) {
+                if (this.findContradictions() || timeout) break;
+            } else {
+                if (this.findConclusion() || this.findContradictions() || timeout) break;
+            }
+
             for (int i = 0; i < this.PREMISES_LIST.size(); i++) {
                 NDWffTree premise = this.PREMISES_LIST.get(i);
                 this.satisfy(premise.getWffTree(), premise);

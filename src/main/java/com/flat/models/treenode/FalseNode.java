@@ -35,7 +35,7 @@ public class FalseNode extends WffTree {
 
     @Override
     public String getTexCommand() {
-        return TexPrinter.removeMathMode(this.getSymbol());
+        return TexPrinter.removeMathMode(FalseNode.DEFAULT_TEX_SYMBOL);
     }
 
     @Override

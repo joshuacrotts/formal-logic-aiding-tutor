@@ -2,6 +2,7 @@ package com.flat.algorithms.propositional;
 
 import com.flat.models.treenode.AtomNode;
 import com.flat.models.treenode.NegNode;
+import com.flat.models.treenode.NodeType;
 import com.flat.models.treenode.WffTree;
 
 import java.util.*;
@@ -301,7 +302,7 @@ public final class TruthTableGenerator {
     private void populateNodeTruthValues(WffTree _operand1, WffTree _operand2, WffTree _op) {
         // If the second operand is null, this has to be a negation op.
         if (_operand2 == null) {
-            if (!(_op instanceof NegNode)) {
+            if (_op.getNodeType() != NodeType.NEG) {
                 throw new IllegalArgumentException("operand2 is null, so op must be a negation node.");
             }
             // Iterate through and flip all the boolean values.
