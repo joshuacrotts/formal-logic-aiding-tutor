@@ -1,7 +1,7 @@
 package com.flat.models.json.symbol;
 
-import edu.emory.mathcs.backport.java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**

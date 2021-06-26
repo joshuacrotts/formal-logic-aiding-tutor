@@ -5,11 +5,13 @@ package com.flat.tools.json.enums;
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonLocal {
+
     public enum File {
         ALGORITHMS("algorithms"),
         PROPOSITIONAL("propositional"),
         PREDICATE("predicate"),
-        TABS("tabs");
+        MENUBAR("menubar"),
+        LANGUAGE("languages");
 
         private String fileName;
 
@@ -25,7 +27,7 @@ public class JsonLocal {
     }
 
     public enum Paths {
-        ROOT("/src/main/resources/assets/json/");
+        JSONROOT("/src/main/resources/assets/json/");
 
         private String filePath;
 

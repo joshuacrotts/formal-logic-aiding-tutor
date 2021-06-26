@@ -1,6 +1,7 @@
 package com.flat.view.main;
 
 import com.flat.view.action.ResizePane;
+import com.flat.view.menubar.FLATMenuBar;
 import javafx.scene.layout.Pane;
 
 /**
@@ -14,6 +15,7 @@ public class MainTop {
     public MainTop () {
         this.parentPane.setStyle("-fx-background-color: red");
         this.resizePane = new ResizePane(this.parentPane, ResizePane.Orientation.VERTICAL, ResizePane.Side.BOTTOM);
+        this.parentPane.getChildren().add(new FLATMenuBar());
         this.parentPane.getChildren().add(this.resizePane.getParentPane());
         this.initializeFx();
     }
@@ -22,7 +24,7 @@ public class MainTop {
     public void initializeFx () {
         this.setResizePaneFx();
     }
-
+ 
     // Setters for initial FX properties
     public void setResizePaneFx () {
         this.parentPane.widthProperty().addListener((obs, oldVal, newVal) -> {

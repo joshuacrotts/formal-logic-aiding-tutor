@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class Main {
+public class MainView {
     private BorderPane parentPane = new BorderPane();
     private MainTop mainTop = new MainTop();
     private MainRight mainRight = new MainRight();
@@ -16,7 +16,7 @@ public class Main {
     private MainLeft mainLeft = new MainLeft();
     private MainCenter mainCenter = new MainCenter();
 
-    public Main () {
+    public MainView () {
         this.parentPane.setTop(this.mainTop.getParentPane());
         this.parentPane.setRight(this.mainRight.getParentPane());
         this.parentPane.setBottom(this.mainBottom.getParentPane());
@@ -46,7 +46,8 @@ public class Main {
 
     // Setters for initial FX properties.
     public void setMainTopFx () {
-        this.mainTop.getParentPane().setPrefHeight(100);
+        this.mainTop.getParentPane().setPrefHeight(50);
+        this.mainTop.getParentPane().setMaxHeight(50);
     }
 
     public void setMainRightFx () {

@@ -1,6 +1,7 @@
 package com.flat;
 
 import com.flat.controller.Controller;
+
 import com.flat.view.enums.View;
 import com.flat.view.tools.ResourceManager;
 import javafx.application.Application;
@@ -23,6 +24,7 @@ public class FLAT extends Application {
 
     @Override
     public void start(Stage _stage) {
+        System.setProperty("GOOGLE_API_KEY", "AIzaSyBWaA57xlPumWThhPfGmHSkPFj82fMRa1Y");
         Application.setUserAgentStylesheet(ResourceManager.getDefaultStyle());
         this.initializeStage(_stage);
         Controller.setStage(_stage);
@@ -37,4 +39,5 @@ public class FLAT extends Application {
         _stage.setMinHeight(720);
         _stage.setMinWidth(1280);
     }
+
 }
