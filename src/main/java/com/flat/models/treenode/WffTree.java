@@ -14,7 +14,7 @@ public class WffTree implements Copyable, TexPrintable {
      * Defines the type of node that we're using. There should be only one
      * ROOT node in the tree.
      */
-    private final NodeType NODE_TYPE;
+    private final NodeType nodeType;
 
     /**
      *
@@ -38,7 +38,7 @@ public class WffTree implements Copyable, TexPrintable {
 
     public WffTree(String _symbol, NodeType _nodeType) {
         this.symbol = _symbol;
-        this.NODE_TYPE = _nodeType;
+        this.nodeType = _nodeType;
         this.children = new ArrayList<>();
         this.truthValues = new ArrayList<>();
     }
@@ -75,7 +75,7 @@ public class WffTree implements Copyable, TexPrintable {
 
     @Override
     public WffTree copy() {
-        WffTree t = new WffTree(this.symbol, this.NODE_TYPE);
+        WffTree t = new WffTree(this.symbol, this.nodeType);
         t.setFlags(this.getFlags());
         this.copyHelper(this, t);
         return t;
@@ -229,86 +229,86 @@ public class WffTree implements Copyable, TexPrintable {
     }
 
     public boolean isRoot() {
-        return this.NODE_TYPE == NodeType.ROOT;
+        return this.nodeType == NodeType.ROOT;
     }
 
     public boolean isAtom() {
-        return this.NODE_TYPE == NodeType.ATOM;
+        return this.nodeType == NodeType.ATOM;
     }
 
     public boolean isNegation() {
-        return this.NODE_TYPE == NodeType.NEG;
+        return this.nodeType == NodeType.NEG;
     }
 
     public boolean isDoubleNegation() {
-        return this.NODE_TYPE == NodeType.NEG && this.getChild(0) != null &&
-                this.getChild(0).NODE_TYPE == NodeType.NEG;
+        return this.nodeType == NodeType.NEG && this.getChild(0) != null &&
+                this.getChild(0).nodeType == NodeType.NEG;
     }
 
     public boolean isNegPredicate() {
-        return this.NODE_TYPE == NodeType.NEG && this.getChild(0) != null &&
-                this.getChild(0).NODE_TYPE == NodeType.PREDICATE;
+        return this.nodeType == NodeType.NEG && this.getChild(0) != null &&
+                this.getChild(0).nodeType == NodeType.PREDICATE;
     }
 
     public boolean isNegImp() {
-        return this.NODE_TYPE == NodeType.NEG && this.getChild(0) != null &&
-                this.getChild(0).NODE_TYPE == NodeType.IMP;
+        return this.nodeType == NodeType.NEG && this.getChild(0) != null &&
+                this.getChild(0).nodeType == NodeType.IMP;
     }
 
     public boolean isNegAnd() {
-        return this.NODE_TYPE == NodeType.NEG && this.getChild(0) != null &&
-                this.getChild(0).NODE_TYPE == NodeType.AND;
+        return this.nodeType == NodeType.NEG && this.getChild(0) != null &&
+                this.getChild(0).nodeType == NodeType.AND;
     }
 
     public boolean isNegOr() {
-        return this.NODE_TYPE == NodeType.NEG && this.getChild(0) != null &&
-                this.getChild(0).NODE_TYPE == NodeType.OR;
+        return this.nodeType == NodeType.NEG && this.getChild(0) != null &&
+                this.getChild(0).nodeType == NodeType.OR;
     }
 
     public boolean isNegExclusiveOr() {
-        return this.NODE_TYPE == NodeType.NEG && this.getChild(0) != null &&
-                this.getChild(0).NODE_TYPE == NodeType.XOR;
+        return this.nodeType == NodeType.NEG && this.getChild(0) != null &&
+                this.getChild(0).nodeType == NodeType.XOR;
     }
 
     public boolean isNegIdentity() {
-        return this.NODE_TYPE == NodeType.NEG && this.getChild(0) != null &&
-                this.getChild(0).NODE_TYPE == NodeType.IDENTITY;
+        return this.nodeType == NodeType.NEG && this.getChild(0) != null &&
+                this.getChild(0).nodeType == NodeType.IDENTITY;
     }
 
     public boolean isAnd() {
-        return this.NODE_TYPE == NodeType.AND;
+        return this.nodeType == NodeType.AND;
     }
 
     public boolean isOr() {
-        return this.NODE_TYPE == NodeType.OR;
+        return this.nodeType == NodeType.OR;
     }
 
     public boolean isImp() {
-        return this.NODE_TYPE == NodeType.IMP;
+        return this.nodeType == NodeType.IMP;
     }
 
     public boolean isBicond() {
-        return this.NODE_TYPE == NodeType.BICOND;
+        return this.nodeType == NodeType.BICOND;
     }
 
     public boolean isExclusiveOr() {
-        return this.NODE_TYPE == NodeType.XOR;
+        return this.nodeType == NodeType.XOR;
     }
 
     public boolean isIdentity() {
-        return this.NODE_TYPE == NodeType.IDENTITY;
+        return this.nodeType == NodeType.IDENTITY;
     }
 
     public boolean isQuantifier() {
-        return this.NODE_TYPE == NodeType.EXISTENTIAL || this.NODE_TYPE == NodeType.UNIVERSAL;
+        return this.nodeType == NodeType.EXISTENTIAL || this.nodeType == NodeType.UNIVERSAL;
     }
 
     public boolean isExistential() {
-        return this.NODE_TYPE == NodeType.EXISTENTIAL;
+        return this.nodeType == NodeType.EXISTENTIAL;
     }
 
     public boolean isUniversal() {
-        return this.NODE_TYPE == NodeType.UNIVERSAL;
+        return this.nodeType == NodeType.UNIVERSAL;
     }
 
     public boolean isBinaryOp() {
@@ -316,19 +316,19 @@ public class WffTree implements Copyable, TexPrintable {
     }
 
     public boolean isPredicate() {
-        return this.NODE_TYPE == NodeType.PREDICATE;
+        return this.nodeType == NodeType.PREDICATE;
     }
 
     public boolean isConstant() {
-        return this.NODE_TYPE == NodeType.CONSTANT;
+        return this.nodeType == NodeType.CONSTANT;
     }
 
     public boolean isVariable() {
-        return this.NODE_TYPE == NodeType.VARIABLE;
+        return this.nodeType == NodeType.VARIABLE;
     }
 
     public NodeType getNodeType() {
-        return this.NODE_TYPE;
+        return this.nodeType;
     }
 
     public boolean isPropositionalWff() {
@@ -431,7 +431,7 @@ public class WffTree implements Copyable, TexPrintable {
 
     @Override
     public String toString() {
-        return this.NODE_TYPE.toString();
+        return this.nodeType.toString();
     }
 
     /**

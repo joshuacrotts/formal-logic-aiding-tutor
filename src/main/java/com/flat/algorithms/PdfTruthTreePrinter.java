@@ -8,7 +8,7 @@ import java.io.FileReader;
 /**
  *
  */
-public class PDFTruthTreePrinter extends PDFPrinter {
+public class PdfTruthTreePrinter extends PdfPrinter {
 
     /**
      * Template location to read from.
@@ -18,11 +18,11 @@ public class PDFTruthTreePrinter extends PDFPrinter {
     /**
      * Truth tree to print.
      */
-    private final TruthTree TRUTH_TREE;
+    private final TruthTree truthTree;
 
-    public PDFTruthTreePrinter(TruthTree _tree, String _outputFile) {
+    public PdfTruthTreePrinter(TruthTree _tree, String _outputFile) {
         super(_tree.getWff(), _outputFile);
-        this.TRUTH_TREE = _tree;
+        this.truthTree = _tree;
     }
 
     /**
@@ -44,12 +44,12 @@ public class PDFTruthTreePrinter extends PDFPrinter {
             this.getBufferedReader().close();
 
             // Append the table code to this request.
-            httpTex.append(this.TRUTH_TREE.getTexTree());
+            httpTex.append(this.truthTree.getTexTree());
             httpTex.append("\n\\end{forest}\n\\end{document}\n");
 
             // Build the URL and HTTP request.
             String texURL = "https://latex.ytotech.com/builds/sync";
-            PDFPrinter.downloadFile(texURL, this.getOutputFile(), httpTex.toString());
+            PdfPrinter.downloadFile(texURL, this.getOutputFile(), httpTex.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

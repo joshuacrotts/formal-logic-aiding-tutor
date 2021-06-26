@@ -7,7 +7,7 @@ import com.flat.algorithms.models.NDWffTree;
 import com.flat.algorithms.models.ProofType;
 import com.flat.algorithms.models.TruthTree;
 import com.flat.algorithms.predicate.*;
-import com.flat.algorithms.propositional.PDFTruthTablePrinter;
+import com.flat.algorithms.propositional.PdfTruthTablePrinter;
 import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
 import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.algorithms.propositional.TexTablePrinter;
@@ -83,8 +83,8 @@ public class ParserTest {
             TexPrinter texParseTreePrinter = new TexParseTreePrinter(result, "latex_parse_tree.tex");
             texParseTreePrinter.outputToFile();
 
-            // Prints the parse tree to a PDF.
-            PDFPrinter pdfParseTreePrinter = new PDFParseTreePrinter(result, "pdf_parse_tree.pdf");
+            // Prints the parse tree to a Pdf.
+            PdfPrinter pdfParseTreePrinter = new PdfParseTreePrinter(result, "pdf_parse_tree.pdf");
             pdfParseTreePrinter.outputToFile();
 
             BaseTruthTreeGenerator truthTreeGenerator;
@@ -101,8 +101,8 @@ public class ParserTest {
                 texTruthTablePrinter.outputToFile();
                 truthTreeGenerator = new PropositionalTruthTreeGenerator(result);
 
-                // Print the truth table to a PDF.
-                PDFPrinter pdfTruthTablePrinter = new PDFTruthTablePrinter(result, "latex_truth_table.pdf");
+                // Print the truth table to a Pdf.
+                PdfPrinter pdfTruthTablePrinter = new PdfTruthTablePrinter(result, "latex_truth_table.pdf");
                 pdfTruthTablePrinter.outputToFile();
             }
             // Generate the truth tree and print it to the console.
@@ -113,8 +113,8 @@ public class ParserTest {
             TexPrinter texTruthTreePrinter = new TexTruthTreePrinter(truthTree, "latex_truth_tree.tex");
             texTruthTreePrinter.outputToFile();
 
-            // Prints the truth tree to a PDF.
-            PDFPrinter pdfTruthTreePrinter = new PDFTruthTreePrinter(truthTree, "latex_truth_tree.pdf");
+            // Prints the truth tree to a Pdf.
+            PdfPrinter pdfTruthTreePrinter = new PdfTruthTreePrinter(truthTree, "latex_truth_tree.pdf");
             pdfTruthTreePrinter.outputToFile();
 
             // Display the main operator.
@@ -194,11 +194,11 @@ public class ParserTest {
                 System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
             }
 
-            PDFPrinter ttp = new PDFTruthTreePrinter(validator.getTruthTree(), "latex-truth-tree.pdf");
+            PdfPrinter ttp = new PdfTruthTreePrinter(validator.getTruthTree(), "latex-truth-tree.pdf");
             ttp.outputToFile();
 
             if (ndValidator.getNaturalDeductionProof() != null) {
-                PDFPrinter ndp = new PDFNaturalDeductionPrinter(ndValidator.getNaturalDeductionProof(), "latex-nd.pdf");
+                PdfPrinter ndp = new PdfNaturalDeductionPrinter(ndValidator.getNaturalDeductionProof(), "latex-nd.pdf");
                 ndp.outputToFile();
             }
         }

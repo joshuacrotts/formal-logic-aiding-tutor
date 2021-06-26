@@ -192,6 +192,8 @@ public class NDWffTree {
         return (this.flags & NDFlag.UN) != 0;
     }
 
+    public boolean isAltConclusion() { return (this.flags & NDFlag.ALTC) != 0;}
+
     public boolean isSatisfied() {
         return (this.flags & NDFlag.SAT) != 0;
     }

@@ -1,2 +1,1 @@
-// Association 1
 (P | (Q | R)) => ((P | Q) | R)

@@ -17,35 +17,37 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
     /**
      *
      */
-    protected final ArrayList<WffTree> ORIGINAL_WFFTREE_LIST;
+    protected final ArrayList<WffTree> originalWffTreeList;
 
     /**
      *
      */
-    protected final ArrayList<NDWffTree> PREMISES_LIST;
+    protected final ArrayList<NDWffTree> premisesList;
 
     /**
      *
      */
-    protected final NDWffTree CONCLUSION_WFF;
+    protected final NDWffTree conclusionWff;
 
     /**
      *
      */
-    protected final ProofType PROOF_TYPE;
+    protected final ProofType proofType;
 
     public BaseNaturalDeductionValidator(ArrayList<WffTree> _wffTreeList, ProofType _proofType) {
-        this.ORIGINAL_WFFTREE_LIST = _wffTreeList;
-        this.PROOF_TYPE = _proofType;
-        this.PREMISES_LIST = new ArrayList<>();
-        this.CONCLUSION_WFF = new NDWffTree(_wffTreeList.get(_wffTreeList.size() - 1).getChild(0), NDStep.C);
+        this.originalWffTreeList = _wffTreeList;
+        this.proofType = _proofType;
+        this.premisesList = new ArrayList<>();
+        this.conclusionWff = new NDWffTree(_wffTreeList.get(_wffTreeList.size() - 1).getNodeType() == NodeType.ROOT
+                ? _wffTreeList.get(_wffTreeList.size() - 1).getChild(0)
+                : _wffTreeList.get(_wffTreeList.size() - 1), NDStep.C);
 
         // Add all premises to the list. The invariant is that the last element is guaranteed to be the conclusion.
         for (int i = 0; i < _wffTreeList.size() - 1; i++) {
             // Trim ROOT off the node if it's still there from ANTLR processing.
             WffTree wff = _wffTreeList.get(i).getNodeType() == NodeType.ROOT
-                                ? _wffTreeList.get(i).getChild(0)
-                                : _wffTreeList.get(i);
+                    ? _wffTreeList.get(i).getChild(0)
+                    : _wffTreeList.get(i);
             this.addPremise(new NDWffTree(wff, NDFlag.ACTIVE, NDStep.P));
         }
     }
@@ -68,19 +70,19 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return true if a contradiction is found (and thus the proof is complete), false otherwise.
      */
     protected boolean findContradictions() {
-        for (int i = 0; i < this.PREMISES_LIST.size(); i++) {
-            for (int j = i + 1; j < this.PREMISES_LIST.size(); j++) {
+        for (int i = 0; i < this.premisesList.size(); i++) {
+            for (int j = i + 1; j < this.premisesList.size(); j++) {
                 if (i != j) {
-                    NDWffTree wffOne = this.PREMISES_LIST.get(i);
-                    NDWffTree wffTwo = this.PREMISES_LIST.get(j);
+                    NDWffTree wffOne = this.premisesList.get(i);
+                    NDWffTree wffTwo = this.premisesList.get(j);
                     // Compute the negated of one of the nodes and see if they're equivalent.
                     if (BaseTruthTreeGenerator.getFlippedNode(wffOne.getWffTree()).stringEquals(wffTwo.getWffTree())) {
                         NDWffTree falseNode = new NDWffTree(new FalseNode(), NDFlag.ACTIVE, NDStep.RI, wffOne, wffTwo);
-                        NDWffTree conclusionNode = new NDWffTree(this.CONCLUSION_WFF.getWffTree(), NDFlag.ACTIVE, NDStep.RE, falseNode);
+                        NDWffTree conclusionNode = new NDWffTree(this.conclusionWff.getWffTree(), NDFlag.ACTIVE, NDStep.RE, falseNode);
                         // Assign this as the conclusion node.
                         this.addPremise(falseNode);
-                        this.CONCLUSION_WFF.setDerivationStep(conclusionNode.getDerivationStep());
-                        this.CONCLUSION_WFF.setDerivedParents(conclusionNode.getDerivedParents());
+                        this.conclusionWff.setDerivationStep(conclusionNode.getDerivationStep());
+                        this.conclusionWff.setDerivedParents(conclusionNode.getDerivedParents());
                         return true;
                     }
                 }
@@ -108,8 +110,8 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      */
     protected void addPremise(NDWffTree _ndWffTree) {
         // THIS NEEDS TO BE ADAPTED TO WORK WITH CONTRADICTIONS SINCE THOSE WILL FAIL!!!!!!!
-        if (!this.PREMISES_LIST.contains(_ndWffTree) && !this.isRedundantTree(_ndWffTree)) {
-            this.PREMISES_LIST.add(_ndWffTree);
+        if (!this.premisesList.contains(_ndWffTree) && !this.isRedundantTree(_ndWffTree)) {
+            this.premisesList.add(_ndWffTree);
         }
     }
 
@@ -118,10 +120,10 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return true if _wffTree is a goal, false otherwise.
      */
     protected boolean isGoal(WffTree _wffTree) {
-        for (NDWffTree ndWffTree : this.PREMISES_LIST) {
+        for (NDWffTree ndWffTree : this.premisesList) {
             if (_wffTree.stringEquals(ndWffTree.getWffTree())) { return true; }
         }
-        return _wffTree.stringEquals(this.CONCLUSION_WFF.getWffTree());
+        return _wffTree.stringEquals(this.conclusionWff.getWffTree());
     }
 
     /**
@@ -140,8 +142,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return NDWffTree object with _tree as its WffTree instance, null if it is not a current premise.
      */
     protected NDWffTree getPremiseNDWffTree(WffTree _tree) {
-        for (int i = 0; i < this.PREMISES_LIST.size(); i++) {
-            NDWffTree ndWffTree = this.PREMISES_LIST.get(i);
+        for (NDWffTree ndWffTree : this.premisesList) {
             if (ndWffTree.getWffTree().stringEquals(_tree)) { return ndWffTree; }
         }
         return null;
@@ -171,7 +172,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      */
     protected boolean findModusPonens(WffTree _mpTree, NDWffTree _parent) {
         if (!_parent.isMPActive()) {
-            for (NDWffTree ndWffTree : this.PREMISES_LIST) {
+            for (NDWffTree ndWffTree : this.premisesList) {
                 // Check to see if we have the antecedent satisfied.
                 if (ndWffTree.getWffTree().stringEquals(_mpTree.getChild(0))) {
                     NDWffTree consequentNode = new NDWffTree(_mpTree.getChild(1), NDStep.MP, _parent, ndWffTree);
@@ -190,7 +191,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      */
     protected boolean findModusTollens(WffTree _mtTree, NDWffTree _parent) {
         if (!_parent.isMTActive()) {
-            for (NDWffTree ndWffTree : this.PREMISES_LIST) {
+            for (NDWffTree ndWffTree : this.premisesList) {
                 // Check to see if we have the negated consequent satisfied.
                 if (_mtTree.getChild(1).stringEquals(BaseTruthTreeGenerator.getFlippedNode(ndWffTree.getWffTree()))) {
                     WffTree flippedWff = BaseTruthTreeGenerator.getFlippedNode(_mtTree.getChild(0));
@@ -237,7 +238,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return true if we apply a hypothetical syllogism rule, false otherwise.
      */
     protected boolean findHypotheticalSyllogism(WffTree _impNode, NDWffTree _parent) {
-        for (NDWffTree othNdWffTree : this.PREMISES_LIST) {
+        for (NDWffTree othNdWffTree : this.premisesList) {
             WffTree othImp = othNdWffTree.getWffTree();
             if (_parent != othNdWffTree && othImp.isImp()
                     && (!_parent.isHSActive() || !othNdWffTree.isHSActive())) {
@@ -296,7 +297,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return
      */
     protected boolean findTransposition(WffTree _impNode, NDWffTree _parent) {
-        if (_impNode.isImp() && !_parent.isTPActive()) {
+        if (_impNode.isImp() && !_parent.isTPActive() && !this.isConclusion(_parent)) {
             NegNode antecedent = new NegNode();
             NegNode consequent = new NegNode();
             ImpNode transpositionNode = new ImpNode();
@@ -323,7 +324,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
             WffTree rhs = _disjNode.getChild(1);
             NDWffTree lhsImp = null;
             NDWffTree rhsImp = null;
-            for (NDWffTree ndWffTree : this.PREMISES_LIST) {
+            for (NDWffTree ndWffTree : this.premisesList) {
                 WffTree wff = ndWffTree.getWffTree();
                 if (wff.isImp()) {
                     if (lhs.stringEquals(wff.getChild(0))) {
@@ -358,7 +359,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
             WffTree rhs = _disjNode.getChild(1);
             NDWffTree lhsImp = null;
             NDWffTree rhsImp = null;
-            for (NDWffTree ndWffTree : this.PREMISES_LIST) {
+            for (NDWffTree ndWffTree : this.premisesList) {
                 WffTree wff = ndWffTree.getWffTree();
                 if (wff.isImp()) {
                     if (lhs.stringEquals(BaseTruthTreeGenerator.getFlippedNode(wff.getChild(1)))) {
@@ -488,11 +489,11 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return true if the premise list has the conclusion, false otherwise.
      */
     protected boolean findConclusion() {
-        for (NDWffTree ndWffTree : this.PREMISES_LIST) {
-            if (ndWffTree.getWffTree().stringEquals(this.CONCLUSION_WFF.getWffTree())) {
-                this.CONCLUSION_WFF.setActive(true);
-                this.CONCLUSION_WFF.setDerivedParents(ndWffTree.getDerivedParents());
-                this.CONCLUSION_WFF.setDerivationStep(ndWffTree.getDerivationStep());
+        for (NDWffTree ndWffTree : this.premisesList) {
+            if (ndWffTree.getWffTree().stringEquals(this.conclusionWff.getWffTree())) {
+                this.conclusionWff.setActive(true);
+                this.conclusionWff.setDerivedParents(ndWffTree.getDerivedParents());
+                this.conclusionWff.setDerivationStep(ndWffTree.getDerivationStep());
                 return true;
             }
         }
@@ -504,8 +505,8 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return true if the NDWffTree is the conclusion, false otherwise.
      */
     protected boolean isConclusion(NDWffTree _ndWffTree) {
-        return this.CONCLUSION_WFF.getWffTree().stringEquals(_ndWffTree.getWffTree())
-                || this.CONCLUSION_WFF == _ndWffTree;
+        return this.conclusionWff.getWffTree().stringEquals(_ndWffTree.getWffTree())
+                || this.conclusionWff == _ndWffTree || _ndWffTree.isAltConclusion();
     }
 
     /**
@@ -515,7 +516,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
         ArrayList<NDWffTree> tempArguments = new ArrayList<>();
         ArrayList<NDWffTree> arguments = new ArrayList<>();
         // First assign the trees to a temporary list.
-        for (NDWffTree ndWffTree : this.PREMISES_LIST) {
+        for (NDWffTree ndWffTree : this.premisesList) {
             if (ndWffTree.isActive()) { tempArguments.add(ndWffTree); }
         }
 
@@ -533,14 +534,14 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
 
         // Finally, add the conclusion.
         ArrayList<Integer> indices = new ArrayList<>();
-        for (NDWffTree p : this.CONCLUSION_WFF.getDerivedParents()) {
+        for (NDWffTree p : this.conclusionWff.getDerivedParents()) {
             int idx = tempArguments.indexOf(p);
             if (idx != -1) { indices.add(idx + 1); }
         }
 
         Collections.sort(indices);
-        this.CONCLUSION_WFF.setDerivedParentIndices(indices);
-        arguments.add(this.CONCLUSION_WFF);
+        this.conclusionWff.setDerivedParentIndices(indices);
+        arguments.add(this.conclusionWff);
         return arguments;
     }
 }
