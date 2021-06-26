@@ -18,11 +18,6 @@ public abstract class BaseTruthTreeGenerator {
     public static int identityCount = 0;
 
     /**
-     * We should definitely make this a setting...
-     */
-    protected static int TIMEOUT = 1000;
-
-    /**
      *
      */
     protected WffTree tree;

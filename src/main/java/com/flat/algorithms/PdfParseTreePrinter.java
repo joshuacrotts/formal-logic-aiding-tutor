@@ -9,14 +9,14 @@ import java.io.FileReader;
 /**
  *
  */
-public class PDFParseTreePrinter extends PDFPrinter {
+public class PdfParseTreePrinter extends PdfPrinter {
 
     /**
      * Template location to read from.
      */
     private static final String TEX_TREE_TEMPLATE = "src/main/resources/tex_parse_tree_template.tex";
 
-    public PDFParseTreePrinter(WffTree _tree, String _outputFile) {
+    public PdfParseTreePrinter(WffTree _tree, String _outputFile) {
         super(_tree, _outputFile);
     }
 
@@ -44,7 +44,7 @@ public class PDFParseTreePrinter extends PDFPrinter {
 
             // Build the URL and HTTP request.
             String texURL = "https://latex.ytotech.com/builds/sync";
-            PDFPrinter.downloadFile(texURL, this.getOutputFile(), httpTex.toString());
+            PdfPrinter.downloadFile(texURL, this.getOutputFile(), httpTex.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

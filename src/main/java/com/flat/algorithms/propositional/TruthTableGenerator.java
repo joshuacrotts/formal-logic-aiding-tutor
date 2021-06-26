@@ -16,7 +16,7 @@ public final class TruthTableGenerator {
      * Maximum number of atoms that this algorithm can realistically handle before taking an eternity
      * to generate the truth table.
      */
-    private static final int MAX_ATOMS = 14;
+    private static final int MAX_ATOMS = 12;
 
     /**
      * Root of WffTree to generate the truth table for.

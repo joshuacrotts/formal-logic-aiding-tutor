@@ -10,12 +10,12 @@ public abstract class TexPrinter {
     /**
      * Truth tree to print to the output file.
      */
-    private final WffTree WFF_TREE;
+    private final WffTree wffTree;
 
     /**
      * Output file to print to.
      */
-    private final String OUTPUT_FILE;
+    private final String outputFile;
 
     /**
      * BufferedWriter object.
@@ -28,8 +28,8 @@ public abstract class TexPrinter {
     private BufferedReader reader;
 
     public TexPrinter(WffTree _tree, String _outputFile) {
-        this.WFF_TREE = _tree;
-        this.OUTPUT_FILE = _outputFile;
+        this.wffTree = _tree;
+        this.outputFile = _outputFile;
     }
 
     /**
@@ -64,10 +64,10 @@ public abstract class TexPrinter {
     }
 
     protected String getOutputFile() {
-        return this.OUTPUT_FILE;
+        return this.outputFile;
     }
 
     protected WffTree getWffTree() {
-        return this.WFF_TREE;
+        return this.wffTree;
     }
 }

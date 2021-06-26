@@ -1,6 +1,6 @@
 package com.flat.algorithms.propositional;
 
-import com.flat.algorithms.PDFPrinter;
+import com.flat.algorithms.PdfPrinter;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.FLATUtils;
 
@@ -9,14 +9,14 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
-public final class PDFTruthTablePrinter extends PDFPrinter {
+public final class PdfTruthTablePrinter extends PdfPrinter {
 
     /**
      * Template location to read from.
      */
     private static final String TEX_TABLE_TEMPLATE = "src/main/resources/tex_truth_table_template.tex";
 
-    public PDFTruthTablePrinter(WffTree _tree, String _outputFile) {
+    public PdfTruthTablePrinter(WffTree _tree, String _outputFile) {
         super(_tree, _outputFile);
     }
 
@@ -54,7 +54,7 @@ public final class PDFTruthTablePrinter extends PDFPrinter {
 
             // Build the URL and HTTP request.
             String texURL = "https://latex.ytotech.com/builds/sync";
-            PDFPrinter.downloadFile(texURL, this.getOutputFile(), httpTex.toString());
+            PdfPrinter.downloadFile(texURL, this.getOutputFile(), httpTex.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

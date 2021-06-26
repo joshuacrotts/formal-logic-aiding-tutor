@@ -35,7 +35,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
      */
     @Override
     public ArrayList<NDWffTree> getNaturalDeductionProof() {
-        ArgumentTruthTreeValidator truthTreeValidator = new ArgumentTruthTreeValidator(this.ORIGINAL_WFFTREE_LIST);
+        ArgumentTruthTreeValidator truthTreeValidator = new ArgumentTruthTreeValidator(this.originalWffTreeList);
         if (!truthTreeValidator.isValid()) { return null; }
 
         int cycles = 0;
@@ -43,22 +43,22 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             // Check for a contradiction, the conclusion, and a timeout.
             // If we are in an indirect proof, we can only break via contr and timeouts.
             boolean timeout = cycles++ > PropositionalNaturalDeductionValidator.TIMEOUT;
-            if (this.PROOF_TYPE == ProofType.INDIRECT) {
+            if (this.proofType == ProofType.INDIRECT) {
                 if (this.findContradictions() || timeout) break;
             } else {
                 if (this.findConclusion() || this.findContradictions() || timeout) break;
             }
 
             // First try to satisfy all available premises.
-            for (int i = 0; i < this.PREMISES_LIST.size(); i++) {
-                NDWffTree premise = this.PREMISES_LIST.get(i);
+            for (int i = 0; i < this.premisesList.size(); i++) {
+                NDWffTree premise = this.premisesList.get(i);
                 if (this.satisfy(premise.getWffTree(), premise)) {
                     premise.setFlags(NDFlag.SAT);
                 }
             }
 
             // Now try to satisfy the conclusion and its equivalences.
-            this.satisfy(this.CONCLUSION_WFF.getWffTree(), this.CONCLUSION_WFF);
+            this.satisfy(this.conclusionWff.getWffTree(), this.conclusionWff);
             for (NDWffTree conclusionEquivalence : this.findConclusionEquivalentsPL()) {
                 this.satisfy(conclusionEquivalence.getWffTree(), conclusionEquivalence);
             }
@@ -68,7 +68,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) { return null; }
 
         // Backtrack from the conclusion to mark all those nodes that were used in the proof.
-        this.activateLinks(this.CONCLUSION_WFF);
+        this.activateLinks(this.conclusionWff);
 
         // Add the premises that were actually used in the argument.
         return this.assignParentIndices();
@@ -119,7 +119,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
 
         // If we couldn't find anything to deduce/reduce the proposition with,
         // try to search for it in the premises list.
-        for (NDWffTree ndWffTree : this.PREMISES_LIST) {
+        for (NDWffTree ndWffTree : this.premisesList) {
             if (ndWffTree.getWffTree().stringEquals(_tree)) { return true; }
         }
 
@@ -266,18 +266,18 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
      */
     protected ArrayList<NDWffTree> findConclusionEquivalentsPL() {
         ArrayList<NDWffTree> conclusionEquivalentList = new ArrayList<>();
-        WffTree conclusionNode = this.CONCLUSION_WFF.getWffTree();
+        WffTree conclusionNode = this.conclusionWff.getWffTree();
         // First do a transposition equivalence.
         if (conclusionNode.isImp()) {
             ImpNode transpositionNode = new ImpNode();
             transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1)));
             transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0)));
-            this.CONCLUSION_WFF.setFlags(NDFlag.TP);
-            conclusionEquivalentList.add(new NDWffTree(transpositionNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.TP, this.CONCLUSION_WFF));
+            this.conclusionWff.setFlags(NDFlag.TP);
+            conclusionEquivalentList.add(new NDWffTree(transpositionNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.TP, this.conclusionWff));
         }
 
         // Now do a demorgan's equivalence.
-        if (conclusionNode.isBinaryOp()) {
+        if (conclusionNode.isNegation() || conclusionNode.isBinaryOp()) {
             WffTree deMorganNode = null;
             // Negate a biconditional to get ~(X <-> Y) => ~((X->Y) & (Y->X)).
             if (conclusionNode.isNegation() && conclusionNode.getChild(0).isBicond()) {
@@ -323,13 +323,13 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             }
             // If we found a node, then it'll be applied/inserted here.
             if (deMorganNode != null) {
-                this.CONCLUSION_WFF.setFlags(NDFlag.DEM);
-                conclusionEquivalentList.add(new NDWffTree(deMorganNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DEM, this.CONCLUSION_WFF));
+                this.conclusionWff.setFlags(NDFlag.DEM);
+                conclusionEquivalentList.add(new NDWffTree(deMorganNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DEM, this.conclusionWff));
             }
         }
 
         // Finally, do a material implication equivalence.
-        if (conclusionNode.isImp()) {
+        if (conclusionNode.isImp() || conclusionNode.isOr()) {
             WffTree newWff = null;
             // Convert (P -> Q) to (~P V Q).
             if (conclusionNode.isImp()) {
@@ -353,8 +353,8 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             }
             // If we performed a MI then add it.
             if (newWff != null) {
-                this.CONCLUSION_WFF.setFlags(NDFlag.MI);
-                NDWffTree ndWffTree = new NDWffTree(newWff, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.MI, this.CONCLUSION_WFF);
+                this.conclusionWff.setFlags(NDFlag.MI);
+                NDWffTree ndWffTree = new NDWffTree(newWff, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.MI, this.conclusionWff);
                 conclusionEquivalentList.add(ndWffTree);
             }
         }

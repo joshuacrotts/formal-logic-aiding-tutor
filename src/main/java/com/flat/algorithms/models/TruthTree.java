@@ -41,23 +41,23 @@ public class TruthTree implements Comparable<TruthTree> {
     /**
      * WffTree "value" for the TruthTree.
      */
-    private final WffTree NODE;
+    private final WffTree node;
 
     /**
      * Pointer to the parent node for reverse traversal.
      */
-    private final TruthTree PARENT;
+    private final TruthTree parent;
 
     /**
      * Pointer to the node that derived this step.
      */
-    private final TruthTree DERIVED_PARENT;
+    private final TruthTree derivedParent;
 
     /**
      * Set of available constants allocated to this TruthTree as well as
      * any parents above it.
      */
-    private final Set<Character> AVAILABLE_CONSTANTS;
+    private final Set<Character> availableConstants;
 
     /**
      * Map of any available substitutions indicated by the identity operator.
@@ -65,7 +65,7 @@ public class TruthTree implements Comparable<TruthTree> {
      * a = b exists. Then, for any occurrence of a in a closable node, we can
      * substitute this for b, and vice versa.
      */
-    private final Map<Character, HashSet<Character>> SUBSTITUTIONS;
+    private final Map<Character, HashSet<Character>> substitutions;
 
     /**
      * Identifier number of this truth tree node in the tree itself.
@@ -99,16 +99,16 @@ public class TruthTree implements Comparable<TruthTree> {
     private int universalCount;
 
     public TruthTree(WffTree _node, TruthTree _parent, TruthTree _derivedParent) {
-        this.NODE = _node;
-        this.PARENT = _parent;
-        this.DERIVED_PARENT = _derivedParent;
-        this.AVAILABLE_CONSTANTS = new HashSet<>();
-        this.SUBSTITUTIONS = new HashMap<>();
+        this.node = _node;
+        this.parent = _parent;
+        this.derivedParent = _derivedParent;
+        this.availableConstants = new HashSet<>();
+        this.substitutions = new HashMap<>();
         this.identifierNo = ++BaseTruthTreeGenerator.identityCount;
 
         // Compute the union of the constants from the parent.
         if (_parent != null) {
-            this.AVAILABLE_CONSTANTS.addAll(_parent.getAvailableConstants());
+            this.availableConstants.addAll(_parent.getAvailableConstants());
         }
 
         this.setTruthTreeValue();
@@ -161,7 +161,7 @@ public class TruthTree implements Comparable<TruthTree> {
                                        PriorityQueue<TruthTree> _queue, char _variableToReplace) {
         // Find the next available constant to use.
         char constant = 'a';
-        while (_existentialTruthTree.AVAILABLE_CONSTANTS.contains(constant)) {
+        while (_existentialTruthTree.availableConstants.contains(constant)) {
             // This could wrap around...
             constant++;
         }
@@ -177,7 +177,7 @@ public class TruthTree implements Comparable<TruthTree> {
                 if (!this.treeContains(leaf, _newRoot)) {
                     TruthTree truthTreeRoot = new TruthTree(_newRoot, leaf, _existentialTruthTree);
                     leaf.addCenter(truthTreeRoot);
-                    truthTreeRoot.AVAILABLE_CONSTANTS.add(constant);
+                    truthTreeRoot.availableConstants.add(constant);
                     _queue.add(leaf.getCenter());
                 }
             }
@@ -191,14 +191,14 @@ public class TruthTree implements Comparable<TruthTree> {
     public void addUniversalConstant(TruthTree _universalTruthTree, ArrayList<TruthTree> _leaves,
                                      PriorityQueue<TruthTree> _queue, char _variableToReplace) {
         // Add a default constant if one is not available to the universal quantifier.
-        if (_universalTruthTree.AVAILABLE_CONSTANTS.isEmpty()) {
+        if (_universalTruthTree.availableConstants.isEmpty()) {
             _universalTruthTree.addConstant('a');
         }
 
         for (TruthTree leaf : _leaves) {
             // Copy the old root, replace all variables with a constant, and add to the tree and queue.
             TruthTree l = leaf;
-            for (char c : _universalTruthTree.AVAILABLE_CONSTANTS) {
+            for (char c : _universalTruthTree.availableConstants) {
                 if (!l.isClosed()) {
                     // Create a copy and replace the selected variable.
                     WffTree _newRoot = _universalTruthTree.getWff().getChild(0).copy();
@@ -312,7 +312,7 @@ public class TruthTree implements Comparable<TruthTree> {
     }
 
     public WffTree getWff() {
-        return this.NODE;
+        return this.node;
     }
 
     public void addLeft(TruthTree _left) {
@@ -356,15 +356,15 @@ public class TruthTree implements Comparable<TruthTree> {
     }
 
     public TruthTree getParent() {
-        return this.PARENT;
+        return this.parent;
     }
 
     public TruthTree getDerivedParent() {
-        return this.DERIVED_PARENT;
+        return this.derivedParent;
     }
 
     public void addConstant(char _ch) {
-        this.AVAILABLE_CONSTANTS.add(_ch);
+        this.availableConstants.add(_ch);
     }
 
     public int getFlags() {
@@ -376,7 +376,7 @@ public class TruthTree implements Comparable<TruthTree> {
     }
 
     public Set<Character> getAvailableConstants() {
-        return this.AVAILABLE_CONSTANTS;
+        return this.availableConstants;
     }
 
     @Override
@@ -386,7 +386,7 @@ public class TruthTree implements Comparable<TruthTree> {
             leafSignal = this.isClosed() ? "X" : "open";
         }
 
-        //String deriveStep = this.DERIVED_PARENT != null ? "\t\t\t(" + this.DERIVED_PARENT.identifierNo + ") " + this.DERIVED_PARENT.getWff().getSymbol() : "";
+        //String deriveStep = this.derivedParent != null ? "\t\t\t(" + this.derivedParent.identifierNo + ") " + this.derivedParent.getWff().getSymbol() : "";
         return this.getWff().getStringRep() + " " + leafSignal;
     }
 
@@ -395,7 +395,7 @@ public class TruthTree implements Comparable<TruthTree> {
      * further detail in the above javadoc.
      */
     private void setTruthTreeValue() {
-        WffTree _node = this.NODE;
+        WffTree _node = this.node;
         // This is kind of ugly, I know...
         if (_node.isAtom()) {
             this.value = 0;

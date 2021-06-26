@@ -12,6 +12,11 @@ import java.util.PriorityQueue;
  */
 public final class PredicateTruthTreeGenerator extends BaseTruthTreeGenerator {
 
+    /**
+     * We should definitely make this a setting...
+     */
+    private static final int TIMEOUT = 1000;
+
     public PredicateTruthTreeGenerator(WffTree _tree) {
         super(_tree);
     }
@@ -36,7 +41,7 @@ public final class PredicateTruthTreeGenerator extends BaseTruthTreeGenerator {
 
         // Poll the heap and build the tree.
         while (!queue.isEmpty()) {
-            if (++iterations >= BaseTruthTreeGenerator.TIMEOUT) {
+            if (++iterations >= PredicateTruthTreeGenerator.TIMEOUT) {
                 System.err.println("Timeout error: cannot compute a tree this complex.");
                 return;
             }

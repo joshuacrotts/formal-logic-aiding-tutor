@@ -15,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-public abstract class PDFPrinter {
+public abstract class PdfPrinter {
 
     /**
      * Tree to print to the output file.
@@ -37,7 +37,7 @@ public abstract class PDFPrinter {
      */
     private BufferedReader reader;
 
-    public PDFPrinter(WffTree _tree, String _outputFile) {
+    public PdfPrinter(WffTree _tree, String _outputFile) {
         this.WFF_TREE = _tree;
         this.OUTPUT_FILE = _outputFile;
     }

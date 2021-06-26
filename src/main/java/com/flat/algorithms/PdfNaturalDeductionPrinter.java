@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  *
  */
-public class PDFNaturalDeductionPrinter extends PDFPrinter {
+public class PdfNaturalDeductionPrinter extends PdfPrinter {
 
     /**
      * Template location to read from.
@@ -19,11 +19,11 @@ public class PDFNaturalDeductionPrinter extends PDFPrinter {
     /**
      *
      */
-    private final ArrayList<NDWffTree> ND_ARGS;
+    private final ArrayList<NDWffTree> ndArgs;
 
-    public PDFNaturalDeductionPrinter(ArrayList<NDWffTree> _ndArgs, String _outputFile) {
+    public PdfNaturalDeductionPrinter(ArrayList<NDWffTree> _ndArgs, String _outputFile) {
         super(null, _outputFile);
-        this.ND_ARGS = _ndArgs;
+        this.ndArgs = _ndArgs;
     }
 
     /**
@@ -50,7 +50,7 @@ public class PDFNaturalDeductionPrinter extends PDFPrinter {
 
             // Build the URL and HTTP request.
             String texURL = "https://latex.ytotech.com/builds/sync";
-            PDFPrinter.downloadFile(texURL, this.getOutputFile(), httpTex.toString());
+            PdfPrinter.downloadFile(texURL, this.getOutputFile(), httpTex.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class PDFNaturalDeductionPrinter extends PDFPrinter {
      */
     private String getTexNaturalDeduction() {
         StringBuilder sb = new StringBuilder();
-        for (NDWffTree ndArg : this.ND_ARGS) {
+        for (NDWffTree ndArg : this.ndArgs) {
             sb.append(ndArg.getWffTree().getTexCommand());
             sb.append(" & ");
             sb.append(ndArg.getDerivationStep().getTexCommand());
@@ -76,7 +76,7 @@ public class PDFNaturalDeductionPrinter extends PDFPrinter {
             sb.append("\\\\\n");
         }
         sb.append("\\therefore ");
-        sb.append(this.ND_ARGS.get(this.ND_ARGS.size() - 1).getWffTree().getTexCommand());
+        sb.append(this.ndArgs.get(this.ndArgs.size() - 1).getWffTree().getTexCommand());
         sb.append("\\hfill\\blacksquare\n");
         return sb.toString();
     }
