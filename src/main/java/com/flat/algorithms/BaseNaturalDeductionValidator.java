@@ -336,7 +336,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
                 OrNode orNodeRhs = new OrNode();
                 orNodeRhs.addChild(BaseTruthTreeGenerator.getFlippedNode(rhsImp.getWffTree().getChild(0)));
                 orNodeRhs.addChild(BaseTruthTreeGenerator.getFlippedNode(lhsImp.getWffTree().getChild(0)));
-                this.addPremise(new NDWffTree(orNodeRhs, NDFlag.DD, NDStep.DD, lhsImp, rhsImp, _parent));
+                this.addPremise(new NDWffTree(orNodeLhs, NDFlag.DD, NDStep.DD, lhsImp, rhsImp, _parent));
                 this.addPremise(new NDWffTree(orNodeRhs, NDFlag.DD, NDStep.DD, rhsImp, lhsImp, _parent));
                 return true;
             }
