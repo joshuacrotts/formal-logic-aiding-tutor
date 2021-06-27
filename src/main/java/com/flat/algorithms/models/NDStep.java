@@ -13,6 +13,8 @@ public enum NDStep {
     PRAA("Ass. for RAA", "Assumption for Reductio Ad Absurdum", "Ass. for RAA"),
     C("C", "Conclusion", ""),
     DS("DS", "Disjunctive Syllogism", "DS"),
+    DNI("DNI", "Double Negation Introduction", "DNI"),
+    DNE("DNE", "Double Negation Elimination", "DNE"),
     AE("&E", "Conjunction Elimination", "{$\\varland$}E"),
     AI("&I", "Conjunction Introduction", "{$\\varland$}I"),
     RI("⊥I", "Contradiction", "{$\\bot$}I"),

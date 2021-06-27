@@ -57,7 +57,7 @@ EXISTENTIAL: '∃' ;
 UNIVERSAL: '∀' ;
 
 /* Conclusion Indicator Symbols. */
-THEREFORE: '⊢' | '∴' | '=>';
+THEREFORE: '⊢' | '∴' | '=>' | '/';
 
 /* Semantic entailment (models). */
 SEMANTIC_ENTAILMENT: '⊧' | '⊨' ;

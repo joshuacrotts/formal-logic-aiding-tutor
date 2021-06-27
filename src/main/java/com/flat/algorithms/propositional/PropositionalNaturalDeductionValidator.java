@@ -8,6 +8,7 @@ import com.flat.algorithms.models.NDStep;
 import com.flat.algorithms.models.NDWffTree;
 import com.flat.algorithms.models.ProofType;
 import com.flat.models.treenode.*;
+import com.sun.org.apache.xpath.internal.operations.Neg;
 
 import java.util.ArrayList;
 
@@ -94,7 +95,9 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
     private boolean satisfy(WffTree _tree, NDWffTree _parent) {
         boolean satisfied = false;
         // First, try out the standard rules that are easily deducible.
-        if (this.findDeMorganEquivalence(_tree, _parent)) {
+        if (this.findDoubleNegations(_tree, _parent)) {
+            return true;
+        } else if (this.findDeMorganEquivalence(_tree, _parent)) {
             return true;
         } else if (this.findMaterialImplication(_tree, _parent)) {
             return true;
@@ -264,16 +267,21 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
      *
      * @return
      */
-    protected ArrayList<NDWffTree> findConclusionEquivalentsPL() {
+    private ArrayList<NDWffTree> findConclusionEquivalentsPL() {
         ArrayList<NDWffTree> conclusionEquivalentList = new ArrayList<>();
         WffTree conclusionNode = this.conclusionWff.getWffTree();
-        // First do a transposition equivalence.
+        // First do a double negation equivalence.
+        if (conclusionNode.isDoubleNegation()) {
+            conclusionEquivalentList.add(new NDWffTree(conclusionNode.getChild(0).getChild(0), NDFlag.TP | NDFlag.DNE | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DNE, this.conclusionWff));
+        }
+
+        // Now do a transposition equivalence.
         if (conclusionNode.isImp()) {
             ImpNode transpositionNode = new ImpNode();
             transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1)));
             transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0)));
             this.conclusionWff.setFlags(NDFlag.TP);
-            conclusionEquivalentList.add(new NDWffTree(transpositionNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.TP, this.conclusionWff));
+            conclusionEquivalentList.add(new NDWffTree(transpositionNode, NDFlag.TP | NDFlag.DNI | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.TP, this.conclusionWff));
         }
 
         // Now do a demorgan's equivalence.
@@ -324,7 +332,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             // If we found a node, then it'll be applied/inserted here.
             if (deMorganNode != null) {
                 this.conclusionWff.setFlags(NDFlag.DEM);
-                conclusionEquivalentList.add(new NDWffTree(deMorganNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DEM, this.conclusionWff));
+                conclusionEquivalentList.add(new NDWffTree(deMorganNode, NDFlag.TP | NDFlag.DNI | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DEM, this.conclusionWff));
             }
         }
 
@@ -354,7 +362,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             // If we performed a MI then add it.
             if (newWff != null) {
                 this.conclusionWff.setFlags(NDFlag.MI);
-                NDWffTree ndWffTree = new NDWffTree(newWff, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.MI, this.conclusionWff);
+                NDWffTree ndWffTree = new NDWffTree(newWff, NDFlag.TP | NDFlag.DNI | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.MI, this.conclusionWff);
                 conclusionEquivalentList.add(ndWffTree);
             }
         }

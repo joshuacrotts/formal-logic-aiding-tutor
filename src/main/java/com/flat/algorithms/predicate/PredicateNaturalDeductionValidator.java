@@ -37,8 +37,9 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         // Get all constants and conclusion constants...
         this.constants = new HashSet<>();
         this.conclusionConstants = new HashSet<>();
-        for (int i = 0; i < _wffTreeList.size() - 1; i++)
+        for (int i = 0; i < _wffTreeList.size() - 1; i++) {
             this.addAllConstantsToSet(_wffTreeList.get(i), this.constants);
+        }
         this.addAllConstantsToSet(_wffTreeList.get(_wffTreeList.size() - 1), this.conclusionConstants);
     }
 
@@ -74,13 +75,10 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
             for (NDWffTree conclusionEquivalence : this.findConclusionEquivalentsFOPL()) {
                 this.satisfy(conclusionEquivalence.getWffTree(), conclusionEquivalence);
             }
-
         }
 
         // The timeout is there to prevent completely insane proofs from never ending.
-        if (cycles > PredicateNaturalDeductionValidator.TIMEOUT) {
-            return null;
-        }
+        if (cycles > PredicateNaturalDeductionValidator.TIMEOUT) { return null; }
 
         // Backtrack from the conclusion to mark all those nodes that were used in the proof.
         this.activateLinks(this.conclusionWff);
@@ -149,7 +147,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
                 // If the two are negated, then we need to truncate it.
                 WffTree w1 = _tree.isNegation() ? _tree.getChild(0) : _tree;
                 WffTree w2 = othNDWffTree.getWffTree().isNegation() ? othNDWffTree.getWffTree().getChild(0)
-                        : othNDWffTree.getWffTree();
+                                                                    : othNDWffTree.getWffTree();
                 if (w1.getChildrenSize() == w2.getChildrenSize()) {
                     // Now check to see if the children are the same OR
                     // if the former is a matching variable while the latter is a constant.
@@ -157,15 +155,10 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
                     for (int i = 0; i < w1.getChildrenSize() && found; i++) {
                         WffTree ch1 = w1.getChild(i);
                         WffTree ch2 = w2.getChild(i);
-                        if (ch1.stringEquals(ch2) || (ch1.isVariable() && ch2.isConstant())) {
-                            continue;
-                        } else {
-                            found = false;
-                        }
+                        if (ch1.stringEquals(ch2) || (ch1.isVariable() && ch2.isConstant())) { continue; }
+                        else { found = false; }
                     }
-                    if (found) {
-                        return othNDWffTree;
-                    }
+                    if (found) { return othNDWffTree; }
                 }
             }
         }
