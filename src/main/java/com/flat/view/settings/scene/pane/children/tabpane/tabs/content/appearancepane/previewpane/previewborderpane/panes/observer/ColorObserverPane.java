@@ -4,26 +4,19 @@ import com.flat.models.fx.FxPreviewData;
 import com.flat.models.fx.observables.color.extend.ObservableBorderColor;
 import com.flat.models.fx.observables.color.extend.ObservablePrimaryColor;
 import com.flat.models.fx.observables.color.extend.ObservableSecondaryColor;
+import javafx.geometry.Insets;
+import javafx.scene.layout.*;
+
 import java.util.Observable;
 import java.util.Observer;
-import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public abstract class ColorObserverPane extends Pane implements Observer {
-    private BorderWidths borderWidths;
+    private final BorderWidths borderWidths;
 
-    public ColorObserverPane (BorderWidths _borderWidths) {
+    public ColorObserverPane(BorderWidths _borderWidths) {
         this.borderWidths = _borderWidths;
     }
 

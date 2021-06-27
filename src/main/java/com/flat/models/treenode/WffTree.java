@@ -121,16 +121,18 @@ public class WffTree implements Copyable, TexPrintable {
         String wff1Equiv = WffTree.getStandardizedEquiv(this.getStringRep());
         String wff2Equiv = WffTree.getStandardizedEquiv(o.getStringRep());
 
-        if (wff1Equiv.equals(wff2Equiv)) { return true; }
+        if (wff1Equiv.equals(wff2Equiv)) {
+            return true;
+        }
 
         StringBuilder w1 = new StringBuilder(wff1Equiv);
         StringBuilder w2 = new StringBuilder(wff2Equiv);
 
         // Check to see if both are identity operators and if so, reverse them.
-        if ((this.isIdentity() && o.isIdentity()) 
-                && (FLATUtils.sbCompareTo(w1, w2.reverse()) == 0 
-                  || FLATUtils.sbCompareTo(w1.reverse(), w2.reverse()) == 0 
-                  || FLATUtils.sbCompareTo(w1.reverse(), w2) == 0)) {
+        if ((this.isIdentity() && o.isIdentity())
+                && (FLATUtils.sbCompareTo(w1, w2.reverse()) == 0
+                || FLATUtils.sbCompareTo(w1.reverse(), w2.reverse()) == 0
+                || FLATUtils.sbCompareTo(w1.reverse(), w2) == 0)) {
             return true;
         } else {
             // This is a bit ugly but hopefully it works...
@@ -205,15 +207,6 @@ public class WffTree implements Copyable, TexPrintable {
 
     public int allChildSizeCount() {
         return allChildSizeCountHelper(this);
-    }
-
-    private int allChildSizeCountHelper(WffTree _tree) {
-        int size = 0;
-        for (int i = 0; i < _tree.children.size(); i++) {
-            size += _tree.getChild(i).getChildrenSize() + this.allChildSizeCountHelper(_tree.getChild(i));
-        }
-
-        return size;
     }
 
     public int getChildrenSize() {
@@ -432,6 +425,15 @@ public class WffTree implements Copyable, TexPrintable {
     @Override
     public String toString() {
         return this.nodeType.toString();
+    }
+
+    private int allChildSizeCountHelper(WffTree _tree) {
+        int size = 0;
+        for (int i = 0; i < _tree.children.size(); i++) {
+            size += _tree.getChild(i).getChildrenSize() + this.allChildSizeCountHelper(_tree.getChild(i));
+        }
+
+        return size;
     }
 
     /**

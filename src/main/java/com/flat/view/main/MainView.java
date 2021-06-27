@@ -5,18 +5,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class MainView {
+    private final MainTop mainTop = new MainTop();
+    private final MainRight mainRight = new MainRight();
+    private final MainBottom mainBottom = new MainBottom();
+    private final MainLeft mainLeft = new MainLeft();
+    private final MainCenter mainCenter = new MainCenter();
     private BorderPane parentPane = new BorderPane();
-    private MainTop mainTop = new MainTop();
-    private MainRight mainRight = new MainRight();
-    private MainBottom mainBottom = new MainBottom();
-    private MainLeft mainLeft = new MainLeft();
-    private MainCenter mainCenter = new MainCenter();
 
-    public MainView () {
+    public MainView() {
         this.parentPane.setTop(this.mainTop.getParentPane());
         this.parentPane.setRight(this.mainRight.getParentPane());
         this.parentPane.setBottom(this.mainBottom.getParentPane());
@@ -27,7 +26,7 @@ public class MainView {
     }
 
     // Calls all FX property setters.
-    public void initializeFxProperties () {
+    public void initializeFxProperties() {
         this.setMainTopFx();
         this.setMainRightFx();
         this.setMainBottomFx();
@@ -35,7 +34,7 @@ public class MainView {
         this.setMainCenterFx();
     }
 
-    public void setStageMaximizedListener () {
+    public void setStageMaximizedListener() {
         Controller.getStage().maximizedProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal) {
                 this.parentPane.getChildren().forEach((child) -> {
@@ -45,34 +44,34 @@ public class MainView {
     }
 
     // Setters for initial FX properties.
-    public void setMainTopFx () {
+    public void setMainTopFx() {
         this.mainTop.getParentPane().setPrefHeight(50);
         this.mainTop.getParentPane().setMaxHeight(50);
     }
 
-    public void setMainRightFx () {
+    public void setMainRightFx() {
         this.mainRight.getParentPane().setPrefWidth(100);
     }
 
-    public void setMainBottomFx () {
+    public void setMainBottomFx() {
         this.mainBottom.getParentPane().setPrefHeight(100);
     }
 
-    public void setMainLeftFx () {
+    public void setMainLeftFx() {
         this.mainLeft.getParentPane().setPrefWidth(100);
     }
 
-    public void setMainCenterFx () {
+    public void setMainCenterFx() {
         this.mainCenter.getParentPane().setMaxSize(100, 100);
     }
 
     // Getters for object's attributes.
-    public Pane getParentPane () {
+    public Pane getParentPane() {
         return this.parentPane;
     }
 
     // Setters for object's attributes.
-    public void setParentPane (BorderPane parentPane) {
+    public void setParentPane(BorderPane parentPane) {
         this.parentPane = parentPane;
     }
 

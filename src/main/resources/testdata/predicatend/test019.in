@@ -1,0 +1,1 @@
+(Pas > ~Ps), (Ba > ~Pa), (Pas | Ba) => (~Pa || ~Ps)

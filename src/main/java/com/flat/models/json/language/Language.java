@@ -3,7 +3,6 @@ package com.flat.models.json.language;
 import java.util.Observable;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  * Structure for the Json Language object.
  */
@@ -12,9 +11,10 @@ public class Language extends Observable {
     private String nativeName;
     private String code;
 
-    public Language () {}
+    public Language() {
+    }
 
-    public Language (String _languageName, String _nativeName, String _code) {
+    public Language(String _languageName, String _nativeName, String _code) {
         this.languageName = _languageName;
         this.nativeName = _nativeName;
         this.code = _code;
@@ -25,23 +25,23 @@ public class Language extends Observable {
         return languageName;
     }
 
-    public String getNativeName() {
-        return nativeName;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
     // Setters for object's attributes.
     public void setLanguageName(String languageName) {
         super.setChanged();
         this.languageName = languageName;
     }
 
+    public String getNativeName() {
+        return nativeName;
+    }
+
     public void setNativeName(String nativeName) {
         super.setChanged();
         this.nativeName = nativeName;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public void setCode(String code) {

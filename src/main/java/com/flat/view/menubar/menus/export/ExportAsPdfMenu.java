@@ -7,15 +7,14 @@ import com.flat.view.menubar.items.export.pdf.PdfLatexTruthTreeMenuItem;
 import javafx.scene.control.Menu;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class ExportAsPdfMenu extends Menu {
-    private PdfLatexTruthTableMenuItem pdfLatexTruthTableMenuItem = new PdfLatexTruthTableMenuItem();
-    private PdfLatexParseTreeMenuItem pdfLatexParseTreeMenuItem = new PdfLatexParseTreeMenuItem();
-    private PdfLatexTruthTreeMenuItem pdfLatexTruthTreeMenuItem = new PdfLatexTruthTreeMenuItem();
+    private final PdfLatexTruthTableMenuItem pdfLatexTruthTableMenuItem = new PdfLatexTruthTableMenuItem();
+    private final PdfLatexParseTreeMenuItem pdfLatexParseTreeMenuItem = new PdfLatexParseTreeMenuItem();
+    private final PdfLatexTruthTreeMenuItem pdfLatexTruthTreeMenuItem = new PdfLatexTruthTreeMenuItem();
 
-    public ExportAsPdfMenu () {
+    public ExportAsPdfMenu() {
         super.textProperty().bind(FxMenuBarData.getExportAsPdf().textProperty());
         super.getItems().addAll(this.pdfLatexTruthTableMenuItem, this.pdfLatexParseTreeMenuItem, this.pdfLatexTruthTreeMenuItem);
     }

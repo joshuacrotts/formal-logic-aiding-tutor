@@ -60,7 +60,9 @@ public class SemanticEntailmentDeterminer {
                 andNode.addChild(ch1);
                 andNode.addChild(ch2);
                 // Save the leaf so we can continue adding children.
-                if (leaf != null) { leaf.addChild(andNode); }
+                if (leaf != null) {
+                    leaf.addChild(andNode);
+                }
                 leaf = andNode;
                 nodes.push(andNode);
             }

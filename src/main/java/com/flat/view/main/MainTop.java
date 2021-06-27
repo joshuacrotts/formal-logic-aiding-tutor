@@ -5,14 +5,13 @@ import com.flat.view.menubar.FLATMenuBar;
 import javafx.scene.layout.Pane;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class MainTop {
+    private final ResizePane resizePane;
     private Pane parentPane = new Pane();
-    private ResizePane resizePane;
 
-    public MainTop () {
+    public MainTop() {
         this.parentPane.setStyle("-fx-background-color: red");
         this.resizePane = new ResizePane(this.parentPane, ResizePane.Orientation.VERTICAL, ResizePane.Side.BOTTOM);
         this.parentPane.getChildren().add(new FLATMenuBar());
@@ -21,12 +20,12 @@ public class MainTop {
     }
 
     // Calls all FX property setters.
-    public void initializeFx () {
+    public void initializeFx() {
         this.setResizePaneFx();
     }
- 
+
     // Setters for initial FX properties
-    public void setResizePaneFx () {
+    public void setResizePaneFx() {
         this.parentPane.widthProperty().addListener((obs, oldVal, newVal) -> {
             this.resizePane.getParentPane().setMinWidth(newVal.doubleValue());
             this.resizePane.getParentPane().setMaxWidth(newVal.doubleValue());
@@ -37,12 +36,12 @@ public class MainTop {
     }
 
     // Getters for object's attributes.
-    public Pane getParentPane () {
+    public Pane getParentPane() {
         return this.parentPane;
     }
 
     // Setters for object's attributes.
-    public void setParentPane (Pane parentPane) {
+    public void setParentPane(Pane parentPane) {
         this.parentPane = parentPane;
     }
 

@@ -6,14 +6,13 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class SettingsPane extends VBox {
-    private SettingsTabPane settingsTabPane = new SettingsTabPane();
-    private SettingsButtonBar settingsButtonBar = new SettingsButtonBar();
+    private final SettingsTabPane settingsTabPane = new SettingsTabPane();
+    private final SettingsButtonBar settingsButtonBar = new SettingsButtonBar();
 
-    public SettingsPane () {
+    public SettingsPane() {
         super.getChildren().addAll(this.settingsTabPane, this.settingsButtonBar);
         this.setSettingsTabPaneFx();
     }

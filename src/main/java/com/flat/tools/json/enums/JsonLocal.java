@@ -1,7 +1,6 @@
 package com.flat.tools.json.enums;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonLocal {
@@ -13,9 +12,9 @@ public class JsonLocal {
         MENUBAR("menubar"),
         LANGUAGE("languages");
 
-        private String fileName;
+        private final String fileName;
 
-        private File (String _fileName) {
+        File(String _fileName) {
             this.fileName = _fileName;
         }
 
@@ -29,9 +28,9 @@ public class JsonLocal {
     public enum Paths {
         JSONROOT("/src/main/resources/assets/json/");
 
-        private String filePath;
+        private final String filePath;
 
-        private Paths (String _filePath) {
+        Paths(String _filePath) {
             this.filePath = _filePath;
         }
 

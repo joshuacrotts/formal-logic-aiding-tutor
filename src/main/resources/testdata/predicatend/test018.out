@@ -1,0 +1,7 @@
+1: (Pa -> Qa)                                        Ass.
+2: ~~~Qa                                             Ass.
+3: (~Qa -> ~Pa)                                      TP, 1
+4: ~Qa                                               DNE, 2
+5: ~Pa                                               MP, 3, 4
+6: ~~~Pa                                             DNI, 5
+∴ ~~~Pa  ■

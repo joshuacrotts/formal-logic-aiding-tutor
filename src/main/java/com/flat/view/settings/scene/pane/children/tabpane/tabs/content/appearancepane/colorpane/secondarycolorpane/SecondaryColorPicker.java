@@ -5,12 +5,11 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class SecondaryColorPicker extends ColorPicker {
 
-    public SecondaryColorPicker () {
+    public SecondaryColorPicker() {
         this.setOnAction();
     }
 

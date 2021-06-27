@@ -1,0 +1,9 @@
+1: (∃x)(Lx & Tx)                                     Ass.
+2: (z)(Tz & Dz)                                      Ass.
+3: (La & Ta)                                         ∃E, 1
+4: (Ta & Da)                                         UE, 2
+5: La                                                &E, 3
+6: Da                                                &E, 4
+7: (La & Da)                                         &I, 5, 6
+8: (∃y)(Ly & Dy)                                     ∃I, 7
+∴ (∃y)(Ly & Dy)  ■

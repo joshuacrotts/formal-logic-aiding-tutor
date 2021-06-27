@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  * Structure for the Json Axioms object.
  */
@@ -13,7 +12,7 @@ public class Axioms {
     private String explanation;
     private List<String> examples = new ArrayList<>();
 
-    public Axioms (String _explanation, String... _examples) {
+    public Axioms(String _explanation, String... _examples) {
         this.explanation = _explanation;
         this.examples.addAll(Arrays.asList(_examples));
     }
@@ -23,13 +22,13 @@ public class Axioms {
         return explanation;
     }
 
-    public List<String> getExamples() {
-        return examples;
-    }
-
     // Setters for object's attributes.
     public void setExplanation(String explanation) {
         this.explanation = explanation;
+    }
+
+    public List<String> getExamples() {
+        return examples;
     }
 
     public void setExamples(List<String> examples) {

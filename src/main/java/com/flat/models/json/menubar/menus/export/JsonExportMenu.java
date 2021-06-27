@@ -2,10 +2,10 @@ package com.flat.models.json.menubar.menus.export;
 
 import com.flat.models.json.JsonString;
 import com.flat.models.translation.Translatable;
+
 import java.util.LinkedList;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonExportMenu extends Translatable {
@@ -17,20 +17,20 @@ public class JsonExportMenu extends Translatable {
         return export;
     }
 
-    public JsonExportAsLatexMenu getExportAsLatexMenu() {
-        return exportAsLatexMenu;
-    }
-
-    public JsonExportAsPdfMenu getExportAsPdfMenu() {
-        return exportAsPdfMenu;
-    }
-
     public void setExport(JsonString export) {
         this.export = export;
     }
 
+    public JsonExportAsLatexMenu getExportAsLatexMenu() {
+        return exportAsLatexMenu;
+    }
+
     public void setExportAsLatexMenu(JsonExportAsLatexMenu exportAsLatexMenu) {
         this.exportAsLatexMenu = exportAsLatexMenu;
+    }
+
+    public JsonExportAsPdfMenu getExportAsPdfMenu() {
+        return exportAsPdfMenu;
     }
 
     public void setExportAsPdfMenu(JsonExportAsPdfMenu exportAsPdfMenu) {
@@ -39,7 +39,7 @@ public class JsonExportMenu extends Translatable {
 
     @Override
     public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString>(){{
+        return new LinkedList<JsonString>() {{
             add(export);
             addAll(exportAsLatexMenu.toTranslate());
             addAll(exportAsPdfMenu.toTranslate());

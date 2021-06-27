@@ -4,14 +4,13 @@ import com.flat.view.action.ResizePane;
 import javafx.scene.layout.Pane;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class MainBottom {
+    private final ResizePane resizePane;
     private Pane parentPane = new Pane();
-    private ResizePane resizePane;
 
-    public MainBottom () {
+    public MainBottom() {
         this.parentPane.setStyle("-fx-background-color: brown");
         this.resizePane = new ResizePane(this.parentPane, ResizePane.Orientation.VERTICAL, ResizePane.Side.TOP);
         this.parentPane.getChildren().add(this.resizePane.getParentPane());
@@ -19,12 +18,12 @@ public class MainBottom {
     }
 
     // Calls all FX property setters.
-    public void initializeFx () {
+    public void initializeFx() {
         this.setResizePaneFx();
     }
 
     // Setters for initial FX properties
-    public void setResizePaneFx () {
+    public void setResizePaneFx() {
         this.parentPane.widthProperty().addListener((obs, oldVal, newVal) -> {
             this.resizePane.getParentPane().setMinWidth(newVal.doubleValue());
             this.resizePane.getParentPane().setMaxWidth(newVal.doubleValue());
@@ -33,12 +32,12 @@ public class MainBottom {
     }
 
     // Getters for object's attributes.
-    public Pane getParentPane () {
+    public Pane getParentPane() {
         return this.parentPane;
     }
 
     // Setters for object's attributes.
-    public void setParentPane (Pane parentPane) {
+    public void setParentPane(Pane parentPane) {
         this.parentPane = parentPane;
     }
 

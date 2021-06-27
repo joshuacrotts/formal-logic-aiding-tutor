@@ -2,10 +2,10 @@ package com.flat.models.json.menubar.items.file;
 
 import com.flat.models.json.JsonString;
 import com.flat.models.translation.Translatable;
+
 import java.util.LinkedList;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonExitMenuItem extends Translatable {

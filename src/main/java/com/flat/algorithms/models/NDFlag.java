@@ -93,6 +93,16 @@ public class NDFlag {
     /**
      *
      */
+    public static final int DNE = 0x00020000;
+
+    /**
+     *
+     */
+    public static final int DNI = 0x00040000;
+
+    /**
+     *
+     */
     public static final int ALTC = 0x40000000;
 
     /**

@@ -1,7 +1,6 @@
 package com.flat.algorithms.propositional;
 
 import com.flat.models.treenode.AtomNode;
-import com.flat.models.treenode.NegNode;
 import com.flat.models.treenode.NodeType;
 import com.flat.models.treenode.WffTree;
 

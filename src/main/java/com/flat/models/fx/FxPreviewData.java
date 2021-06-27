@@ -5,7 +5,6 @@ import com.flat.models.fx.observables.color.extend.ObservablePrimaryColor;
 import com.flat.models.fx.observables.color.extend.ObservableSecondaryColor;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class FxPreviewData {
@@ -17,20 +16,20 @@ public class FxPreviewData {
         return primaryColor;
     }
 
-    public static ObservableSecondaryColor getSecondaryColor() {
-        return secondaryColor;
-    }
-
-    public static ObservableBorderColor getBorderColor() {
-        return borderColor;
-    }
-
     public static void setPrimaryColor(ObservablePrimaryColor primaryColor) {
         FxPreviewData.primaryColor = primaryColor;
     }
 
+    public static ObservableSecondaryColor getSecondaryColor() {
+        return secondaryColor;
+    }
+
     public static void setSecondaryColor(ObservableSecondaryColor secondaryColor) {
         FxPreviewData.secondaryColor = secondaryColor;
+    }
+
+    public static ObservableBorderColor getBorderColor() {
+        return borderColor;
     }
 
     public static void setBorderColor(ObservableBorderColor borderColor) {

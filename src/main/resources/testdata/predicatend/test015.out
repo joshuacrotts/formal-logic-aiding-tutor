@@ -1,0 +1,9 @@
+1: (Cd <> (∃x)Fax)                                   Ass.
+2: ~Cd                                               Ass.
+3: ((Cd -> (∃x)Fax) & ((∃x)Fax -> Cd))               ↔E, 1
+4: ((∃x)Fax -> Cd)                                   &E, 3
+5: (~Cd -> ~(∃x)Fax)                                 TP, 4
+6: ~(∃x)Fax                                          MP, 2, 5
+7: (x)~Fax                                           DeM, 6
+8: ~Far                                              UE, 7
+∴ ~Far  ■

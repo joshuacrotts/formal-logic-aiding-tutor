@@ -3,7 +3,6 @@ package com.flat.algorithms;
 import com.flat.algorithms.models.TruthTree;
 import com.flat.models.treenode.*;
 
-import javax.xml.soap.Node;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
@@ -94,35 +93,13 @@ public abstract class BaseTruthTreeGenerator {
      * @param _wff - WffTree object to negate.
      * @return negated version of WffTree.
      */
-    protected static WffTree getNegatedNode(WffTree _wff) {
+    public static WffTree getNegatedNode(WffTree _wff) {
         WffTree negWff;
         NegNode neg = new NegNode();
         neg.addChild(_wff);
         negWff = neg;
 
         return negWff;
-    }
-
-    /**
-     * Recursive helper function for computing leaf nodes in a Truth Tree.
-     * Uses a pre-order traversal.
-     *
-     * @param _truthTree - TruthTree node to recursively search for leaves.
-     * @param _leaves    - linked list of leaf nodes to add to.
-     */
-    protected static void getLeavesHelper(TruthTree _truthTree, ArrayList<TruthTree> _leaves) {
-        // If both left and right nodes are null then it's a leaf by def.
-        if (_truthTree.getLeft() == null && _truthTree.getRight() == null) {
-            _leaves.add(_truthTree);
-        }
-
-        if (_truthTree.getLeft() != null) {
-            getLeavesHelper(_truthTree.getLeft(), _leaves);
-        }
-
-        if (_truthTree.getRight() != null) {
-            getLeavesHelper(_truthTree.getRight(), _leaves);
-        }
     }
 
     /**
@@ -184,6 +161,28 @@ public abstract class BaseTruthTreeGenerator {
         }
 
         return negWff;
+    }
+
+    /**
+     * Recursive helper function for computing leaf nodes in a Truth Tree.
+     * Uses a pre-order traversal.
+     *
+     * @param _truthTree - TruthTree node to recursively search for leaves.
+     * @param _leaves    - linked list of leaf nodes to add to.
+     */
+    protected static void getLeavesHelper(TruthTree _truthTree, ArrayList<TruthTree> _leaves) {
+        // If both left and right nodes are null then it's a leaf by def.
+        if (_truthTree.getLeft() == null && _truthTree.getRight() == null) {
+            _leaves.add(_truthTree);
+        }
+
+        if (_truthTree.getLeft() != null) {
+            getLeavesHelper(_truthTree.getLeft(), _leaves);
+        }
+
+        if (_truthTree.getRight() != null) {
+            getLeavesHelper(_truthTree.getRight(), _leaves);
+        }
     }
 
     /**

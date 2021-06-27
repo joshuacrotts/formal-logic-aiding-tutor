@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  * Structure for the Json Symbols object.
  */
@@ -13,7 +12,7 @@ public class Symbols {
     private String general;
     private List<String> alternate = new ArrayList<>();
 
-    public Symbols (String _general, String... _alternate) {
+    public Symbols(String _general, String... _alternate) {
         this.general = _general;
         this.alternate.addAll(Arrays.asList(_alternate));
     }

@@ -174,7 +174,7 @@ public class NDWffTree {
         return (this.flags & NDFlag.MI) != 0;
     }
 
-    public boolean isImpIActive() {
+    public boolean isIIActive() {
         return (this.flags & NDFlag.II) != 0;
     }
 
@@ -183,6 +183,10 @@ public class NDWffTree {
     public boolean isCDActive() { return (this.flags & NDFlag.CD) != 0; }
 
     public boolean isDDActive() { return (this.flags & NDFlag.DD) != 0; }
+
+    public boolean isDNEActive() { return (this.flags & NDFlag.DNE) != 0; }
+
+    public boolean isDNIActive() { return (this.flags & NDFlag.DNI) != 0; }
 
     public boolean isExisActive() {
         return (this.flags & NDFlag.EX) != 0;

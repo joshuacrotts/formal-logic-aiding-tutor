@@ -7,13 +7,12 @@ import com.flat.view.menubar.items.export.latex.LatexTruthTreeMenuItem;
 import javafx.scene.control.Menu;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class ExportAsLatexMenu extends Menu {
-    private LatexTruthTableMenuItem latexTruthTableMenuItem = new LatexTruthTableMenuItem();
-    private LatexParseTreeMenuItem latexParseTreeMenuItem = new LatexParseTreeMenuItem();
-    private LatexTruthTreeMenuItem latexTruthTreeMenuItem = new LatexTruthTreeMenuItem();
+    private final LatexTruthTableMenuItem latexTruthTableMenuItem = new LatexTruthTableMenuItem();
+    private final LatexParseTreeMenuItem latexParseTreeMenuItem = new LatexParseTreeMenuItem();
+    private final LatexTruthTreeMenuItem latexTruthTreeMenuItem = new LatexTruthTreeMenuItem();
 
     public ExportAsLatexMenu() {
         super.textProperty().bind(FxMenuBarData.getExportAsLatex().textProperty());

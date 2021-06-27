@@ -6,11 +6,12 @@ import com.flat.algorithms.models.NDFlag;
 import com.flat.algorithms.models.NDStep;
 import com.flat.algorithms.models.NDWffTree;
 import com.flat.algorithms.models.ProofType;
-import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
 import com.flat.models.treenode.*;
+import com.flat.tools.FLATUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -89,6 +90,141 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         return this.assignParentIndices();
     }
 
+    @Override
+    protected boolean findModusTollens(WffTree _mtTree, NDWffTree _parent) {
+        if (!_parent.isMTActive()) {
+            for (NDWffTree ndWffTree : this.premisesList) {
+                // Check to see if we have the negated consequent satisfied.
+                if (_mtTree.getChild(1).stringEquals(BaseTruthTreeGenerator.getNegatedNode(ndWffTree.getWffTree()))) {
+                    WffTree flippedWff = BaseTruthTreeGenerator.getNegatedNode(_mtTree.getChild(0));
+                    NDWffTree flippedNode = new NDWffTree(flippedWff, NDStep.MT, _parent, ndWffTree);
+                    this.addPremise(flippedNode);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @return
+     */
+    protected ArrayList<NDWffTree> findConclusionEquivalentsFOPL() {
+        ArrayList<NDWffTree> conclusionEquivalentList = new ArrayList<>();
+        WffTree conclusionNode = this.conclusionWff.getWffTree();
+        // First do a transposition equivalence.
+        if (conclusionNode.isImp()) {
+            ImpNode transpositionNode = new ImpNode();
+            transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1)));
+            transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0)));
+            this.conclusionWff.setFlags(NDFlag.TP);
+            conclusionEquivalentList.add(new NDWffTree(transpositionNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.TP, this.conclusionWff));
+        }
+
+        // Now do a demorgan's equivalence.
+        if (conclusionNode.isNegation() || conclusionNode.isBinaryOp()) {
+            WffTree deMorganNode = null;
+            // Negate a biconditional to get ~(X <-> Y) => ~((X->Y) & (Y->X)).
+            if (conclusionNode.isNegation() && conclusionNode.getChild(0).isBicond()) {
+                NegNode neg = new NegNode();
+                AndNode and = new AndNode();
+                ImpNode lhs = new ImpNode();
+                ImpNode rhs = new ImpNode();
+                lhs.addChild(conclusionNode.getChild(0).getChild(0));
+                lhs.addChild(conclusionNode.getChild(0).getChild(1));
+                rhs.addChild(conclusionNode.getChild(0).getChild(1));
+                rhs.addChild(conclusionNode.getChild(0).getChild(0));
+                and.addChild(lhs);
+                and.addChild(rhs);
+                neg.addChild(and);
+                deMorganNode = neg;
+            }
+            // "Unnegate" a conjunction with two implications to get the negated biconditional.
+            else if (conclusionNode.isNegation() && conclusionNode.getChild(0).isAnd()
+                    && conclusionNode.getChild(0).getChild(0).isImp() && conclusionNode.getChild(0).getChild(1).isImp()
+                    && conclusionNode.getChild(0).getChild(0).getChild(0).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(1))
+                    && conclusionNode.getChild(0).getChild(0).getChild(1).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(0))) {
+                NegNode negNode = new NegNode();
+                BicondNode bicondNode = new BicondNode();
+                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(0));
+                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(1));
+                negNode.addChild(bicondNode);
+                deMorganNode = negNode;
+            }
+            // Four types: one is ~(X B Y) => (~X ~B ~Y)
+            else if (conclusionNode.isNegation() && (conclusionNode.getChild(0).isOr() || conclusionNode.getChild(0).isAnd() || conclusionNode.getChild(0).isImp())) {
+                deMorganNode = BaseTruthTreeGenerator.getNegatedBinaryNode(conclusionNode.getChild(0)); // B
+                deMorganNode.addChild(conclusionNode.getChild(0).isImp() ? conclusionNode.getChild(0).getChild(0)
+                        : BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0).getChild(0))); // LHS X
+                deMorganNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0).getChild(1))); // RHS Y
+            }
+            // Other is (X B Y) => ~(~X ~B ~Y)
+            else if ((conclusionNode.isOr() || conclusionNode.isAnd() || conclusionNode.isImp())) {
+                WffTree negBinaryNode = BaseTruthTreeGenerator.getNegatedBinaryNode(conclusionNode); // B
+                negBinaryNode.addChild(conclusionNode.isImp() ? conclusionNode.getChild(0) : BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0))); // LHS X
+                negBinaryNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1))); // RHS Y
+                deMorganNode = new NegNode();
+                deMorganNode.addChild(negBinaryNode);
+            }
+            // Other turns ~(x)W to (Ex)~W
+            else if (conclusionNode.isNegation() && conclusionNode.getChild(0).isUniversal()) {
+                String v = ((UniversalQuantifierNode) conclusionNode.getChild(0)).getVariableSymbol();
+                ExistentialQuantifierNode existentialQuantifierNode = new ExistentialQuantifierNode(v);
+                NegNode neg = new NegNode();
+                neg.addChild(conclusionNode.getChild(0).getChild(0));
+                existentialQuantifierNode.addChild(neg);
+                deMorganNode = existentialQuantifierNode;
+            }
+            // Last turns ~(Ex)W to (x)~W
+            else if (conclusionNode.isNegation() && conclusionNode.getChild(0).isExistential()) {
+                String v = ((ExistentialQuantifierNode) conclusionNode.getChild(0)).getVariableSymbol();
+                UniversalQuantifierNode universalQuantifierNode = new UniversalQuantifierNode(v);
+                NegNode neg = new NegNode();
+                neg.addChild(conclusionNode.getChild(0).getChild(0));
+                universalQuantifierNode.addChild(neg);
+                deMorganNode = universalQuantifierNode;
+            }
+            // If we found a node, then it'll be applied/inserted here.
+            if (deMorganNode != null) {
+                this.conclusionWff.setFlags(NDFlag.MI);
+                NDWffTree ndWffTree = new NDWffTree(deMorganNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DEM, this.conclusionWff);
+                conclusionEquivalentList.add(ndWffTree);
+            }
+        }
+
+        // Finally, do a material implication equivalence.
+        if (conclusionNode.isImp() || conclusionNode.isOr()) {
+            WffTree newWff = null;
+            // Convert (P -> Q) to (~P V Q).3
+            if (conclusionNode.isImp()) {
+                OrNode orNode = new OrNode();
+                NegNode negLhs = new NegNode();
+                negLhs.addChild(conclusionNode.getChild(0));
+                orNode.addChild(negLhs);
+                orNode.addChild(conclusionNode.getChild(1));
+                newWff = orNode;
+            }
+            // Convert (~P V Q) to (P -> Q)
+            else if (conclusionNode.isOr()) {
+                WffTree lhs = conclusionNode.getChild(0);
+                WffTree rhs = conclusionNode.getChild(1);
+                if (lhs.isNegation()) {
+                    ImpNode impNode = new ImpNode();
+                    impNode.addChild(lhs.getChild(0)); // Un-negate the lhs.
+                    impNode.addChild(rhs);
+                    newWff = impNode;
+                }
+            }
+            // If we performed a MI then add it.
+            if (newWff != null) {
+                this.conclusionWff.setFlags(NDFlag.MI);
+                NDWffTree ndWffTree = new NDWffTree(newWff, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.MI, this.conclusionWff);
+                conclusionEquivalentList.add(ndWffTree);
+            }
+        }
+        return conclusionEquivalentList;
+    }
+
     /**
      * @param _tree
      * @param _parent
@@ -120,6 +256,8 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
             return null;
         } else if (this.findDestructiveDilemma(_tree, _parent)) {
             return null;
+        } else if (this.findDoubleNegations(_tree, _parent)) {
+            return null;
         }
 
         // If we couldn't find anything to deduce/reduce the proposition with,
@@ -140,7 +278,9 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private NDWffTree satisfyPredicate(WffTree _tree, NDWffTree _parent) {
         // First, check to see if the premise is a satisfied goal or not.
-        if (this.isGoal(_tree)) { return this.getPremiseNDWffTree(_tree); }
+        if (this.isGoal(_tree)) {
+            return this.getPremiseNDWffTree(_tree);
+        }
 
         // Loop through each other premise.
         for (NDWffTree othNDWffTree : this.premisesList) {
@@ -280,7 +420,9 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         // First check to see if we can break any biconditionals down.
         if (!this.isConclusion(_parent) && _parent.getWffTree().isBicond()) {
             boolean bce = this.findBiconditionalElimination(_bicondTree, _parent);
-            if (bce && _bicondTree.stringEquals(_parent.getWffTree())) { return null; }
+            if (bce && _bicondTree.stringEquals(_parent.getWffTree())) {
+                return null;
+            }
         }
         // We first have a subgoal of X -> Y and Y -> X.
         ImpNode impLhs = new ImpNode();
@@ -307,23 +449,23 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     }
 
     /**
-     * @param _tree
+     * @param _exisTree
      * @param _parent
      * @return
      */
-    private NDWffTree satisfyExistential(WffTree _tree, NDWffTree _parent) {
+    private NDWffTree satisfyExistential(WffTree _exisTree, NDWffTree _parent) {
         // Try to eliminate the existential if it's not a conclusion.
-        if (!this.isConclusion(_parent) && !_parent.isExisActive()) {
+        if (!this.isConclusion(_parent) && !_parent.isExisActive() && _exisTree.stringEquals(_parent.getWffTree())) {
             this.addExistentialConstant(_parent, ((ExistentialQuantifierNode) _parent.getWffTree()).getVariableSymbolChar());
             return null;
         }
 
         // If we find a satisfiable NDWffTree, then we can add it.
-        NDWffTree child = this.satisfy(_tree.getChild(0), _parent);
+        NDWffTree child = this.satisfy(_exisTree.getChild(0), _parent);
         if (child != null) {
-            String v = ((ExistentialQuantifierNode) _tree).getVariableSymbol();
+            String v = ((ExistentialQuantifierNode) _exisTree).getVariableSymbol();
             ExistentialQuantifierNode existentialQuantifierNode = new ExistentialQuantifierNode(v);
-            existentialQuantifierNode.addChild(_tree.getChild(0));
+            existentialQuantifierNode.addChild(_exisTree.getChild(0));
             NDWffTree existentialNDWffTree = new NDWffTree(existentialQuantifierNode, NDFlag.EX, NDStep.EI, child);
             this.addPremise(existentialNDWffTree);
             return existentialNDWffTree;
@@ -339,7 +481,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private NDWffTree satisfyUniversal(WffTree _univTree, NDWffTree _parent) {
         // Try to eliminate the universal if it's not a conclusion.
-        if (!this.isConclusion(_parent) && !_parent.isUnivActive()) {
+        if (!this.isConclusion(_parent) && !_parent.isUnivActive() && _univTree.stringEquals(_parent.getWffTree())) {
             this.addUniversalConstants(_parent, ((UniversalQuantifierNode) _parent.getWffTree()).getVariableSymbolChar());
             return null;
         }
@@ -438,126 +580,6 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     }
 
     /**
-     *
-     * @return
-     */
-    protected ArrayList<NDWffTree> findConclusionEquivalentsFOPL() {
-        ArrayList<NDWffTree> conclusionEquivalentList = new ArrayList<>();
-        WffTree conclusionNode = this.conclusionWff.getWffTree();
-        // First do a transposition equivalence.
-        if (conclusionNode.isImp()) {
-            ImpNode transpositionNode = new ImpNode();
-            transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1)));
-            transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0)));
-            this.conclusionWff.setFlags(NDFlag.TP);
-            conclusionEquivalentList.add(new NDWffTree(transpositionNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.TP, this.conclusionWff));
-        }
-
-        // Now do a demorgan's equivalence.
-        if (conclusionNode.isNegation() || conclusionNode.isBinaryOp()) {
-            WffTree deMorganNode = null;
-            // Negate a biconditional to get ~(X <-> Y) => ~((X->Y) & (Y->X)).
-            if (conclusionNode.isNegation() && conclusionNode.getChild(0).isBicond()) {
-                NegNode neg = new NegNode();
-                AndNode and = new AndNode();
-                ImpNode lhs = new ImpNode();
-                ImpNode rhs = new ImpNode();
-                lhs.addChild(conclusionNode.getChild(0).getChild(0));
-                lhs.addChild(conclusionNode.getChild(0).getChild(1));
-                rhs.addChild(conclusionNode.getChild(0).getChild(1));
-                rhs.addChild(conclusionNode.getChild(0).getChild(0));
-                and.addChild(lhs);
-                and.addChild(rhs);
-                neg.addChild(and);
-                deMorganNode = neg;
-            }
-            // "Unnegate" a conjunction with two implications to get the negated biconditional.
-            else if (conclusionNode.isNegation() && conclusionNode.getChild(0).isAnd()
-                    && conclusionNode.getChild(0).getChild(0).isImp() && conclusionNode.getChild(0).getChild(1).isImp()
-                    && conclusionNode.getChild(0).getChild(0).getChild(0).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(1))
-                    && conclusionNode.getChild(0).getChild(0).getChild(1).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(0))) {
-                NegNode negNode = new NegNode();
-                BicondNode bicondNode = new BicondNode();
-                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(0));
-                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(1));
-                negNode.addChild(bicondNode);
-                deMorganNode = negNode;
-            }
-            // Four types: one is ~(X B Y) => (~X ~B ~Y)
-            else if (conclusionNode.isNegation() && (conclusionNode.getChild(0).isOr() || conclusionNode.getChild(0).isAnd() || conclusionNode.getChild(0).isImp())) {
-                deMorganNode = BaseTruthTreeGenerator.getNegatedBinaryNode(conclusionNode.getChild(0)); // B
-                deMorganNode.addChild(conclusionNode.getChild(0).isImp() ? conclusionNode.getChild(0).getChild(0)
-                        : BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0).getChild(0))); // LHS X
-                deMorganNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0).getChild(1))); // RHS Y
-            }
-            // Other is (X B Y) => ~(~X ~B ~Y)
-            else if ((conclusionNode.isOr() || conclusionNode.isAnd() || conclusionNode.isImp())) {
-                WffTree negBinaryNode = BaseTruthTreeGenerator.getNegatedBinaryNode(conclusionNode); // B
-                negBinaryNode.addChild(conclusionNode.isImp() ? conclusionNode.getChild(0) : BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0))); // LHS X
-                negBinaryNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1))); // RHS Y
-                deMorganNode = new NegNode();
-                deMorganNode.addChild(negBinaryNode);
-            }
-            // Other turns ~(x)W to (Ex)~W
-            else if (conclusionNode.isNegation() && conclusionNode.getChild(0).isUniversal()) {
-                String v = ((UniversalQuantifierNode) conclusionNode.getChild(0)).getVariableSymbol();
-                ExistentialQuantifierNode existentialQuantifierNode = new ExistentialQuantifierNode(v);
-                NegNode neg = new NegNode();
-                neg.addChild(conclusionNode.getChild(0).getChild(0));
-                existentialQuantifierNode.addChild(neg);
-                deMorganNode = existentialQuantifierNode;
-            }
-            // Last turns ~(Ex)W to (x)~W
-            else if (conclusionNode.isNegation() && conclusionNode.getChild(0).isExistential()) {
-                String v = ((ExistentialQuantifierNode) conclusionNode.getChild(0)).getVariableSymbol();
-                UniversalQuantifierNode universalQuantifierNode = new UniversalQuantifierNode(v);
-                NegNode neg = new NegNode();
-                neg.addChild(conclusionNode.getChild(0).getChild(0));
-                universalQuantifierNode.addChild(neg);
-                deMorganNode = universalQuantifierNode;
-            }
-            // If we found a node, then it'll be applied/inserted here.
-            if (deMorganNode != null) {
-                this.conclusionWff.setFlags(NDFlag.MI);
-                NDWffTree ndWffTree = new NDWffTree(deMorganNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DEM, this.conclusionWff);
-                conclusionEquivalentList.add(ndWffTree);
-            }
-        }
-
-        // Finally, do a material implication equivalence.
-        if (conclusionNode.isImp() || conclusionNode.isOr()) {
-            WffTree newWff = null;
-            // Convert (P -> Q) to (~P V Q).3
-            if (conclusionNode.isImp()) {
-                OrNode orNode = new OrNode();
-                NegNode negLhs = new NegNode();
-                negLhs.addChild(conclusionNode.getChild(0));
-                orNode.addChild(negLhs);
-                orNode.addChild(conclusionNode.getChild(1));
-                newWff = orNode;
-            }
-            // Convert (~P V Q) to (P -> Q)
-            else if (conclusionNode.isOr()) {
-                WffTree lhs = conclusionNode.getChild(0);
-                WffTree rhs = conclusionNode.getChild(1);
-                if (lhs.isNegation()) {
-                    ImpNode impNode = new ImpNode();
-                    impNode.addChild(lhs.getChild(0)); // Un-negate the lhs.
-                    impNode.addChild(rhs);
-                    newWff = impNode;
-                }
-            }
-            // If we performed a MI then add it.
-            if (newWff != null) {
-                this.conclusionWff.setFlags(NDFlag.MI);
-                NDWffTree ndWffTree = new NDWffTree(newWff, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.MI, this.conclusionWff);
-                conclusionEquivalentList.add(ndWffTree);
-            }
-        }
-        return conclusionEquivalentList;
-    }
-
-    /**
      * @param _existentialNDWffTree
      * @param _variableToReplace
      */
@@ -582,9 +604,12 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private void addUniversalConstants(NDWffTree _universalNDWffTree, char _variableToReplace) {
         // Add a default constant if one is not available to the universal quantifier.
-        if (this.constants.isEmpty()) { return; }
+        if (this.constants.isEmpty()) {
+            return;
+        }
+        Set<Character> replaceConstants = FLATUtils.union(this.constants, this.conclusionConstants);
 
-        for (char c : this.constants) {
+        for (char c : replaceConstants) {
             // Create a copy and replace the selected variable.
             WffTree _newRoot = _universalNDWffTree.getWffTree().getChild(0).copy();
             this.replaceSymbol(_newRoot, _variableToReplace, c, ReplaceType.CONSTANT);
@@ -603,7 +628,6 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         if (_tree != null && _tree.isConstant()) {
             _charSet.add(_tree.getSymbol().charAt(0));
         }
-
         for (WffTree child : _tree.getChildren()) {
             this.addAllConstantsToSet(child, _charSet);
         }

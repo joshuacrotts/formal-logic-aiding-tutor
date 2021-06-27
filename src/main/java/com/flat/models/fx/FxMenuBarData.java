@@ -4,7 +4,6 @@ import com.flat.models.json.menubar.JsonMenuBar;
 import javafx.scene.text.Text;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class FxMenuBarData {
@@ -24,7 +23,7 @@ public class FxMenuBarData {
     private static Text help = new Text("Help");
     private static Text about = new Text("About");
 
-    public static void injectData (JsonMenuBar _jsonMenu) {
+    public static void injectData(JsonMenuBar _jsonMenu) {
         FxMenuBarData.file.setText(_jsonMenu.getFileMenu().getFile().getString());
         FxMenuBarData.resetView.setText(_jsonMenu.getFileMenu().getResetViewMenuItem().getReset().getString());
         FxMenuBarData.settings.setText(_jsonMenu.getFileMenu().getSettingsMenuItem().getSettings().getString());
@@ -46,116 +45,116 @@ public class FxMenuBarData {
         return file;
     }
 
-    public static Text getResetView() {
-        return resetView;
-    }
-
-    public static Text getSettings() {
-        return settings;
-    }
-
-    public static Text getExit() {
-        return exit;
-    }
-
-    public static Text getExport() {
-        return export;
-    }
-
-    public static Text getExportAsLatex() {
-        return exportAsLatex;
-    }
-
-    public static Text getLatexTruthTable() {
-        return latexTruthTable;
-    }
-
-    public static Text getLatexParseTree() {
-        return latexParseTree;
-    }
-
-    public static Text getLatexTruthTree() {
-        return latexTruthTree;
-    }
-
-    public static Text getExportAsPdf() {
-        return exportAsPdf;
-    }
-
-    public static Text getPdfLatexTruthTable() {
-        return pdfLatexTruthTable;
-    }
-
-    public static Text getPdfLatexParseTree() {
-        return pdfLatexParseTree;
-    }
-
-    public static Text getPdfLatexTruthTree() {
-        return pdfLatexTruthTree;
-    }
-
-    public static Text getHelp() {
-        return help;
-    }
-
-    public static Text getAbout() {
-        return about;
-    }
-
     public static void setFile(Text file) {
         FxMenuBarData.file = file;
+    }
+
+    public static Text getResetView() {
+        return resetView;
     }
 
     public static void setResetView(Text resetView) {
         FxMenuBarData.resetView = resetView;
     }
 
+    public static Text getSettings() {
+        return settings;
+    }
+
     public static void setSettings(Text settings) {
         FxMenuBarData.settings = settings;
+    }
+
+    public static Text getExit() {
+        return exit;
     }
 
     public static void setExit(Text exit) {
         FxMenuBarData.exit = exit;
     }
 
+    public static Text getExport() {
+        return export;
+    }
+
     public static void setExport(Text export) {
         FxMenuBarData.export = export;
+    }
+
+    public static Text getExportAsLatex() {
+        return exportAsLatex;
     }
 
     public static void setExportAsLatex(Text exportAsLatex) {
         FxMenuBarData.exportAsLatex = exportAsLatex;
     }
 
+    public static Text getLatexTruthTable() {
+        return latexTruthTable;
+    }
+
     public static void setLatexTruthTable(Text latexTruthTable) {
         FxMenuBarData.latexTruthTable = latexTruthTable;
+    }
+
+    public static Text getLatexParseTree() {
+        return latexParseTree;
     }
 
     public static void setLatexParseTree(Text latexParseTree) {
         FxMenuBarData.latexParseTree = latexParseTree;
     }
 
+    public static Text getLatexTruthTree() {
+        return latexTruthTree;
+    }
+
     public static void setLatexTruthTree(Text latexTruthTree) {
         FxMenuBarData.latexTruthTree = latexTruthTree;
+    }
+
+    public static Text getExportAsPdf() {
+        return exportAsPdf;
     }
 
     public static void setExportAsPdf(Text exportAsPdf) {
         FxMenuBarData.exportAsPdf = exportAsPdf;
     }
 
+    public static Text getPdfLatexTruthTable() {
+        return pdfLatexTruthTable;
+    }
+
     public static void setPdfLatexTruthTable(Text pdfLatexTruthTable) {
         FxMenuBarData.pdfLatexTruthTable = pdfLatexTruthTable;
+    }
+
+    public static Text getPdfLatexParseTree() {
+        return pdfLatexParseTree;
     }
 
     public static void setPdfLatexParseTree(Text pdfLatexParseTree) {
         FxMenuBarData.pdfLatexParseTree = pdfLatexParseTree;
     }
 
+    public static Text getPdfLatexTruthTree() {
+        return pdfLatexTruthTree;
+    }
+
     public static void setPdfLatexTruthTree(Text pdfLatexTruthTree) {
         FxMenuBarData.pdfLatexTruthTree = pdfLatexTruthTree;
     }
 
+    public static Text getHelp() {
+        return help;
+    }
+
     public static void setHelp(Text help) {
         FxMenuBarData.help = help;
+    }
+
+    public static Text getAbout() {
+        return about;
     }
 
     public static void setAbout(Text about) {

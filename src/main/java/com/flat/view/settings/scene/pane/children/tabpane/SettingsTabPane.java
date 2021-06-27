@@ -6,14 +6,13 @@ import javafx.geometry.Side;
 import javafx.scene.control.TabPane;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class SettingsTabPane extends TabPane {
-    private AppearanceTab appearanceTab = new AppearanceTab();
-    private LanguageTab languageTab = new LanguageTab();
+    private final AppearanceTab appearanceTab = new AppearanceTab();
+    private final LanguageTab languageTab = new LanguageTab();
 
-    public SettingsTabPane () {
+    public SettingsTabPane() {
         this.setFxProperties();
         super.getTabs().addAll(this.appearanceTab, this.languageTab);
     }

@@ -2,10 +2,10 @@ package com.flat.models.json.menubar.items.export;
 
 import com.flat.models.json.JsonString;
 import com.flat.models.translation.Translatable;
+
 import java.util.LinkedList;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonLatexParseTreeMenuItem extends Translatable {
@@ -21,7 +21,7 @@ public class JsonLatexParseTreeMenuItem extends Translatable {
 
     @Override
     public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString>(){{
+        return new LinkedList<JsonString>() {{
             add(latexParseTree);
         }};
     }

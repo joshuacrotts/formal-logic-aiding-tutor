@@ -4,7 +4,7 @@
 */
 
 #resizePaneVertical, #resizePaneHorizontal {
-    -fx-background-color: gray;  
+    -fx-background-color: gray;
 }
 
 #resizePaneVertical {
@@ -13,7 +13,7 @@
 }
 
 #resizePaneVertical:hover {
-    -fx-cursor: n-resize; 
+    -fx-cursor: n-resize;
 }
 
 #resizePaneHorizontal {
@@ -21,6 +21,6 @@
     -fx-max-width: 5px;
 }
 
- #resizePaneHorizontal:hover {
+#resizePaneHorizontal:hover {
     -fx-cursor: e-resize;
 }

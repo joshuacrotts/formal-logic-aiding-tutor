@@ -5,10 +5,10 @@ import com.flat.models.json.menubar.items.export.JsonLatexParseTreeMenuItem;
 import com.flat.models.json.menubar.items.export.JsonLatexTruthTableMenuItem;
 import com.flat.models.json.menubar.items.export.JsonLatexTruthTreeMenuItem;
 import com.flat.models.translation.Translatable;
+
 import java.util.LinkedList;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonExportAsLatexMenu extends Translatable {
@@ -21,28 +21,28 @@ public class JsonExportAsLatexMenu extends Translatable {
         return exportAsLatex;
     }
 
-    public JsonLatexParseTreeMenuItem getLatexParseTreeMenuItem() {
-        return latexParseTreeMenuItem;
-    }
-
-    public JsonLatexTruthTreeMenuItem getLatexTruthTreeMenuItem() {
-        return latexTruthTreeMenuItem;
-    }
-
-    public JsonLatexTruthTableMenuItem getLatexTruthTableMenuItem() {
-        return latexTruthTableMenuItem;
-    }
-
     public void setExportAsLatex(JsonString exportAsLatex) {
         this.exportAsLatex = exportAsLatex;
+    }
+
+    public JsonLatexParseTreeMenuItem getLatexParseTreeMenuItem() {
+        return latexParseTreeMenuItem;
     }
 
     public void setLatexParseTreeMenuItem(JsonLatexParseTreeMenuItem latexParseTreeMenuItem) {
         this.latexParseTreeMenuItem = latexParseTreeMenuItem;
     }
 
+    public JsonLatexTruthTreeMenuItem getLatexTruthTreeMenuItem() {
+        return latexTruthTreeMenuItem;
+    }
+
     public void setLatexTruthTreeMenuItem(JsonLatexTruthTreeMenuItem latexTruthTreeMenuItem) {
         this.latexTruthTreeMenuItem = latexTruthTreeMenuItem;
+    }
+
+    public JsonLatexTruthTableMenuItem getLatexTruthTableMenuItem() {
+        return latexTruthTableMenuItem;
     }
 
     public void setLatexTruthTableMenuItem(JsonLatexTruthTableMenuItem latexTruthTableMenuItem) {
@@ -51,7 +51,7 @@ public class JsonExportAsLatexMenu extends Translatable {
 
     @Override
     public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString>(){{
+        return new LinkedList<JsonString>() {{
             add(exportAsLatex);
             addAll(latexParseTreeMenuItem.toTranslate());
             addAll(latexTruthTreeMenuItem.toTranslate());

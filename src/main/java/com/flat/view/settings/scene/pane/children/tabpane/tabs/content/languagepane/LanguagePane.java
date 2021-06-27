@@ -3,12 +3,11 @@ package com.flat.view.settings.scene.pane.children.tabpane.tabs.content.language
 import javafx.scene.layout.Pane;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class LanguagePane extends Pane {
 
-    public LanguagePane () {
+    public LanguagePane() {
         super.setStyle("-fx-background-color: brown");
     }
 

@@ -36,7 +36,9 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
     @Override
     public ArrayList<NDWffTree> getNaturalDeductionProof() {
         ArgumentTruthTreeValidator truthTreeValidator = new ArgumentTruthTreeValidator(this.originalWffTreeList);
-        if (!truthTreeValidator.isValid()) { return null; }
+        if (!truthTreeValidator.isValid()) {
+            return null;
+        }
 
         int cycles = 0;
         while (true) {
@@ -65,13 +67,120 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         }
 
         // The timeout is there to prevent completely insane proofs from never ending.
-        if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) { return null; }
+        if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) {
+            return null;
+        }
 
         // Backtrack from the conclusion to mark all those nodes that were used in the proof.
         this.activateLinks(this.conclusionWff);
 
         // Add the premises that were actually used in the argument.
         return this.assignParentIndices();
+    }
+
+    /**
+     * @return
+     */
+    protected ArrayList<NDWffTree> findConclusionEquivalentsPL() {
+        ArrayList<NDWffTree> conclusionEquivalentList = new ArrayList<>();
+        WffTree conclusionNode = this.conclusionWff.getWffTree();
+        // First do a double negation equivalence.
+        if (conclusionNode.isDoubleNegation()) {
+            conclusionEquivalentList.add(new NDWffTree(conclusionNode.getChild(0).getChild(0), NDFlag.TP | NDFlag.DNE | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DNE, this.conclusionWff));
+        }
+
+        // Now do a transposition equivalence.
+        if (conclusionNode.isImp()) {
+            ImpNode transpositionNode = new ImpNode();
+            transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1)));
+            transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0)));
+            this.conclusionWff.setFlags(NDFlag.TP);
+            conclusionEquivalentList.add(new NDWffTree(transpositionNode, NDFlag.TP | NDFlag.DNE | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.TP, this.conclusionWff));
+        }
+
+        // Now do a demorgan's equivalence.
+        if (conclusionNode.isNegation() || conclusionNode.isBinaryOp()) {
+            WffTree deMorganNode = null;
+            // Negate a biconditional to get ~(X <-> Y) => ~((X->Y) & (Y->X)).
+            if (conclusionNode.isNegation() && conclusionNode.getChild(0).isBicond()) {
+                NegNode neg = new NegNode();
+                AndNode and = new AndNode();
+                ImpNode lhs = new ImpNode();
+                ImpNode rhs = new ImpNode();
+                lhs.addChild(conclusionNode.getChild(0).getChild(0));
+                lhs.addChild(conclusionNode.getChild(0).getChild(1));
+                rhs.addChild(conclusionNode.getChild(0).getChild(1));
+                rhs.addChild(conclusionNode.getChild(0).getChild(0));
+                and.addChild(lhs);
+                and.addChild(rhs);
+                neg.addChild(and);
+                deMorganNode = neg;
+            }
+            // "Unnegate" a conjunction with two implications to get the negated biconditional.
+            else if (conclusionNode.isNegation() && conclusionNode.getChild(0).isAnd()
+                    && conclusionNode.getChild(0).getChild(0).isImp() && conclusionNode.getChild(0).getChild(1).isImp()
+                    && conclusionNode.getChild(0).getChild(0).getChild(0).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(1))
+                    && conclusionNode.getChild(0).getChild(0).getChild(1).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(0))) {
+                NegNode negNode = new NegNode();
+                BicondNode bicondNode = new BicondNode();
+                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(0));
+                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(1));
+                negNode.addChild(bicondNode);
+                deMorganNode = negNode;
+            }
+            // Two types: one is ~(X B Y) => (~X ~B ~Y)
+            else if (conclusionNode.isNegation() && (conclusionNode.getChild(0).isOr() || conclusionNode.getChild(0).isAnd() || conclusionNode.getChild(0).isImp())) {
+                deMorganNode = BaseTruthTreeGenerator.getNegatedBinaryNode(conclusionNode.getChild(0)); // B
+                deMorganNode.addChild(conclusionNode.getChild(0).isImp() ? conclusionNode.getChild(0).getChild(0)
+                        : BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0).getChild(0))); // LHS X
+                deMorganNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0).getChild(1))); // RHS Y
+            }
+            // Other is (X B Y) => ~(~X ~B ~Y)
+            else if ((conclusionNode.isOr() || conclusionNode.isAnd() || conclusionNode.isImp())) {
+                WffTree negBinaryNode = BaseTruthTreeGenerator.getNegatedBinaryNode(conclusionNode); // B
+                negBinaryNode.addChild(conclusionNode.isImp() ? conclusionNode.getChild(0) : BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0))); // LHS X
+                negBinaryNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1))); // RHS Y
+                deMorganNode = new NegNode();
+                deMorganNode.addChild(negBinaryNode);
+            }
+            // If we found a node, then it'll be applied/inserted here.
+            if (deMorganNode != null) {
+                this.conclusionWff.setFlags(NDFlag.DEM);
+                conclusionEquivalentList.add(new NDWffTree(deMorganNode, NDFlag.TP | NDFlag.DNE | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DEM, this.conclusionWff));
+            }
+        }
+
+        // Finally, do a material implication equivalence.
+        if (conclusionNode.isImp() || conclusionNode.isOr()) {
+            WffTree newWff = null;
+            // Convert (P -> Q) to (~P V Q).
+            if (conclusionNode.isImp()) {
+                OrNode orNode = new OrNode();
+                NegNode negLhs = new NegNode();
+                negLhs.addChild(conclusionNode.getChild(0));
+                orNode.addChild(negLhs);
+                orNode.addChild(conclusionNode.getChild(1));
+                newWff = orNode;
+            }
+            // Convert (~P V Q) to (P -> Q)
+            else if (conclusionNode.isOr()) {
+                WffTree lhs = conclusionNode.getChild(0);
+                WffTree rhs = conclusionNode.getChild(1);
+                if (lhs.isNegation()) {
+                    ImpNode impNode = new ImpNode();
+                    impNode.addChild(lhs.getChild(0)); // Un-negate the lhs.
+                    impNode.addChild(rhs);
+                    newWff = impNode;
+                }
+            }
+            // If we performed a MI then add it.
+            if (newWff != null) {
+                this.conclusionWff.setFlags(NDFlag.MI);
+                NDWffTree ndWffTree = new NDWffTree(newWff, NDFlag.TP | NDFlag.DNE | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.MI, this.conclusionWff);
+                conclusionEquivalentList.add(ndWffTree);
+            }
+        }
+        return conclusionEquivalentList;
     }
 
     /**
@@ -115,12 +224,16 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             return true;
         } else if (this.findDestructiveDilemma(_tree, _parent)) {
             return true;
+        } else if (this.findDoubleNegations(_tree, _parent)) {
+            return true;
         }
 
         // If we couldn't find anything to deduce/reduce the proposition with,
         // try to search for it in the premises list.
         for (NDWffTree ndWffTree : this.premisesList) {
-            if (ndWffTree.getWffTree().stringEquals(_tree)) { return true; }
+            if (ndWffTree.getWffTree().stringEquals(_tree)) {
+                return true;
+            }
         }
 
         return satisfied;
@@ -144,7 +257,9 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             boolean mt = this.findModusTollens(_impTree, _parent);
             boolean mp = this.findModusPonens(_impTree, _parent);
             boolean hs = this.findHypotheticalSyllogism(_impTree, _parent);
-            if (mt || mp || hs) { return true; }
+            if (mt || mp || hs) {
+                return true;
+            }
         }
 
         // Otherwise, try to construct an implication node - see if both sides are satisfiable.
@@ -258,106 +373,5 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             return true;
         }
         return false;
-    }
-
-    /**
-     *
-     * @return
-     */
-    protected ArrayList<NDWffTree> findConclusionEquivalentsPL() {
-        ArrayList<NDWffTree> conclusionEquivalentList = new ArrayList<>();
-        WffTree conclusionNode = this.conclusionWff.getWffTree();
-        // First do a transposition equivalence.
-        if (conclusionNode.isImp()) {
-            ImpNode transpositionNode = new ImpNode();
-            transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1)));
-            transpositionNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0)));
-            this.conclusionWff.setFlags(NDFlag.TP);
-            conclusionEquivalentList.add(new NDWffTree(transpositionNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.TP, this.conclusionWff));
-        }
-
-        // Now do a demorgan's equivalence.
-        if (conclusionNode.isNegation() || conclusionNode.isBinaryOp()) {
-            WffTree deMorganNode = null;
-            // Negate a biconditional to get ~(X <-> Y) => ~((X->Y) & (Y->X)).
-            if (conclusionNode.isNegation() && conclusionNode.getChild(0).isBicond()) {
-                NegNode neg = new NegNode();
-                AndNode and = new AndNode();
-                ImpNode lhs = new ImpNode();
-                ImpNode rhs = new ImpNode();
-                lhs.addChild(conclusionNode.getChild(0).getChild(0));
-                lhs.addChild(conclusionNode.getChild(0).getChild(1));
-                rhs.addChild(conclusionNode.getChild(0).getChild(1));
-                rhs.addChild(conclusionNode.getChild(0).getChild(0));
-                and.addChild(lhs);
-                and.addChild(rhs);
-                neg.addChild(and);
-                deMorganNode = neg;
-            }
-            // "Unnegate" a conjunction with two implications to get the negated biconditional.
-            else if (conclusionNode.isNegation() && conclusionNode.getChild(0).isAnd()
-                    && conclusionNode.getChild(0).getChild(0).isImp() && conclusionNode.getChild(0).getChild(1).isImp()
-                    && conclusionNode.getChild(0).getChild(0).getChild(0).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(1))
-                    && conclusionNode.getChild(0).getChild(0).getChild(1).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(0))) {
-                NegNode negNode = new NegNode();
-                BicondNode bicondNode = new BicondNode();
-                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(0));
-                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(1));
-                negNode.addChild(bicondNode);
-                deMorganNode = negNode;
-            }
-            // Two types: one is ~(X B Y) => (~X ~B ~Y)
-            else if (conclusionNode.isNegation() && (conclusionNode.getChild(0).isOr() || conclusionNode.getChild(0).isAnd() || conclusionNode.getChild(0).isImp())) {
-                deMorganNode = BaseTruthTreeGenerator.getNegatedBinaryNode(conclusionNode.getChild(0)); // B
-                deMorganNode.addChild(conclusionNode.getChild(0).isImp() ? conclusionNode.getChild(0).getChild(0)
-                        : BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0).getChild(0))); // LHS X
-                deMorganNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0).getChild(1))); // RHS Y
-            }
-            // Other is (X B Y) => ~(~X ~B ~Y)
-            else if ((conclusionNode.isOr() || conclusionNode.isAnd() || conclusionNode.isImp())) {
-                WffTree negBinaryNode = BaseTruthTreeGenerator.getNegatedBinaryNode(conclusionNode); // B
-                negBinaryNode.addChild(conclusionNode.isImp() ? conclusionNode.getChild(0) : BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0))); // LHS X
-                negBinaryNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1))); // RHS Y
-                deMorganNode = new NegNode();
-                deMorganNode.addChild(negBinaryNode);
-            }
-            // If we found a node, then it'll be applied/inserted here.
-            if (deMorganNode != null) {
-                this.conclusionWff.setFlags(NDFlag.DEM);
-                conclusionEquivalentList.add(new NDWffTree(deMorganNode, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.DEM, this.conclusionWff));
-            }
-        }
-
-        // Finally, do a material implication equivalence.
-        if (conclusionNode.isImp() || conclusionNode.isOr()) {
-            WffTree newWff = null;
-            // Convert (P -> Q) to (~P V Q).
-            if (conclusionNode.isImp()) {
-                OrNode orNode = new OrNode();
-                NegNode negLhs = new NegNode();
-                negLhs.addChild(conclusionNode.getChild(0));
-                orNode.addChild(negLhs);
-                orNode.addChild(conclusionNode.getChild(1));
-                newWff = orNode;
-            }
-            // Convert (~P V Q) to (P -> Q)
-            else if (conclusionNode.isOr()) {
-                WffTree lhs = conclusionNode.getChild(0);
-                WffTree rhs = conclusionNode.getChild(1);
-                if (lhs.isNegation()) {
-                    ImpNode impNode = new ImpNode();
-                    impNode.addChild(lhs.getChild(0)); // Un-negate the lhs.
-                    impNode.addChild(rhs);
-                    newWff = impNode;
-                }
-            }
-            // If we performed a MI then add it.
-            if (newWff != null) {
-                this.conclusionWff.setFlags(NDFlag.MI);
-                NDWffTree ndWffTree = new NDWffTree(newWff, NDFlag.TP | NDFlag.DEM | NDFlag.MI | NDFlag.ALTC, NDStep.MI, this.conclusionWff);
-                conclusionEquivalentList.add(ndWffTree);
-            }
-        }
-        return conclusionEquivalentList;
     }
 }

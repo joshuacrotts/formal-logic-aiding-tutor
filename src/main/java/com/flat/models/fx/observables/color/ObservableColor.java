@@ -1,10 +1,10 @@
 package com.flat.models.fx.observables.color;
 
-import java.util.Observable;
 import javafx.scene.paint.Color;
 
+import java.util.Observable;
+
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class ObservableColor extends Observable {

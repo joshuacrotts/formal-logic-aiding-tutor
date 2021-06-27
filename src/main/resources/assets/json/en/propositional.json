@@ -1,209 +1,177 @@
 [
-	{
-		"label" : "Implication",
-		"symbols" :
-		{
-			"general" : "→",
-			"alternate" :
-			[
-				"⇒",
-				"⊃",
-				"->",
-				"→"
-			]
-		},
-		"toolTip" : "Implication",
-		"description" : "This is the implication button.",
-		"readAs" : "implies; if ... then",
-		"axioms" :
-		{
-			"explanation" : "(A ⇒ B) is false when A is true and B is false, but true otherwise. The implication operator is often difficult for students to understand, especially because if A is false and B is false, the conclusion remains true. This is also referred to as being vacuously true. We refer to A as the antecedent of the conditional, and B as the consequent. An important piece of the right-arrow operator is the idea of sufficient and necessary conditions. The antecedent is sufficient for the consequent. The consequent is necessary for the antecedent.",
-			"examples" :
-			[
-				"1. Suppose A represents the proposition that someone is a bachelor, and B represents the proposition that someone is unmarried. Therefore, (A ⇒ B) reads \"If someone is a bachelor, then they are unmarried\". Since someone cannot be married and a bachelor, it holds true that being unmarried is necessary for being a bachelor (in other words, you cannot be a bachelor if you are married). Since everyone who is a bachelor is unmarried, it makes sense that being a bachelor is sufficient for being unmarried.",
-				"2. Suppose A is true and B is false. Then (A → B) is false.",
-				"3. Suppose A is false and B is false. Then (A → B) is true."
-			]
-		}
-	},
-	{
-		"label" : "Biconditional",
-		"symbols" :
-		{
-			"general" : "↔",
-			"alternate" :
-			[
-				"⇔",
-				"≡",
-				"<->",
-				"↔"
-			]
-		},
-		"toolTip" : "Equivalence",
-		"description" : "This is the equivalence button.",
-		"readAs" : "If and only if; \"iff\"; means the same as",
-		"axioms" :
-		{
-			"explanation" : "(A ⇔ B) is true when A and B are the same. This means that A must be true and B must be true for this sentence to be true. Likewise, A must be false and B must be false for this sentence to be true. When they differ, the sentence is false.",
-			"examples" :
-			[
-				"1. (A ⇔ B)"
-			]
-		}
-	},
-	{
-		"label" : "Negation",
-		"symbols" :
-		{
-			"general" : "~",
-			"alternate" :
-			[
-				"¬",
-				"!",
-				"˜",
-				"~"
-			]
-		},
-		"toolTip" : "Negation",
-		"description" : "This is the negation button.",
-		"readAs" : "Not",
-		"axioms" :
-		{
-			"explanation" : "The negation operator (~) flips the truth value of a proposition A. So, if A is true, then ~A is false. Likewise, if ~A is false, then ~A is true. The negation operator works across any sentence and distributes over both symbolss and operators.",
-			"examples" :
-			[
-				"1. (~~A ⇔ A)",
-				"2. ¬(A & B) is equivalent to (¬A ∨ ¬B). The negation operator follows the distributive property from math - we distribute it to everything inside of the parentheses.",
-				"3. ~(A -> ~B) is equivalent to (A & ~~B), which reduces to (A & B). Note that when we use a negation on an implication (also called a negated implication) sentence, we do not double-negate the antecedent; we reduce it to a proposition minus any negations."
-			]
-		}
-	},
-	{
-		"label" : "Conjunction",
-		"symbols" :
-		{
-			"general" : "∧",
-			"alternate" :
-			[
-				"&",
-				"·",
-				"^",
-				"∧"
-			]
-		},
-		"toolTip" : "Conjunction",
-		"description" : "This is the conjunction button.",
-		"readAs" : "And",
-		"axioms" :
-		{
-			"explanation" : "The statement (A ∧ B) is true if A and B are both true. Otherwise, it is false.",
-			"examples" :
-			[
-				"1. (A ∧ B)",
-				"2. ((A ⊃ B) & (B ⊃ A))",
-				"3. ((A ∨ B) & (A ∨ C))"
-			]
-		}
-	},
-	{
-		"label" : "Disjunction",
-		"symbols" :
-		{
-			"general" : "∨",
-			"alternate" :
-			[
-				"|",
-				"+",
-				"||",
-				"∨"
-			]
-		},
-		"toolTip" : "Disjunction",
-		"description" : "This is the disjunction button.",
-		"readAs" : "Or",
-		"axioms" :
-		{
-			"explanation" : "The statement (A ∨ B) is true if A or B (or both) are true. If both are false, then it is false.",
-			"examples" :
-			[
-				"1. (A ∨ B)"
-			]
-		}
-	},
-	{
-		"label" : "Exclusive Disjunction",
-		"symbols" :
-		{
-			"general" : "⊕",
-			"alternate" :
-			[
-				"⊻",
-				"≢",
-				"⩒",
-				"↮",
-				"⩛",
-				"⊕"
-			]
-		},
-		"toolTip" : "Exclusive Disjunction",
-		"description" : "This is the exclusive or button.",
-		"readAs" : "Either... or; xor",
-		"axioms" :
-		{
-			"explanation" : "The statement (A ⊕ B) is true when either A or B are true, but not both are true.",
-			"examples" :
-			[
-				"1. A common examples of the exclusive or operator comes up when talking about exclusivity among events. In other words, if we have two propositions P and Q, then either P can be true or Q can be true. However, P and Q cannot be true. Also, P and Q cannot be false.",
-				"2. Suppose A is true and B is false. Then (A ⊕ B) is true.",
-				"3. Suppose A is true and B is false. Then ((A → B) ⊕ (B → A)) is true. (A → B) is false, and (B → A) is true. Thus, the operands are different which results in true."
-			]
-		}
-	},
-	{
-		"label" : "Turnstile",
-		"symbols" :
-		{
-			"general" : "⊢",
-			"alternate" :
-			[
-				"∴",
-				"⊢"
-			]
-		},
-		"toolTip" : "Syntactic Entailment",
-		"description" : "This is the \"proves\" button.",
-		"readAs" : "Proves...",
-		"axioms" :
-		{
-			"explanation" : "(x ⊢ y) means x proves (syntactically entails) y.",
-			"examples" :
-			[
-				"1. (A → B), (B → C) ⊢ (A → C). The two premises syntactically entail the conclusion through hypothetical syllogism.",
-				"2. (P ∨ Q), ~P ∴ Q. The two premises syntactically entail the conclusion through disjunctive syllogism."
-			]
-		}
-	},
-	{
-		"label" : "Double Turnstile",
-		"symbols" :
-		{
-			"general" : "⊨",
-			"alternate" :
-			[
-				"⊧",
-				"⊨"
-			]
-		},
-		"toolTip" : "Semantic Entailment",
-		"description" : "This is the \"models\" button.",
-		"readAs" : "Models...",
-		"axioms" :
-		{
-			"explanation" : "(x ⊨ y) means x models (semantically entails) y. In other words, the well-formed formula x ought to imply y, but the converse should not be true. The sentences x and y must also not be equivalent.",
-			"examples" :
-			[
-				"1. P ⊨ (P ∨ Q)"
-			]
-		}
-	}
+  {
+    "label": "Implication",
+    "symbols": {
+      "general": "→",
+      "alternate": [
+        "⇒",
+        "⊃",
+        "->",
+        "→"
+      ]
+    },
+    "toolTip": "Implication",
+    "description": "This is the implication button.",
+    "readAs": "implies; if ... then",
+    "axioms": {
+      "explanation": "(A ⇒ B) is false when A is true and B is false, but true otherwise. The implication operator is often difficult for students to understand, especially because if A is false and B is false, the conclusion remains true. This is also referred to as being vacuously true. We refer to A as the antecedent of the conditional, and B as the consequent. An important piece of the right-arrow operator is the idea of sufficient and necessary conditions. The antecedent is sufficient for the consequent. The consequent is necessary for the antecedent.",
+      "examples": [
+        "1. Suppose A represents the proposition that someone is a bachelor, and B represents the proposition that someone is unmarried. Therefore, (A ⇒ B) reads \"If someone is a bachelor, then they are unmarried\". Since someone cannot be married and a bachelor, it holds true that being unmarried is necessary for being a bachelor (in other words, you cannot be a bachelor if you are married). Since everyone who is a bachelor is unmarried, it makes sense that being a bachelor is sufficient for being unmarried.",
+        "2. Suppose A is true and B is false. Then (A → B) is false.",
+        "3. Suppose A is false and B is false. Then (A → B) is true."
+      ]
+    }
+  },
+  {
+    "label": "Biconditional",
+    "symbols": {
+      "general": "↔",
+      "alternate": [
+        "⇔",
+        "≡",
+        "<->",
+        "↔"
+      ]
+    },
+    "toolTip": "Equivalence",
+    "description": "This is the equivalence button.",
+    "readAs": "If and only if; \"iff\"; means the same as",
+    "axioms": {
+      "explanation": "(A ⇔ B) is true when A and B are the same. This means that A must be true and B must be true for this sentence to be true. Likewise, A must be false and B must be false for this sentence to be true. When they differ, the sentence is false.",
+      "examples": [
+        "1. (A ⇔ B)"
+      ]
+    }
+  },
+  {
+    "label": "Negation",
+    "symbols": {
+      "general": "~",
+      "alternate": [
+        "¬",
+        "!",
+        "˜",
+        "~"
+      ]
+    },
+    "toolTip": "Negation",
+    "description": "This is the negation button.",
+    "readAs": "Not",
+    "axioms": {
+      "explanation": "The negation operator (~) flips the truth value of a proposition A. So, if A is true, then ~A is false. Likewise, if ~A is false, then ~A is true. The negation operator works across any sentence and distributes over both symbolss and operators.",
+      "examples": [
+        "1. (~~A ⇔ A)",
+        "2. ¬(A & B) is equivalent to (¬A ∨ ¬B). The negation operator follows the distributive property from math - we distribute it to everything inside of the parentheses.",
+        "3. ~(A -> ~B) is equivalent to (A & ~~B), which reduces to (A & B). Note that when we use a negation on an implication (also called a negated implication) sentence, we do not double-negate the antecedent; we reduce it to a proposition minus any negations."
+      ]
+    }
+  },
+  {
+    "label": "Conjunction",
+    "symbols": {
+      "general": "∧",
+      "alternate": [
+        "&",
+        "·",
+        "^",
+        "∧"
+      ]
+    },
+    "toolTip": "Conjunction",
+    "description": "This is the conjunction button.",
+    "readAs": "And",
+    "axioms": {
+      "explanation": "The statement (A ∧ B) is true if A and B are both true. Otherwise, it is false.",
+      "examples": [
+        "1. (A ∧ B)",
+        "2. ((A ⊃ B) & (B ⊃ A))",
+        "3. ((A ∨ B) & (A ∨ C))"
+      ]
+    }
+  },
+  {
+    "label": "Disjunction",
+    "symbols": {
+      "general": "∨",
+      "alternate": [
+        "|",
+        "+",
+        "||",
+        "∨"
+      ]
+    },
+    "toolTip": "Disjunction",
+    "description": "This is the disjunction button.",
+    "readAs": "Or",
+    "axioms": {
+      "explanation": "The statement (A ∨ B) is true if A or B (or both) are true. If both are false, then it is false.",
+      "examples": [
+        "1. (A ∨ B)"
+      ]
+    }
+  },
+  {
+    "label": "Exclusive Disjunction",
+    "symbols": {
+      "general": "⊕",
+      "alternate": [
+        "⊻",
+        "≢",
+        "⩒",
+        "↮",
+        "⩛",
+        "⊕"
+      ]
+    },
+    "toolTip": "Exclusive Disjunction",
+    "description": "This is the exclusive or button.",
+    "readAs": "Either... or; xor",
+    "axioms": {
+      "explanation": "The statement (A ⊕ B) is true when either A or B are true, but not both are true.",
+      "examples": [
+        "1. A common examples of the exclusive or operator comes up when talking about exclusivity among events. In other words, if we have two propositions P and Q, then either P can be true or Q can be true. However, P and Q cannot be true. Also, P and Q cannot be false.",
+        "2. Suppose A is true and B is false. Then (A ⊕ B) is true.",
+        "3. Suppose A is true and B is false. Then ((A → B) ⊕ (B → A)) is true. (A → B) is false, and (B → A) is true. Thus, the operands are different which results in true."
+      ]
+    }
+  },
+  {
+    "label": "Turnstile",
+    "symbols": {
+      "general": "⊢",
+      "alternate": [
+        "∴",
+        "⊢"
+      ]
+    },
+    "toolTip": "Syntactic Entailment",
+    "description": "This is the \"proves\" button.",
+    "readAs": "Proves...",
+    "axioms": {
+      "explanation": "(x ⊢ y) means x proves (syntactically entails) y.",
+      "examples": [
+        "1. (A → B), (B → C) ⊢ (A → C). The two premises syntactically entail the conclusion through hypothetical syllogism.",
+        "2. (P ∨ Q), ~P ∴ Q. The two premises syntactically entail the conclusion through disjunctive syllogism."
+      ]
+    }
+  },
+  {
+    "label": "Double Turnstile",
+    "symbols": {
+      "general": "⊨",
+      "alternate": [
+        "⊧",
+        "⊨"
+      ]
+    },
+    "toolTip": "Semantic Entailment",
+    "description": "This is the \"models\" button.",
+    "readAs": "Models...",
+    "axioms": {
+      "explanation": "(x ⊨ y) means x models (semantically entails) y. In other words, the well-formed formula x ought to imply y, but the converse should not be true. The sentences x and y must also not be equivalent.",
+      "examples": [
+        "1. P ⊨ (P ∨ Q)"
+      ]
+    }
+  }
 ]

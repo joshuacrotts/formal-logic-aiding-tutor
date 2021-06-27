@@ -6,14 +6,13 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class SecondaryColorPane extends HBox {
-    private SecondaryColorPicker secondaryColorPicker = new SecondaryColorPicker();
-    private Region emptyRegion = new Region();
+    private final SecondaryColorPicker secondaryColorPicker = new SecondaryColorPicker();
+    private final Region emptyRegion = new Region();
 
-    public SecondaryColorPane () {
+    public SecondaryColorPane() {
         HBox.setHgrow(this.emptyRegion, Priority.ALWAYS);
         super.setSpacing(10);
         super.getChildren().addAll(new Label("Secondary Color:"), this.emptyRegion, this.secondaryColorPicker);

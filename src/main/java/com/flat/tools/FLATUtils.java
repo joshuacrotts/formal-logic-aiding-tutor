@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class FLATUtils {
@@ -53,39 +56,51 @@ public class FLATUtils {
             return false;
         }
     }
-    
+
     /**
-     * 
      * @param _n
      * @param _str
-     * @return 
+     * @return
      */
     public static String repeatString(int _n, String _str) {
-      StringBuilder b = new StringBuilder(_n * _str.length());
+        StringBuilder b = new StringBuilder(_n * _str.length());
         for (int i = 0; i < _n; ++i) {
             b.append(_str);
         }
         return b.toString();
     }
-    
+
     /**
-     * 
+     * @param sets
+     * @param <T>
+     * @return
+     */
+    public static <T> Set<T> union(Collection<T>... sets) {
+        Set<T> distinct = new HashSet<T>();
+
+        for (Collection<T> list : sets) {
+            distinct.addAll(list);
+        }
+        return distinct;
+    }
+
+    /**
      * @param _s1
      * @param _s2
-     * @return 
+     * @return
      */
     public static int sbCompareTo(StringBuilder _s1, StringBuilder _s2) {
-      if (_s1.length() > _s2.length()) return 1;
-      else if (_s1.length() < _s2.length()) return -1;
-      else {
-        for (int i = 0; i < _s1.length(); i++) {
-          if (_s1.charAt(i) < _s2.charAt(i)) 
-            return -1;
-          else if (_s1.charAt(i) > _s2.charAt(i)) 
-            return 1;
+        if (_s1.length() > _s2.length()) return 1;
+        else if (_s1.length() < _s2.length()) return -1;
+        else {
+            for (int i = 0; i < _s1.length(); i++) {
+                if (_s1.charAt(i) < _s2.charAt(i))
+                    return -1;
+                else if (_s1.charAt(i) > _s2.charAt(i))
+                    return 1;
+            }
+
+            return 0;
         }
-        
-        return 0;
-      }
     }
 }

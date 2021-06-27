@@ -1,0 +1,6 @@
+1: (~Ljr -> Cjr)                                     Ass.
+2: ~Cjr                                              Ass.
+3: (~Cjr -> ~~Ljr)                                   TP, 1
+4: ~~Ljr                                             MP, 2, 3
+5: Ljr                                               DNE, 4
+∴ Ljr  ■

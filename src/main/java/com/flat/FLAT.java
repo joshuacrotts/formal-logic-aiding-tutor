@@ -9,7 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class FLAT extends Application {
@@ -32,7 +31,7 @@ public class FLAT extends Application {
     }
 
     // Applies the initial properties to the stage.
-    public void initializeStage (Stage _stage) {
+    public void initializeStage(Stage _stage) {
         _stage.setScene(new Scene(new Pane()));
         _stage.setMaximized(true);
         _stage.setMinHeight(720);

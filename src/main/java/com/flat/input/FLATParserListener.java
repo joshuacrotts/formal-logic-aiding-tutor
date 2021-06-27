@@ -20,6 +20,11 @@ import java.util.Stack;
 public class FLATParserListener extends FLATBaseListener {
 
     /**
+     *
+     */
+    public static final int MAXIMUM_NEGATED_NODES = 4;
+
+    /**
      * Map to keep track of nodes across the different listener
      * methods.
      */
@@ -45,6 +50,12 @@ public class FLATParserListener extends FLATBaseListener {
      */
     private WffTree wffTree;
 
+    /**
+     * Keeps track of how many negation nodes we currently have stacked. Any other node resets this to 0.
+     * 4 is the max.
+     */
+    private int negationCount = 0;
+
     public FLATParserListener(FLATParser _flatParser) {
         super();
 
@@ -56,6 +67,7 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void enterPropositionalWff(FLATParser.PropositionalWffContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         if (this.wffTree != null && this.wffTree.isPredicateWff()) {
             FLATErrorListener.syntaxError(ctx, "Wff cannot be both propositional and predicate.");
             return;
@@ -67,21 +79,25 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPropositionalWff(FLATParser.PropositionalWffContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.currentTrees.add(this.wffTree.copy());
     }
 
     @Override
     public void enterAtom(FLATParser.AtomContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         WffTree atomNode = new AtomNode(ctx.ATOM().getText());
         this.PARSE_TREE.put(ctx, atomNode);
     }
 
     @Override
     public void enterPropWff(FLATParser.PropWffContext ctx) {
+        if (FLATErrorListener.sawError()) return;
     }
 
     @Override
     public void exitPropWff(FLATParser.PropWffContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         if (ctx.atom() != null) {
             this.wffTree.addChild(this.PARSE_TREE.get(ctx.atom()));
         }
@@ -89,6 +105,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void enterPropNegRule(FLATParser.PropNegRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
+        this.negationCount++;
+        if (this.negationCount > FLATParserListener.MAXIMUM_NEGATED_NODES) {
+            FLATErrorListener.syntaxError(ctx, "Error: cannot have more than four stacked negated nodes");
+            return;
+        }
+
         String symbol = ctx.NEG().getText();
         NegNode negNode = new NegNode(symbol);
         this.treeRoots.push(this.wffTree);
@@ -97,11 +120,14 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPropNegRule(FLATParser.PropNegRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
+        this.negationCount--;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPropAndRule(FLATParser.PropAndRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         AndNode andNode = new AndNode(ctx.AND().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = andNode;
@@ -109,11 +135,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPropAndRule(FLATParser.PropAndRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPropOrRule(FLATParser.PropOrRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         OrNode orNode = new OrNode(ctx.OR().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = orNode;
@@ -121,11 +149,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPropOrRule(FLATParser.PropOrRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPropImpRule(FLATParser.PropImpRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         ImpNode impNode = new ImpNode(ctx.IMP().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = impNode;
@@ -133,11 +163,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPropImpRule(FLATParser.PropImpRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPropBicondRule(FLATParser.PropBicondRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         BicondNode bicondNode = new BicondNode(ctx.BICOND().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = bicondNode;
@@ -145,11 +177,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPropBicondRule(FLATParser.PropBicondRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPropExclusiveOrRule(FLATParser.PropExclusiveOrRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         ExclusiveOrNode xorNode = new ExclusiveOrNode(ctx.XOR().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = xorNode;
@@ -157,6 +191,7 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPropExclusiveOrRule(FLATParser.PropExclusiveOrRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
@@ -164,6 +199,7 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void enterPredicateWff(FLATParser.PredicateWffContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         if (this.wffTree != null && this.wffTree.isPropositionalWff()) {
             FLATErrorListener.syntaxError(ctx, "Wff cannot be both propositional and predicate.");
             return;
@@ -175,11 +211,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPredicateWff(FLATParser.PredicateWffContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.currentTrees.add(this.wffTree.copy());
     }
 
     @Override
     public void exitPredicate(FLATParser.PredicateContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         AtomNode atomNode = (AtomNode) this.PARSE_TREE.get(ctx.atom());
 
         // Loop through the children and add them to the list.
@@ -196,23 +234,27 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void enterConstant(FLATParser.ConstantContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         WffTree constantNode = new ConstantNode(ctx.CONSTANT().getText());
         this.PARSE_TREE.put(ctx, constantNode);
     }
 
     @Override
     public void enterVariable(FLATParser.VariableContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         WffTree variableNode = new VariableNode(ctx.VARIABLE().getText());
         this.PARSE_TREE.put(ctx, variableNode);
     }
 
     @Override
     public void exitPredQuantifier(FLATParser.PredQuantifierContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void exitUniversal(FLATParser.UniversalContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         VariableNode variableNode = null;
 
         if (ctx.variable() != null) {
@@ -234,6 +276,7 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitExistential(FLATParser.ExistentialContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         VariableNode variableNode = null;
 
         if (ctx.variable() != null) {
@@ -255,6 +298,9 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void enterPredNegRule(FLATParser.PredNegRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
+        this.negationCount++;
+
         NegNode negNode = new NegNode(ctx.NEG().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = negNode;
@@ -262,11 +308,19 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPredNegRule(FLATParser.PredNegRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
+        if (this.negationCount > FLATParserListener.MAXIMUM_NEGATED_NODES) {
+            FLATErrorListener.syntaxError(ctx, "Error: cannot have more than four stacked negated nodes");
+            return;
+        }
+
+        this.negationCount--;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPredAndRule(FLATParser.PredAndRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         AndNode andNode = new AndNode(ctx.AND().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = andNode;
@@ -274,11 +328,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPredAndRule(FLATParser.PredAndRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPredOrRule(FLATParser.PredOrRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         OrNode orNode = new OrNode(ctx.OR().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = orNode;
@@ -286,11 +342,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPredOrRule(FLATParser.PredOrRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPredImpRule(FLATParser.PredImpRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         ImpNode impNode = new ImpNode(ctx.IMP().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = impNode;
@@ -298,11 +356,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPredImpRule(FLATParser.PredImpRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPredBicondRule(FLATParser.PredBicondRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         BicondNode bicondNode = new BicondNode(ctx.BICOND().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = bicondNode;
@@ -310,11 +370,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPredBicondRule(FLATParser.PredBicondRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void enterPredExclusiveOrRule(FLATParser.PredExclusiveOrRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         ExclusiveOrNode xorNode = new ExclusiveOrNode(ctx.XOR().getText());
         this.treeRoots.push(this.wffTree);
         this.wffTree = xorNode;
@@ -322,11 +384,13 @@ public class FLATParserListener extends FLATBaseListener {
 
     @Override
     public void exitPredExclusiveOrRule(FLATParser.PredExclusiveOrRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         this.popTreeRoot();
     }
 
     @Override
     public void exitPredIdentityRule(FLATParser.PredIdentityRuleContext ctx) {
+        if (FLATErrorListener.sawError()) return;
         IdentityNode identityNode = new IdentityNode();
         identityNode.addChild(this.PARSE_TREE.get(ctx.getChild(0)));
         identityNode.addChild(this.PARSE_TREE.get(ctx.getChild(2)));

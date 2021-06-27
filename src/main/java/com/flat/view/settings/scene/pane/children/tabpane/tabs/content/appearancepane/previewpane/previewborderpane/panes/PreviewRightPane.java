@@ -5,12 +5,11 @@ import com.flat.view.settings.scene.pane.children.tabpane.tabs.content.appearanc
 import javafx.scene.layout.BorderWidths;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class PreviewRightPane extends ColorObserverPane {
 
-    public PreviewRightPane () {
+    public PreviewRightPane() {
         super(new BorderWidths(0, 0, 0, 3));
         super.setId("previewRightPane");
         FxPreviewData.getSecondaryColor().addObserver(this);

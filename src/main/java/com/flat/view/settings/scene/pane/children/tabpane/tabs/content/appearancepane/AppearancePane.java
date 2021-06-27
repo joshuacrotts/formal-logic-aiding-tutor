@@ -6,14 +6,13 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class AppearancePane extends HBox {
-    private ColorPane colorPane = new ColorPane();
-    private PreviewPane previewPane = new PreviewPane();
+    private final ColorPane colorPane = new ColorPane();
+    private final PreviewPane previewPane = new PreviewPane();
 
-    public AppearancePane () {
+    public AppearancePane() {
         super.getChildren().addAll(this.colorPane, this.previewPane);
         super.setStyle("-fx-background-color: orange");
         super.setAlignment(Pos.CENTER);
