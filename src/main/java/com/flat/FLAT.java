@@ -1,7 +1,6 @@
 package com.flat;
 
 import com.flat.controller.Controller;
-
 import com.flat.view.enums.View;
 import com.flat.view.tools.ResourceManager;
 import javafx.application.Application;

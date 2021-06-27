@@ -1,0 +1,31 @@
+/* 
+    Created on : Jun 27, 2021, 4:17:14 AM
+    Author     : Christopher Brantley <ccbrantley@uncg.edu>
+*/
+
+.tab-pane {
+    -fx-background-color: yellow;
+    -fx-tab-min-height: 100px;
+    -fx-tab-min-width: 100px;
+}
+
+.tab {
+    -fx-background-color: red;
+}
+
+.tab *.tab-label {
+    -fx-rotate: 90;
+}
+
+.tab:selected {
+    -fx-background-color: purple;
+}
+
+.tab:hover {
+    -fx-background-color: blue;
+}
+
+.button {
+    -fx-background-color: gray;
+    -fx-alignment: center;
+}

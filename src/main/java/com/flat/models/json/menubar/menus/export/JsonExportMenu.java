@@ -2,7 +2,6 @@ package com.flat.models.json.menubar.menus.export;
 
 import com.flat.models.json.JsonString;
 import com.flat.models.translation.Translatable;
-import com.google.gson.annotations.Expose;
 import java.util.LinkedList;
 
 /**
@@ -10,11 +9,8 @@ import java.util.LinkedList;
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonExportMenu extends Translatable {
-    @Expose
     private JsonString export = new JsonString("Export");
-    @Expose
     private JsonExportAsLatexMenu exportAsLatexMenu = new JsonExportAsLatexMenu();
-    @Expose
     private JsonExportAsPdfMenu exportAsPdfMenu = new JsonExportAsPdfMenu();
 
     public JsonString getExport() {

@@ -1,0 +1,53 @@
+/* 
+    Created on : Jun 27, 2021, 7:53:46 AM
+    Author     : Christopher Brantley <ccbrantley@uncg.edu>
+*/
+
+* {
+    -primary-bg-color: gray;
+    -secondary-bg-color: lightgray;
+    -border-color: black;
+}
+
+#previewBorderPane {
+    -fx-background-color: black;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-pref-width: 320px;
+    -fx-pref-height: 180px;
+}
+
+#previewTopPane,
+#previewRightPane,
+#previewBottomPane,
+#previewLeftPane {
+    -fx-border-color: -border-color;
+}
+
+#previewTopPane {
+    -fx-background-color: -primary-bg-color;
+    -fx-border-width: 0 0 3 0;
+    -fx-pref-height: 16;
+}
+
+#previewRightPane {
+    -fx-background-color: -secondary-bg-color;
+    -fx-border-width: 0 0 0 3;
+    -fx-pref-width: 64;
+}
+
+#previewBottomPane {
+    -fx-background-color: -primary-bg-color;
+    -fx-border-width: 3 0 0 0;
+    -fx-pref-height: 32;
+}
+
+#previewLeftPane {
+    -fx-background-color: -secondary-bg-color;
+    -fx-border-width: 0 3 0 0;
+    -fx-pref-width: 64;
+}
+
+#previewCenterPane {
+    -fx-background-color: whitesmoke;
+}

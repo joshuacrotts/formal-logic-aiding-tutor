@@ -3,7 +3,6 @@ package com.flat.models.json.menubar.menus;
 import com.flat.models.json.JsonString;
 import com.flat.models.json.menubar.items.help.JsonAboutMenuItem;
 import com.flat.models.translation.Translatable;
-import com.google.gson.annotations.Expose;
 import java.util.LinkedList;
 
 /**
@@ -11,9 +10,7 @@ import java.util.LinkedList;
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonHelpMenu extends Translatable {
-    @Expose
     private JsonString help = new JsonString("Help");
-    @Expose
     private JsonAboutMenuItem aboutMenuItem = new JsonAboutMenuItem();
 
     public JsonString getHelp() {

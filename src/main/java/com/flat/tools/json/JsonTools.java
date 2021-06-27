@@ -87,7 +87,6 @@ public class JsonTools {
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.serializeNulls();
             gsonBuilder.setPrettyPrinting();
-            gsonBuilder.excludeFieldsWithoutExposeAnnotation();
             writer.write(gsonBuilder.create().toJson(_object, _class));
 
         }

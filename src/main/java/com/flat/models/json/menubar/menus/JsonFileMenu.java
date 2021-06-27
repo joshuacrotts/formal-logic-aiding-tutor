@@ -5,7 +5,6 @@ import com.flat.models.json.menubar.items.file.JsonExitMenuItem;
 import com.flat.models.json.menubar.items.file.JsonResetViewMenuItem;
 import com.flat.models.json.menubar.items.file.JsonSettingsMenuItem;
 import com.flat.models.translation.Translatable;
-import com.google.gson.annotations.Expose;
 import java.util.LinkedList;
 
 /**
@@ -13,13 +12,9 @@ import java.util.LinkedList;
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonFileMenu extends Translatable {
-    @Expose
     private JsonString file = new JsonString("File");
-    @Expose
     private JsonResetViewMenuItem resetViewMenuItem = new JsonResetViewMenuItem();
-    @Expose
     private JsonSettingsMenuItem settingsMenuItem = new JsonSettingsMenuItem();
-    @Expose
     private JsonExitMenuItem exitMenuItem = new JsonExitMenuItem();
 
     public JsonString getFile() {

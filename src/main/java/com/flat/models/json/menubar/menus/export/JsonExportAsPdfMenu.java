@@ -5,7 +5,6 @@ import com.flat.models.json.menubar.items.export.JsonLatexParseTreeMenuItem;
 import com.flat.models.json.menubar.items.export.JsonLatexTruthTableMenuItem;
 import com.flat.models.json.menubar.items.export.JsonLatexTruthTreeMenuItem;
 import com.flat.models.translation.Translatable;
-import com.google.gson.annotations.Expose;
 import java.util.LinkedList;
 
 /**
@@ -13,13 +12,9 @@ import java.util.LinkedList;
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonExportAsPdfMenu extends Translatable {
-    @Expose
     private JsonString exportAsPdf = new JsonString("Export as Pdf(.pdf)");
-    @Expose
     private JsonLatexParseTreeMenuItem latexParseTreeMenuItem = new JsonLatexParseTreeMenuItem();
-    @Expose
     private JsonLatexTruthTreeMenuItem latexTruthTreeMenuItem = new JsonLatexTruthTreeMenuItem();
-    @Expose
     private JsonLatexTruthTableMenuItem latexTruthTableMenuItem = new JsonLatexTruthTableMenuItem();
 
     public JsonString getExportAsPdf() {

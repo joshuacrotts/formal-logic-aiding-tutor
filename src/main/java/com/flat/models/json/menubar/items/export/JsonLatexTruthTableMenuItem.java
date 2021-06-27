@@ -2,7 +2,6 @@ package com.flat.models.json.menubar.items.export;
 
 import com.flat.models.json.JsonString;
 import com.flat.models.translation.Translatable;
-import com.google.gson.annotations.Expose;
 import java.util.LinkedList;
 
 /**
@@ -10,7 +9,6 @@ import java.util.LinkedList;
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonLatexTruthTableMenuItem extends Translatable {
-    @Expose
     private JsonString latexTruthTable = new JsonString("LaTeX Truth Table");
 
     public JsonString getLatexTruthTable() {
