@@ -36,9 +36,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
     @Override
     public ArrayList<NDWffTree> getNaturalDeductionProof() {
         ArgumentTruthTreeValidator truthTreeValidator = new ArgumentTruthTreeValidator(this.originalWffTreeList);
-        if (!truthTreeValidator.isValid()) {
-            return null;
-        }
+        if (!truthTreeValidator.isValid()) { return null; }
 
         int cycles = 0;
         while (true) {
@@ -67,9 +65,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         }
 
         // The timeout is there to prevent completely insane proofs from never ending.
-        if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) {
-            return null;
-        }
+        if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) { return null; }
 
         // Backtrack from the conclusion to mark all those nodes that were used in the proof.
         this.activateLinks(this.conclusionWff);
@@ -79,7 +75,17 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
     }
 
     /**
-     * @return
+     * Creates a list of equivalent forms of the conclusion to see if we have
+     * satisfied any of them. If so, we convert that premise into the equivalent
+     * form and say that we satisfied the conclusion and proof. There are four
+     * equivalences:
+     *
+     * Double Negation ~~C
+     * Transposition C = (A -> B) <> (~B -> ~A)
+     * DeMorgan's Laws
+     * Material Implication C = (A -> B) <> (~A | B)
+     *
+     * @return ArrayList of equivalent forms of the conclusion if they exist.
      */
     protected ArrayList<NDWffTree> findConclusionEquivalentsPL() {
         ArrayList<NDWffTree> conclusionEquivalentList = new ArrayList<>();
@@ -253,13 +259,11 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
      */
     private boolean satisfyImplication(WffTree _impTree, NDWffTree _parent) {
         // If the parent is not the conclusion then we can attempt to do other rules on it.
-        if (!this.isConclusion(_parent) && _parent.getWffTree().isImp()) {
+        if (!this.isConclusion(_parent) && _impTree.stringEquals(_parent.getWffTree())) {
             boolean mt = this.findModusTollens(_impTree, _parent);
             boolean mp = this.findModusPonens(_impTree, _parent);
             boolean hs = this.findHypotheticalSyllogism(_impTree, _parent);
-            if (mt || mp || hs) {
-                return true;
-            }
+            if (mt || mp || hs) { return true; }
         }
 
         // Otherwise, try to construct an implication node - see if both sides are satisfiable.
@@ -282,19 +286,19 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
      * <p>
      * Elimination is simply simplification - breaks the two operands down.
      *
-     * @param _conjTree
-     * @param _parent
+     * @param _conjTree - conjunction node.
+     * @param _parent - parent of conjunction node.
      * @return true if we can satisfy the conjunction goal, false otherwise.
      */
     private boolean satisfyConjunction(WffTree _conjTree, NDWffTree _parent) {
         // First try to simplify if the root is a conjunction.
-        if (!this.isConclusion(_parent) && _parent.getWffTree().isAnd()) {
-            boolean simp = this.findSimplification(_conjTree, _parent);
-            if (simp && _conjTree.stringEquals(_parent.getWffTree())) return true;
+        if (!this.isConclusion(_parent) && _conjTree.stringEquals(_parent.getWffTree())) {
+            if (this.findSimplification(_conjTree, _parent)) return true;
         }
 
         // Then try to create a conjunction if it's a goal and satisfied on both sides.
-        if (this.satisfy(_conjTree.getChild(0), _parent) && this.satisfy(_conjTree.getChild(1), _parent)) {
+        if (this.satisfy(_conjTree.getChild(0), _parent)
+                && this.satisfy(_conjTree.getChild(1), _parent)) {
             AndNode andNode = new AndNode();
             andNode.addChild(_conjTree.getChild(0));
             andNode.addChild(_conjTree.getChild(1));
@@ -307,15 +311,24 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
     }
 
     /**
-     * @param _disjTree
-     * @param _parent
+     * Attempts to satisfy a disjunction. There are two preconditions:
+     *
+     * @precondition _parent cannot be the conclusion.
+     * @precondition _disjTree must be the same WffTree as the _parent's.
+     *
+     * A disjunction is satisfied either through disjunctive syllogism OR
+     * through the creation of a disjunction. Creations are satisfied via
+     * the satisfaction of one or both of their children. More details are
+     * outlined below.
+     *
+     * @param _disjTree - disjunction node.
+     * @param _parent - parent of the disjunction.
      * @return true if we can satisfy the disjunction goal, false otherwise.
      */
     private boolean satisfyDisjunction(WffTree _disjTree, NDWffTree _parent) {
         // First try to perform DS if the root is a disjunction.
-        if (!this.isConclusion(_parent) && _parent.getWffTree().isOr()) {
-            boolean ds = this.findDisjunctiveSyllogism(_disjTree, _parent);
-            if (ds && _disjTree.stringEquals(_parent.getWffTree())) return true;
+        if (!this.isConclusion(_parent) && _disjTree.stringEquals(_parent.getWffTree())) {
+            if (this.findDisjunctiveSyllogism(_disjTree, _parent)) return true;
         }
 
         // Then try to create a conjunction if it's a goal and one of the two children are satisfied.
@@ -344,15 +357,22 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
     }
 
     /**
-     * @param _bicondTree
-     * @param _parent
+     * Attempts to satisfy a biconditional. There are two preconditions:
+     *
+     * @precondition _parent cannot be the conclusion.
+     * @precondition _bicondTree must represent the same tree as _parent.
+     *
+     * A biconditional is satisfied via either a BCE rule, or the creation of
+     * a biconditional via two implications conjoined with &.
+     *
+     * @param _bicondTree - biconditional WffTree
+     * @param _parent - parent of _bicondTree.
      * @return true if we can satisfy the biconditional goal, false otherwise.
      */
     private boolean satisfyBiconditional(WffTree _bicondTree, NDWffTree _parent) {
         // First check to see if we can break any biconditionals down.
-        if (!this.isConclusion(_parent) && _parent.getWffTree().isBicond()) {
-            boolean bce = this.findBiconditionalElimination(_bicondTree, _parent);
-            if (bce && _bicondTree.stringEquals(_parent.getWffTree())) return true;
+        if (!this.isConclusion(_parent) && _bicondTree.stringEquals(_parent.getWffTree())) {
+            if (this.findBiconditionalElimination(_bicondTree, _parent)) return true;
         }
         // We first have a subgoal of X -> Y and Y -> X.
         ImpNode impLhs = new ImpNode();

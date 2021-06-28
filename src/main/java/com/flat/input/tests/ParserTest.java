@@ -193,14 +193,6 @@ public class ParserTest {
                 }
                 System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
             }
-
-            PdfPrinter ttp = new PdfTruthTreePrinter(validator.getTruthTree(), "latex-truth-tree.pdf");
-            ttp.outputToFile();
-
-            if (ndValidator.getNaturalDeductionProof() != null) {
-                PdfPrinter ndp = new PdfNaturalDeductionPrinter(ndValidator.getNaturalDeductionProof(), "latex-nd.pdf");
-                ndp.outputToFile();
-            }
         }
     }
 

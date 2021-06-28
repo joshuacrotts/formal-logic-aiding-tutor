@@ -2,8 +2,7 @@
 2: ~Cd                                               Ass.
 3: ((Cd -> (∃x)Fax) & ((∃x)Fax -> Cd))               ↔E, 1
 4: ((∃x)Fax -> Cd)                                   &E, 3
-5: (~Cd -> ~(∃x)Fax)                                 TP, 4
-6: ~(∃x)Fax                                          MP, 2, 5
-7: (x)~Fax                                           DeM, 6
-8: ~Far                                              UE, 7
+5: ~(∃x)Fax                                          MT, 2, 4
+6: (x)~Fax                                           DeM, 5
+7: ~Far                                              UE, 6
 ∴ ~Far  ■

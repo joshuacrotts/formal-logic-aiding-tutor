@@ -32,7 +32,6 @@ public enum NDStep {
     DD("DD", "Destructive Dilemma", "DD"),
     TP("TP", "Transposition", "Trans.");
 
-
     /**
      *
      */
@@ -54,16 +53,16 @@ public enum NDStep {
         this.TEX_CMD = _texCommand;
     }
 
-    @Override
-    public String toString() {
-        return STEP;
-    }
-
     public String getTextStep() {
         return this.TEXT_STEP;
     }
 
     public String getTexCommand() {
         return this.TEX_CMD;
+    }
+
+    @Override
+    public String toString() {
+        return STEP;
     }
 }
