@@ -1,7 +1,6 @@
 1: (Pa -> Qa)                                        Ass.
 2: ~~~Qa                                             Ass.
-3: (~Qa -> ~Pa)                                      TP, 1
-4: ~Qa                                               DNE, 2
-5: ~Pa                                               MP, 3, 4
-6: ~~~Pa                                             DNI, 5
+3: ~Qa                                               DNE, 2
+4: ~Pa                                               MT, 1, 3
+5: ~~~Pa                                             DNI, 4
 ∴ ~~~Pa  ■

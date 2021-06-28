@@ -67,6 +67,9 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         // The timeout is there to prevent completely insane proofs from never ending.
         if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) { return null; }
 
+        // Go through and replace the sorted assumptions with the original indices.
+        for (int r = 0; r < this.originalPremisesList.size(); r++) { this.premisesList.set(r, this.originalPremisesList.get(r)); }
+
         // Backtrack from the conclusion to mark all those nodes that were used in the proof.
         this.activateLinks(this.conclusionWff);
 
@@ -260,8 +263,8 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
     private boolean satisfyImplication(WffTree _impTree, NDWffTree _parent) {
         // If the parent is not the conclusion then we can attempt to do other rules on it.
         if (!this.isConclusion(_parent) && _impTree.stringEquals(_parent.getWffTree())) {
-            boolean mt = this.findModusTollens(_impTree, _parent);
             boolean mp = this.findModusPonens(_impTree, _parent);
+            boolean mt = this.findModusTollens(_impTree, _parent);
             boolean hs = this.findHypotheticalSyllogism(_impTree, _parent);
             if (mt || mp || hs) { return true; }
         }
