@@ -9,6 +9,7 @@ import com.flat.models.treenode.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -51,6 +52,8 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
                     : _wffTreeList.get(i);
             this.addPremise(new NDWffTree(wff, NDFlag.ACTIVE, NDStep.P));
         }
+
+        Collections.sort(this.premisesList, new NaturalDeductionComparator());
     }
 
     /**
@@ -640,5 +643,18 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
         neg.addChild(_tree);
         for (NDWffTree ndWffTree : this.premisesList) { if (neg.stringEquals(ndWffTree.getWffTree())) { return true; } }
         return neg.stringEquals(this.conclusionWff.getWffTree()) || this.isEventualNegatedGoal(neg, maxIterations + 1);
+    }
+
+    private static class NaturalDeductionComparator implements Comparator<NDWffTree> {
+
+        @Override
+        public int compare(NDWffTree _o1, NDWffTree _o2) {
+            return _o1.getValue() - _o2.getValue();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return false;
+        }
     }
 }

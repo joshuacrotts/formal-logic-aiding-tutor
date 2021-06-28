@@ -260,8 +260,8 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
     private boolean satisfyImplication(WffTree _impTree, NDWffTree _parent) {
         // If the parent is not the conclusion then we can attempt to do other rules on it.
         if (!this.isConclusion(_parent) && _impTree.stringEquals(_parent.getWffTree())) {
-            boolean mt = this.findModusTollens(_impTree, _parent);
             boolean mp = this.findModusPonens(_impTree, _parent);
+            boolean mt = this.findModusTollens(_impTree, _parent);
             boolean hs = this.findHypotheticalSyllogism(_impTree, _parent);
             if (mt || mp || hs) { return true; }
         }

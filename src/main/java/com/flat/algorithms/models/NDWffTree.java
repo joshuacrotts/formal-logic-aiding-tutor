@@ -35,6 +35,8 @@ public class NDWffTree {
      */
     private int flags;
 
+    private int value;
+
     public NDWffTree(WffTree _wffTree, int _flags, NDStep _derivationStep, NDWffTree... _derivedParents) {
         this.wffTree = _wffTree;
         this.derivationStep = _derivationStep;
@@ -45,6 +47,8 @@ public class NDWffTree {
         if (_derivedParents != null) {
             Collections.addAll(this.derivedParents, _derivedParents);
         }
+
+        this.setTruthTreeValue();
     }
 
     public NDWffTree(WffTree _wffTree, NDStep _derivationStep, NDWffTree... _derivedParents) {
@@ -200,5 +204,46 @@ public class NDWffTree {
 
     public boolean isSatisfied() {
         return (this.flags & NDFlag.SAT) != 0;
+    }
+
+    /**
+     * Assigns the precedence value of this truth tree. This is described in
+     * further detail in the above javadoc.
+     */
+    private void setTruthTreeValue() {
+        WffTree _node = this.wffTree;
+        // This is kind of ugly, I know...
+        if (_node.isAtom()) {
+            this.value = 0;
+        } else if (_node.isDoubleNegation()) {
+            // Double negations have to have a higher priority.
+            this.value = 3;
+        } else if (_node.isNegation() && !_node.isNegAnd() && !_node.isNegImp() && !_node.isNegOr()) {
+            this.value = 4;
+        } else if (_node.isExistential()) {
+            this.value = 1;
+        } else if (_node.isUniversal()) {
+            // Universal HAS to be the last operation - if not, then we run the risk of applying it before we
+            // have a constant available.
+            this.value = 13;
+        } else if (_node.isAnd()) {
+            this.value = 6;
+        } else if (_node.isNegOr() || _node.isNegImp()) {
+            this.value = 7;
+        } else if (_node.isOr()) {
+            this.value = 8;
+        } else if (_node.isNegAnd()) {
+            this.value = 9;
+        } else if (_node.isImp()) {
+            this.value = 10;
+        } else if (_node.isBicond()) {
+            this.value = 11;
+        } else {
+            this.value = 12;
+        }
+    }
+
+    public int getValue() {
+        return this.value;
     }
 }
