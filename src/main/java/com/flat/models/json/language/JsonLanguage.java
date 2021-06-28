@@ -2,6 +2,7 @@ package com.flat.models.json.language;
 
 /**
  * @author Christopher Brantley <ccbrantley@uncg.edu>
+ Structure for the Json JsonLanguage object.
  */
 public class JsonLanguage {
     private final String languageName;
@@ -12,6 +13,19 @@ public class JsonLanguage {
         this.languageName = _languageName;
         this.nativeName = _nativeName;
         this.code = _code;
+    }
+
+    // Getters for object's attributes.
+    public String getLanguageName() {
+        return languageName;
+    }
+
+    public String getNativeName() {
+        return nativeName;
+    }
+
+    public String getCode() {
+        return code;
     }
 
 }

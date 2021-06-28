@@ -1,6 +1,6 @@
 package com.flat.tools.json;
 
-import com.flat.models.json.language.Language;
+import com.flat.models.json.language.JsonLanguage;
 import com.flat.tools.json.enums.JsonLocal;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,13 +19,13 @@ public class JsonTools {
 
     /**
      * @param <T>       Fx data objects.
-     * @param _language The Language that is in use. The Language code is used
-     *                  in the file path.
+     * @param _language The JsonLanguage that is in use. The JsonLanguage code is used
+                  in the file path.
      * @param _file     The file name where the Json objects are stored.
      * @param _class    The class type of the Json object.
      * @return Object of param _class type.
      */
-    public static <T> T jsonToObject(Language _language, JsonLocal.File _file, Class<T> _class) {
+    public static <T> T jsonToObject(JsonLanguage _language, JsonLocal.File _file, Class<T> _class) {
         Path path = Paths.get(System.getProperty("user.dir")
                 + JsonLocal.Paths.JSONROOT.getFilePath()
                 + _language.getCode() + "/"
@@ -43,14 +43,14 @@ public class JsonTools {
 
     /**
      * @param <T>       List literals.
-     * @param _language The Language that is in use. The Language code is used
-     *                  in the file path.
+     * @param _language The JsonLanguage that is in use. The JsonLanguage code is used
+                  in the file path.
      * @param _file     The file name where the Json objects are stored.
      * @param _class    The class type of the Json object. Note: Must be a
      *                  list literal.
      * @return List of objects of param _class type.
      */
-    public static <T> T[] jsonToObjectList(Language _language, JsonLocal.File _file, Class<T[]> _class) {
+    public static <T> T[] jsonToObjectList(JsonLanguage _language, JsonLocal.File _file, Class<T[]> _class) {
         Path path = Paths.get(System.getProperty("user.dir")
                 + JsonLocal.Paths.JSONROOT.getFilePath()
                 + _language.getCode() + "/"
@@ -66,7 +66,7 @@ public class JsonTools {
         }
     }
 
-    public static <T> void objectToJson(Language _language, JsonLocal.File _file, T _object, Class<T> _class) {
+    public static <T> void objectToJson(JsonLanguage _language, JsonLocal.File _file, T _object, Class<T> _class) {
         Path path = Paths.get(System.getProperty("user.dir")
                 + JsonLocal.Paths.JSONROOT.getFilePath()
                 + _language.getCode() + "/"

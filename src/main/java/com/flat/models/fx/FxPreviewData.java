@@ -12,24 +12,26 @@ public class FxPreviewData {
     private static ObservableSecondaryColor secondaryColor = new ObservableSecondaryColor();
     private static ObservableBorderColor borderColor = new ObservableBorderColor();
 
+    // Getters for object's attributes.
     public static ObservablePrimaryColor getPrimaryColor() {
         return primaryColor;
-    }
-
-    public static void setPrimaryColor(ObservablePrimaryColor primaryColor) {
-        FxPreviewData.primaryColor = primaryColor;
     }
 
     public static ObservableSecondaryColor getSecondaryColor() {
         return secondaryColor;
     }
 
-    public static void setSecondaryColor(ObservableSecondaryColor secondaryColor) {
-        FxPreviewData.secondaryColor = secondaryColor;
-    }
-
     public static ObservableBorderColor getBorderColor() {
         return borderColor;
+    }
+
+    // Setters for object's attributes.
+    public static void setPrimaryColor(ObservablePrimaryColor primaryColor) {
+        FxPreviewData.primaryColor = primaryColor;
+    }
+
+    public static void setSecondaryColor(ObservableSecondaryColor secondaryColor) {
+        FxPreviewData.secondaryColor = secondaryColor;
     }
 
     public static void setBorderColor(ObservableBorderColor borderColor) {

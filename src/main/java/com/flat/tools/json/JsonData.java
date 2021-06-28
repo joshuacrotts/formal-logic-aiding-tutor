@@ -1,94 +1,98 @@
 package com.flat.tools.json;
 
 import com.flat.controller.Controller;
+import com.flat.models.fx.FxLanguageData;
 import com.flat.models.fx.FxMenuBarData;
-import com.flat.models.json.language.Language;
+import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.menubar.JsonMenuBar;
 import com.flat.models.json.symbol.Predicate;
 import com.flat.models.json.symbol.Propositional;
 import com.flat.tools.json.enums.JsonLocal;
-
 import java.io.File;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
-public class JsonData implements Observer {
-    private JsonMenuBar jsonMenu;
+public class JsonData {
+    private static JsonData instance = null;
+    private JsonMenuBar jsonMenuBar;
     private Predicate predicates;
     private Propositional propositional;
-    // Language isn't very useful in this format, convert to Json data object.
-    private Language[] language = JsonTools.jsonToObjectList(new Language("", "", ""), JsonLocal.File.LANGUAGE, Language[].class);
+    private JsonLanguage[] language = JsonTools.jsonToObjectList(new JsonLanguage("", "", ""), JsonLocal.File.LANGUAGE, JsonLanguage[].class);
 
-    public JsonData() {
-        Controller.getLanguage().addObserver(this);
+    private JsonData() {
+        FxLanguageData.injectData(language);
     }
 
-    @Override
-    public void update(Observable o, Object o1) {
-        if (!this.directoryExists()) {
-            this.getData(new Language("English", "English", "en"));
-            this.translateData();
-            this.writeData();
-        } else {
-            this.getData(Controller.getLanguage());
+    public static JsonData getInstance () {
+        if (instance == null) {
+            instance = new JsonData();
         }
-        this.updateFx();
+        return instance;
+    }
+
+    public void update(JsonLanguage _language) {
+        if (!this.directoryExists()) {
+            this.retrieveData(new JsonLanguage("English", "English", "en"));
+            this.translateData(_language);
+            this.writeData(_language);
+        } else {
+            this.retrieveData(_language);
+        }
+        this.updateFxData();
     }
 
     public boolean directoryExists() {
-        return new File(System.getProperty("user.dir") + JsonLocal.Paths.JSONROOT.getFilePath() + "/" + Controller.getLanguage().getCode()).isDirectory();
+        return new File(System.getProperty("user.dir") + JsonLocal.Paths.JSONROOT.getFilePath() + "/" + Controller.getJsonLanguage().getCode()).isDirectory();
     }
 
-    public void getData(Language _language) {
-        this.jsonMenu = JsonTools.jsonToObject(_language, JsonLocal.File.MENUBAR, JsonMenuBar.class);
+    public void retrieveData(JsonLanguage _language) {
+        this.jsonMenuBar = JsonTools.jsonToObject(_language, JsonLocal.File.MENUBAR, JsonMenuBar.class);
     }
 
-    public void updateFx() {
-        FxMenuBarData.injectData(this.jsonMenu);
+    public void updateFxData() {
+        FxMenuBarData.injectData(this.jsonMenuBar);
     }
 
-    public void translateData() {
-        this.jsonMenu.translate();
+    public void translateData(JsonLanguage _language) {
+        this.jsonMenuBar.translate(_language);
     }
 
-    public void writeData() {
-        JsonTools.objectToJson(Controller.getLanguage(), JsonLocal.File.MENUBAR, this.jsonMenu, JsonMenuBar.class);
+    public void writeData(JsonLanguage _language) {
+        JsonTools.objectToJson(_language, JsonLocal.File.MENUBAR, this.jsonMenuBar, JsonMenuBar.class);
     }
 
     // Getters for object's attributes.
-    public JsonMenuBar getJsonMenu() {
-        return jsonMenu;
-    }
-
-    // Setters for object's attributes.
-    public void setJsonMenu(JsonMenuBar jsonMenu) {
-        this.jsonMenu = jsonMenu;
+    public JsonMenuBar getJsonMenuBar() {
+        return jsonMenuBar;
     }
 
     public Predicate getPredicates() {
         return predicates;
     }
 
-    public void setPredicates(Predicate predicates) {
-        this.predicates = predicates;
-    }
-
     public Propositional getPropositional() {
         return propositional;
+    }
+
+    public JsonLanguage[] getLanguage() {
+        return language;
+    }
+
+    // Setters for object's attributes.
+    public void setJsonMenuBar(JsonMenuBar jsonMenuBar) {
+        this.jsonMenuBar = jsonMenuBar;
+    }
+
+    public void setPredicates(Predicate predicates) {
+        this.predicates = predicates;
     }
 
     public void setPropositional(Propositional propositional) {
         this.propositional = propositional;
     }
 
-    public Language[] getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(Language[] language) {
+    public void setLanguage(JsonLanguage[] language) {
         this.language = language;
     }
 

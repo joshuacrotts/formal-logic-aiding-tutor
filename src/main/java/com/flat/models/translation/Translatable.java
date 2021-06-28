@@ -1,9 +1,9 @@
 package com.flat.models.translation;
 
 import com.flat.models.json.JsonString;
+import com.flat.models.json.language.JsonLanguage;
 import com.flat.tools.translation.FLATTranslate;
 import com.google.cloud.translate.Translation;
-
 import java.util.List;
 
 /**
@@ -12,8 +12,8 @@ import java.util.List;
 public abstract class Translatable implements TranslateProperty {
 
     @Override
-    public void translate() {
-        FLATTranslate.translate(this);
+    public void translate(JsonLanguage _language) {
+        FLATTranslate.translate(this, _language);
     }
 
     @Override

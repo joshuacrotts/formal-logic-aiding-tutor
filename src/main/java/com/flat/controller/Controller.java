@@ -1,6 +1,6 @@
 package com.flat.controller;
 
-import com.flat.models.json.language.Language;
+import com.flat.models.json.language.JsonLanguage;
 import com.flat.tools.json.JsonData;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
@@ -11,9 +11,9 @@ import javafx.stage.Stage;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class Controller {
-    private final static Language language = new Language("English", "English", "en");
+    private static JsonLanguage jsonLanguage = new JsonLanguage("English", "English", "en");
     private static Stage stage;
-    private static JsonData jsonData = new JsonData();
+    private static JsonData jsonData = JsonData.getInstance();
 
     // Retrieves view associated with the enum and displays it on stage.
     public static void changeView(View _view) {
@@ -45,15 +45,13 @@ public class Controller {
         Controller.stage = stage;
     }
 
-    public static Language getLanguage() {
-        return language;
+    public static JsonLanguage getJsonLanguage() {
+        return jsonLanguage;
     }
 
-    public static void setLanguage(Language _language) {
-        Controller.language.setNativeName(_language.getNativeName());
-        Controller.language.setLanguageName(_language.getLanguageName());
-        Controller.language.setCode(_language.getCode());
-        Controller.language.notifyObservers();
+    public static void setJsonLanguage(JsonLanguage _language) {
+        Controller.jsonLanguage = _language;
+        Controller.jsonData.update(_language);
     }
 
     public static JsonData getJsonData() {
