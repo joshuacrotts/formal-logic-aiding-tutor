@@ -213,7 +213,7 @@ public class NDWffTree {
     private void setTruthTreeValue() {
         WffTree _node = this.wffTree;
         // This is kind of ugly, I know...
-        if (_node.isAtom()) {
+        if (_node.isAtom() || _node.isPredicate()) {
             this.value = 0;
         } else if (_node.isDoubleNegation()) {
             // Double negations have to have a higher priority.
@@ -221,7 +221,7 @@ public class NDWffTree {
         } else if (_node.isNegation() && !_node.isNegAnd() && !_node.isNegImp() && !_node.isNegOr()) {
             this.value = 4;
         } else if (_node.isExistential()) {
-            this.value = 1;
+            this.value = 14;
         } else if (_node.isUniversal()) {
             // Universal HAS to be the last operation - if not, then we run the risk of applying it before we
             // have a constant available.

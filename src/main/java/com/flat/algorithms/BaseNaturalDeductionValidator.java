@@ -24,6 +24,11 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
     /**
      *
      */
+    protected final ArrayList<NDWffTree> originalPremisesList;
+
+    /**
+     *
+     */
     protected final ArrayList<NDWffTree> premisesList;
 
     /**
@@ -40,6 +45,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
         this.originalWffTreeList = _wffTreeList;
         this.proofType = _proofType;
         this.premisesList = new ArrayList<>();
+        this.originalPremisesList = new ArrayList<>();
         this.conclusionWff = new NDWffTree(_wffTreeList.get(_wffTreeList.size() - 1).getNodeType() == NodeType.ROOT
                 ? _wffTreeList.get(_wffTreeList.size() - 1).getChild(0)
                 : _wffTreeList.get(_wffTreeList.size() - 1), NDStep.C);
@@ -53,6 +59,9 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
             this.addPremise(new NDWffTree(wff, NDFlag.ACTIVE, NDStep.P));
         }
 
+        // Under the hood, we want the premises to be sorted from least to most
+        // complex. This will increase the likelihood of a more efficient solution.
+        this.originalPremisesList.addAll(this.premisesList);
         Collections.sort(this.premisesList, new NaturalDeductionComparator());
     }
 
@@ -645,16 +654,15 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
         return neg.stringEquals(this.conclusionWff.getWffTree()) || this.isEventualNegatedGoal(neg, maxIterations + 1);
     }
 
+    /**
+     *
+     */
     private static class NaturalDeductionComparator implements Comparator<NDWffTree> {
-
         @Override
         public int compare(NDWffTree _o1, NDWffTree _o2) {
+            if (_o1.getWffTree().getNodeType() == _o2.getWffTree().getNodeType())
+                return _o1.getWffTree().getStringRep().length() - _o2.getWffTree().getStringRep().length();
             return _o1.getValue() - _o2.getValue();
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            return false;
         }
     }
 }

@@ -67,6 +67,9 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         // The timeout is there to prevent completely insane proofs from never ending.
         if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) { return null; }
 
+        // Go through and replace the sorted assumptions with the original indices.
+        for (int r = 0; r < this.originalPremisesList.size(); r++) { this.premisesList.set(r, this.originalPremisesList.get(r)); }
+
         // Backtrack from the conclusion to mark all those nodes that were used in the proof.
         this.activateLinks(this.conclusionWff);
 
