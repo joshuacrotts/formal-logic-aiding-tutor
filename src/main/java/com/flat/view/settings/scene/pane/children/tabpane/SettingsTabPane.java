@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane;
 
-import com.flat.view.settings.scene.pane.children.tabpane.tabs.AppearanceTab;
-import com.flat.view.settings.scene.pane.children.tabpane.tabs.LanguageTab;
+import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.AppearanceTab;
+import com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.LanguageTab;
 import javafx.geometry.Side;
 import javafx.scene.control.TabPane;
 
