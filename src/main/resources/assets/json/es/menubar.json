@@ -1,0 +1,77 @@
+{
+  "fileMenu": {
+    "file": {
+      "string": "Archivo"
+    },
+    "resetViewMenuItem": {
+      "reset": {
+        "string": "Reiniciar"
+      }
+    },
+    "settingsMenuItem": {
+      "settings": {
+        "string": "Ajustes"
+      }
+    },
+    "exitMenuItem": {
+      "exit": {
+        "string": "Salida"
+      }
+    }
+  },
+  "exportMenu": {
+    "export": {
+      "string": "Exportar"
+    },
+    "exportAsLatexMenu": {
+      "exportAsLatex": {
+        "string": "Exportar como LaTeX (.tex)"
+      },
+      "latexParseTreeMenuItem": {
+        "latexParseTree": {
+          "string": "Árbol de análisis de LaTeX"
+        }
+      },
+      "latexTruthTreeMenuItem": {
+        "latexTruthTree": {
+          "string": "Árbol de la verdad LaTeX"
+        }
+      },
+      "latexTruthTableMenuItem": {
+        "latexTruthTable": {
+          "string": "Tabla de verdad LaTeX"
+        }
+      }
+    },
+    "exportAsPdfMenu": {
+      "exportAsPdf": {
+        "string": "Exportar como PDF (.pdf)"
+      },
+      "latexParseTreeMenuItem": {
+        "latexParseTree": {
+          "string": "Árbol de análisis de LaTeX"
+        }
+      },
+      "latexTruthTreeMenuItem": {
+        "latexTruthTree": {
+          "string": "Árbol de la verdad LaTeX"
+        }
+      },
+      "latexTruthTableMenuItem": {
+        "latexTruthTable": {
+          "string": "Tabla de verdad LaTeX"
+        }
+      }
+    }
+  },
+  "helpMenu": {
+    "help": {
+      "string": "Ayudar"
+    },
+    "aboutMenuItem": {
+      "about": {
+        "string": "Acerca de"
+      }
+    }
+  }
+}

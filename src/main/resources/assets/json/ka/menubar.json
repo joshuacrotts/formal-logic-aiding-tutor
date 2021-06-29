@@ -1,0 +1,77 @@
+{
+  "fileMenu": {
+    "file": {
+      "string": "ფაილი"
+    },
+    "resetViewMenuItem": {
+      "reset": {
+        "string": "გადატვირთვის"
+      }
+    },
+    "settingsMenuItem": {
+      "settings": {
+        "string": "პარამეტრები"
+      }
+    },
+    "exitMenuItem": {
+      "exit": {
+        "string": "გასვლა"
+      }
+    }
+  },
+  "exportMenu": {
+    "export": {
+      "string": "ექსპორტი"
+    },
+    "exportAsLatexMenu": {
+      "exportAsLatex": {
+        "string": "ექსპორტი როგორც LaTeX (.tex)"
+      },
+      "latexParseTreeMenuItem": {
+        "latexParseTree": {
+          "string": "LaTeX Parse Tree"
+        }
+      },
+      "latexTruthTreeMenuItem": {
+        "latexTruthTree": {
+          "string": "LaTeX სიმართლის ხე"
+        }
+      },
+      "latexTruthTableMenuItem": {
+        "latexTruthTable": {
+          "string": "LaTeX სიმართლის ცხრილი"
+        }
+      }
+    },
+    "exportAsPdfMenu": {
+      "exportAsPdf": {
+        "string": "ექსპორტი როგორც Pdf (.pdf)"
+      },
+      "latexParseTreeMenuItem": {
+        "latexParseTree": {
+          "string": "LaTeX Parse Tree"
+        }
+      },
+      "latexTruthTreeMenuItem": {
+        "latexTruthTree": {
+          "string": "LaTeX სიმართლის ხე"
+        }
+      },
+      "latexTruthTableMenuItem": {
+        "latexTruthTable": {
+          "string": "LaTeX სიმართლის ცხრილი"
+        }
+      }
+    }
+  },
+  "helpMenu": {
+    "help": {
+      "string": "დახმარება"
+    },
+    "aboutMenuItem": {
+      "about": {
+        "string": "დაახლოებით"
+      }
+    }
+  }
+}
