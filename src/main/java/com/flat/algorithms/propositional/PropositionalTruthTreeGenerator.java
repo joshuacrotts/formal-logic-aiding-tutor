@@ -15,7 +15,7 @@ public final class PropositionalTruthTreeGenerator extends BaseTruthTreeGenerato
     /**
      * We should definitely make this a setting...
      */
-    private static final int TIMEOUT = 1000;
+    private static int timeout = 1000;
 
     public PropositionalTruthTreeGenerator(WffTree _tree) {
         super(_tree);
@@ -41,7 +41,7 @@ public final class PropositionalTruthTreeGenerator extends BaseTruthTreeGenerato
 
         // Poll the heap and build the tree.
         while (!queue.isEmpty()) {
-            if (++iterations >= PropositionalTruthTreeGenerator.TIMEOUT) {
+            if (++iterations >= PropositionalTruthTreeGenerator.timeout) {
                 System.err.println("Timeout error: cannot compute a tree this complex.");
                 return;
             }

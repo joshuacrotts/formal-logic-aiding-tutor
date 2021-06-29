@@ -19,7 +19,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
     /**
      *
      */
-    private static final int TIMEOUT = 1000;
+    private static int timeout = 1000;
 
     public PropositionalNaturalDeductionValidator(ArrayList<WffTree> _wffTreeList, ProofType _proofType) {
         super(_wffTreeList, _proofType);
@@ -42,7 +42,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         while (true) {
             // Check for a contradiction, the conclusion, and a timeout.
             // If we are in an indirect proof, we can only break via contr and timeouts.
-            boolean timeout = cycles++ > PropositionalNaturalDeductionValidator.TIMEOUT;
+            boolean timeout = cycles++ > PropositionalNaturalDeductionValidator.timeout;
             if (this.proofType == ProofType.INDIRECT) {
                 if (this.findContradictions() || timeout) break;
             } else {
@@ -65,7 +65,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         }
 
         // The timeout is there to prevent completely insane proofs from never ending.
-        if (cycles > PropositionalNaturalDeductionValidator.TIMEOUT) { return null; }
+        if (cycles > PropositionalNaturalDeductionValidator.timeout) { return null; }
 
         // Go through and replace the sorted assumptions with the original indices.
         for (int r = 0; r < this.originalPremisesList.size(); r++) { this.premisesList.set(r, this.originalPremisesList.get(r)); }

@@ -36,7 +36,7 @@ public class TruthTree implements Comparable<TruthTree> {
      * variable with a constant when performing identity or universal
      * decomposition.
      */
-    private static final int THRESHOLD_LIMIT = 500;
+    private static int thresholdLimit = 500;
 
     /**
      * WffTree "value" for the TruthTree.
@@ -476,8 +476,8 @@ public class TruthTree implements Comparable<TruthTree> {
      * @param _constant          - constant to replace variable with.
      */
     private void replaceSymbol(WffTree _newRoot, char _variableToReplace, char _constant) {
-        if (this.universalCount >= THRESHOLD_LIMIT) {
-            System.err.println("Error - universal constant has reached the upper limit of " + THRESHOLD_LIMIT + ".");
+        if (this.universalCount >= TruthTree.thresholdLimit) {
+            System.err.println("Error - universal constant has reached the upper limit of " + TruthTree.thresholdLimit + ".");
         }
 
         for (int i = 0; i < _newRoot.getChildrenSize(); i++) {

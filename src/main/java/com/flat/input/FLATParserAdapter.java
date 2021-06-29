@@ -45,7 +45,6 @@ public class FLATParserAdapter {
         // "input" is the character-by-character input - connect to lexer
         FLATLexer lexer = new FLATLexer(input);
         FLATErrorListener errorListener = new FLATErrorListener();
-        FLATErrorStrategy errorStrategy = new FLATErrorStrategy();
         lexer.removeErrorListeners();
         lexer.addErrorListener(errorListener);
 
@@ -55,7 +54,6 @@ public class FLATParserAdapter {
         // Connect parser to token stream
         FLATParser parser = new FLATParser(tokens);
         parser.removeErrorListeners();
-        parser.setErrorHandler(errorStrategy);
         parser.addErrorListener(errorListener);
         ParseTree tree = parser.program();
 

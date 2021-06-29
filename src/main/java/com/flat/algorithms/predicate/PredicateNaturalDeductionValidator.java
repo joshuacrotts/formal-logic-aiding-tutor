@@ -1,6 +1,5 @@
 package com.flat.algorithms.predicate;
 
-import com.flat.algorithms.ArgumentTruthTreeValidator;
 import com.flat.algorithms.BaseNaturalDeductionValidator;
 import com.flat.algorithms.BaseTruthTreeGenerator;
 import com.flat.algorithms.models.NDFlag;
@@ -23,7 +22,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      * Timeout iterator - if the number of iterations goes beyond this, we return
      * a null proof.
      */
-    private static final int TIMEOUT = 1000;
+    private static int timeout = 1000;
 
     /**
      * Set to keep track of all constants that are in the premises.
@@ -49,7 +48,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      * Computes a natural deduction proof for a predicate logic formula. We use a couple of heuristics to ensure
      * the runtime/search space isn't COMPLETELY insane (those being that we only apply certain rules if others fail
      * to produce meaningful results, etc.).
-     *
+     * <p>
      * Note that, for FOPL, we do NOT check to see if the argument is invalid with a truth tree first. This is because
      * it is sometimes easier to prove a formula in ND than it is to algorithmically generate a closed truth tree.
      *
@@ -62,7 +61,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         while (true) {
             // Check for a contradiction, the conclusion, and a timeout.
             // If we are in an indirect proof, we can only break via contr and timeouts.
-            boolean timeout = cycles++ > PredicateNaturalDeductionValidator.TIMEOUT;
+            boolean timeout = cycles++ > PredicateNaturalDeductionValidator.timeout;
             if (this.proofType == ProofType.INDIRECT) {
                 if (this.findContradictions() || timeout) break;
             } else {
@@ -83,10 +82,14 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         }
 
         // The timeout is there to prevent completely insane proofs from never ending.
-        if (cycles > PredicateNaturalDeductionValidator.TIMEOUT) { return null; }
+        if (cycles > PredicateNaturalDeductionValidator.timeout) {
+            return null;
+        }
 
         // Go through and replace the sorted assumptions with the original indices.
-        for (int r = 0; r < this.originalPremisesList.size(); r++) { this.premisesList.set(r, this.originalPremisesList.get(r)); }
+        for (int r = 0; r < this.originalPremisesList.size(); r++) {
+            this.premisesList.set(r, this.originalPremisesList.get(r));
+        }
 
         // Backtrack from the conclusion to mark all those nodes that were used in the proof.
         this.activateLinks(this.conclusionWff);
@@ -100,12 +103,12 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      * satisfied any of them. If so, we convert that premise into the equivalent
      * form and say that we satisfied the conclusion and proof. There are four
      * equivalences:
-     *
+     * <p>
      * Double Negation ~~C
      * Transposition C = (A -> B) <> (~B -> ~A)
      * DeMorgan's Laws
      * Material Implication C = (A -> B) <> (~A | B)
-     *
+     * <p>
      * Yes, this is ugly, but hopefully it works.
      *
      * @return ArrayList of equivalent forms of the conclusion if they exist.
@@ -283,7 +286,9 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private NDWffTree satisfyPredicate(WffTree _tree, NDWffTree _parent) {
         // First, check to see if the premise is a satisfied goal or not.
-        if (this.isGoal(_tree)) { return this.getPremiseNDWffTree(_tree); }
+        if (this.isGoal(_tree)) {
+            return this.getPremiseNDWffTree(_tree);
+        }
 
         // Loop through each other premise.
         for (NDWffTree othNDWffTree : this.premisesList) {
@@ -306,7 +311,9 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
                             found = false;
                         }
                     }
-                    if (found) { return othNDWffTree; }
+                    if (found) {
+                        return othNDWffTree;
+                    }
                 }
             }
         }
@@ -357,16 +364,15 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      * the two operands to see if they exist and if so, create the conjunction. There are
      * four preconditions:
      *
+     * @param _conjTree - conjunction node.
+     * @param _parent   - parent of conjunction node.
+     * @return true if we can satisfy the conjunction goal, false otherwise.
      * @precondition The parent cannot be a conjunction node that previously eliminated a conjunction.
      * @precondition The parent cannot be a conjunction node that introduced a conjunction.
      * @precondition The parent cannot be the conclusion.
      * @precondition _conjTree must represent the same WffTree as _parent.
-     *
+     * <p>
      * Elimination is simply simplification - breaks the two operands down.
-     *
-     * @param _conjTree - conjunction node.
-     * @param _parent - parent of conjunction node.
-     * @return true if we can satisfy the conjunction goal, false otherwise.
      */
     private NDWffTree satisfyConjunction(WffTree _conjTree, NDWffTree _parent) {
         if (!_parent.isAndEActive() && !_parent.isAndIActive()
@@ -390,18 +396,17 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     /**
      * Attempts to satisfy a disjunction for FOPL. There are two preconditions:
      *
+     * @param _disjTree - disjunction node.
+     * @param _parent   - parent of the disjunction.
+     * @return NDWffTree of a disjunction creation if we satisfied the goal of
+     * both operands, null otherwise.
      * @precondition _parent cannot be the conclusion.
      * @precondition _disjTree must be the same WffTree as the _parent's.
-     *
+     * <p>
      * A disjunction is satisfied either through disjunctive syllogism OR
      * through the creation of a disjunction. Creations are satisfied via
      * the satisfaction of one or both of their children. More details are
      * outlined below.
-     *
-     * @param _disjTree - disjunction node.
-     * @param _parent - parent of the disjunction.
-     * @return NDWffTree of a disjunction creation if we satisfied the goal of
-     *          both operands, null otherwise.
      */
     private NDWffTree satisfyDisjunction(WffTree _disjTree, NDWffTree _parent) {
         // First try to perform DS if the root is a disjunction.
@@ -441,20 +446,21 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     /**
      * Attempts to satisfy a biconditional. There are two preconditions:
      *
+     * @param _bicondTree - biconditional WffTree
+     * @param _parent     - parent of _bicondTree.
+     * @return NDWffTree of biconditional node if one was created, null otherwise.
      * @precondition _parent cannot be the conclusion.
      * @precondition _bicondTree must represent the same tree as _parent.
-     *
+     * <p>
      * A biconditional is satisfied via either a BCE rule, or the creation of
      * a biconditional via two implications conjoined with &.
-     *
-     * @param _bicondTree - biconditional WffTree
-     * @param _parent - parent of _bicondTree.
-     * @return NDWffTree of biconditional node if one was created, null otherwise.
      */
     private NDWffTree satisfyBiconditional(WffTree _bicondTree, NDWffTree _parent) {
         // First check to see if we can break any biconditionals down.
         if (!this.isConclusion(_parent) && _bicondTree.stringEquals(_parent.getWffTree())) {
-            if (this.findBiconditionalElimination(_bicondTree, _parent)) { return null; }
+            if (this.findBiconditionalElimination(_bicondTree, _parent)) {
+                return null;
+            }
         }
         // We first have a subgoal of X -> Y and Y -> X.
         ImpNode impLhs = new ImpNode();
@@ -483,16 +489,15 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     /**
      * Attempts to satisfy an existential quantifier. There are two preconditions:
      *
+     * @param _exisTree - existential node.
+     * @param _parent   - parent of existential node.
+     * @return NDWffTree if we created one, null if we either added a constant or didn't.
      * @precondition _parent must not be the conclusion.
      * @precondition _exisTree must represent the same WffTree that _parent does.
-     *
+     * <p>
      * If we haven't decomposed this existential, we can try that first. Otherwise, we
      * will see if we can create an existential from a predicate Pa for some constant a
      * to generate (Ex)Px.
-     *
-     * @param _exisTree - existential node.
-     * @param _parent - parent of existential node.
-     * @return NDWffTree if we created one, null if we either added a constant or didn't.
      */
     private NDWffTree satisfyExistential(WffTree _exisTree, NDWffTree _parent) {
         // Try to eliminate the existential if it's not a conclusion.
@@ -645,7 +650,9 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private void addUniversalConstants(NDWffTree _universalNDWffTree, char _variableToReplace) {
         // Add a default constant if one is not available to the universal quantifier.
-        if (this.constants.isEmpty()) { return; }
+        if (this.constants.isEmpty()) {
+            return;
+        }
         Set<Character> replaceConstants = FLATUtils.union(this.constants, this.conclusionConstants);
 
         for (char c : replaceConstants) {
@@ -664,7 +671,9 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      * @param _charSet - HashSet of characters to add the discovered constants to.
      */
     private void addAllConstantsToSet(WffTree _tree, HashSet<Character> _charSet) {
-        if (_tree != null && _tree.isConstant()) { _charSet.add(_tree.getSymbol().charAt(0)); }
+        if (_tree != null && _tree.isConstant()) {
+            _charSet.add(_tree.getSymbol().charAt(0));
+        }
         for (WffTree child : _tree.getChildren()) {
             this.addAllConstantsToSet(child, _charSet);
         }

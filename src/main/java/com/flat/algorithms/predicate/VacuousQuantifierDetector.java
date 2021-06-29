@@ -1,13 +1,15 @@
 package com.flat.algorithms.predicate;
 
 import com.flat.models.treenode.QuantifierNode;
-import com.flat.models.treenode.VariableNode;
 import com.flat.models.treenode.WffTree;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class VacuousQuantifierDetector {
+/**
+ *
+ */
+public final class VacuousQuantifierDetector {
 
     /**
      *

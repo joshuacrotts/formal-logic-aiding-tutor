@@ -12,7 +12,6 @@ import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
 import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.algorithms.propositional.TexTablePrinter;
 import com.flat.input.FLATErrorListener;
-import com.flat.input.FLATErrorStrategy;
 import com.flat.input.FLATParserAdapter;
 import com.flat.input.FLATParserListener;
 import com.flat.models.treenode.WffTree;
@@ -208,7 +207,6 @@ public class ParserTest {
         // "input" is the character-by-character input - connect to lexer
         FLATLexer lexer = new FLATLexer(input);
         FLATErrorListener errorListener = new FLATErrorListener();
-        FLATErrorStrategy errorStrategy = new FLATErrorStrategy();
         lexer.removeErrorListeners();
         lexer.addErrorListener(errorListener);
 
@@ -218,7 +216,6 @@ public class ParserTest {
         // Connect parser to token stream
         FLATParser parser = new FLATParser(tokens);
         parser.removeErrorListeners();
-        parser.setErrorHandler(errorStrategy);
         parser.addErrorListener(errorListener);
         ParseTree tree = parser.program();
 

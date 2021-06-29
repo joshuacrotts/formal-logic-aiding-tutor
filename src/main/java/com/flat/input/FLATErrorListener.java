@@ -208,9 +208,21 @@ public class FLATErrorListener extends BaseErrorListener {
             int prevTokId = prevOffTok.getType();
             String surroundingText = this.getSurroundingText(parser.getTokenStream().getText(), offTokPos);
 
-            // Now check to see which type of error it is. If the offending token is a ) then there are too many.
-            if (tokId == FLATLexer.CLOSE_PAREN) {
+            // Now check to see which type of error it is. If the offending token is a ) and the previous one is
+            // either whitespace or an operator then they didn't enter an operand on the rhs.
+            if (tokId == FLATLexer.CLOSE_PAREN && (prevTokId == FLATLexer.WHITESPACE || prevTokId == FLATLexer.AND || prevTokId == FLATLexer.OR
+                    || prevTokId == FLATLexer.IMP || prevTokId == FLATLexer.BICOND || prevTokId == FLATLexer.XOR)) {
+                errorMsg = "Missing operand on right-hand side at closing parenthesis ')' near " + surroundingText;
+            }
+            // If the offending token is a ) then there are too many.
+            else if (tokId == FLATLexer.CLOSE_PAREN) {
                 errorMsg = "Extra closing ')' parentheses at " + surroundingText + " (you either have too many, or your formula does not need them)";
+            }
+            // If the PREVIOUS token is an opening parenthesis and the current offending one is a binop or a whitespace,
+            // then we forgot an operand on the lhs.
+            else if (prevTokId == FLATLexer.OPEN_PAREN && (tokId == FLATLexer.WHITESPACE || tokId == FLATLexer.AND || tokId == FLATLexer.OR
+                    || tokId == FLATLexer.IMP || tokId == FLATLexer.BICOND || tokId == FLATLexer.XOR)) {
+                errorMsg = "Missing operand on left-hand side at opening parenthesis '(' near " + surroundingText;
             }
             // If the PREVIOUS token (prior to the offending one) is a binary operator, then we used one where we shouldn't have.
             else if (this.hasTooManyConnectives(prevTokId)) {

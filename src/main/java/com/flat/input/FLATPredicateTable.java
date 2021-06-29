@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  *
  */
-public class FLATPredicateTable {
+public final class FLATPredicateTable {
 
     /**
      * ArrayList to keep track of the predicates currently in use to make sure that, if we redeclare a predicate,
