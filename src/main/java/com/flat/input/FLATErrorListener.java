@@ -1,9 +1,8 @@
 package com.flat.input;
 
-import org.antlr.v4.runtime.BaseErrorListener;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
+import com.flat.FLATLexer;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.Interval;
 
 import java.util.*;
 
@@ -49,13 +48,12 @@ public class FLATErrorListener extends BaseErrorListener {
      * Prints an error message to the console with the line and column number
      * specified by the parameters. The error flag is also set.
      *
-     * @param lineNo
      * @param colNo
      * @param errorMsg
      */
-    public static void syntaxError(int lineNo, int colNo, String errorMsg) {
+    public static void syntaxError(int colNo, String errorMsg) {
         FLATErrorListener.gotError = true;
-        FLATErrorListener.errors.add(new Message(errorMsg, lineNo, colNo));
+        FLATErrorListener.errors.add(new Message(errorMsg, colNo));
     }
 
     /**
@@ -78,7 +76,7 @@ public class FLATErrorListener extends BaseErrorListener {
                     "Internal compiler error - ParserRuleContext cannot be null in ErrorListener.");
         }
 
-        FLATErrorListener.errors.add(new Message(errorMsg, lineNo, colNo));
+        FLATErrorListener.errors.add(new Message(errorMsg, colNo));
     }
 
     /**
@@ -102,7 +100,7 @@ public class FLATErrorListener extends BaseErrorListener {
                     "Internal compiler error - ParserRuleContext cannot be null in ErrorListener.");
         }
 
-        FLATErrorListener.warnings.add(new Message(warningMsg, lineNo, colNo));
+        FLATErrorListener.warnings.add(new Message(warningMsg, colNo));
     }
 
     /**
@@ -113,7 +111,7 @@ public class FLATErrorListener extends BaseErrorListener {
      */
     public static void printErrors() {
         List<Message> errorList = new ArrayList<Message>(FLATErrorListener.errors);
-        errorList.sort(Comparator.comparing(Message::getLineNo).thenComparing(Message::getColNo));
+        errorList.sort(Comparator.comparing(Message::getColNo));
         System.err.print("ERRORS(" + FLATErrorListener.errors.size() + "):\n");
         for (Message error : errorList) {
             System.err.println(error);
@@ -128,7 +126,7 @@ public class FLATErrorListener extends BaseErrorListener {
      */
     public static void printWarnings() {
         List<Message> warningList = new ArrayList<Message>(FLATErrorListener.warnings);
-        warningList.sort(Comparator.comparing(Message::getLineNo).thenComparing(Message::getColNo));
+        warningList.sort(Comparator.comparing(Message::getColNo));
         System.out.print("WARNINGS(" + FLATErrorListener.warnings.size() + "):\n");
         for (Message warning : warningList) {
             System.out.println(warning);
@@ -193,8 +191,27 @@ public class FLATErrorListener extends BaseErrorListener {
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int col, String errorMsg,
                             RecognitionException e) {
+        // Lexer errors should always generate an unrecognized character message.
+        if (recognizer instanceof Lexer) {
+            Lexer lexer = (Lexer) recognizer;
+            CharStream input = lexer.getInputStream();
+            String offTok = lexer.getErrorDisplay(input.getText(new Interval(lexer._tokenStartCharIndex, input.index())));
+            errorMsg = "Unrecognized character: '" + offTok + "'";
+        } else {
+            Token offTok = (Token) offendingSymbol;
+            int tokId = offTok.getType();
+            // If it's a closing parenthesis, that means we have one too many.
+            if (tokId == FLATLexer.CLOSE_PAREN) {
+                errorMsg = "Extra closing ')' parentheses (is there more than one?)";
+            } else if (tokId == FLATLexer.EOF) {
+                errorMsg = "Missing closing ')' parenthesis";
+            } else {
+                errorMsg = "Invalid input (usually because of an invalid character or a missing opening '(' parenthesis)";
+            }
+        }
+
         gotError = true;
-        FLATErrorListener.errors.add(new Message(errorMsg, line, col));
+        FLATErrorListener.errors.add(new Message(errorMsg, col + 1));
     }
 
     /**
@@ -202,12 +219,10 @@ public class FLATErrorListener extends BaseErrorListener {
      */
     public static class Message {
         private final String text;
-        private final int lineNo;
         private final int colNo;
 
-        public Message(String text, int lineNo, int colNo) {
+        public Message(String text, int colNo) {
             this.text = text;
-            this.lineNo = lineNo;
             this.colNo = colNo;
         }
 
@@ -215,17 +230,12 @@ public class FLATErrorListener extends BaseErrorListener {
         public boolean equals(Object msg) {
             Message oMsg = (Message) msg;
             return this.text.equals(oMsg.text)
-                    && this.lineNo == oMsg.lineNo
                     && this.colNo == oMsg.colNo;
         }
 
         @Override
         public int hashCode() {
-            return this.text.hashCode() + this.lineNo + this.colNo;
-        }
-
-        public int getLineNo() {
-            return this.lineNo;
+            return this.text.hashCode() + this.colNo;
         }
 
         public int getColNo() {
@@ -234,7 +244,7 @@ public class FLATErrorListener extends BaseErrorListener {
 
         @Override
         public String toString() {
-            return "line " + this.lineNo + ":" + this.colNo + " " + this.text;
+            return "Position " + this.colNo + ": " + this.text;
         }
     }
 }
