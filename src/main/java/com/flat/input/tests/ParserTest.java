@@ -90,6 +90,7 @@ public class ParserTest {
             BaseTruthTreeGenerator truthTreeGenerator;
             if (result.isPredicateWff()) {
                 System.out.println("Bound variables: " + new BoundVariableDetector(result).getBoundVariables());
+                System.out.println("Vacuous Quantifiers: " + new VacuousQuantifierDetector(result).getVacuousQuantifiers());
                 System.out.println("Free variables: " + new FreeVariableDetector(result).getFreeVariables());
                 System.out.println("Open sentence: " + new OpenSentenceDeterminer(result).isOpenSentence());
                 System.out.println("Closed sentence: " + new ClosedSentenceDeterminer(result).isClosedSentence());

@@ -1,0 +1,77 @@
+{
+  "fileMenu": {
+    "file": {
+      "string": "File"
+    },
+    "resetViewMenuItem": {
+      "reset": {
+        "string": "Ripristina"
+      }
+    },
+    "settingsMenuItem": {
+      "settings": {
+        "string": "impostazioni"
+      }
+    },
+    "exitMenuItem": {
+      "exit": {
+        "string": "Uscita"
+      }
+    }
+  },
+  "exportMenu": {
+    "export": {
+      "string": "Esportare"
+    },
+    "exportAsLatexMenu": {
+      "exportAsLatex": {
+        "string": "Esporta come LaTeX(.tex)"
+      },
+      "latexParseTreeMenuItem": {
+        "latexParseTree": {
+          "string": "Albero di analisi LaTeX"
+        }
+      },
+      "latexTruthTreeMenuItem": {
+        "latexTruthTree": {
+          "string": "Albero della verità LaTeXX"
+        }
+      },
+      "latexTruthTableMenuItem": {
+        "latexTruthTable": {
+          "string": "LaTeX Truth Table"
+        }
+      }
+    },
+    "exportAsPdfMenu": {
+      "exportAsPdf": {
+        "string": "Esporta come Pdf(.pdf)"
+      },
+      "latexParseTreeMenuItem": {
+        "latexParseTree": {
+          "string": "Albero di analisi LaTeX"
+        }
+      },
+      "latexTruthTreeMenuItem": {
+        "latexTruthTree": {
+          "string": "Albero della verità LaTeXX"
+        }
+      },
+      "latexTruthTableMenuItem": {
+        "latexTruthTable": {
+          "string": "LaTeX Truth Table"
+        }
+      }
+    }
+  },
+  "helpMenu": {
+    "help": {
+      "string": "Aiuto"
+    },
+    "aboutMenuItem": {
+      "about": {
+        "string": "Di"
+      }
+    }
+  }
+}
