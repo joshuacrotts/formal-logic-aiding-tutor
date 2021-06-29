@@ -2,526 +2,631 @@
   {
     "languageName": "Afrikaans",
     "nativeName": "Afrikaans",
-    "code": "af"
+    "code": "af",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Albanian",
     "nativeName": "Shqip",
-    "code": "sq"
+    "code": "sq",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Amharic",
     "nativeName": "አማርኛ",
-    "code": "am"
+    "code": "am",
+    "font": "AMHARIC"
   },
   {
     "languageName": "Arabic",
     "nativeName": "العربية",
-    "code": "ar"
+    "code": "ar",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Armenian",
     "nativeName": "Հայերեն",
-    "code": "hy"
+    "code": "hy",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Azerbaijani",
     "nativeName": "azərbaycan",
-    "code": "az"
+    "code": "az",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Basque",
     "nativeName": "euskara",
-    "code": "eu"
+    "code": "eu",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Belarusian",
     "nativeName": "беларуская",
-    "code": "be"
+    "code": "be",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Bengali",
     "nativeName": "বাংলা",
-    "code": "bn"
+    "code": "bn",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Bosnian",
     "nativeName": "bosanski",
-    "code": "bs"
+    "code": "bs",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Bulgarian",
     "nativeName": "български",
-    "code": "bg"
+    "code": "bg",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Burmese",
     "nativeName": "ဗမာစာ",
-    "code": "my"
+    "code": "my",
+    "font": "BURMESE"
   },
   {
     "languageName": "Catalan",
     "nativeName": "català",
-    "code": "ca"
+    "code": "ca",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Chichewa",
     "nativeName": "chiCheŵa",
-    "code": "ny"
+    "code": "ny",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Chinese",
     "nativeName": "中文",
-    "code": "zh"
+    "code": "zh",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Corsican",
     "nativeName": "corsu",
-    "code": "co"
+    "code": "co",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Croatian",
     "nativeName": "hrvatski",
-    "code": "hr"
+    "code": "hr",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Czech",
     "nativeName": "čeština",
-    "code": "cs"
+    "code": "cs",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Danish",
     "nativeName": "dansk",
-    "code": "da"
+    "code": "da",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Dutch",
     "nativeName": "Nederlands",
-    "code": "nl"
+    "code": "nl",
+    "font": "DEFAULT"
   },
   {
     "languageName": "English",
     "nativeName": "English",
-    "code": "en"
+    "code": "en",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Esperanto",
     "nativeName": "Esperanto",
-    "code": "eo"
+    "code": "eo",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Estonian",
     "nativeName": "eesti",
-    "code": "et"
+    "code": "et",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Finnish",
     "nativeName": "suomi",
-    "code": "fi"
+    "code": "fi",
+    "font": "DEFAULT"
   },
   {
     "languageName": "French",
     "nativeName": "français",
-    "code": "fr"
+    "code": "fr",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Galician",
     "nativeName": "Galego",
-    "code": "gl"
+    "code": "gl",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Georgian",
     "nativeName": "ქართული",
-    "code": "ka"
+    "code": "ka",
+    "font": "DEFAULT"
   },
   {
     "languageName": "German",
     "nativeName": "Deutsch",
-    "code": "de"
+    "code": "de",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Greek",
     "nativeName": "ελληνικά",
-    "code": "el"
+    "code": "el",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Gujarati",
     "nativeName": "ગુજરાતી",
-    "code": "gu"
+    "code": "gu",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Haitian",
     "nativeName": "Kreyòl",
-    "code": "ht"
+    "code": "ht",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Hausa",
     "nativeName": "(Hausa)",
-    "code": "ha"
+    "code": "ha",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Hebrew",
     "nativeName": "עברית",
-    "code": "he"
+    "code": "he",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Hindi",
     "nativeName": "हिन्दी",
-    "code": "hi"
+    "code": "hi",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Hungarian",
     "nativeName": "magyar",
-    "code": "hu"
+    "code": "hu",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Indonesian",
     "nativeName": "Bahasa",
-    "code": "id"
+    "code": "id",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Irish",
     "nativeName": "Gaeilge",
-    "code": "ga"
+    "code": "ga",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Igbo",
     "nativeName": "Asụsụ",
-    "code": "ig"
+    "code": "ig",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Icelandic",
     "nativeName": "Íslenska",
-    "code": "is"
+    "code": "is",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Italian",
     "nativeName": "Italiano",
-    "code": "it"
+    "code": "it",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Japanese",
     "nativeName": "日本語",
-    "code": "ja"
+    "code": "ja",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Javanese",
     "nativeName": "ꦧꦱꦗꦮ",
-    "code": "jv"
+    "code": "jv",
+    "font": "JAVANESE"
   },
   {
     "languageName": "Kannada",
     "nativeName": "ಕನ್ನಡ",
-    "code": "kn"
+    "code": "kn",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Kazakh",
     "nativeName": "қазақ",
-    "code": "kk"
+    "code": "kk",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Central",
     "nativeName": "ខ្មែរ",
-    "code": "km"
+    "code": "km",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Kinyarwanda",
     "nativeName": "Ikinyarwanda",
-    "code": "rw"
+    "code": "rw",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Kirghiz",
     "nativeName": "Кыргызча",
-    "code": "ky"
+    "code": "ky",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Korean",
     "nativeName": "한국어",
-    "code": "ko"
+    "code": "ko",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Kurdish",
     "nativeName": "Kurdî",
-    "code": "ku"
+    "code": "ku",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Latin",
     "nativeName": "latine",
-    "code": "la"
+    "code": "la",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Luxembourgish",
     "nativeName": "Lëtzebuergesch",
-    "code": "lb"
+    "code": "lb",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Lao",
     "nativeName": "ພາສາລາວ",
-    "code": "lo"
+    "code": "lo",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Lithuanian",
     "nativeName": "lietuvių",
-    "code": "lt"
+    "code": "lt",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Latvian",
     "nativeName": "latviešu",
-    "code": "lv"
+    "code": "lv",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Macedonian",
     "nativeName": "македонски",
-    "code": "mk"
+    "code": "mk",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Malagasy",
     "nativeName": "fiteny",
-    "code": "mg"
+    "code": "mg",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Malay",
     "nativeName": "Bahasa",
-    "code": "ms"
+    "code": "ms",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Malayalam",
     "nativeName": "മലയാളം",
-    "code": "ml"
+    "code": "ml",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Maltese",
     "nativeName": "Malti",
-    "code": "mt"
+    "code": "mt",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Maori",
     "nativeName": "te",
-    "code": "mi"
+    "code": "mi",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Marathi",
     "nativeName": "मराठी",
-    "code": "mr"
+    "code": "mr",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Mongolian",
     "nativeName": "Монгол",
-    "code": "mn"
+    "code": "mn",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Nepali",
     "nativeName": "नेपाली",
-    "code": "ne"
+    "code": "ne",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Norwegian",
     "nativeName": "Norsk",
-    "code": "no"
+    "code": "no",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Oriya",
     "nativeName": "ଓଡ଼ିଆ",
-    "code": "or"
+    "code": "or",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Punjabi",
     "nativeName": "ਪੰਜਾਬੀ",
-    "code": "pa"
+    "code": "pa",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Persian",
     "nativeName": "فارسی",
-    "code": "fa"
+    "code": "fa",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Polish",
     "nativeName": "język",
-    "code": "pl"
+    "code": "pl",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Pashto",
     "nativeName": "پښتو",
-    "code": "ps"
+    "code": "ps",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Portuguese",
     "nativeName": "Português",
-    "code": "pt"
+    "code": "pt",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Romanian",
     "nativeName": "Română",
-    "code": "ro"
+    "code": "ro",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Russian",
     "nativeName": "русский",
-    "code": "ru"
+    "code": "ru",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Sindhi",
     "nativeName": "सिन्धी",
-    "code": "sd"
+    "code": "sd",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Samoan",
     "nativeName": "gagana",
-    "code": "sm"
+    "code": "sm",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Serbian",
     "nativeName": "српски",
-    "code": "sr"
+    "code": "sr",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Gaelic",
     "nativeName": "Gàidhlig",
-    "code": "gd"
+    "code": "gd",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Shona",
     "nativeName": "chiShona",
-    "code": "sn"
+    "code": "sn",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Sinhala",
     "nativeName": "සිංහල",
-    "code": "si"
+    "code": "si",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Slovak",
     "nativeName": "Slovenčina",
-    "code": "sk"
+    "code": "sk",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Slovenian",
     "nativeName": "Slovenski",
-    "code": "sl"
+    "code": "sl",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Somali",
     "nativeName": "Soomaaliga",
-    "code": "so"
+    "code": "so",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Southern",
     "nativeName": "Sesotho",
-    "code": "st"
+    "code": "st",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Spanish",
     "nativeName": "Español",
-    "code": "es"
+    "code": "es",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Sundanese",
     "nativeName": "Basa",
-    "code": "su"
+    "code": "su",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Swahili",
     "nativeName": "Kiswahili",
-    "code": "sw"
+    "code": "sw",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Swedish",
     "nativeName": "Svenska",
-    "code": "sv"
+    "code": "sv",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Tamil",
     "nativeName": "தமிழ்",
-    "code": "ta"
+    "code": "ta",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Telugu",
     "nativeName": "తెలుగు",
-    "code": "te"
+    "code": "te",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Tajik",
     "nativeName": "тоҷикӣ",
-    "code": "tg"
+    "code": "tg",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Thai",
     "nativeName": "ไทย",
-    "code": "th"
+    "code": "th",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Turkmen",
     "nativeName": "Türkmen",
-    "code": "tk"
+    "code": "tk",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Tagalog",
     "nativeName": "Wikang",
-    "code": "tl"
+    "code": "tl",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Turkish",
     "nativeName": "Türkçe",
-    "code": "tr"
+    "code": "tr",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Tatar",
     "nativeName": "татар",
-    "code": "tt"
+    "code": "tt",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Uighur",
     "nativeName": "ئۇيغۇرچە‎",
-    "code": "ug"
+    "code": "ug",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Ukrainian",
     "nativeName": "Українська",
-    "code": "uk"
+    "code": "uk",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Urdu",
     "nativeName": "اردو",
-    "code": "ur"
+    "code": "ur",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Uzbek",
     "nativeName": "Oʻzbek",
-    "code": "uz"
+    "code": "uz",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Vietnamese",
     "nativeName": "Tiếng",
-    "code": "vi"
+    "code": "vi",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Welsh",
     "nativeName": "Cymraeg",
-    "code": "cy"
+    "code": "cy",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Western",
     "nativeName": "Frysk",
-    "code": "fy"
+    "code": "fy",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Xhosa",
     "nativeName": "isiXhosa",
-    "code": "xh"
+    "code": "xh",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Yiddish",
     "nativeName": "ייִדיש",
-    "code": "yi"
+    "code": "yi",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Yoruba",
     "nativeName": "Yorùbá",
-    "code": "yo"
+    "code": "yo",
+    "font": "DEFAULT"
   },
   {
     "languageName": "Zulu",
     "nativeName": "isiZulu",
-    "code": "zu"
+    "code": "zu",
+    "font": "DEFAULT"
   }
 ]

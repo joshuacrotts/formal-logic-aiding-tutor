@@ -4,8 +4,14 @@ import com.flat.models.json.language.JsonLanguage;
 import com.flat.tools.json.enums.JsonLocal;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +22,7 @@ import java.util.logging.Logger;
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class JsonTools {
+    private static Charset ENCODING = StandardCharsets.UTF_8;
 
     /**
      * @param <T>       Fx data objects.
@@ -32,7 +39,7 @@ public class JsonTools {
                 + _file.getFileName());
         JsonTools.handleDirectory(path.getParent());
         JsonTools.handleFile(path);
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path.toString()), StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path.toString()), JsonTools.ENCODING))) {
             T object = new Gson().fromJson(reader, _class);
             return object;
         } catch (Exception e) {
@@ -57,7 +64,7 @@ public class JsonTools {
                 + _file.getFileName());
         JsonTools.handleDirectory(path.getParent());
         JsonTools.handleFile(path);
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path.toString()), StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path.toString()), JsonTools.ENCODING))) {
             T[] object = new Gson().fromJson(reader, _class);
             return object;
         } catch (Exception e) {
@@ -73,7 +80,7 @@ public class JsonTools {
                 + _file.getFileName());
         JsonTools.handleDirectory(path.getParent());
         JsonTools.handleFile(path);
-        try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(path.toString()), StandardCharsets.UTF_8)) {
+        try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(path.toString()), JsonTools.ENCODING)) {
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.serializeNulls();
             gsonBuilder.setPrettyPrinting();

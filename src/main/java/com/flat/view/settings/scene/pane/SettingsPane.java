@@ -1,6 +1,5 @@
 package com.flat.view.settings.scene.pane;
 
-import com.flat.view.settings.scene.pane.children.buttonbar.SettingsButtonBar;
 import com.flat.view.settings.scene.pane.children.tabpane.SettingsTabPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -10,14 +9,13 @@ import javafx.scene.layout.VBox;
  */
 public class SettingsPane extends VBox {
     private final SettingsTabPane settingsTabPane = new SettingsTabPane();
-    private final SettingsButtonBar settingsButtonBar = new SettingsButtonBar();
 
     public SettingsPane() {
-        super.getChildren().addAll(this.settingsTabPane, this.settingsButtonBar);
+        super.getChildren().addAll(this.settingsTabPane);
         this.setSettingsTabPaneFx();
     }
 
-    public void setSettingsTabPaneFx() {
+    private void setSettingsTabPaneFx() {
         VBox.setVgrow(this.settingsTabPane, Priority.ALWAYS);
     }
 

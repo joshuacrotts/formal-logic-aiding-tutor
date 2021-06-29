@@ -14,7 +14,7 @@ public class JsonLocal {
 
         private final String fileName;
 
-        File(String _fileName) {
+        private File(String _fileName) {
             this.fileName = _fileName;
         }
 
@@ -30,7 +30,7 @@ public class JsonLocal {
 
         private final String filePath;
 
-        Paths(String _filePath) {
+        private Paths(String _filePath) {
             this.filePath = _filePath;
         }
 

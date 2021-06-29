@@ -1,4 +1,4 @@
-package com.flat.view.settings.scene.pane.children.buttonbar.buttons;
+package com.flat.view.settings.scene.pane.children.buttons;
 
 import javafx.scene.control.Button;
 import javafx.stage.Stage;

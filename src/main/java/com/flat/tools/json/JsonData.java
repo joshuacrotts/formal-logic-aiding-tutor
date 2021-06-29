@@ -7,6 +7,7 @@ import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.menubar.JsonMenuBar;
 import com.flat.models.json.symbol.Predicate;
 import com.flat.models.json.symbol.Propositional;
+import com.flat.tools.font.enums.FontLocal.FontFamily;
 import com.flat.tools.json.enums.JsonLocal;
 import java.io.File;
 
@@ -18,7 +19,7 @@ public class JsonData {
     private JsonMenuBar jsonMenuBar;
     private Predicate predicates;
     private Propositional propositional;
-    private JsonLanguage[] language = JsonTools.jsonToObjectList(new JsonLanguage("", "", ""), JsonLocal.File.LANGUAGE, JsonLanguage[].class);
+    private JsonLanguage[] language = JsonTools.jsonToObjectList(new JsonLanguage("", "", "", FontFamily.DEFAULT), JsonLocal.File.LANGUAGE, JsonLanguage[].class);
 
     private JsonData() {
         FxLanguageData.injectData(language);
@@ -33,7 +34,7 @@ public class JsonData {
 
     public void update(JsonLanguage _language) {
         if (!this.directoryExists()) {
-            this.retrieveData(new JsonLanguage("English", "English", "en"));
+            this.retrieveData(new JsonLanguage("English", "English", "en", FontFamily.DEFAULT));
             this.translateData(_language);
             this.writeData(_language);
         } else {

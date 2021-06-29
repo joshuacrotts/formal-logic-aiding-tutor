@@ -7,7 +7,7 @@ import javafx.scene.control.Tab;
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class LanguageTab extends Tab {
-    private final LanguagePane languagePane = new LanguagePane();
+    private LanguagePane languagePane = new LanguagePane();
 
     public LanguageTab() {
         super.setText("Language");
