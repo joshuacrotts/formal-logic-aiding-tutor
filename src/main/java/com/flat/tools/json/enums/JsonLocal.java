@@ -27,7 +27,7 @@ public class JsonLocal {
     }
 
     public enum Paths {
-        JSONROOT("/src/main/resources/assets/json/");
+        JSONROOT(System.getProperty("user.dir") + "/src/main/resources/assets/json/");
 
         private final String filePath;
 

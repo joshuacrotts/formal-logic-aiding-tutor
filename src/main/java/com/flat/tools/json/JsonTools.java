@@ -33,8 +33,7 @@ public class JsonTools {
      * @return Object of param _class type.
      */
     public static <T> T jsonToObject(JsonLanguage _language, JsonLocal.File _file, Class<T> _class) {
-        Path path = Paths.get(System.getProperty("user.dir")
-                + JsonLocal.Paths.JSONROOT.getFilePath()
+        Path path = Paths.get(JsonLocal.Paths.JSONROOT.getFilePath()
                 + _language.getCode() + "/"
                 + _file.getFileName());
         JsonTools.handleDirectory(path.getParent());
@@ -58,8 +57,7 @@ public class JsonTools {
      * @return List of objects of param _class type.
      */
     public static <T> T[] jsonToObjectList(JsonLanguage _language, JsonLocal.File _file, Class<T[]> _class) {
-        Path path = Paths.get(System.getProperty("user.dir")
-                + JsonLocal.Paths.JSONROOT.getFilePath()
+        Path path = Paths.get(JsonLocal.Paths.JSONROOT.getFilePath()
                 + _language.getCode() + "/"
                 + _file.getFileName());
         JsonTools.handleDirectory(path.getParent());
@@ -74,8 +72,7 @@ public class JsonTools {
     }
 
     public static <T> void objectToJson(JsonLanguage _language, JsonLocal.File _file, T _object, Class<T> _class) {
-        Path path = Paths.get(System.getProperty("user.dir")
-                + JsonLocal.Paths.JSONROOT.getFilePath()
+        Path path = Paths.get(JsonLocal.Paths.JSONROOT.getFilePath()
                 + _language.getCode() + "/"
                 + _file.getFileName());
         JsonTools.handleDirectory(path.getParent());

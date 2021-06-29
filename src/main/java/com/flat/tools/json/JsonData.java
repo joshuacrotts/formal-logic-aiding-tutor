@@ -46,7 +46,7 @@ public class JsonData {
     }
 
     private boolean languageDirectoryExists(JsonLanguage _language) {
-        return new File(System.getProperty("user.dir") + JsonLocal.Paths.JSONROOT.getFilePath() + "/" + _language.getCode()).isDirectory();
+        return new File(JsonLocal.Paths.JSONROOT.getFilePath() + "/" + _language.getCode()).isDirectory();
     }
 
     private void readData(JsonLanguage _language) {

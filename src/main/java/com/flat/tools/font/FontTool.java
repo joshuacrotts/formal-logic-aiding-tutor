@@ -19,9 +19,9 @@ public class FontTool {
 
     private FontTool () {
         try {
-            FontTool.AMHARIC = Font.loadFont(new FileInputStream(System.getProperty("user.dir") + FontLocal.Paths.TTF.getPath() + FontFamily.AMHARIC.getFilePath()), FontTool.FONTSIZE);
-            FontTool.BURMESE = Font.loadFont(new FileInputStream(System.getProperty("user.dir") + FontLocal.Paths.TTF.getPath() + FontFamily.BURMESE.getFilePath()), FontTool.FONTSIZE);
-            FontTool.JAVANESE = Font.loadFont(new FileInputStream(System.getProperty("user.dir") + FontLocal.Paths.TTF.getPath() + FontFamily.JAVANESE.getFilePath()), FontTool.FONTSIZE);
+            FontTool.AMHARIC = Font.loadFont(new FileInputStream(FontLocal.Paths.TTF.getPath() + FontFamily.AMHARIC.getFilePath()), FontTool.FONTSIZE);
+            FontTool.BURMESE = Font.loadFont(new FileInputStream(FontLocal.Paths.TTF.getPath() + FontFamily.BURMESE.getFilePath()), FontTool.FONTSIZE);
+            FontTool.JAVANESE = Font.loadFont(new FileInputStream(FontLocal.Paths.TTF.getPath() + FontFamily.JAVANESE.getFilePath()), FontTool.FONTSIZE);
         } catch (Exception e) {
             e.printStackTrace();
         }
