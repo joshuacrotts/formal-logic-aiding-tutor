@@ -34,4 +34,17 @@ public class FontTool {
         return instance;
     }
 
+    public static Font getFont (FontFamily _fontFamily) {
+        switch (_fontFamily) {
+            case AMHARIC:
+                return FontTool.AMHARIC;
+            case BURMESE:
+                return FontTool.BURMESE;
+            case JAVANESE:
+                return FontTool.JAVANESE;
+            default:
+                return new Font(FONTSIZE);
+        }
+    }
+
 }

@@ -7,7 +7,7 @@ package com.flat.tools.font.enums;
 public class FontLocal {
 
     public enum FontFamily {
-        DEFAULT("", ""),
+        DEFAULT("", "Georgia"),
         AMHARIC("amharic/NotoSansEthiopic-Regular", "Noto Sans Ethiopic"),
         BURMESE("burmese/NotoSansMyanmar-Regular", "Noto Sans Myanmar"),
         JAVANESE("javanese/NotoSansJavanese-Regular", "Noto Sans Javanese");

@@ -1,0 +1,77 @@
+{
+  "fileMenu": {
+    "file": {
+      "string": "ፋይል"
+    },
+    "resetViewMenuItem": {
+      "reset": {
+        "string": "ዳግም አስጀምር"
+      }
+    },
+    "settingsMenuItem": {
+      "settings": {
+        "string": "ቅንብሮች"
+      }
+    },
+    "exitMenuItem": {
+      "exit": {
+        "string": "መውጫ"
+      }
+    }
+  },
+  "exportMenu": {
+    "export": {
+      "string": "ወደ ውጭ ላክ"
+    },
+    "exportAsLatexMenu": {
+      "exportAsLatex": {
+        "string": "እንደ ላቲኤክስ (ላክ) ይላኩ"
+      },
+      "latexParseTreeMenuItem": {
+        "latexParseTree": {
+          "string": "ላቴክስ ፓርሲ ዛፍ"
+        }
+      },
+      "latexTruthTreeMenuItem": {
+        "latexTruthTree": {
+          "string": "ላቴክስ የእውነት ዛፍ"
+        }
+      },
+      "latexTruthTableMenuItem": {
+        "latexTruthTable": {
+          "string": "LaTeX የእውነት ሰንጠረዥ"
+        }
+      }
+    },
+    "exportAsPdfMenu": {
+      "exportAsPdf": {
+        "string": "እንደ ፒዲኤፍ ላክ (.pdf)"
+      },
+      "latexParseTreeMenuItem": {
+        "latexParseTree": {
+          "string": "ላቴክስ ፓርሲ ዛፍ"
+        }
+      },
+      "latexTruthTreeMenuItem": {
+        "latexTruthTree": {
+          "string": "ላቴክስ የእውነት ዛፍ"
+        }
+      },
+      "latexTruthTableMenuItem": {
+        "latexTruthTable": {
+          "string": "LaTeX የእውነት ሰንጠረዥ"
+        }
+      }
+    }
+  },
+  "helpMenu": {
+    "help": {
+      "string": "እገዛ"
+    },
+    "aboutMenuItem": {
+      "about": {
+        "string": "ስለ"
+      }
+    }
+  }
+}
