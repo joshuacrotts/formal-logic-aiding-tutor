@@ -9,6 +9,7 @@ import com.flat.models.json.settings.JsonSettings;
 import com.flat.models.json.symbol.Predicate;
 import com.flat.models.json.symbol.Propositional;
 import com.flat.tools.json.enums.JsonLocal;
+
 import java.io.File;
 
 /**
@@ -27,7 +28,7 @@ public class JsonData {
         this.update(JsonLanguage.DEFAULT);
     }
 
-    public static JsonData getInstance () {
+    public static JsonData getInstance() {
         if (instance == null) {
             instance = new JsonData();
         }
@@ -74,29 +75,29 @@ public class JsonData {
         return jsonMenuBar;
     }
 
-    public Predicate getPredicates() {
-        return predicates;
-    }
-
-    public Propositional getPropositional() {
-        return propositional;
-    }
-
-    public JsonLanguage[] getLanguage() {
-        return language;
-    }
-
     // Setters for object's attributes.
     public void setJsonMenuBar(JsonMenuBar jsonMenuBar) {
         this.jsonMenuBar = jsonMenuBar;
+    }
+
+    public Predicate getPredicates() {
+        return predicates;
     }
 
     public void setPredicates(Predicate predicates) {
         this.predicates = predicates;
     }
 
+    public Propositional getPropositional() {
+        return propositional;
+    }
+
     public void setPropositional(Propositional propositional) {
         this.propositional = propositional;
+    }
+
+    public JsonLanguage[] getLanguage() {
+        return language;
     }
 
     public void setLanguage(JsonLanguage[] language) {

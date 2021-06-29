@@ -6,6 +6,7 @@ import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.Translate.TranslateOption;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
+
 import java.util.LinkedList;
 import java.util.List;
 

@@ -182,15 +182,25 @@ public class NDWffTree {
         return (this.flags & NDFlag.II) != 0;
     }
 
-    public boolean isTPActive() { return (this.flags & NDFlag.TP) != 0; }
+    public boolean isTPActive() {
+        return (this.flags & NDFlag.TP) != 0;
+    }
 
-    public boolean isCDActive() { return (this.flags & NDFlag.CD) != 0; }
+    public boolean isCDActive() {
+        return (this.flags & NDFlag.CD) != 0;
+    }
 
-    public boolean isDDActive() { return (this.flags & NDFlag.DD) != 0; }
+    public boolean isDDActive() {
+        return (this.flags & NDFlag.DD) != 0;
+    }
 
-    public boolean isDNEActive() { return (this.flags & NDFlag.DNE) != 0; }
+    public boolean isDNEActive() {
+        return (this.flags & NDFlag.DNE) != 0;
+    }
 
-    public boolean isDNIActive() { return (this.flags & NDFlag.DNI) != 0; }
+    public boolean isDNIActive() {
+        return (this.flags & NDFlag.DNI) != 0;
+    }
 
     public boolean isExisActive() {
         return (this.flags & NDFlag.EX) != 0;
@@ -200,7 +210,9 @@ public class NDWffTree {
         return (this.flags & NDFlag.UN) != 0;
     }
 
-    public boolean isAltConclusion() { return (this.flags & NDFlag.ALTC) != 0;}
+    public boolean isAltConclusion() {
+        return (this.flags & NDFlag.ALTC) != 0;
+    }
 
     public boolean isSatisfied() {
         return (this.flags & NDFlag.SAT) != 0;

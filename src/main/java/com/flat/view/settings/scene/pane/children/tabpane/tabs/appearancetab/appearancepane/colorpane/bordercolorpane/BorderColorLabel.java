@@ -4,12 +4,11 @@ import com.flat.models.fx.FxSettingsData;
 import javafx.scene.control.Label;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class BorderColorLabel extends Label {
 
-    public BorderColorLabel () {
+    public BorderColorLabel() {
         super.textProperty().bind(FxSettingsData.getBorderColor().textProperty());
     }
 

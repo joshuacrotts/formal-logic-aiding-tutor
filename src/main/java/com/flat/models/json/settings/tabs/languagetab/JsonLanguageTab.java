@@ -2,10 +2,10 @@ package com.flat.models.json.settings.tabs.languagetab;
 
 import com.flat.models.json.JsonString;
 import com.flat.models.translation.Translatable;
+
 import java.util.LinkedList;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonLanguageTab extends Translatable {
@@ -23,7 +23,7 @@ public class JsonLanguageTab extends Translatable {
 
     @Override
     public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString> () {{
+        return new LinkedList<JsonString>() {{
             add(language);
         }};
     }

@@ -20,7 +20,7 @@ public class LanguagePane extends VBox {
         this.setLanguageListPaneFx();
     }
 
-    private void setLanguageListPaneFx () {
+    private void setLanguageListPaneFx() {
         VBox.setVgrow(this.languageListPane, Priority.ALWAYS);
     }
 

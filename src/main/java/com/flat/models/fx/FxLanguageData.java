@@ -2,11 +2,11 @@ package com.flat.models.fx;
 
 import com.flat.models.json.language.JsonLanguage;
 import edu.emory.mathcs.backport.java.util.Arrays;
-import java.util.List;
 import javafx.collections.FXCollections;
 
+import java.util.List;
+
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class FxLanguageData {

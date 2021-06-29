@@ -4,10 +4,10 @@ import com.flat.models.json.JsonString;
 import com.flat.models.json.settings.tabs.appearancetab.JsonAppearanceTab;
 import com.flat.models.json.settings.tabs.languagetab.JsonLanguageTab;
 import com.flat.models.translation.Translatable;
+
 import java.util.LinkedList;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonSettings extends Translatable {
@@ -22,37 +22,37 @@ public class JsonSettings extends Translatable {
         return title;
     }
 
-    public JsonString getApply() {
-        return apply;
-    }
-
-    public JsonString getClose() {
-        return close;
-    }
-
-    public JsonAppearanceTab getAppearanceTab() {
-        return appearanceTab;
-    }
-
-    public JsonLanguageTab getLanguageTab() {
-        return languageTab;
-    }
-
     // Setters for object's attributes.
     public void setTitle(JsonString title) {
         this.title = title;
+    }
+
+    public JsonString getApply() {
+        return apply;
     }
 
     public void setApply(JsonString apply) {
         this.apply = apply;
     }
 
+    public JsonString getClose() {
+        return close;
+    }
+
     public void setClose(JsonString close) {
         this.close = close;
     }
 
+    public JsonAppearanceTab getAppearanceTab() {
+        return appearanceTab;
+    }
+
     public void setAppearanceTab(JsonAppearanceTab appearanceTab) {
         this.appearanceTab = appearanceTab;
+    }
+
+    public JsonLanguageTab getLanguageTab() {
+        return languageTab;
     }
 
     public void setLanguageTab(JsonLanguageTab languageTab) {

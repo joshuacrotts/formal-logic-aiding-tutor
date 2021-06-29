@@ -4,12 +4,11 @@ import com.flat.models.fx.FxSettingsData;
 import javafx.scene.control.Label;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PrimaryColorLabel extends Label {
 
-    public PrimaryColorLabel () {
+    public PrimaryColorLabel() {
         super.textProperty().bind(FxSettingsData.getPrimaryColor().textProperty());
     }
 

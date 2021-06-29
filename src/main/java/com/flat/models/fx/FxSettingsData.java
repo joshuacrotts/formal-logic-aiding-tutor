@@ -5,7 +5,6 @@ import com.flat.models.json.settings.JsonSettings;
 import javafx.scene.text.Text;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class FxSettingsData {
@@ -18,7 +17,7 @@ public class FxSettingsData {
     private final static Text borderColor = new Text("Border Color:");
     private final static Text language = new Text("Language");
 
-    public static void injectData (JsonLanguage _jsonLanguage, JsonSettings _jsonSettings) {
+    public static void injectData(JsonLanguage _jsonLanguage, JsonSettings _jsonSettings) {
         title.setText(_jsonSettings.getTitle().getString());
         apply.setText(_jsonSettings.getApply().getString());
         close.setText(_jsonSettings.getClose().getString());

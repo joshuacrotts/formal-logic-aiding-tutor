@@ -2,10 +2,10 @@ package com.flat.models.json.settings.tabs.appearancetab.content;
 
 import com.flat.models.json.JsonString;
 import com.flat.models.translation.Translatable;
+
 import java.util.LinkedList;
 
 /**
- *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonColorPane extends Translatable {
@@ -18,21 +18,21 @@ public class JsonColorPane extends Translatable {
         return primaryColor;
     }
 
-    public JsonString getSecondaryColor() {
-        return secondaryColor;
-    }
-
-    public JsonString getBorderColor() {
-        return borderColor;
-    }
-
     // Setters for object's attributes.
     public void setPrimaryColor(JsonString primaryColor) {
         this.primaryColor = primaryColor;
     }
 
+    public JsonString getSecondaryColor() {
+        return secondaryColor;
+    }
+
     public void setSecondaryColor(JsonString secondaryColor) {
         this.secondaryColor = secondaryColor;
+    }
+
+    public JsonString getBorderColor() {
+        return borderColor;
     }
 
     public void setBorderColor(JsonString borderColor) {

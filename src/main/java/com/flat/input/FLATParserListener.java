@@ -1,6 +1,5 @@
 package com.flat.input;
 
-import com.flat.FLAT;
 import com.flat.FLATBaseListener;
 import com.flat.FLATParser;
 import com.flat.models.treenode.*;
@@ -273,15 +272,16 @@ public class FLATParserListener extends FLATBaseListener {
         if (FLATErrorListener.sawError()) return;
         VariableNode variableNode = null;
 
-        if (ctx.variable() != null) { variableNode = (VariableNode) this.PARSE_TREE.get(ctx.variable()); }
-        else {
+        if (ctx.variable() != null) {
+            variableNode = (VariableNode) this.PARSE_TREE.get(ctx.variable());
+        } else {
             FLATErrorListener.syntaxError(ctx, "Cannot use non-variable " + ctx.constant().getText() + " as variable in universal quantifier.");
             return;
         }
 
         // Since we don't HAVE to use the "forall" symbol, we need to check if it's null.
         String symbol = "(" + (ctx.UNIVERSAL() != null ? ctx.UNIVERSAL().getText() : "")
-                            + (ctx.variable().getText()) + ")";
+                + (ctx.variable().getText()) + ")";
 
         UniversalQuantifierNode uqn = new UniversalQuantifierNode(symbol, variableNode.getSymbol());
         this.treeRoots.push(this.wffTree);
@@ -293,8 +293,9 @@ public class FLATParserListener extends FLATBaseListener {
         if (FLATErrorListener.sawError()) return;
         VariableNode variableNode = null;
 
-        if (ctx.variable() != null) { variableNode = (VariableNode) this.PARSE_TREE.get(ctx.variable()); }
-        else {
+        if (ctx.variable() != null) {
+            variableNode = (VariableNode) this.PARSE_TREE.get(ctx.variable());
+        } else {
             FLATErrorListener.syntaxError(ctx, "Cannot use non-variable " + ctx.constant().getText() + " as variable in existential quantifier.");
             return;
         }

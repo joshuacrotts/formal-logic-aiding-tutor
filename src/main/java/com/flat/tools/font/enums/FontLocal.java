@@ -1,7 +1,6 @@
 package com.flat.tools.font.enums;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class FontLocal {
@@ -15,7 +14,7 @@ public class FontLocal {
         private final String filePath;
         private final String family;
 
-        private FontFamily (String _filePath, String _family) {
+        private FontFamily(String _filePath, String _family) {
             this.filePath = _filePath;
             this.family = _family;
         }
@@ -36,7 +35,7 @@ public class FontLocal {
 
         private final String path;
 
-        private Paths (String _path) {
+        private Paths(String _path) {
             this.path = _path;
         }
 

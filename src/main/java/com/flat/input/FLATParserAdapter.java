@@ -1,6 +1,5 @@
 package com.flat.input;
 
-import com.flat.FLAT;
 import com.flat.FLATLexer;
 import com.flat.FLATParser;
 import com.flat.models.treenode.WffTree;

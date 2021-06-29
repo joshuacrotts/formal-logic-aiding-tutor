@@ -7,21 +7,20 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class LanguageApplyButton extends Button {
 
-    public LanguageApplyButton () {
+    public LanguageApplyButton() {
         super.textProperty().bind(FxSettingsData.getApply().textProperty());
         this.setOnAction();
     }
 
-    private void setOnAction () {
+    private void setOnAction() {
         super.setOnAction(event -> {
             if (!(LanguageListView.getSelectedLanguage() == null)) {
                 Controller.setJsonLanguage(LanguageListView.getSelectedLanguage());
-                Controller.applyFont((Stage)super.getScene().getWindow());
+                Controller.applyFont((Stage) super.getScene().getWindow());
             }
         });
     }

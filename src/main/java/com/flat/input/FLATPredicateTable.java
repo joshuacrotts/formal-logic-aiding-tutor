@@ -1,9 +1,7 @@
 package com.flat.input;
 
 import com.flat.models.treenode.PredicateNode;
-import com.flat.models.treenode.WffTree;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +21,6 @@ public final class FLATPredicateTable {
     }
 
     /**
-     *
      * @param _predicateNode
      */
     public void addPredicate(PredicateNode _predicateNode) {
@@ -33,7 +30,6 @@ public final class FLATPredicateTable {
     }
 
     /**
-     *
      * @param _predicateNode
      * @return
      */
@@ -55,7 +51,7 @@ public final class FLATPredicateTable {
     public boolean isDifferent(PredicateNode _predicateNode) {
         for (PredicateNode predNode : this.currentPredicates) {
             if (_predicateNode.getPredicateLetter().equals(predNode.getPredicateLetter())
-            &&  _predicateNode.getArity() != predNode.getArity()) {
+                    && _predicateNode.getArity() != predNode.getArity()) {
                 return true;
             }
         }

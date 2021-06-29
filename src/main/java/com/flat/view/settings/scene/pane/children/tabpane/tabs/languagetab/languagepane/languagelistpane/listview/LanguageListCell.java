@@ -9,7 +9,7 @@ import javafx.scene.control.ListCell;
  */
 public class LanguageListCell extends ListCell<JsonLanguage> {
 
-    public LanguageListCell () {
+    public LanguageListCell() {
     }
 
     @Override

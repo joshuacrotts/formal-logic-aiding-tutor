@@ -4,7 +4,7 @@ import com.flat.tools.font.enums.FontLocal.FontFamily;
 
 /**
  * @author Christopher Brantley <ccbrantley@uncg.edu>
- Structure for the Json JsonLanguage object.
+ * Structure for the Json JsonLanguage object.
  */
 public class JsonLanguage {
     public final static JsonLanguage NONE = new JsonLanguage("", "", "", FontFamily.DEFAULT);

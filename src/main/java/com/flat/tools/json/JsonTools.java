@@ -4,13 +4,8 @@ import com.flat.models.json.language.JsonLanguage;
 import com.flat.tools.json.enums.JsonLocal;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
@@ -27,7 +22,7 @@ public class JsonTools {
     /**
      * @param <T>       Fx data objects.
      * @param _language The JsonLanguage that is in use. The JsonLanguage code is used
-                  in the file path.
+     *                  in the file path.
      * @param _file     The file name where the Json objects are stored.
      * @param _class    The class type of the Json object.
      * @return Object of param _class type.
@@ -50,7 +45,7 @@ public class JsonTools {
     /**
      * @param <T>       List literals.
      * @param _language The JsonLanguage that is in use. The JsonLanguage code is used
-                  in the file path.
+     *                  in the file path.
      * @param _file     The file name where the Json objects are stored.
      * @param _class    The class type of the Json object. Note: Must be a
      *                  list literal.

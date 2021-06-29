@@ -6,14 +6,13 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ButtonBar;
 
 /**
- *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class LanguageButtonBar extends ButtonBar {
     private LanguageApplyButton applyButton = new LanguageApplyButton();
     private SettingsCloseButton closeButton = new SettingsCloseButton();
 
-    public LanguageButtonBar () {
+    public LanguageButtonBar() {
         ButtonBar.setButtonData(this.applyButton, ButtonData.APPLY);
         ButtonBar.setButtonData(this.closeButton, ButtonData.CANCEL_CLOSE);
         super.getButtons().addAll(this.applyButton, this.closeButton);

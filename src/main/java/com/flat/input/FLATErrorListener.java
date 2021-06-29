@@ -221,7 +221,7 @@ public class FLATErrorListener extends BaseErrorListener {
             }
             // If the offending token is an atom, then we combined two atoms when we shouldn't have.
             else if (tokId == FLATLexer.ATOM) {
-                errorMsg = "Missing operator at " + surroundingText +  ". Did you forget a connective (or use an invalid one)?";
+                errorMsg = "Missing operator at " + surroundingText + ". Did you forget a connective (or use an invalid one)?";
             }
             // Otherwise, just throw a generic error and let them figure it out ;D
             else {
@@ -234,7 +234,6 @@ public class FLATErrorListener extends BaseErrorListener {
     }
 
     /**
-     *
      * @param _input
      * @param _offTokPos
      * @return
@@ -243,7 +242,9 @@ public class FLATErrorListener extends BaseErrorListener {
         StringBuilder surroundingText = new StringBuilder("'...");
         int OFFEND_TOK_OFFSET = 3;
         for (int i = _offTokPos - OFFEND_TOK_OFFSET; i <= _offTokPos + OFFEND_TOK_OFFSET; i++) {
-            if (i >= 0 && i < _input.length()) { surroundingText.append(_input.charAt(i)); }
+            if (i >= 0 && i < _input.length()) {
+                surroundingText.append(_input.charAt(i));
+            }
         }
         surroundingText.append("...'");
         return surroundingText.toString();
