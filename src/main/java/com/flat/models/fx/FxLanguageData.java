@@ -10,7 +10,7 @@ import javafx.collections.FXCollections;
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class FxLanguageData {
-    private static List<JsonLanguage> languages = FXCollections.observableArrayList();
+    private final static List<JsonLanguage> languages = FXCollections.observableArrayList();
 
     public static void injectData(JsonLanguage[] _languages) {
         FxLanguageData.languages.removeAll(FxLanguageData.languages);
@@ -20,11 +20,6 @@ public class FxLanguageData {
     // Getters for object's attributes.
     public static List<JsonLanguage> getLanguages() {
         return languages;
-    }
-
-    // Setters for object's attributes.
-    public static void setLanguages(List<JsonLanguage> languages) {
-        FxLanguageData.languages = languages;
     }
 
 }

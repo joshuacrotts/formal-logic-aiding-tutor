@@ -1,0 +1,32 @@
+{
+  "title": {
+    "string": "ቅንብሮች"
+  },
+  "apply": {
+    "string": "ያመልክቱ"
+  },
+  "close": {
+    "string": "ገጠመ"
+  },
+  "appearanceTab": {
+    "appearance": {
+      "string": "መልክ"
+    },
+    "jsonColorPane": {
+      "primaryColor": {
+        "string": "ዋና ቀለም"
+      },
+      "secondaryColor": {
+        "string": "ሁለተኛ ቀለም"
+      },
+      "borderColor": {
+        "string": "የድንበር ቀለም"
+      }
+    }
+  },
+  "languageTab": {
+    "language": {
+      "string": "ቋንቋ"
+    }
+  }
+}

@@ -4,6 +4,7 @@ import com.flat.controller.Controller;
 import com.flat.models.fx.FxSettingsData;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.languagepane.languagelistpane.listview.LanguageListView;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  *
@@ -18,8 +19,10 @@ public class LanguageApplyButton extends Button {
 
     private void setOnAction () {
         super.setOnAction(event -> {
-            if (!(LanguageListView.getSelectedLanguage() == null))
+            if (!(LanguageListView.getSelectedLanguage() == null)) {
                 Controller.setJsonLanguage(LanguageListView.getSelectedLanguage());
+                Controller.applyFont((Stage)super.getScene().getWindow());
+            }
         });
     }
 

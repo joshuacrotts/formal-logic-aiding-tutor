@@ -1,0 +1,32 @@
+{
+  "title": {
+    "string": "Cilësimet"
+  },
+  "apply": {
+    "string": "Aplikoni"
+  },
+  "close": {
+    "string": "Mbylle"
+  },
+  "appearanceTab": {
+    "appearance": {
+      "string": "Pamja e jashtme"
+    },
+    "jsonColorPane": {
+      "primaryColor": {
+        "string": "Ngjyra kryesore:"
+      },
+      "secondaryColor": {
+        "string": "Ngjyra dytësore:"
+      },
+      "borderColor": {
+        "string": "Ngjyra e kufirit:"
+      }
+    }
+  },
+  "languageTab": {
+    "language": {
+      "string": "Gjuhe"
+    }
+  }
+}

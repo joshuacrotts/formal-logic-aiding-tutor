@@ -24,7 +24,7 @@ public class JsonData {
 
     private JsonData() {
         FxLanguageData.injectData(language);
-        this.readData(JsonLanguage.DEFAULT);
+        this.update(JsonLanguage.DEFAULT);
     }
 
     public static JsonData getInstance () {
@@ -42,7 +42,7 @@ public class JsonData {
         } else {
             this.readData(_language);
         }
-        this.updateFxData();
+        this.updateFxData(_language);
     }
 
     private boolean languageDirectoryExists(JsonLanguage _language) {
@@ -64,9 +64,9 @@ public class JsonData {
         JsonTools.objectToJson(_language, JsonLocal.File.SETTINGS, this.jsonSettings, JsonSettings.class);
     }
 
-    private void updateFxData() {
-        FxMenuBarData.injectData(this.jsonMenuBar);
-        FxSettingsData.injectData(this.jsonSettings);
+    private void updateFxData(JsonLanguage _language) {
+        FxMenuBarData.injectData(_language, this.jsonMenuBar);
+        FxSettingsData.injectData(_language, this.jsonSettings);
     }
 
     // Getters for object's attributes.
