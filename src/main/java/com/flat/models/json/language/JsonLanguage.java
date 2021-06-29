@@ -7,6 +7,9 @@ import com.flat.tools.font.enums.FontLocal.FontFamily;
  Structure for the Json JsonLanguage object.
  */
 public class JsonLanguage {
+    public final static JsonLanguage NONE = new JsonLanguage("", "", "", FontFamily.DEFAULT);
+    public final static JsonLanguage DEFAULT = new JsonLanguage("English", "English", "en", FontFamily.DEFAULT);
+
     private final String languageName;
     private final String nativeName;
     private final String code;

@@ -1,0 +1,32 @@
+{
+  "title": {
+    "string": "Settings"
+  },
+  "apply": {
+    "string": "Apply"
+  },
+  "close": {
+    "string": "Close"
+  },
+  "appearanceTab": {
+    "appearance": {
+      "string": "Appearance"
+    },
+    "jsonColorPane": {
+      "primaryColor": {
+        "string": "Primary Color:"
+      },
+      "secondaryColor": {
+        "string": "Secondary Color:"
+      },
+      "borderColor": {
+        "string": "Border Color:"
+      }
+    }
+  },
+  "languageTab": {
+    "language": {
+      "string": "Language"
+    }
+  }
+}

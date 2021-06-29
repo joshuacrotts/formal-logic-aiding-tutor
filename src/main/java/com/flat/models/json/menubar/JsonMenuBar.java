@@ -16,24 +16,26 @@ public class JsonMenuBar extends Translatable {
     private JsonExportMenu exportMenu = new JsonExportMenu();
     private JsonHelpMenu helpMenu = new JsonHelpMenu();
 
+    // Getters for object's attributes.
     public JsonFileMenu getFileMenu() {
         return fileMenu;
-    }
-
-    public void setFileMenu(JsonFileMenu fileMenu) {
-        this.fileMenu = fileMenu;
     }
 
     public JsonExportMenu getExportMenu() {
         return exportMenu;
     }
 
-    public void setExportMenu(JsonExportMenu exportMenu) {
-        this.exportMenu = exportMenu;
-    }
-
     public JsonHelpMenu getHelpMenu() {
         return helpMenu;
+    }
+
+    // Setters for object's attributes.
+    public void setFileMenu(JsonFileMenu fileMenu) {
+        this.fileMenu = fileMenu;
+    }
+
+    public void setExportMenu(JsonExportMenu exportMenu) {
+        this.exportMenu = exportMenu;
     }
 
     public void setHelpMenu(JsonHelpMenu helpMenu) {

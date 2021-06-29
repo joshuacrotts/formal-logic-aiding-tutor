@@ -1,6 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.languagepane.buttonbar.button;
 
 import com.flat.controller.Controller;
+import com.flat.models.fx.FxSettingsData;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.languagepane.languagelistpane.listview.LanguageListView;
 import javafx.scene.control.Button;
 
@@ -11,7 +12,7 @@ import javafx.scene.control.Button;
 public class LanguageApplyButton extends Button {
 
     public LanguageApplyButton () {
-        super.setText("Apply Language");
+        super.textProperty().bind(FxSettingsData.getApply().textProperty());
         this.setOnAction();
     }
 

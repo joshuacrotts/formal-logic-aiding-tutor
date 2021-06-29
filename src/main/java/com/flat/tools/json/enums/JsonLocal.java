@@ -10,7 +10,8 @@ public class JsonLocal {
         PROPOSITIONAL("propositional"),
         PREDICATE("predicate"),
         MENUBAR("menubar"),
-        LANGUAGE("languages");
+        LANGUAGE("languages"),
+        SETTINGS("settings");
 
         private final String fileName;
 

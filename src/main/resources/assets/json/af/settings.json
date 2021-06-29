@@ -1,0 +1,32 @@
+{
+  "title": {
+    "string": "Instellings"
+  },
+  "apply": {
+    "string": "Doen aansoek"
+  },
+  "close": {
+    "string": "Naby"
+  },
+  "appearanceTab": {
+    "appearance": {
+      "string": "Voorkoms"
+    },
+    "jsonColorPane": {
+      "primaryColor": {
+        "string": "Primêre kleur:"
+      },
+      "secondaryColor": {
+        "string": "Sekondêre kleur:"
+      },
+      "borderColor": {
+        "string": "Randkleur:"
+      }
+    }
+  },
+  "languageTab": {
+    "language": {
+      "string": "Taal"
+    }
+  }
+}

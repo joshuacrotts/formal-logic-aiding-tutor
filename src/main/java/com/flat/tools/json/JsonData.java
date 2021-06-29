@@ -3,11 +3,12 @@ package com.flat.tools.json;
 import com.flat.controller.Controller;
 import com.flat.models.fx.FxLanguageData;
 import com.flat.models.fx.FxMenuBarData;
+import com.flat.models.fx.FxSettingsData;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.menubar.JsonMenuBar;
+import com.flat.models.json.settings.JsonSettings;
 import com.flat.models.json.symbol.Predicate;
 import com.flat.models.json.symbol.Propositional;
-import com.flat.tools.font.enums.FontLocal.FontFamily;
 import com.flat.tools.json.enums.JsonLocal;
 import java.io.File;
 
@@ -17,12 +18,14 @@ import java.io.File;
 public class JsonData {
     private static JsonData instance = null;
     private JsonMenuBar jsonMenuBar;
+    private JsonSettings jsonSettings;
     private Predicate predicates;
     private Propositional propositional;
-    private JsonLanguage[] language = JsonTools.jsonToObjectList(new JsonLanguage("", "", "", FontFamily.DEFAULT), JsonLocal.File.LANGUAGE, JsonLanguage[].class);
+    private JsonLanguage[] language = JsonTools.jsonToObjectList(JsonLanguage.NONE, JsonLocal.File.LANGUAGE, JsonLanguage[].class);
 
     private JsonData() {
         FxLanguageData.injectData(language);
+        this.readData(JsonLanguage.DEFAULT);
     }
 
     public static JsonData getInstance () {
@@ -33,34 +36,38 @@ public class JsonData {
     }
 
     public void update(JsonLanguage _language) {
-        if (!this.directoryExists()) {
-            this.retrieveData(new JsonLanguage("English", "English", "en", FontFamily.DEFAULT));
+        if (!this.languageDirectoryExists(_language)) {
+            this.readData(JsonLanguage.DEFAULT);
             this.translateData(_language);
             this.writeData(_language);
         } else {
-            this.retrieveData(_language);
+            this.readData(_language);
         }
         this.updateFxData();
     }
 
-    public boolean directoryExists() {
-        return new File(System.getProperty("user.dir") + JsonLocal.Paths.JSONROOT.getFilePath() + "/" + Controller.getJsonLanguage().getCode()).isDirectory();
+    private boolean languageDirectoryExists(JsonLanguage _language) {
+        return new File(System.getProperty("user.dir") + JsonLocal.Paths.JSONROOT.getFilePath() + "/" + _language.getCode()).isDirectory();
     }
 
-    public void retrieveData(JsonLanguage _language) {
+    private void readData(JsonLanguage _language) {
         this.jsonMenuBar = JsonTools.jsonToObject(_language, JsonLocal.File.MENUBAR, JsonMenuBar.class);
+        this.jsonSettings = JsonTools.jsonToObject(_language, JsonLocal.File.SETTINGS, JsonSettings.class);
     }
 
-    public void updateFxData() {
-        FxMenuBarData.injectData(this.jsonMenuBar);
-    }
-
-    public void translateData(JsonLanguage _language) {
+    private void translateData(JsonLanguage _language) {
         this.jsonMenuBar.translate(_language);
+        this.jsonSettings.translate(_language);
     }
 
-    public void writeData(JsonLanguage _language) {
+    private void writeData(JsonLanguage _language) {
         JsonTools.objectToJson(_language, JsonLocal.File.MENUBAR, this.jsonMenuBar, JsonMenuBar.class);
+        JsonTools.objectToJson(_language, JsonLocal.File.SETTINGS, this.jsonSettings, JsonSettings.class);
+    }
+
+    private void updateFxData() {
+        FxMenuBarData.injectData(this.jsonMenuBar);
+        FxSettingsData.injectData(this.jsonSettings);
     }
 
     // Getters for object's attributes.
