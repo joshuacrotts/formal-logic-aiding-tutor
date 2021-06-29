@@ -1,5 +1,5 @@
-1: (Pas > ~Ps)                                       Ass.
-2: (Ba > ~Pa)                                        Ass.
+1: (Pas > ~Psa)                                      Ass.
+2: (Ba > ~Pas)                                       Ass.
 3: (Pas | Ba)                                        Ass.
-4: (~Pa || ~Ps)                                      CD, 1, 2, 3
-∴ (~Pa || ~Ps)  ■
+4: (~Pas || ~Psa)                                    CD, 1, 2, 3
+∴ (~Pas || ~Psa)  ■
