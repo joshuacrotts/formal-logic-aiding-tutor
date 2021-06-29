@@ -94,11 +94,12 @@ propImpRule: OPEN_PAREN propWff IMP propWff CLOSE_PAREN;
 propBicondRule: OPEN_PAREN propWff BICOND propWff CLOSE_PAREN;
 propExclusiveOrRule: OPEN_PAREN propWff XOR propWff CLOSE_PAREN;
 
-/* Predicate Logic Rules. */
+/* Predicate Logic Rules. We use constants for the quantifiers to allow the parser to do semantic analysis and correct
+   the user. */
 constant: CONSTANT;
 variable: VARIABLE;
-universal: (OPEN_PAREN UNIVERSAL variable CLOSE_PAREN) | (OPEN_PAREN variable CLOSE_PAREN);
-existential: OPEN_PAREN EXISTENTIAL variable CLOSE_PAREN;
+universal: (OPEN_PAREN UNIVERSAL (constant | variable) CLOSE_PAREN) | (OPEN_PAREN (constant | variable) CLOSE_PAREN);
+existential: OPEN_PAREN EXISTENTIAL (constant | variable) CLOSE_PAREN;
 predicate: atom ((OPEN_PAREN ((constant|variable)+ | (((constant|variable) COMMA)*(constant|variable))) CLOSE_PAREN) |
                 ((constant|variable)+ | (((constant|variable) COMMA)*(constant|variable))));
 

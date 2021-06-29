@@ -273,17 +273,15 @@ public class FLATParserListener extends FLATBaseListener {
         if (FLATErrorListener.sawError()) return;
         VariableNode variableNode = null;
 
-        if (ctx.variable() != null) {
-            variableNode = (VariableNode) this.PARSE_TREE.get(ctx.variable());
-        } else {
-            FLATErrorListener.syntaxError(ctx, "missing variable declaration for universal quantifier.");
+        if (ctx.variable() != null) { variableNode = (VariableNode) this.PARSE_TREE.get(ctx.variable()); }
+        else {
+            FLATErrorListener.syntaxError(ctx, "Cannot use non-variable " + ctx.constant().getText() + " as variable in universal quantifier.");
             return;
         }
 
-        String symbol = "("
-                + (ctx.UNIVERSAL() != null ? ctx.UNIVERSAL().getText() : "")
-                + (ctx.variable().getText())
-                + ")";
+        // Since we don't HAVE to use the "forall" symbol, we need to check if it's null.
+        String symbol = "(" + (ctx.UNIVERSAL() != null ? ctx.UNIVERSAL().getText() : "")
+                            + (ctx.variable().getText()) + ")";
 
         UniversalQuantifierNode uqn = new UniversalQuantifierNode(symbol, variableNode.getSymbol());
         this.treeRoots.push(this.wffTree);
@@ -295,18 +293,13 @@ public class FLATParserListener extends FLATBaseListener {
         if (FLATErrorListener.sawError()) return;
         VariableNode variableNode = null;
 
-        if (ctx.variable() != null) {
-            variableNode = (VariableNode) this.PARSE_TREE.get(ctx.variable());
-        } else {
-            FLATErrorListener.syntaxError(ctx, "missing variable declaration for existential quantifier.");
+        if (ctx.variable() != null) { variableNode = (VariableNode) this.PARSE_TREE.get(ctx.variable()); }
+        else {
+            FLATErrorListener.syntaxError(ctx, "Cannot use non-variable " + ctx.constant().getText() + " as variable in existential quantifier.");
             return;
         }
 
-        String symbol = "("
-                + ctx.EXISTENTIAL().getText()
-                + ctx.variable().getText()
-                + ")";
-
+        String symbol = "(" + ctx.EXISTENTIAL().getText() + ctx.variable().getText() + ")";
         ExistentialQuantifierNode uqn = new ExistentialQuantifierNode(symbol, variableNode.getSymbol());
         this.treeRoots.push(this.wffTree);
         this.wffTree = uqn;
