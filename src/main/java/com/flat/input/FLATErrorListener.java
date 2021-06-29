@@ -3,6 +3,7 @@ package com.flat.input;
 import com.flat.FLATLexer;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.Interval;
+import org.antlr.v4.runtime.misc.IntervalSet;
 
 import java.util.*;
 
@@ -198,20 +199,66 @@ public class FLATErrorListener extends BaseErrorListener {
             String offTok = lexer.getErrorDisplay(input.getText(new Interval(lexer._tokenStartCharIndex, input.index())));
             errorMsg = "Unrecognized character: '" + offTok + "'";
         } else {
+            Parser parser = (Parser) recognizer;
+            // First we grab the current token as well as the previous token.
             Token offTok = (Token) offendingSymbol;
+            Token prevOffTok = parser.getTokenStream().get(offTok.getCharPositionInLine() - 1);
+            int offTokPos = offTok.getCharPositionInLine();
             int tokId = offTok.getType();
-            // If it's a closing parenthesis, that means we have one too many.
+            int prevTokId = prevOffTok.getType();
+            String surroundingText = this.getSurroundingText(parser.getTokenStream().getText(), offTokPos);
+
+            // Now check to see which type of error it is. If the offending token is a ) then there are too many.
             if (tokId == FLATLexer.CLOSE_PAREN) {
-                errorMsg = "Extra closing ')' parentheses (is there more than one?)";
-            } else if (tokId == FLATLexer.EOF) {
-                errorMsg = "Missing closing ')' parenthesis";
-            } else {
-                errorMsg = "Invalid input (usually because of an invalid character or a missing opening '(' parenthesis)";
+                errorMsg = "Extra closing ')' parentheses at " + surroundingText + " (you either have too many, or your formula does not need them)";
+            }
+            // If the PREVIOUS token (prior to the offending one) is a binary operator, then we used one where we shouldn't have.
+            else if (this.hasTooManyConnectives(prevTokId)) {
+                errorMsg = "Too many binary connectives found at " + surroundingText + ". Check your input!";
+            }
+            // If the offending token is EOF or a binop then we have unbalanced parentheses.
+            else if (tokId == FLATLexer.EOF || tokId == FLATLexer.AND || tokId == FLATLexer.OR
+                    || tokId == FLATLexer.IMP || tokId == FLATLexer.BICOND || tokId == FLATLexer.XOR) {
+                errorMsg = "Unbalanced parenthesis near " + surroundingText + ". Check your input!";
+            }
+            // If the offending token is an atom, then we combined two atoms when we shouldn't have.
+            else if (tokId == FLATLexer.ATOM) {
+                errorMsg = "Missing operator at " + surroundingText +  ". Did you forget a connective (or use an invalid one)?";
+            }
+            // Otherwise, just throw a generic error and let them figure it out ;D
+            else {
+                errorMsg = "Invalid input at " + surroundingText + " (usually because of invalid characters. Check your input!)";
             }
         }
 
         gotError = true;
         FLATErrorListener.errors.add(new Message(errorMsg, col + 1));
+    }
+
+    /**
+     *
+     * @param _tokId
+     * @return
+     */
+    private boolean hasTooManyConnectives(int _tokId) {
+        return _tokId == FLATLexer.AND || _tokId == FLATLexer.OR
+                || _tokId == FLATLexer.IMP || _tokId == FLATLexer.BICOND || _tokId == FLATLexer.XOR;
+    }
+
+    /**
+     *
+     * @param _input
+     * @param _offTokPos
+     * @return
+     */
+    private String getSurroundingText(String _input, int _offTokPos) {
+        StringBuilder surroundingText = new StringBuilder("'...");
+        int OFFEND_TOK_OFFSET = 3;
+        for (int i = _offTokPos - OFFEND_TOK_OFFSET; i <= _offTokPos + OFFEND_TOK_OFFSET; i++) {
+            if (i >= 0 && i < _input.length()) { surroundingText.append(_input.charAt(i)); }
+        }
+        surroundingText.append("...'");
+        return surroundingText.toString();
     }
 
     /**

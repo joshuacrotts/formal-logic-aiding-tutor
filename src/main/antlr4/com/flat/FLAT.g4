@@ -3,7 +3,7 @@ grammar FLAT;
 //=========== Lexeme patterns and tokens. ==============
 
 /* Miscellaneous and skippable lexemes. */
-WHITESPACE              : [ \r\n\t]+                               -> skip ;
+WHITESPACE              : [ \r\n\t]+                               -> channel(HIDDEN) ;
 COMMENT                 : '//' (~ [\r\n])* NEWLINE                 -> skip ; // Match any text that has // preceding.
 fragment DIGIT          : [0-9]                                            ;
 fragment LOWER_CASE_LTR : [a-z]                                            ;
