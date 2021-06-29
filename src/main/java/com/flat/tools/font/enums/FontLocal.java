@@ -32,7 +32,7 @@ public class FontLocal {
     }
 
     public enum Paths {
-        TTF("/src/main/resources/assets/font/");
+        TTF(System.getProperty("user.dir") + "/src/main/resources/assets/font/");
 
         private final String path;
 
