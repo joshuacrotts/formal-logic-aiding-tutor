@@ -3,7 +3,6 @@ package com.flat.input;
 import com.flat.FLATLexer;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.Interval;
-import org.antlr.v4.runtime.misc.IntervalSet;
 
 import java.util.*;
 
@@ -43,18 +42,6 @@ public class FLATErrorListener extends BaseErrorListener {
 
     public FLATErrorListener() {
         super();
-    }
-
-    /**
-     * Prints an error message to the console with the line and column number
-     * specified by the parameters. The error flag is also set.
-     *
-     * @param colNo
-     * @param errorMsg
-     */
-    public static void syntaxError(int colNo, String errorMsg) {
-        FLATErrorListener.gotError = true;
-        FLATErrorListener.errors.add(new Message(errorMsg, colNo));
     }
 
     /**
@@ -210,27 +197,26 @@ public class FLATErrorListener extends BaseErrorListener {
 
             // Now check to see which type of error it is. If the offending token is a ) and the previous one is
             // either whitespace or an operator then they didn't enter an operand on the rhs.
-            if (tokId == FLATLexer.CLOSE_PAREN && (prevTokId == FLATLexer.WHITESPACE || prevTokId == FLATLexer.AND || prevTokId == FLATLexer.OR
-                    || prevTokId == FLATLexer.IMP || prevTokId == FLATLexer.BICOND || prevTokId == FLATLexer.XOR)) {
+            if (this.isCloseParenthesisToken(tokId) && (this.isWhitespaceToken(prevTokId) || this.isBinaryOpToken(prevTokId))) {
                 errorMsg = "Missing operand on right-hand side at closing parenthesis ')' near " + surroundingText;
             }
             // If the offending token is a ) then there are too many.
-            else if (tokId == FLATLexer.CLOSE_PAREN) {
-                errorMsg = "Extra closing ')' parentheses at " + surroundingText + " (you either have too many, or your formula does not need them)";
+            else if (this.isCloseParenthesisToken(tokId)) {
+                errorMsg = "Extra closing ')' parentheses at " + surroundingText
+                        + ". Check your formula for\t\n1. Too many closing ')' parentheses\t\n"
+                        + "2. If your formula needs them/invalid characters\t\n3. If you put extra opening '(' parentheses.";
             }
             // If the PREVIOUS token is an opening parenthesis and the current offending one is a binop or a whitespace,
             // then we forgot an operand on the lhs.
-            else if (prevTokId == FLATLexer.OPEN_PAREN && (tokId == FLATLexer.WHITESPACE || tokId == FLATLexer.AND || tokId == FLATLexer.OR
-                    || tokId == FLATLexer.IMP || tokId == FLATLexer.BICOND || tokId == FLATLexer.XOR)) {
+            else if (this.isOpenParenthesisToken(prevTokId) && (this.isWhitespaceToken(tokId) || this.isBinaryOpToken(tokId))) {
                 errorMsg = "Missing operand on left-hand side at opening parenthesis '(' near " + surroundingText;
             }
             // If the PREVIOUS token (prior to the offending one) is a binary operator, then we used one where we shouldn't have.
-            else if (this.hasTooManyConnectives(prevTokId)) {
+            else if (this.isBinaryOpToken(tokId)) {
                 errorMsg = "Too many binary connectives found at " + surroundingText + ". Check your input!";
             }
             // If the offending token is EOF or a binop then we have unbalanced parentheses.
-            else if (tokId == FLATLexer.EOF || tokId == FLATLexer.AND || tokId == FLATLexer.OR
-                    || tokId == FLATLexer.IMP || tokId == FLATLexer.BICOND || tokId == FLATLexer.XOR) {
+            else if (tokId == FLATLexer.EOF) {
                 errorMsg = "Unbalanced parenthesis near " + surroundingText + ". Check your input!";
             }
             // If the offending token is an atom, then we combined two atoms when we shouldn't have.
@@ -249,16 +235,6 @@ public class FLATErrorListener extends BaseErrorListener {
 
     /**
      *
-     * @param _tokId
-     * @return
-     */
-    private boolean hasTooManyConnectives(int _tokId) {
-        return _tokId == FLATLexer.AND || _tokId == FLATLexer.OR
-                || _tokId == FLATLexer.IMP || _tokId == FLATLexer.BICOND || _tokId == FLATLexer.XOR;
-    }
-
-    /**
-     *
      * @param _input
      * @param _offTokPos
      * @return
@@ -273,10 +249,28 @@ public class FLATErrorListener extends BaseErrorListener {
         return surroundingText.toString();
     }
 
+    private boolean isBinaryOpToken(int _tokId) {
+        return _tokId == FLATLexer.AND || _tokId == FLATLexer.OR
+                || _tokId == FLATLexer.IMP || _tokId == FLATLexer.BICOND || _tokId == FLATLexer.XOR;
+    }
+
+    private boolean isWhitespaceToken(int _tokId) {
+        return _tokId == FLATLexer.WHITESPACE;
+    }
+
+    private boolean isOpenParenthesisToken(int _tokId) {
+        return _tokId == FLATLexer.OPEN_PAREN;
+    }
+
+    private boolean isCloseParenthesisToken(int _tokId) {
+        return _tokId == FLATLexer.CLOSE_PAREN;
+    }
+
     /**
      * @author joshuacrotts
      */
     public static class Message {
+
         private final String text;
         private final int colNo;
 
