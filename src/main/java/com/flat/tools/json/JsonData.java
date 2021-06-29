@@ -1,6 +1,5 @@
 package com.flat.tools.json;
 
-import com.flat.controller.Controller;
 import com.flat.models.fx.FxLanguageData;
 import com.flat.models.fx.FxMenuBarData;
 import com.flat.models.fx.FxSettingsData;
