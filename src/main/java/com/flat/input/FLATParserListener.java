@@ -1,5 +1,6 @@
 package com.flat.input;
 
+import com.flat.FLAT;
 import com.flat.FLATBaseListener;
 import com.flat.FLATParser;
 import com.flat.models.treenode.*;
@@ -36,6 +37,11 @@ public class FLATParserListener extends FLATBaseListener {
     private final FLATParser FLAT_PARSER;
 
     /**
+     *
+     */
+    private final FLATPredicateTable predicateTable;
+
+    /**
      * Stack to keep track of all in-progress subwffs.
      */
     private final Stack<WffTree> treeRoots;
@@ -61,6 +67,7 @@ public class FLATParserListener extends FLATBaseListener {
 
         this.FLAT_PARSER = _flatParser;
         this.PARSE_TREE = new ParseTreeProperty<>();
+        this.predicateTable = new FLATPredicateTable();
         this.treeRoots = new Stack<>();
         this.currentTrees = new ArrayList<>();
     }
@@ -229,7 +236,16 @@ public class FLATParserListener extends FLATBaseListener {
 
         String atomLetter = atomNode.toString().replaceAll("ATOM: ", "");
         PredicateNode predicate = new PredicateNode(atomLetter, parameters);
+
+        // Check to see if a definition exists and differs from this one. Throws a syntax error if so.
+        if (predicateTable.isDifferent(predicate)) {
+            FLATErrorListener.syntaxError(ctx, "Predicate " + atomLetter + " has arity " + parameters.size()
+                    + " but a previous version of " + atomLetter
+                    + " has arity " + this.predicateTable.getArity(predicate) + ".");
+        }
+
         this.wffTree.addChild(predicate);
+        this.predicateTable.addPredicate(predicate);
     }
 
     @Override
