@@ -116,6 +116,7 @@ public class NDWffTree {
             // It's a little ugly but it works.
             StringBuilder sb = new StringBuilder(String.format("%-50s", this.wffTree.getStringRep()));
             sb.append(this.derivationStep);
+
             sb.append(", ");
             for (int i = 0; i < this.derivedParentIndices.size() - 1; i++) {
                 sb.append(this.derivedParentIndices.get(i));
@@ -233,10 +234,10 @@ public class NDWffTree {
         } else if (_node.isNegation() && !_node.isNegAnd() && !_node.isNegImp() && !_node.isNegOr()) {
             this.value = 4;
         } else if (_node.isExistential()) {
+            // Existential HAS to be the last operation because we can't risk performing EE too early.
+            // Performing UE too early adds an UNNECESSARY constant, but it's fine.
             this.value = 14;
         } else if (_node.isUniversal()) {
-            // Universal HAS to be the last operation - if not, then we run the risk of applying it before we
-            // have a constant available.
             this.value = 13;
         } else if (_node.isAnd()) {
             this.value = 6;

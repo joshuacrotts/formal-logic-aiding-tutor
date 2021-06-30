@@ -651,7 +651,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     private void addUniversalConstants(NDWffTree _universalNDWffTree, char _variableToReplace) {
         // Add a default constant if one is not available to the universal quantifier.
         if (this.constants.isEmpty()) {
-            return;
+            this.constants.add('a');
         }
         Set<Character> replaceConstants = FLATUtils.union(this.constants, this.conclusionConstants);
 

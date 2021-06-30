@@ -1,0 +1,63 @@
+\documentclass[tikz,border=10pt]{standalone}
+\newcommand*\lif{\mathbin{\to}}% added thanks to egreg's suggestion
+\usepackage{forest}
+\usepackage{amsfonts}
+\newcommand{\varlnot}{\mathord{\sim}}
+\newcommand{\varland}{\mathbin{\&}}
+\newcommand{\varliff}{\leftrightarrow}
+\newcommand{\dneg}{\varlnot\varlnot}
+\forestset{
+  smullyan tableaux/.style={
+    for tree={
+        s sep'=20ex,
+        math content,
+        parent anchor=south,
+        child anchor=north
+    },
+    where n children=1{
+      !1.before computing xy={l=\baselineskip},
+      !1.no edge,
+    }{},
+    closed/.style={
+      label=below:$\times$
+    },
+    open/.style={
+      label=below:open
+    },
+    uni/.style={
+    label=right:*
+    },
+    uns/.style={
+    label=right:?
+    },
+  },
+}
+\begin{document}
+\begin{forest}
+smullyan tableaux
+[((\exists \mathrm{x})(\mathrm{D}\mathrm{x} \mathbin{\&} \mathrm{E}\mathrm{x}) \mathbin{\&} \varlnot ((\exists \mathrm{x})\mathrm{D}\mathrm{x} \mathbin{\&} (\exists \mathrm{x})\mathrm{E}\mathrm{x}))
+	[(\exists \mathrm{x})(\mathrm{D}\mathrm{x} \mathbin{\&} \mathrm{E}\mathrm{x})
+		[\varlnot ((\exists \mathrm{x})\mathrm{D}\mathrm{x} \mathbin{\&} (\exists \mathrm{x})\mathrm{E}\mathrm{x})
+			[(\mathrm{D}\mathrm{a} \mathbin{\&} \mathrm{E}\mathrm{a})
+				[\mathrm{D}\mathrm{a}
+					[\mathrm{E}\mathrm{a}
+						[\varlnot (\exists \mathrm{x})\mathrm{D}\mathrm{x}
+							[(\mathrm{x})\varlnot \mathrm{D}\mathrm{x}, uni
+								[\varlnot \mathrm{D}\mathrm{a}, closed
+								]
+							]
+						]
+						[\varlnot (\exists \mathrm{x})\mathrm{E}\mathrm{x}
+							[(\mathrm{x})\varlnot \mathrm{E}\mathrm{x}, uni
+								[\varlnot \mathrm{E}\mathrm{a}, closed
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{forest}
+\end{document}
