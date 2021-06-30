@@ -16,6 +16,11 @@ public class FxSettingsData {
     private final static Text secondaryColor = new Text("Secondary Color:");
     private final static Text borderColor = new Text("Border Color:");
     private final static Text language = new Text("Language");
+    private final static Text predicateNDVTimeout = new Text("100");
+    private final static Text predicateTruthTreeTimeout = new Text("100");
+    private final static Text propositionalNDVTimeout = new Text("100");
+    private final static Text propositionalTruthTreeTimeout = new Text("100");
+    private final static Text truthTableTimeout = new Text("100");
 
     public static void injectData(JsonLanguage _jsonLanguage, JsonSettings _jsonSettings) {
         title.setText(_jsonSettings.getTitle().getString());
@@ -59,6 +64,26 @@ public class FxSettingsData {
 
     public static Text getLanguage() {
         return language;
+    }
+
+    public static Text getPredicateNDVTimeout() {
+        return predicateNDVTimeout;
+    }
+
+    public static Text getPredicateTruthTreeTimeout() {
+        return predicateTruthTreeTimeout;
+    }
+
+    public static Text getPropositionalNDVTimeout() {
+        return propositionalNDVTimeout;
+    }
+
+    public static Text getPropositionalTruthTreeTimeout() {
+        return propositionalTruthTreeTimeout;
+    }
+
+    public static Text getTruthTableTimeout() {
+        return truthTableTimeout;
     }
 
 }

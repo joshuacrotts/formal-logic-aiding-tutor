@@ -14,14 +14,9 @@ public class LanguagePane extends VBox {
     private LanguageButtonBar buttonBar = new LanguageButtonBar();
 
     public LanguagePane() {
-        super.getChildren().addAll(this.languageListPane, this.buttonBar);
-        super.setStyle("-fx-background-color: brown");
-        super.setAlignment(Pos.CENTER);
-        this.setLanguageListPaneFx();
-    }
-
-    private void setLanguageListPaneFx() {
         VBox.setVgrow(this.languageListPane, Priority.ALWAYS);
+        super.getChildren().addAll(this.languageListPane, this.buttonBar);
+        super.setAlignment(Pos.CENTER);
     }
 
 }

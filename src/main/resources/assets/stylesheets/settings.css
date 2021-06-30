@@ -1,10 +1,10 @@
-/* 
+/*
     Created on : Jun 27, 2021, 4:17:14 AM
     Author     : Christopher Brantley <ccbrantley@uncg.edu>
 */
 
 .tab-pane {
-    -fx-background-color: yellow;
+    -fx-background-color: white;
     -fx-tab-min-height: 100px;
     -fx-tab-min-width: 100px;
 }

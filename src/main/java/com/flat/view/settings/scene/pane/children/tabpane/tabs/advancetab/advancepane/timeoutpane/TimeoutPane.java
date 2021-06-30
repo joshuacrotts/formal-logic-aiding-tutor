@@ -24,6 +24,8 @@ public class TimeoutPane extends VBox {
                 this.propositionalNDV, this.propositionalTruthTree,
                 this.truthTable);
         super.setAlignment(Pos.CENTER);
+        super.setSpacing(10);
+        super.setMaxWidth(700);
     }
 
 }

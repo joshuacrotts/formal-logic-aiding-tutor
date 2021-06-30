@@ -14,7 +14,6 @@ public class AppearancePane extends HBox {
 
     public AppearancePane() {
         super.getChildren().addAll(this.colorPane, this.previewPane);
-        super.setStyle("-fx-background-color: orange");
         super.setAlignment(Pos.CENTER);
     }
 

@@ -1,4 +1,4 @@
-/* 
+/*
     Created on : Jun 20, 2021, 5:10:21 PM
     Author     : Christopher Brantley
 
@@ -8,6 +8,7 @@
 @import "menubar.css";
 @import "settings.css";
 @import "previewborderpane.css";
+@import "textfield.css";
 
 .root {
     -fx-background-color: black;
