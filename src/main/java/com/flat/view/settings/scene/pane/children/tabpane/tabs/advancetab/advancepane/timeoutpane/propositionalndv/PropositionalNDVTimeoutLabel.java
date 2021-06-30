@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 public class PropositionalNDVTimeoutLabel extends Label {
 
     public PropositionalNDVTimeoutLabel () {
-        super.setText("Propositional Natural Deduction Validator Timeout:");
+        super.setText("Propositional Natural Deduction Validator:");
     }
 
 }

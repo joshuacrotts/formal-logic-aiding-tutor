@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 public class PredicateTruthTreeTimeoutLabel extends Label {
 
     public PredicateTruthTreeTimeoutLabel () {
-        super.setText("Predicate Truth Tree Timeout:");
+        super.setText("Predicate Truth Tree:");
     }
 
 }

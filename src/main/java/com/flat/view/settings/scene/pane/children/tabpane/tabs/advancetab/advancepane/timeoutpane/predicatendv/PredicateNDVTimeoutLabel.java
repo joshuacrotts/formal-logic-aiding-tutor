@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 public class PredicateNDVTimeoutLabel extends Label {
 
     public PredicateNDVTimeoutLabel () {
-        super.setText("Predicate Natural Deduction Validator Timeout:");
+        super.setText("Predicate Natural Deduction Validator:");
     }
 
 }
