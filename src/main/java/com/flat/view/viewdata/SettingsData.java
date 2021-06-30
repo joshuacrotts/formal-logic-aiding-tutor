@@ -1,4 +1,4 @@
-package com.flat.models.fx;
+package com.flat.view.viewdata;
 
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.settings.JsonSettings;
@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class FxSettingsData {
+public class SettingsData {
     private final static Text title = new Text("Settings");
     private final static Text apply = new Text("Apply");
     private final static Text close = new Text("Close");

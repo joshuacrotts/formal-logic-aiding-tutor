@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.colorpane.bordercolorpane;
 
-import com.flat.models.fx.FxPreviewData;
+import com.flat.view.viewdata.PreviewData;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 
@@ -15,7 +15,7 @@ public class BorderColorPicker extends ColorPicker {
 
     private void setOnAction() {
         super.setOnAction((event) -> {
-            FxPreviewData.getBorderColor().setColor(new Color(super.getValue().getRed(), super.getValue().getGreen(), super.getValue().getBlue(), super.getValue().getOpacity()));
+            PreviewData.getBorderColor().setColor(new Color(super.getValue().getRed(), super.getValue().getGreen(), super.getValue().getBlue(), super.getValue().getOpacity()));
         });
     }
 

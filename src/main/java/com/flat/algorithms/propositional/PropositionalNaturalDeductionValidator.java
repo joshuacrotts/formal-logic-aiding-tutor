@@ -397,4 +397,15 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         }
         return false;
     }
+
+    // Getters
+    public static int getTimeout() {
+        return timeout;
+    }
+
+    // Setters
+    public static void setTimeout(int timeout) {
+        PropositionalNaturalDeductionValidator.timeout = timeout;
+    }
+
 }

@@ -1,6 +1,6 @@
-package com.flat.models.fx.observables.color.extend;
+package com.flat.view.viewdata.observables.color.extend;
 
-import com.flat.models.fx.observables.color.ObservableColor;
+import com.flat.view.viewdata.observables.color.ObservableColor;
 
 /**
  * @author Christopher Brantley <ccbrantley@uncg.edu>

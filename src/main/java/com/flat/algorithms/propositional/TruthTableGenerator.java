@@ -356,4 +356,15 @@ public final class TruthTableGenerator {
 
         return atoms.size();
     }
+
+    // Getters
+    public static int getMaxAtoms() {
+        return maxAtoms;
+    }
+
+    // Setters
+    public static void setMaxAtoms(int maxAtoms) {
+        TruthTableGenerator.maxAtoms = maxAtoms;
+    }
+
 }

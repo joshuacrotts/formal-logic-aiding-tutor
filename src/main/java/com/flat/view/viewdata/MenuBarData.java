@@ -1,4 +1,4 @@
-package com.flat.models.fx;
+package com.flat.view.viewdata;
 
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.menubar.JsonMenuBar;
@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 /**
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
-public class FxMenuBarData {
+public class MenuBarData {
     private final static Text file = new Text("File");
     private final static Text resetView = new Text("Reset View");
     private final static Text settings = new Text("Settings");

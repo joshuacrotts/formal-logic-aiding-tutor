@@ -219,4 +219,15 @@ public final class PredicateTruthTreeGenerator extends BaseTruthTreeGenerator {
             curr = curr.getParent();
         }
     }
+
+    // Getters
+    public static int getTimeout() {
+        return timeout;
+    }
+
+    // Setters
+    public static void setTimeout(int timeout) {
+        PredicateTruthTreeGenerator.timeout = timeout;
+    }
+
 }

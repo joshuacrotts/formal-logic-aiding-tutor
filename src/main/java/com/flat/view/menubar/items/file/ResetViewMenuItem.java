@@ -1,7 +1,7 @@
 package com.flat.view.menubar.items.file;
 
 import com.flat.controller.Controller;
-import com.flat.models.fx.FxMenuBarData;
+import com.flat.view.viewdata.MenuBarData;
 import javafx.scene.control.MenuItem;
 
 /**
@@ -10,7 +10,7 @@ import javafx.scene.control.MenuItem;
 public class ResetViewMenuItem extends MenuItem {
 
     public ResetViewMenuItem() {
-        super.textProperty().bind(FxMenuBarData.getResetView().textProperty());
+        super.textProperty().bind(MenuBarData.getResetView().textProperty());
         super.setOnAction((event) -> {
             Controller.resetView();
         });

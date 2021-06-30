@@ -711,4 +711,15 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         VARIABLE,
         CONSTANT
     }
+
+    // Getters
+    public static int getTimeout() {
+        return timeout;
+    }
+
+    // Setters
+    public static void setTimeout(int timeout) {
+        PredicateNaturalDeductionValidator.timeout = timeout;
+    }
+
 }

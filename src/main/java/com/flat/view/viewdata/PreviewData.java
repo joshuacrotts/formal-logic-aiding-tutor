@@ -1,13 +1,13 @@
-package com.flat.models.fx;
+package com.flat.view.viewdata;
 
-import com.flat.models.fx.observables.color.extend.ObservableBorderColor;
-import com.flat.models.fx.observables.color.extend.ObservablePrimaryColor;
-import com.flat.models.fx.observables.color.extend.ObservableSecondaryColor;
+import com.flat.view.viewdata.observables.color.extend.ObservableBorderColor;
+import com.flat.view.viewdata.observables.color.extend.ObservablePrimaryColor;
+import com.flat.view.viewdata.observables.color.extend.ObservableSecondaryColor;
 
 /**
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
-public class FxPreviewData {
+public class PreviewData {
     private final static ObservablePrimaryColor primaryColor = new ObservablePrimaryColor();
     private final static ObservableSecondaryColor secondaryColor = new ObservableSecondaryColor();
     private final static ObservableBorderColor borderColor = new ObservableBorderColor();

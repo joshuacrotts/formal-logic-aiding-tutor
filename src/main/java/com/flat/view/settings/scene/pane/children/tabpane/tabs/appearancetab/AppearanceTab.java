@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab;
 
-import com.flat.models.fx.FxSettingsData;
+import com.flat.view.viewdata.SettingsData;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.AppearancePane;
 import javafx.scene.control.Tab;
 
@@ -11,7 +11,7 @@ public class AppearanceTab extends Tab {
     private final AppearancePane appearancePane = new AppearancePane();
 
     public AppearanceTab() {
-        super.textProperty().bind(FxSettingsData.getAppearance().textProperty());
+        super.textProperty().bind(SettingsData.getAppearance().textProperty());
         super.setContent(this.appearancePane);
     }
 

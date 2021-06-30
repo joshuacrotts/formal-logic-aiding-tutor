@@ -1,6 +1,6 @@
 package com.flat.view.menubar.items.export.pdf;
 
-import com.flat.models.fx.FxMenuBarData;
+import com.flat.view.viewdata.MenuBarData;
 import javafx.scene.control.MenuItem;
 
 /**
@@ -9,7 +9,7 @@ import javafx.scene.control.MenuItem;
 public class PdfLatexParseTreeMenuItem extends MenuItem {
 
     public PdfLatexParseTreeMenuItem() {
-        super.textProperty().bind(FxMenuBarData.getPdfLatexParseTree().textProperty());
+        super.textProperty().bind(MenuBarData.getPdfLatexParseTree().textProperty());
     }
 
 }

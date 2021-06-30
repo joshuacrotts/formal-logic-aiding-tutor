@@ -1,5 +1,6 @@
 package com.flat.controller;
 
+import com.flat.models.TimeoutManager;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.tools.font.FontTool;
 import com.flat.tools.font.enums.FontLocal.FontFamily;
@@ -7,6 +8,7 @@ import com.flat.tools.json.JsonData;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
 import com.flat.view.settings.SettingsStage;
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -38,6 +40,16 @@ public class Controller {
 
     public static void applyFont (Stage _stage) {
         _stage.getScene().getRoot().setStyle("-fx-font-family: " + jsonLanguage.getFont().getFamily());
+    }
+
+    public static boolean updateTimeouts () {
+        return TimeoutManager.updateConstraints(
+                Integer.valueOf(SettingsData.getPredicateNDVTimeout().getText()),
+                Integer.valueOf(SettingsData.getPredicateTruthTreeTimeout().getText()),
+                Integer.valueOf(SettingsData.getPropositionalNDVTimeout().getText()),
+                Integer.valueOf(SettingsData.getPropositionalTruthTreeTimeout().getText()),
+                Integer.valueOf(SettingsData.getTruthTableTimeout().getText())
+        );
     }
 
     public static void resetView () {

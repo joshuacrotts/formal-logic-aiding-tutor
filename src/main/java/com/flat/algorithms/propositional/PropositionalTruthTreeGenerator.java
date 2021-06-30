@@ -78,4 +78,15 @@ public final class PropositionalTruthTreeGenerator extends BaseTruthTreeGenerato
             }
         }
     }
+
+    // Getters
+    public static int getTimeout() {
+        return timeout;
+    }
+
+    // Setters
+    public static void setTimeout(int timeout) {
+        PropositionalTruthTreeGenerator.timeout = timeout;
+    }
+
 }

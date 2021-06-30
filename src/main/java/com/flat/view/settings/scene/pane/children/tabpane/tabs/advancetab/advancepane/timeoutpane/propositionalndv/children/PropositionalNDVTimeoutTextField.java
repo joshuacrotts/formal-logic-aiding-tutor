@@ -1,16 +1,16 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.propositionalndv.children;
 
-import com.flat.models.fx.FxSettingsData;
-import javafx.scene.control.TextField;
+import com.flat.view.viewdata.SettingsData;
+import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.NumericTextField;
 
 /**
  *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
-public class PropositionalNDVTimeoutTextField extends TextField {
+public class PropositionalNDVTimeoutTextField extends NumericTextField {
 
     public PropositionalNDVTimeoutTextField () {
-        super.textProperty().bindBidirectional(FxSettingsData.getPropositionalNDVTimeout().textProperty());
+        super.textProperty().bindBidirectional(SettingsData.getPropositionalNDVTimeout().textProperty());
     }
 
 }

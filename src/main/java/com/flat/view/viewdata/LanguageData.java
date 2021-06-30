@@ -1,4 +1,4 @@
-package com.flat.models.fx;
+package com.flat.view.viewdata;
 
 import com.flat.models.json.language.JsonLanguage;
 import edu.emory.mathcs.backport.java.util.Arrays;
@@ -9,12 +9,12 @@ import java.util.List;
 /**
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
-public class FxLanguageData {
+public class LanguageData {
     private final static List<JsonLanguage> languages = FXCollections.observableArrayList();
 
     public static void injectData(JsonLanguage[] _languages) {
-        FxLanguageData.languages.removeAll(FxLanguageData.languages);
-        FxLanguageData.languages.addAll(Arrays.asList(_languages));
+        LanguageData.languages.removeAll(LanguageData.languages);
+        LanguageData.languages.addAll(Arrays.asList(_languages));
     }
 
     // Getters for object's attributes.

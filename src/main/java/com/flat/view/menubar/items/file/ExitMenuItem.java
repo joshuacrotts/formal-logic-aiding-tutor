@@ -1,6 +1,6 @@
 package com.flat.view.menubar.items.file;
 
-import com.flat.models.fx.FxMenuBarData;
+import com.flat.view.viewdata.MenuBarData;
 import javafx.scene.control.MenuItem;
 
 /**
@@ -9,7 +9,7 @@ import javafx.scene.control.MenuItem;
 public class ExitMenuItem extends MenuItem {
 
     public ExitMenuItem() {
-        super.textProperty().bind(FxMenuBarData.getExit().textProperty());
+        super.textProperty().bind(MenuBarData.getExit().textProperty());
         super.setOnAction((event) -> {
             System.exit(0);
         });

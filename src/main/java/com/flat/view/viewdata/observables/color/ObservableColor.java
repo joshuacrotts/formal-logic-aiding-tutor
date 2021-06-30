@@ -1,4 +1,4 @@
-package com.flat.models.fx.observables.color;
+package com.flat.view.viewdata.observables.color;
 
 import javafx.scene.paint.Color;
 

@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.buttons;
 
-import com.flat.models.fx.FxSettingsData;
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class SettingsCloseButton extends Button {
 
     public SettingsCloseButton() {
-        super.textProperty().bind(FxSettingsData.getClose().textProperty());
+        super.textProperty().bind(SettingsData.getClose().textProperty());
         super.setCancelButton(true);
         this.setOnAction();
     }

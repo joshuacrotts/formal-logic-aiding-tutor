@@ -1,6 +1,6 @@
 package com.flat.view.menubar.menus;
 
-import com.flat.models.fx.FxMenuBarData;
+import com.flat.view.viewdata.MenuBarData;
 import com.flat.view.menubar.items.file.ExitMenuItem;
 import com.flat.view.menubar.items.file.ResetViewMenuItem;
 import com.flat.view.menubar.items.file.SettingsMenuItem;
@@ -15,7 +15,7 @@ public class FileMenu extends Menu {
     private final ExitMenuItem exitMenuItem = new ExitMenuItem();
 
     public FileMenu() {
-        super.textProperty().bind(FxMenuBarData.getFile().textProperty());
+        super.textProperty().bind(MenuBarData.getFile().textProperty());
         super.getItems().addAll(this.restartMenuItem,
                 this.settingsMenuItem,
                 this.exitMenuItem

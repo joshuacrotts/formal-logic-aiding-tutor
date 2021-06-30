@@ -1,8 +1,8 @@
 package com.flat.tools.json;
 
-import com.flat.models.fx.FxLanguageData;
-import com.flat.models.fx.FxMenuBarData;
-import com.flat.models.fx.FxSettingsData;
+import com.flat.view.viewdata.LanguageData;
+import com.flat.view.viewdata.MenuBarData;
+import com.flat.view.viewdata.SettingsData;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.menubar.JsonMenuBar;
 import com.flat.models.json.settings.JsonSettings;
@@ -24,7 +24,7 @@ public class JsonData {
     private JsonLanguage[] language = JsonTools.jsonToObjectList(JsonLanguage.NONE, JsonLocal.File.LANGUAGE, JsonLanguage[].class);
 
     private JsonData() {
-        FxLanguageData.injectData(language);
+        LanguageData.injectData(language);
         this.update(JsonLanguage.DEFAULT);
     }
 
@@ -66,8 +66,8 @@ public class JsonData {
     }
 
     private void updateFxData(JsonLanguage _language) {
-        FxMenuBarData.injectData(_language, this.jsonMenuBar);
-        FxSettingsData.injectData(_language, this.jsonSettings);
+        MenuBarData.injectData(_language, this.jsonMenuBar);
+        SettingsData.injectData(_language, this.jsonSettings);
     }
 
     // Getters for object's attributes.

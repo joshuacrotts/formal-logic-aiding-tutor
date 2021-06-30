@@ -1,6 +1,6 @@
 package com.flat.view.menubar.items.export.latex;
 
-import com.flat.models.fx.FxMenuBarData;
+import com.flat.view.viewdata.MenuBarData;
 import javafx.scene.control.MenuItem;
 
 /**
@@ -9,7 +9,7 @@ import javafx.scene.control.MenuItem;
 public class LatexTruthTreeMenuItem extends MenuItem {
 
     public LatexTruthTreeMenuItem() {
-        super.textProperty().bind(FxMenuBarData.getPdfLatexTruthTree().textProperty());
+        super.textProperty().bind(MenuBarData.getPdfLatexTruthTree().textProperty());
     }
 
 }

@@ -1,16 +1,16 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.propositionaltruthtree.children;
 
-import com.flat.models.fx.FxSettingsData;
-import javafx.scene.control.TextField;
+import com.flat.view.viewdata.SettingsData;
+import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.NumericTextField;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class PropositionalTruthTreeTimeoutTextField extends TextField {
+public class PropositionalTruthTreeTimeoutTextField extends NumericTextField {
 
     public PropositionalTruthTreeTimeoutTextField() {
-        super.textProperty().bindBidirectional(FxSettingsData.getPropositionalTruthTreeTimeout().textProperty());
+        super.textProperty().bindBidirectional(SettingsData.getPropositionalTruthTreeTimeout().textProperty());
     }
 
 }

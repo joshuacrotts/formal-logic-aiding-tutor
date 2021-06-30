@@ -9,6 +9,7 @@
 @import "settings.css";
 @import "previewborderpane.css";
 @import "textfield.css";
+@import "alerts.css";
 
 .root {
     -fx-background-color: black;

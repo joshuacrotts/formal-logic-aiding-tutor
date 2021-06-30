@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.colorpane.primarycolorpane;
 
-import com.flat.models.fx.FxSettingsData;
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Label;
 
 /**
@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 public class PrimaryColorLabel extends Label {
 
     public PrimaryColorLabel() {
-        super.textProperty().bind(FxSettingsData.getPrimaryColor().textProperty());
+        super.textProperty().bind(SettingsData.getPrimaryColor().textProperty());
     }
 
 }

@@ -1,6 +1,6 @@
 package com.flat.view.menubar.menus.export;
 
-import com.flat.models.fx.FxMenuBarData;
+import com.flat.view.viewdata.MenuBarData;
 import javafx.scene.control.Menu;
 
 /**
@@ -11,7 +11,7 @@ public class ExportMenu extends Menu {
     private final ExportAsPdfMenu exportAsPdfMenu = new ExportAsPdfMenu();
 
     public ExportMenu() {
-        super.textProperty().bind(FxMenuBarData.getExport().textProperty());
+        super.textProperty().bind(MenuBarData.getExport().textProperty());
         super.getItems().addAll(this.exportAsLatexMenu, this.exportAsPdfMenu);
     }
 

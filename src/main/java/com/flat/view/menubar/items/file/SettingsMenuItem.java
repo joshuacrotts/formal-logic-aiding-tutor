@@ -1,7 +1,7 @@
 package com.flat.view.menubar.items.file;
 
 import com.flat.controller.Controller;
-import com.flat.models.fx.FxMenuBarData;
+import com.flat.view.viewdata.MenuBarData;
 import com.flat.view.settings.SettingsStage;
 import javafx.scene.control.MenuItem;
 
@@ -11,7 +11,7 @@ import javafx.scene.control.MenuItem;
 public class SettingsMenuItem extends MenuItem {
 
     public SettingsMenuItem() {
-        super.textProperty().bind(FxMenuBarData.getSettings().textProperty());
+        super.textProperty().bind(MenuBarData.getSettings().textProperty());
         this.setOnAction();
     }
 

@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.colorpane.bordercolorpane;
 
-import com.flat.models.fx.FxSettingsData;
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Label;
 
 /**
@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 public class BorderColorLabel extends Label {
 
     public BorderColorLabel() {
-        super.textProperty().bind(FxSettingsData.getBorderColor().textProperty());
+        super.textProperty().bind(SettingsData.getBorderColor().textProperty());
     }
 
 }

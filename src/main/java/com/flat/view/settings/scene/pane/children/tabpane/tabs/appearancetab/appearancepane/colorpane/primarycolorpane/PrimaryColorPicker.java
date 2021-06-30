@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.colorpane.primarycolorpane;
 
-import com.flat.models.fx.FxPreviewData;
+import com.flat.view.viewdata.PreviewData;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 
@@ -15,7 +15,7 @@ public class PrimaryColorPicker extends ColorPicker {
 
     private void setOnAction() {
         super.setOnAction((event) -> {
-            FxPreviewData.getPrimaryColor().setColor(new Color(super.getValue().getRed(), super.getValue().getGreen(), super.getValue().getBlue(), super.getOpacity()));
+            PreviewData.getPrimaryColor().setColor(new Color(super.getValue().getRed(), super.getValue().getGreen(), super.getValue().getBlue(), super.getOpacity()));
         });
     }
 

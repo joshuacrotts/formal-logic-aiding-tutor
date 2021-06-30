@@ -1,6 +1,6 @@
 package com.flat.view.menubar.items.help;
 
-import com.flat.models.fx.FxMenuBarData;
+import com.flat.view.viewdata.MenuBarData;
 import javafx.scene.control.MenuItem;
 
 /**
@@ -9,7 +9,7 @@ import javafx.scene.control.MenuItem;
 public class AboutMenuItem extends MenuItem {
 
     public AboutMenuItem() {
-        super.textProperty().bind(FxMenuBarData.getAbout().textProperty());
+        super.textProperty().bind(MenuBarData.getAbout().textProperty());
     }
 
 }

@@ -1,6 +1,6 @@
 package com.flat.view.menubar.menus;
 
-import com.flat.models.fx.FxMenuBarData;
+import com.flat.view.viewdata.MenuBarData;
 import com.flat.view.menubar.items.help.AboutMenuItem;
 import javafx.scene.control.Menu;
 
@@ -11,7 +11,7 @@ public class HelpMenu extends Menu {
     private final AboutMenuItem aboutMenuItem = new AboutMenuItem();
 
     public HelpMenu() {
-        super.textProperty().bind(FxMenuBarData.getHelp().textProperty());
+        super.textProperty().bind(MenuBarData.getHelp().textProperty());
         super.getItems().addAll(this.aboutMenuItem);
     }
 
