@@ -1,5 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane;
 
+import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.AdvanceTab;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.AppearanceTab;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.LanguageTab;
 import javafx.geometry.Side;
@@ -11,10 +12,11 @@ import javafx.scene.control.TabPane;
 public class SettingsTabPane extends TabPane {
     private final AppearanceTab appearanceTab = new AppearanceTab();
     private final LanguageTab languageTab = new LanguageTab();
+    private final AdvanceTab advanceTab = new AdvanceTab();
 
     public SettingsTabPane() {
         this.setFxProperties();
-        super.getTabs().addAll(this.appearanceTab, this.languageTab);
+        super.getTabs().addAll(this.appearanceTab, this.languageTab, this.advanceTab);
     }
 
     private void setFxProperties() {
