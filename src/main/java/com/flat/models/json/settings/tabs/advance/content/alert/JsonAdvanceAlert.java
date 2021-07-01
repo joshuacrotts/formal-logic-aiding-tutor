@@ -1,6 +1,5 @@
 package com.flat.models.json.settings.tabs.advance.content.alert;
 
-import com.flat.models.TimeoutManager;
 import com.flat.models.json.JsonString;
 import com.flat.models.translation.Translatable;
 import java.util.LinkedList;
@@ -13,7 +12,7 @@ public class JsonAdvanceAlert extends Translatable {
     private JsonString message = new JsonString("Message");
     private JsonString messageText = new JsonString("Timeout values were updated.");
     private JsonString error = new JsonString("Error");
-    private JsonString errorText = new JsonString("Please ensure values are within the range: (" + TimeoutManager.getMinValue() + ", " + TimeoutManager.getMaxValue() + ").");
+    private JsonString errorText = new JsonString("Please ensure values are within the specified range.");
     private JsonString ok = new JsonString("Ok");
 
     // Getters for object's attributes.

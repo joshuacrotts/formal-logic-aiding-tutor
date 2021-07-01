@@ -1,6 +1,5 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.buttonbar.button;
 
-import com.flat.models.TimeoutManager;
 import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
