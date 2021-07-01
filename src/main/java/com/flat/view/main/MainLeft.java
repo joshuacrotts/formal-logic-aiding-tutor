@@ -15,15 +15,16 @@ public class MainLeft {
         this.resizePane = new ResizePane(this.parentPane, ResizePane.Orientation.HORIZONTAL, ResizePane.Side.RIGHT);
         this.parentPane.getChildren().add(this.resizePane.getParentPane());
         this.initializeFx();
+        this.parentPane.borderProperty();
     }
 
     // Calls all FX property setters.
-    public void initializeFx() {
+    private void initializeFx() {
         this.setResizePaneFx();
     }
 
     // Setters for initial FX properties
-    public void setResizePaneFx() {
+    private void setResizePaneFx() {
         this.parentPane.widthProperty().addListener((obs, oldVal, newVal) -> {
             this.resizePane.getParentPane().setLayoutX(newVal.doubleValue() - this.resizePane.getParentPane().getMaxWidth());
         });
