@@ -1,34 +1,36 @@
 package com.flat.view.viewdata.border;
 
-import com.flat.view.viewdata.border.panes.BottomBorderProperty;
-import com.flat.view.viewdata.border.panes.LeftBorderProperty;
-import com.flat.view.viewdata.border.panes.RightBorderProperty;
-import com.flat.view.viewdata.border.panes.TopBorderProperty;
+import com.flat.view.viewdata.border.panes.BottomPaneProperties;
+import com.flat.view.viewdata.border.panes.LeftPaneProperties;
+import com.flat.view.viewdata.border.panes.RightPaneProperties;
+import com.flat.view.viewdata.border.panes.TopPaneProperties;
 
 /**
  *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
 public class BorderData {
-    private final static TopBorderProperty topProperty = new TopBorderProperty();
-    private final static RightBorderProperty rightProperty = new RightBorderProperty();
-    private final static BottomBorderProperty bottomProperty = new BottomBorderProperty();
-    private final static LeftBorderProperty leftProperty = new LeftBorderProperty();
+    public final static int WIDTH = 3;
+    private final static TopPaneProperties topProperty = new TopPaneProperties();
+    private final static RightPaneProperties rightProperty = new RightPaneProperties();
+    private final static BottomPaneProperties bottomProperty = new BottomPaneProperties();
+    private final static LeftPaneProperties leftProperty = new LeftPaneProperties();
 
     // Getters for object's attributes.
-    public static TopBorderProperty getTopProperty() {
+
+    public static TopPaneProperties getTopProperty() {
         return topProperty;
     }
 
-    public static RightBorderProperty getRightProperty() {
+    public static RightPaneProperties getRightProperty() {
         return rightProperty;
     }
 
-    public static BottomBorderProperty getBottomProperty() {
+    public static BottomPaneProperties getBottomProperty() {
         return bottomProperty;
     }
 
-    public static LeftBorderProperty getLeftProperty() {
+    public static LeftPaneProperties getLeftProperty() {
         return leftProperty;
     }
 

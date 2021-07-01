@@ -1,8 +1,8 @@
-package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.colorpane;
+package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.previewpane.colorpane;
 
-import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.colorpane.bordercolorpane.BorderColorPane;
-import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.colorpane.primarycolorpane.PrimaryColorPane;
-import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.colorpane.secondarycolorpane.SecondaryColorPane;
+import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.previewpane.colorpane.bordercolorpane.BorderColorPane;
+import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.previewpane.colorpane.primarycolorpane.PrimaryColorPane;
+import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.previewpane.colorpane.secondarycolorpane.SecondaryColorPane;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 

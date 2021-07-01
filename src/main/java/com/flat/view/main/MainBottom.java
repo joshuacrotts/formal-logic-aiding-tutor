@@ -1,6 +1,7 @@
 package com.flat.view.main;
 
 import com.flat.view.action.ResizePane;
+import com.flat.view.viewdata.border.BorderData;
 import javafx.scene.layout.Pane;
 
 /**
@@ -11,7 +12,8 @@ public class MainBottom {
     private Pane parentPane = new Pane();
 
     public MainBottom() {
-        this.parentPane.setStyle("-fx-background-color: brown");
+        this.parentPane.backgroundProperty().bind(BorderData.getBottomProperty().backgroundProperty());
+        this.parentPane.borderProperty().bind(BorderData.getBottomProperty().borderProperty());
         this.resizePane = new ResizePane(this.parentPane, ResizePane.Orientation.VERTICAL, ResizePane.Side.TOP);
         this.parentPane.getChildren().add(this.resizePane.getParentPane());
         this.initializeFx();

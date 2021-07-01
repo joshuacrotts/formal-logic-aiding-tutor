@@ -14,6 +14,7 @@ public class PreviewBorderPane extends BorderPane {
     private final PreviewCenterPane previewCenterPane = new PreviewCenterPane();
 
     public PreviewBorderPane() {
+        super.setMaxHeight(USE_PREF_SIZE);
         super.setId("previewBorderPane");
         super.setTop(this.previewTopPane);
         super.setRight(this.previewRightPane);

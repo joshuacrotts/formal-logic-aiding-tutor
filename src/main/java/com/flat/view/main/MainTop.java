@@ -2,6 +2,7 @@ package com.flat.view.main;
 
 import com.flat.view.action.ResizePane;
 import com.flat.view.menubar.FLATMenuBar;
+import com.flat.view.viewdata.border.BorderData;
 import javafx.scene.layout.Pane;
 
 /**
@@ -12,7 +13,8 @@ public class MainTop {
     private Pane parentPane = new Pane();
 
     public MainTop() {
-        this.parentPane.setStyle("-fx-background-color: red");
+        this.parentPane.backgroundProperty().bind(BorderData.getTopProperty().backgroundProperty());
+        this.parentPane.borderProperty().bind(BorderData.getTopProperty().borderProperty());
         this.resizePane = new ResizePane(this.parentPane, ResizePane.Orientation.VERTICAL, ResizePane.Side.BOTTOM);
         this.parentPane.getChildren().add(new FLATMenuBar());
         this.parentPane.getChildren().add(this.resizePane.getParentPane());

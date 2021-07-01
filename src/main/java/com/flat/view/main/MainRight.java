@@ -1,6 +1,7 @@
 package com.flat.view.main;
 
 import com.flat.view.action.ResizePane;
+import com.flat.view.viewdata.border.BorderData;
 import javafx.scene.layout.Pane;
 
 /**
@@ -11,7 +12,8 @@ public class MainRight {
     private Pane parentPane = new Pane();
 
     public MainRight() {
-        this.parentPane.setStyle("-fx-background-color: purple");
+        this.parentPane.backgroundProperty().bind(BorderData.getRightProperty().backgroundProperty());
+        this.parentPane.borderProperty().bind(BorderData.getRightProperty().borderProperty());
         this.resizePane = new ResizePane(this.parentPane, ResizePane.Orientation.HORIZONTAL, ResizePane.Side.LEFT);
         this.parentPane.getChildren().add(this.resizePane.getParentPane());
         this.initializeFx();
