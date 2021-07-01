@@ -28,5 +28,47 @@
     "language": {
       "string": "ቋንቋ"
     }
+  },
+  "advanceTab": {
+    "advance": {
+      "string": "ወደፊት"
+    },
+    "advancePane": {
+      "predicateNDV": {
+        "string": "የተፈጥሮ ቅነሳን የሚያረጋግጥ ይተነብይ"
+      },
+      "predicateTruthTree": {
+        "string": "የእውነት ዛፍ ይተነብይ"
+      },
+      "propositionalNDV": {
+        "string": "ፕሮፖዛል የተፈጥሮ ቅነሳ ማረጋገጫ"
+      },
+      "propositionalTruthTree": {
+        "string": "ፕሮፖዚሽን የእውነት ዛፍ"
+      },
+      "truthTableGenerator": {
+        "string": "የእውነት ጠረጴዛ Generator"
+      },
+      "advanceAlert": {
+        "message": {
+          "string": "ማረጋገጫ"
+        },
+        "messageText": {
+          "string": "የጊዜ ማብቂያ ዋጋዎች ተዘምነዋል።"
+        },
+        "error": {
+          "string": "ስህተት"
+        },
+        "errorText": {
+          "string": "እባክዎ እሴቶቹ በክልሉ ውስጥ መሆናቸውን ያረጋግጡ (0 ፣ 1000)።"
+        },
+        "ok": {
+          "string": "እሺ"
+        },
+        "cancel": {
+          "string": "ሰርዝ"
+        }
+      }
+    }
   }
 }

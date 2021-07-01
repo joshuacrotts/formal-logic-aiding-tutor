@@ -1,9 +1,13 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.buttonbar.button;
 
 import com.flat.models.TimeoutManager;
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
 /**
@@ -14,7 +18,9 @@ public class AdvanceApplyAlert extends Alert {
 
     public AdvanceApplyAlert (AlertType _alertType, Window _window) {
         super(_alertType);
+        super.getDialogPane().styleProperty().bind(_window.getScene().getRoot().styleProperty());
         super.initModality(Modality.APPLICATION_MODAL);
+        super.initStyle(StageStyle.UNIFIED);
         super.initOwner(_window);
         this.setContent();
         this.centerOnStage();
@@ -22,13 +28,16 @@ public class AdvanceApplyAlert extends Alert {
 
     private void setContent () {
         if (super.getAlertType().equals(AlertType.ERROR)) {
+            super.titleProperty().bind(SettingsData.getError().textProperty());
             super.setHeaderText("");
-            super.setContentText("Please ensure values are within " + TimeoutManager.getMinValue() + " and " + TimeoutManager.getMaxValue() + ".");
+            super.contentTextProperty().bind(SettingsData.getErrorText().textProperty());
         }
         else {
+            super.titleProperty().bind(SettingsData.getMessage().textProperty());
             super.setHeaderText("");
-            super.setContentText("Timeout values were updated.");
+            super.contentTextProperty().bind(SettingsData.getMessageText().textProperty());
         }
+        ((Button)super.getDialogPane().lookupButton(ButtonType.OK)).textProperty().bind(SettingsData.getOk().textProperty());
     }
 
     private void centerOnStage () {

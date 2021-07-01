@@ -1,76 +1,76 @@
 {
   "fileMenu": {
     "file": {
-      "string": "Archivo"
+      "string": "ملف"
     },
     "resetViewMenuItem": {
       "reset": {
-        "string": "Reiniciar"
+        "string": "إعادة ضبط"
       }
     },
     "settingsMenuItem": {
       "settings": {
-        "string": "Ajustes"
+        "string": "إعدادات"
       }
     },
     "exitMenuItem": {
       "exit": {
-        "string": "Salida"
+        "string": "مخرج"
       }
     }
   },
   "exportMenu": {
     "export": {
-      "string": "Exportar"
+      "string": "يصدر"
     },
     "exportAsLatexMenu": {
       "exportAsLatex": {
-        "string": "Exportar como LaTeX (.tex)"
+        "string": "تصدير بتنسيق LaTeX (.tex)"
       },
       "latexParseTreeMenuItem": {
         "latexParseTree": {
-          "string": "Árbol de análisis de LaTeX"
+          "string": "شجرة تحليل LaTeX"
         }
       },
       "latexTruthTreeMenuItem": {
         "latexTruthTree": {
-          "string": "Árbol de la verdad LaTeX"
+          "string": "شجرة الحقيقة LaTeX"
         }
       },
       "latexTruthTableMenuItem": {
         "latexTruthTable": {
-          "string": "Tabla de verdad LaTeX"
+          "string": "جدول الحقيقة LaTeX"
         }
       }
     },
     "exportAsPdfMenu": {
       "exportAsPdf": {
-        "string": "Exportar como PDF (.pdf)"
+        "string": "تصدير بتنسيق Pdf (.pdf)"
       },
       "latexParseTreeMenuItem": {
         "latexParseTree": {
-          "string": "Árbol de análisis de LaTeX"
+          "string": "شجرة تحليل LaTeX"
         }
       },
       "latexTruthTreeMenuItem": {
         "latexTruthTree": {
-          "string": "Árbol de la verdad LaTeX"
+          "string": "شجرة الحقيقة LaTeX"
         }
       },
       "latexTruthTableMenuItem": {
         "latexTruthTable": {
-          "string": "Tabla de verdad LaTeX"
+          "string": "جدول الحقيقة LaTeX"
         }
       }
     }
   },
   "helpMenu": {
     "help": {
-      "string": "Ayudar"
+      "string": "مساعدة"
     },
     "aboutMenuItem": {
       "about": {
-        "string": "Acerca de"
+        "string": "حول"
       }
     }
   }

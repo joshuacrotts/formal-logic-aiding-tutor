@@ -1,5 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.propositionalndv.children;
 
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Label;
 
 /**
@@ -9,7 +10,7 @@ import javafx.scene.control.Label;
 public class PropositionalNDVTimeoutLabel extends Label {
 
     public PropositionalNDVTimeoutLabel () {
-        super.setText("Propositional Natural Deduction Validator:");
+        super.textProperty().bind(SettingsData.getPropositionalNDV().textProperty());
     }
 
 }

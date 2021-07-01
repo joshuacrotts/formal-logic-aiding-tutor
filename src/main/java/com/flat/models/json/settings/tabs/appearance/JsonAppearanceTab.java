@@ -1,7 +1,7 @@
-package com.flat.models.json.settings.tabs.appearancetab;
+package com.flat.models.json.settings.tabs.appearance;
 
 import com.flat.models.json.JsonString;
-import com.flat.models.json.settings.tabs.appearancetab.content.JsonColorPane;
+import com.flat.models.json.settings.tabs.appearance.content.JsonColorPane;
 import com.flat.models.translation.Translatable;
 
 import java.util.LinkedList;
@@ -18,13 +18,13 @@ public class JsonAppearanceTab extends Translatable {
         return appearance;
     }
 
+    public JsonColorPane getJsonColorPane() {
+        return jsonColorPane;
+    }
+
     // Setters for object's attributes.
     public void setAppearance(JsonString appearance) {
         this.appearance = appearance;
-    }
-
-    public JsonColorPane getJsonColorPane() {
-        return jsonColorPane;
     }
 
     public void setJsonColorPane(JsonColorPane jsonColorPane) {

@@ -11,7 +11,7 @@ public class AppearanceTab extends Tab {
     private final AppearancePane appearancePane = new AppearancePane();
 
     public AppearanceTab() {
-        super.textProperty().bind(SettingsData.getAppearance().textProperty());
+        super.textProperty().bind(SettingsData.getAppearanceTab().textProperty());
         super.setContent(this.appearancePane);
     }
 

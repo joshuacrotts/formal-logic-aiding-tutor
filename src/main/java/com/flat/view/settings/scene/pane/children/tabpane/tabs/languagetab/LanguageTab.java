@@ -11,7 +11,7 @@ public class LanguageTab extends Tab {
     private LanguagePane languagePane = new LanguagePane();
 
     public LanguageTab() {
-        super.textProperty().bind(SettingsData.getLanguage().textProperty());
+        super.textProperty().bind(SettingsData.getLanguageTab().textProperty());
         super.setContent(this.languagePane);
     }
 

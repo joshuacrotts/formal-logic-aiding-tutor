@@ -1,5 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.propositionaltruthtree.children;
 
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Label;
 
 /**
@@ -9,7 +10,7 @@ import javafx.scene.control.Label;
 public class PropositionalTruthTreeTimeoutLabel extends Label {
 
     public PropositionalTruthTreeTimeoutLabel () {
-        super.setText("Propositional truth Tree:");
+        super.textProperty().bind(SettingsData.getPropositionalTruthTree().textProperty());
     }
 
 }

@@ -1,5 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.predicatendv.children;
 
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Label;
 
 /**
@@ -9,7 +10,7 @@ import javafx.scene.control.Label;
 public class PredicateNDVTimeoutLabel extends Label {
 
     public PredicateNDVTimeoutLabel () {
-        super.setText("Predicate Natural Deduction Validator:");
+        super.textProperty().bind(SettingsData.getPredicateNDV().textProperty());
     }
 
 }

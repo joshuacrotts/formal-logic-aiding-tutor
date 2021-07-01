@@ -19,7 +19,7 @@ public class AdvanceApplyButton extends Button {
     private void setOnAction () {
         super.setOnAction(event -> {
         if (Controller.updateTimeouts())
-            new AdvanceApplyAlert(AlertType.CONFIRMATION, super.getScene().getWindow()).show();
+            new AdvanceApplyAlert(AlertType.INFORMATION, super.getScene().getWindow()).show();
         else
             new AdvanceApplyAlert(AlertType.ERROR, super.getScene().getWindow()).show();
         });

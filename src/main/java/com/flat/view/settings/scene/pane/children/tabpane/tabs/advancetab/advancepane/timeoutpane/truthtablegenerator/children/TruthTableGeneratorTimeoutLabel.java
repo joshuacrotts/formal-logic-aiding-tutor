@@ -1,5 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.truthtablegenerator.children;
 
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Label;
 
 /**
@@ -9,7 +10,7 @@ import javafx.scene.control.Label;
 public class TruthTableGeneratorTimeoutLabel extends Label {
 
     public TruthTableGeneratorTimeoutLabel () {
-        super.setText("Truth Table Generator:");
+        super.textProperty().bind(SettingsData.getTruthTableGenerator().textProperty());
     }
 
 }

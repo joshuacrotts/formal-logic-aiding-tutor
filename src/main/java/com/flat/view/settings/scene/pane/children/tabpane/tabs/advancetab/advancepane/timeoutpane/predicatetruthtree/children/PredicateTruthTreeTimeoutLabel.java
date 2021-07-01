@@ -1,5 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.predicatetruthtree.children;
 
+import com.flat.view.viewdata.SettingsData;
 import javafx.scene.control.Label;
 
 /**
@@ -9,7 +10,7 @@ import javafx.scene.control.Label;
 public class PredicateTruthTreeTimeoutLabel extends Label {
 
     public PredicateTruthTreeTimeoutLabel () {
-        super.setText("Predicate Truth Tree:");
+        super.textProperty().bind(SettingsData.getPredicateTruthTree().textProperty());
     }
 
 }

@@ -35,12 +35,16 @@ public class JsonData {
         return instance;
     }
 
-    public void update(JsonLanguage _language) {
-        if (!this.languageDirectoryExists(_language)) {
-            this.readData(JsonLanguage.DEFAULT);
+    public final void update(JsonLanguage _language) {
+        if (_language.equals(JsonLanguage.DEFAULT)) {
+            this.constructDefaultData();
+        }
+        else if (!this.languageDirectoryExists(_language)) {
+            this.constructDefaultData();
             this.translateData(_language);
             this.writeData(_language);
-        } else {
+        }
+        else {
             this.readData(_language);
         }
         this.updateFxData(_language);
@@ -48,6 +52,11 @@ public class JsonData {
 
     private boolean languageDirectoryExists(JsonLanguage _language) {
         return new File(JsonLocal.Paths.JSONROOT.getFilePath() + "/" + _language.getCode()).isDirectory();
+    }
+
+    private void constructDefaultData () {
+        this.jsonMenuBar = new JsonMenuBar();
+        this.jsonSettings = new JsonSettings();
     }
 
     private void readData(JsonLanguage _language) {

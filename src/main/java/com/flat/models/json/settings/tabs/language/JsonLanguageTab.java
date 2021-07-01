@@ -1,4 +1,4 @@
-package com.flat.models.json.settings.tabs.languagetab;
+package com.flat.models.json.settings.tabs.language;
 
 import com.flat.models.json.JsonString;
 import com.flat.models.translation.Translatable;

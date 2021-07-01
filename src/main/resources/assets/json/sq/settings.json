@@ -28,5 +28,44 @@
     "language": {
       "string": "Gjuhe"
     }
+  },
+  "advanceTab": {
+    "advance": {
+      "string": "Paraprakisht"
+    },
+    "advancePane": {
+      "predicateNDV": {
+        "string": "Vlerësues i zbritjes natyrore të kallëzimit"
+      },
+      "predicateTruthTree": {
+        "string": "Predikoni pemën e së vërtetës"
+      },
+      "propositionalNDV": {
+        "string": "Vlerësues i zbritjes natyrore propozuese"
+      },
+      "propositionalTruthTree": {
+        "string": "Pema e së vërtetës propozuese"
+      },
+      "truthTableGenerator": {
+        "string": "Gjeneratori i tryezës së së vërtetës"
+      },
+      "advanceAlert": {
+        "message": {
+          "string": "Mesazh"
+        },
+        "messageText": {
+          "string": "Vlerat e afatit u azhurnuan."
+        },
+        "error": {
+          "string": "Gabim"
+        },
+        "errorText": {
+          "string": "Ju lutemi sigurohuni që vlerat të jenë brenda intervalit: (0, 1000)."
+        },
+        "ok": {
+          "string": "Ne rregull"
+        }
+      }
+    }
   }
 }
