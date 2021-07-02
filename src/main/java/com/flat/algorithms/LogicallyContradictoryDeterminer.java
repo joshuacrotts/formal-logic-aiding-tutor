@@ -20,9 +20,7 @@ public final class LogicallyContradictoryDeterminer {
     private final WffTree combinedTree;
 
     public LogicallyContradictoryDeterminer(WffTree _wffTreeOne, WffTree _wffTreeTwo) {
-        BicondNode bicondNode = new BicondNode();
-        bicondNode.addChild(_wffTreeOne.getChild(0));
-        bicondNode.addChild(_wffTreeTwo.getChild(0));
+        BicondNode bicondNode = new BicondNode(_wffTreeOne.getChild(0), _wffTreeTwo.getChild(0));
 
         this.combinedTree = new WffTree();
         this.combinedTree.setFlags(_wffTreeOne.isPropositionalWff() ? NodeFlag.PROPOSITIONAL : NodeFlag.PREDICATE);

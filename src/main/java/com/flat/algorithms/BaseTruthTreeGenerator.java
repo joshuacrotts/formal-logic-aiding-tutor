@@ -94,12 +94,7 @@ public abstract class BaseTruthTreeGenerator {
      * @return negated version of WffTree.
      */
     public static WffTree getNegatedNode(WffTree _wff) {
-        WffTree negWff;
-        NegNode neg = new NegNode();
-        neg.addChild(_wff);
-        negWff = neg;
-
-        return negWff;
+        return new NegNode(_wff);
     }
 
     /**
@@ -155,9 +150,7 @@ public abstract class BaseTruthTreeGenerator {
             exis.addChild(n);
             return exis;
         } else {
-            NegNode neg = new NegNode();
-            neg.addChild(_wff);
-            negWff = neg;
+            negWff = new NegNode(_wff);
         }
 
         return negWff;
@@ -573,14 +566,11 @@ public abstract class BaseTruthTreeGenerator {
                 }
             }
         } else {
-            negatedAtom = getNegatedBinaryNode(child);
-
             // Create the negation nodes for the children.
-            NegNode n1 = new NegNode();
-            NegNode n2 = new NegNode();
+            NegNode n1 = new NegNode(child.getChild(0));
+            NegNode n2 = new NegNode(child.getChild(1));
 
-            n1.addChild(child.getChild(0));
-            n2.addChild(child.getChild(1));
+            negatedAtom = getNegatedBinaryNode(child);
             negatedAtom.addChild(n1);
             negatedAtom.addChild(n2);
             enqueuedTTNode = new TruthTree(negatedAtom, _negRoot, _negRoot);

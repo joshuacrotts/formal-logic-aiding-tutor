@@ -271,9 +271,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
 
         // Otherwise, try to construct an implication node - see if both sides are satisfiable.
         if (this.satisfy(_impTree.getChild(0), _parent) && this.satisfy(_impTree.getChild(1), _parent)) {
-            ImpNode impNode = new ImpNode();
-            impNode.addChild(_impTree.getChild(0));
-            impNode.addChild(_impTree.getChild(1));
+            ImpNode impNode = new ImpNode(_impTree.getChild(0), _impTree.getChild(1));
             this.addPremise(new NDWffTree(impNode, NDFlag.II, NDStep.II,
                     this.getPremiseNDWffTree(_impTree.getChild(0)),
                     this.getPremiseNDWffTree(_impTree.getChild(1))));
@@ -302,9 +300,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
         // Then try to create a conjunction if it's a goal and satisfied on both sides.
         if (this.satisfy(_conjTree.getChild(0), _parent)
                 && this.satisfy(_conjTree.getChild(1), _parent)) {
-            AndNode andNode = new AndNode();
-            andNode.addChild(_conjTree.getChild(0));
-            andNode.addChild(_conjTree.getChild(1));
+            AndNode andNode = new AndNode(_conjTree.getChild(0), _conjTree.getChild(1));
             this.addPremise(new NDWffTree(andNode, NDFlag.AI, NDStep.AI,
                     this.getPremiseNDWffTree(_conjTree.getChild(0)),
                     this.getPremiseNDWffTree(_conjTree.getChild(1))));
@@ -339,9 +335,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             // There's two conditions: we're either adding from the conclusion or from
             // another premise. If the parent is the conclusion, then we're adding from
             // that (obviously) and one of the nodes won't be retrievable via getPremise....
-            OrNode orNode = new OrNode();
-            orNode.addChild(_disjTree.getChild(0));
-            orNode.addChild(_disjTree.getChild(1));
+            OrNode orNode = new OrNode(_disjTree.getChild(0), _disjTree.getChild(1));
 
             // Find out which operand is null (if any).
             NDWffTree lhsDisj = this.getPremiseNDWffTree(_disjTree.getChild(0));
@@ -378,18 +372,12 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
             if (this.findBiconditionalElimination(_bicondTree, _parent)) return true;
         }
         // We first have a subgoal of X -> Y and Y -> X.
-        ImpNode impLhs = new ImpNode();
-        ImpNode impRhs = new ImpNode();
-        impLhs.addChild(_bicondTree.getChild(0));
-        impLhs.addChild(_bicondTree.getChild(1));
-        impRhs.addChild(_bicondTree.getChild(1));
-        impRhs.addChild(_bicondTree.getChild(0));
+        ImpNode impLhs = new ImpNode(_bicondTree.getChild(0), _bicondTree.getChild(1));
+        ImpNode impRhs = new ImpNode(_bicondTree.getChild(1), _bicondTree.getChild(0));
 
         // Check to see if both implications are satisfied.
         if (this.satisfy(impLhs, _parent) && this.satisfy(impRhs, _parent)) {
-            BicondNode bicondNode = new BicondNode();
-            bicondNode.addChild(_bicondTree.getChild(0));
-            bicondNode.addChild(_bicondTree.getChild(1));
+            BicondNode bicondNode = new BicondNode(_bicondTree.getChild(0), _bicondTree.getChild(1));
             this.addPremise(new NDWffTree(bicondNode, NDFlag.BC, NDStep.BCI,
                     this.getPremiseNDWffTree(impLhs),
                     this.getPremiseNDWffTree(impRhs)));

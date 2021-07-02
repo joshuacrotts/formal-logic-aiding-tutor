@@ -54,11 +54,9 @@ public class SemanticEntailmentDeterminer {
             nodes.push(_wffTreeList.get(i).getChild(0));
             // If we have two nodes, pop them and perform a conjunction.
             if (nodes.size() == 2) {
-                AndNode andNode = new AndNode();
                 WffTree ch2 = nodes.pop();
                 WffTree ch1 = nodes.pop();
-                andNode.addChild(ch1);
-                andNode.addChild(ch2);
+                AndNode andNode = new AndNode(ch1, ch2);
                 // Save the leaf so we can continue adding children.
                 if (leaf != null) {
                     leaf.addChild(andNode);
@@ -79,24 +77,14 @@ public class SemanticEntailmentDeterminer {
         this.entailee.addChild(_wffTreeList.get(_wffTreeList.size() - 1).getChild(0).copy());
 
         // Create ~(A -> B).
-        NegNode negImpLHS = new NegNode();
-        ImpNode impLHS = new ImpNode();
-        impLHS.addChild(this.entailer.getChild(0).copy());
-        impLHS.addChild(this.entailee.getChild(0).copy());
-        negImpLHS.addChild(impLHS);
+        NegNode negImpLHS = new NegNode(new ImpNode(this.entailer.getChild(0).copy(), this.entailee.getChild(0).copy()));
 
         // Creates ~(B -> A).
-        NegNode negImpRHS = new NegNode();
-        ImpNode impRHS = new ImpNode();
-        impRHS.addChild(this.entailee.getChild(0).copy());
-        impRHS.addChild(this.entailer.getChild(0).copy());
-        negImpRHS.addChild(impRHS);
+        NegNode negImpRHS = new NegNode(new ImpNode(this.entailee.getChild(0).copy(), this.entailer.getChild(0).copy()));
 
         // Takes the logical disjunction of the two to see
         // if one logically entails the other.
-        OrNode orNode = new OrNode();
-        orNode.addChild(negImpLHS);
-        orNode.addChild(negImpRHS);
+        OrNode orNode = new OrNode(negImpLHS, negImpRHS);
 
         // Add the OR node to the combined tree.
         this.combinedTree.addChild(orNode);

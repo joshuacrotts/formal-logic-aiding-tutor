@@ -62,7 +62,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
         // Under the hood, we want the premises to be sorted from least to most
         // complex. This will increase the likelihood of a more efficient solution.
         this.originalPremisesList.addAll(this.premisesList);
-        Collections.sort(this.premisesList, new NaturalDeductionComparator());
+        this.premisesList.sort(new NaturalDeductionComparator());
     }
 
     /**
@@ -207,13 +207,9 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
                 // is equal to the consequent of the other.
                 ImpNode impNode = null;
                 if (_impNode.getChild(1).stringEquals(othImp.getChild(0))) {
-                    impNode = new ImpNode();
-                    impNode.addChild(_impNode.getChild(0));
-                    impNode.addChild(othImp.getChild(1));
+                    impNode = new ImpNode(_impNode.getChild(0), othImp.getChild(1));
                 } else if (othImp.getChild(1).stringEquals(_impNode.getChild(0))) {
-                    impNode = new ImpNode();
-                    impNode.addChild(othImp.getChild(0));
-                    impNode.addChild(_impNode.getChild(1));
+                    impNode = new ImpNode(othImp.getChild(0), _impNode.getChild(1));
                 }
 
                 // If we found one, then we add it.
@@ -238,15 +234,9 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
     protected boolean findBiconditionalElimination(WffTree _bicondTree, NDWffTree _parent) {
         if (!_parent.isBCActive()) {
             _parent.setFlags(NDFlag.BC);
-            AndNode and = new AndNode();
-            ImpNode impLhs = new ImpNode();
-            ImpNode impRhs = new ImpNode();
-            impLhs.addChild(_bicondTree.getChild(0));
-            impLhs.addChild(_bicondTree.getChild(1));
-            impRhs.addChild(_bicondTree.getChild(1));
-            impRhs.addChild(_bicondTree.getChild(0));
-            and.addChild(impLhs);
-            and.addChild(impRhs);
+            ImpNode impLhs = new ImpNode(_bicondTree.getChild(0), _bicondTree.getChild(1));
+            ImpNode impRhs = new ImpNode(_bicondTree.getChild(1), _bicondTree.getChild(0));
+            AndNode and = new AndNode(impLhs, impRhs);
             this.addPremise(new NDWffTree(and, NDStep.BCE, _parent));
             return true;
         }
@@ -263,13 +253,9 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      */
     protected boolean findTransposition(WffTree _impNode, NDWffTree _parent) {
         if (_impNode.isImp() && !_parent.isTPActive() && !this.isConclusion(_parent)) {
-            NegNode antecedent = new NegNode();
-            NegNode consequent = new NegNode();
-            ImpNode transpositionNode = new ImpNode();
-            antecedent.addChild(_impNode.getChild(1));
-            consequent.addChild(_impNode.getChild(0));
-            transpositionNode.addChild(antecedent);
-            transpositionNode.addChild(consequent);
+            NegNode antecedent = new NegNode(_impNode.getChild(1));
+            NegNode consequent = new NegNode(_impNode.getChild(0));
+            ImpNode transpositionNode = new ImpNode(antecedent, consequent);
             _parent.setFlags(NDFlag.TP);
             this.addPremise(new NDWffTree(transpositionNode, NDFlag.TP, NDStep.TP, _parent));
             return true;
@@ -300,13 +286,9 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
             if (lhsImp != null && rhsImp != null) {
                 _parent.setFlags(NDFlag.CD);
                 // Left to right.
-                OrNode orNodeLhs = new OrNode();
-                orNodeLhs.addChild(lhsImp.getWffTree().getChild(1));
-                orNodeLhs.addChild(rhsImp.getWffTree().getChild(1));
+                OrNode orNodeLhs = new OrNode(lhsImp.getWffTree().getChild(1), rhsImp.getWffTree().getChild(1));
                 // Right to left.
-                OrNode orNodeRhs = new OrNode();
-                orNodeRhs.addChild(rhsImp.getWffTree().getChild(1));
-                orNodeRhs.addChild(lhsImp.getWffTree().getChild(1));
+                OrNode orNodeRhs = new OrNode(rhsImp.getWffTree().getChild(1), lhsImp.getWffTree().getChild(1));
                 this.addPremise(new NDWffTree(orNodeLhs, NDFlag.CD, NDStep.CD, lhsImp, rhsImp, _parent));
                 this.addPremise(new NDWffTree(orNodeRhs, NDFlag.CD, NDStep.CD, rhsImp, lhsImp, _parent));
                 return true;
@@ -366,17 +348,10 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
             WffTree deMorganNode = null;
             // Negate a biconditional to get ~(X <-> Y) => ~((X->Y) & (Y->X)).
             if (_binopTree.isNegation() && _binopTree.getChild(0).isBicond()) {
-                NegNode neg = new NegNode();
-                AndNode and = new AndNode();
-                ImpNode lhs = new ImpNode();
-                ImpNode rhs = new ImpNode();
-                lhs.addChild(_binopTree.getChild(0).getChild(0));
-                lhs.addChild(_binopTree.getChild(0).getChild(1));
-                rhs.addChild(_binopTree.getChild(0).getChild(1));
-                rhs.addChild(_binopTree.getChild(0).getChild(0));
-                and.addChild(lhs);
-                and.addChild(rhs);
-                neg.addChild(and);
+                ImpNode lhs = new ImpNode(_binopTree.getChild(0).getChild(0), _binopTree.getChild(0).getChild(1));
+                ImpNode rhs = new ImpNode(_binopTree.getChild(0).getChild(1), _binopTree.getChild(0).getChild(0));
+                AndNode and = new AndNode(lhs, rhs);
+                NegNode neg = new NegNode(and);
                 deMorganNode = neg;
             }
             // "Unnegate" a conjunction with two implications to get the negated biconditional.
@@ -384,11 +359,9 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
                     && _binopTree.getChild(0).getChild(0).isImp() && _binopTree.getChild(0).getChild(1).isImp()
                     && _binopTree.getChild(0).getChild(0).getChild(0).stringEquals(_binopTree.getChild(0).getChild(1).getChild(1))
                     && _binopTree.getChild(0).getChild(0).getChild(1).stringEquals(_binopTree.getChild(0).getChild(1).getChild(0))) {
-                NegNode negNode = new NegNode();
-                BicondNode bicondNode = new BicondNode();
-                bicondNode.addChild(_binopTree.getChild(0).getChild(0).getChild(0));
-                bicondNode.addChild(_binopTree.getChild(0).getChild(0).getChild(1));
-                negNode.addChild(bicondNode);
+                BicondNode bicondNode = new BicondNode(_binopTree.getChild(0).getChild(0).getChild(0),
+                                                       _binopTree.getChild(0).getChild(0).getChild(1));
+                NegNode negNode = new NegNode(bicondNode);
                 deMorganNode = negNode;
             }
             // Two types: one is ~(X B Y) => (~X ~B ~Y)
@@ -403,8 +376,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
                 WffTree negBinaryNode = BaseTruthTreeGenerator.getNegatedBinaryNode(_binopTree); // B
                 negBinaryNode.addChild(_binopTree.isImp() ? _binopTree.getChild(0) : BaseTruthTreeGenerator.getFlippedNode(_binopTree.getChild(0))); // LHS X
                 negBinaryNode.addChild(BaseTruthTreeGenerator.getFlippedNode(_binopTree.getChild(1))); // RHS Y
-                deMorganNode = new NegNode();
-                deMorganNode.addChild(negBinaryNode);
+                deMorganNode = new NegNode(negBinaryNode);
             }
             // If we found a node, then it'll be applied/inserted here.
             if (deMorganNode != null) {
@@ -426,22 +398,15 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
             WffTree newWff = null;
             // Convert (P -> Q) to (~P V Q).
             if (_binopNode.isImp()) {
-                OrNode orNode = new OrNode();
-                NegNode negLhs = new NegNode();
-                negLhs.addChild(_binopNode.getChild(0));
-                orNode.addChild(negLhs);
-                orNode.addChild(_binopNode.getChild(1));
-                newWff = orNode;
+                NegNode negLhs = new NegNode(_binopNode.getChild(0));
+                newWff = new OrNode(negLhs, _binopNode.getChild(1));
             }
             // Convert (~P V Q) to (P -> Q)
             else if (_binopNode.isOr()) {
                 WffTree lhs = _binopNode.getChild(0);
                 WffTree rhs = _binopNode.getChild(1);
                 if (lhs.isNegation()) {
-                    ImpNode impNode = new ImpNode();
-                    impNode.addChild(lhs.getChild(0)); // Un-negate the lhs.
-                    impNode.addChild(rhs);
-                    newWff = impNode;
+                    newWff = new ImpNode(lhs.getChild(0), rhs);
                 }
             }
             // If we performed a MI then add it.
@@ -470,10 +435,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
                 dnNDWffTree = new NDWffTree(_node.getChild(0).getChild(0), NDFlag.DNE, NDStep.DNE, _parent);
             } else if (!_parent.isDNEActive()){
                 // // Double negation introduction (only if it's a goal! Don't add more than is necessary!).
-                NegNode doubleNeg = new NegNode();
-                NegNode neg = new NegNode();
-                doubleNeg.addChild(neg);
-                neg.addChild(_node);
+                NegNode doubleNeg = new NegNode(new NegNode(_node));
                 _parent.setFlags(NDFlag.DNI);
                 if (this.isGoal(doubleNeg) || this.isEventualNegatedGoal(doubleNeg, 0)) {
                     dnNDWffTree = new NDWffTree(doubleNeg, NDFlag.DNI, NDStep.DNI, _parent);
