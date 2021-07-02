@@ -3,6 +3,7 @@ package com.flat.models.treenode;
 import com.flat.tools.FLATUtils;
 import com.flat.tools.TexPrintable;
 
+import javax.xml.soap.Node;
 import java.util.ArrayList;
 
 /**
@@ -236,6 +237,11 @@ public class WffTree implements Copyable, TexPrintable {
     public boolean isDoubleNegation() {
         return this.nodeType == NodeType.NEG && this.getChild(0) != null &&
                 this.getChild(0).nodeType == NodeType.NEG;
+    }
+
+    public boolean isNegAtom() {
+        return this.nodeType == NodeType.NEG && this.getChild(0) != null &&
+                this.getChild(0).nodeType == NodeType.ATOM;
     }
 
     public boolean isNegPredicate() {

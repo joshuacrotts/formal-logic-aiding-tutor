@@ -33,6 +33,12 @@ public class AndNode extends WffTree {
         currentlyUsedSymbol = _symbol;
     }
 
+    public AndNode(WffTree _ch1, WffTree _ch2) {
+        this();
+        super.addChild(_ch1);
+        super.addChild(_ch2);
+    }
+
     public AndNode() {
         this(currentlyUsedSymbol == null ? DEFAULT_SYMBOL : currentlyUsedSymbol);
     }

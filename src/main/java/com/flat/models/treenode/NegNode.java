@@ -30,6 +30,11 @@ public class NegNode extends WffTree {
         currentlyUsedSymbol = _symbol;
     }
 
+    public NegNode(WffTree _ch1) {
+        this();
+        super.addChild(_ch1);
+    }
+
     public NegNode() {
         this(currentlyUsedSymbol == null ? DEFAULT_SYMBOL : currentlyUsedSymbol);
     }

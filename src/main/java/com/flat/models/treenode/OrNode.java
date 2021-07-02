@@ -29,6 +29,12 @@ public class OrNode extends WffTree {
         currentlyUsedSymbol = _symbol;
     }
 
+    public OrNode(WffTree _ch1, WffTree _ch2) {
+        this();
+        super.addChild(_ch1);
+        super.addChild(_ch2);
+    }
+
     public OrNode() {
         this(currentlyUsedSymbol == null ? DEFAULT_SYMBOL : currentlyUsedSymbol);
     }

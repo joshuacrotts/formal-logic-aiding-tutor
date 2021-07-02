@@ -31,6 +31,12 @@ public class BicondNode extends WffTree {
         currentlyUsedSymbol = _symbol;
     }
 
+    public BicondNode(WffTree _ch1, WffTree _ch2) {
+        this();
+        super.addChild(_ch1);
+        super.addChild(_ch2);
+    }
+
     public BicondNode() {
         this(currentlyUsedSymbol == null ? DEFAULT_SYMBOL : currentlyUsedSymbol);
     }

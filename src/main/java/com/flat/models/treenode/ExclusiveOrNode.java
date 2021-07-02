@@ -29,6 +29,12 @@ public class ExclusiveOrNode extends WffTree {
         currentlyUsedSymbol = _symbol;
     }
 
+    public ExclusiveOrNode(WffTree _ch1, WffTree _ch2) {
+        this();
+        super.addChild(_ch1);
+        super.addChild(_ch2);
+    }
+
     public ExclusiveOrNode() {
         this(currentlyUsedSymbol == null ? DEFAULT_SYMBOL : currentlyUsedSymbol);
     }
