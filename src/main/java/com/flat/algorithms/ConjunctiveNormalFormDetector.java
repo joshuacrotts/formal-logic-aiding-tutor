@@ -2,6 +2,9 @@ package com.flat.algorithms;
 
 import com.flat.models.treenode.*;
 
+/**
+ *
+ */
 public class ConjunctiveNormalFormDetector {
 
     /**
@@ -10,7 +13,7 @@ public class ConjunctiveNormalFormDetector {
     private final WffTree wffTree;
 
     public ConjunctiveNormalFormDetector(WffTree _wffTree) {
-        this.wffTree = _wffTree;
+        this.wffTree = _wffTree.isRoot() ? _wffTree.getChild(0) : _wffTree;
     }
 
     public WffTree getConjunctiveNormalForm() {
@@ -42,7 +45,7 @@ public class ConjunctiveNormalFormDetector {
             }
             // Ands are just returned.
             else if (_tree.isAnd()) {
-                return _tree;
+                return new AndNode(lhs, rhs);
             }
         } else if (_tree.isAtom() || (_tree.isNegation() && _tree.getChild(0).isAtom())) {
             return _tree;
@@ -62,7 +65,6 @@ public class ConjunctiveNormalFormDetector {
             }
             // Distribute negation to IMP.
             else if (child.isImp()) {
-                System.out.println(_tree.getStringRep());
                 return this.getConjunctiveNormalFormHelper(this.convertNegatedImplication(_tree));
             }
             // Distribute negation to BICOND..
@@ -71,7 +73,7 @@ public class ConjunctiveNormalFormDetector {
             }
         }
 
-        throw new IllegalStateException("Cannot convert node to CNF - this should never happen.");
+         throw new IllegalStateException("Cannot convert node to CNF - this should never happen.");
     }
 
     /**
@@ -81,7 +83,9 @@ public class ConjunctiveNormalFormDetector {
     private WffTree distributeOr(WffTree lhs, WffTree rhs) {
         // First check to see if we're not distributing anything.
         if (!lhs.isAnd() && !rhs.isAnd()) {
-            return new OrNode(lhs, rhs);
+            OrNode or = new OrNode(lhs, rhs);
+            if (this.isTautology(or)) { return new TruthNode(); }
+            return or;
         }
         // Now check to see if we're distributing ((A & B) | (C & D)).
         else if (lhs.getChildrenSize() > 1 && rhs.getChildrenSize() > 1 &&
@@ -91,7 +95,8 @@ public class ConjunctiveNormalFormDetector {
                 AndNode and = new AndNode();
                 for (WffTree c2 : rhs.getChildren()) {
                     OrNode or = new OrNode(c1, c2);
-                    and.addChild(or);
+                    if (this.isTautology(or)) and.addChild(new TruthNode());
+                    else and.addChild(or);
                 }
                 root.addChild(and);
             }
@@ -102,7 +107,8 @@ public class ConjunctiveNormalFormDetector {
             AndNode and = new AndNode();
             for (WffTree c2 : rhs.getChildren()) {
                 OrNode or = new OrNode(lhs, c2);
-                and.addChild(or);
+                if (this.isTautology(or)) and.addChild(new TruthNode());
+                else and.addChild(or);
             }
             return and;
         }
@@ -111,6 +117,7 @@ public class ConjunctiveNormalFormDetector {
             AndNode and = new AndNode();
             for (WffTree c1 : lhs.getChildren()) {
                 OrNode or = new OrNode(c1, rhs);
+                if (this.isTautology(or)) and.addChild(new TruthNode());
                 and.addChild(or);
             }
             return and;
@@ -126,9 +133,7 @@ public class ConjunctiveNormalFormDetector {
      */
     private WffTree convertImplication(WffTree _impNode) {
         NegNode negLhs = new NegNode(_impNode.getChild(0));
-        OrNode or = new OrNode(negLhs, _impNode.getChild(1));
-        System.out.println(negLhs.getStringRep());
-        return or;
+        return new OrNode(negLhs, _impNode.getChild(1));
     }
 
     /**
@@ -137,13 +142,13 @@ public class ConjunctiveNormalFormDetector {
      * @return
      */
     private WffTree convertBiconditional(WffTree _bicondNode) {
-        ImpNode impLhs = new ImpNode(_bicondNode.getChild(0), _bicondNode.getChild(1));
-        ImpNode impRhs = new ImpNode(_bicondNode.getChild(1), _bicondNode.getChild(0));
-        return new AndNode(impLhs, impRhs);
+        AndNode andLhs = new AndNode(_bicondNode.getChild(0), _bicondNode.getChild(1));
+        AndNode andRhs = new AndNode(new NegNode(_bicondNode.getChild(0)), new NegNode(_bicondNode.getChild(1)));
+        return new OrNode(andLhs, andRhs);
     }
 
     /**
-     *
+     *((A ∨ B) & (A ∨ ((C ∨ D) & (C ∨ E)))), (((B ∨ A) ∧ ((D ∨ C) ∨ A)) ∧ ((E ∨ C) ∨ A))
      * @param _wffTree
      * @return
      */
@@ -189,5 +194,22 @@ public class ConjunctiveNormalFormDetector {
         NegNode negLhs = new NegNode(impLhs);
         NegNode negRhs = new NegNode(impRhs);
         return new OrNode(negLhs, negRhs);
+    }
+
+    /**
+     *
+     * @param _wffTree
+     */
+    private void removeTautologies(WffTree _wffTree) {
+    }
+
+    /**
+     *
+     * @param _tree
+     * @return
+     */
+    private boolean isTautology(WffTree _tree) {
+        return _tree.isOr() && (BaseTruthTreeGenerator.getFlippedNode(_tree.getChild(0)).stringEquals(_tree.getChild(1))
+                || BaseTruthTreeGenerator.getFlippedNode(_tree.getChild(1)).stringEquals(_tree.getChild(0)));
     }
 }
