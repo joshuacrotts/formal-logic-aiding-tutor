@@ -20,7 +20,6 @@ public class LanguageApplyButton extends Button {
         super.setOnAction(event -> {
             if (!(LanguageListView.getSelectedLanguage() == null)) {
                 Controller.setJsonLanguage(LanguageListView.getSelectedLanguage());
-                Controller.applyFont((Stage) super.getScene().getWindow());
             }
         });
     }
