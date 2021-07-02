@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab;
 
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.AdvancePane;
-import com.flat.view.viewdata.SettingsData;
+import com.flat.view.viewdata.settings.SettingsData;
 import javafx.scene.control.Tab;
 
 /**

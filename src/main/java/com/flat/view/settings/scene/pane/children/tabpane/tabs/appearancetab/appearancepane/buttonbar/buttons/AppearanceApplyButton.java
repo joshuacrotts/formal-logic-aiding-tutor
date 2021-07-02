@@ -1,8 +1,8 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.buttonbar.buttons;
 
-import com.flat.view.viewdata.PreviewData;
-import com.flat.view.viewdata.SettingsData;
-import com.flat.view.viewdata.border.BorderData;
+import com.flat.view.viewdata.settings.AppearancePreviewData;
+import com.flat.view.viewdata.settings.SettingsData;
+import com.flat.view.viewdata.pane.PaneData;
 import javafx.scene.control.Button;
 
 /**
@@ -18,10 +18,11 @@ public class AppearanceApplyButton extends Button {
 
     private void setOnAction () {
         super.setOnAction(event -> {
-            BorderData.getTopProperty().getBackgroundProperties().setColor(PreviewData.getPrimaryColor().getColor());
-            BorderData.getRightProperty().getBackgroundProperties().setColor(PreviewData.getSecondaryColor().getColor());
-            BorderData.getBottomProperty().getBackgroundProperties().setColor(PreviewData.getPrimaryColor().getColor());
-            BorderData.getLeftProperty().getBackgroundProperties().setColor(PreviewData.getSecondaryColor().getColor());
+            PaneData.getTopProperty().getBackgroundProperties().setColor(AppearancePreviewData.getPrimaryColor().getColor());
+            PaneData.getRightProperty().getBackgroundProperties().setColor(AppearancePreviewData.getSecondaryColor().getColor());
+            PaneData.getBottomProperty().getBackgroundProperties().setColor(AppearancePreviewData.getPrimaryColor().getColor());
+            PaneData.getLeftProperty().getBackgroundProperties().setColor(AppearancePreviewData.getSecondaryColor().getColor());
+            PaneData.getBorderProperty().getBackgroundProperties().setColor(AppearancePreviewData.getBorderColor().getColor());
         });
     }
 

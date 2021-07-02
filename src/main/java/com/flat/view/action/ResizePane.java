@@ -1,5 +1,6 @@
 package com.flat.view.action;
 
+import com.flat.view.viewdata.pane.PaneData;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -23,12 +24,15 @@ public class ResizePane {
      * @param _side         Which side of the object the resize pane will be attached.
      */
     public ResizePane(Pane _activeObject, Orientation _orientation, Side _side) {
+        this.parentPane.backgroundProperty().bind(PaneData.getBorderProperty().backgroundProperty());
+        this.parentPane.borderProperty().bind(PaneData.getBorderProperty().borderProperty());
         this.orientation = _orientation;
         this.side = _side;
         this.parentPane.setId(_orientation.getId());
         this.activeObject = _activeObject;
         this.setPositionAction();
         this.setResizeAction();
+
     }
 
     // Getters for object's attributes.

@@ -1,27 +1,25 @@
-package com.flat.view.viewdata.border.panes.fxextension;
+package com.flat.view.viewdata.pane.fxextension;
 
-import com.flat.view.viewdata.border.panes.fxextension.properties.BackgroundProperties;
-import com.flat.view.viewdata.border.panes.fxextension.properties.BorderProperties;
+import com.flat.view.viewdata.pane.fxextension.properties.BackgroundProperties;
+import com.flat.view.viewdata.pane.fxextension.properties.BorderProperties;
 import javafx.scene.layout.Pane;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class FxPropertyExtension extends Pane {
+public class PanePropertyExtension extends Pane {
     private BorderProperties borderProperties;
     private BackgroundProperties backgroundProperties;
 
-    public FxPropertyExtension (BackgroundProperties _backgroundProperties) {
-        this.borderProperties = null;
-        this.backgroundProperties = _backgroundProperties;
+    public PanePropertyExtension () {
+        this.borderProperties = new BorderProperties(this);
+        this.backgroundProperties = new BackgroundProperties(this);
     }
 
-    public FxPropertyExtension (BorderProperties _borderProperties, BackgroundProperties _backgroundProperties) {
+    public PanePropertyExtension (BorderProperties _borderProperties, BackgroundProperties _backgroundProperties) {
         this.borderProperties = _borderProperties;
-        this.borderProperties.setPane(this);
         this.backgroundProperties = _backgroundProperties;
-        this.backgroundProperties.setPane(this);
     }
 
     // Getters for object's attributes.

@@ -1,8 +1,8 @@
 package com.flat.tools.json;
 
-import com.flat.view.viewdata.LanguageData;
-import com.flat.view.viewdata.MenuBarData;
-import com.flat.view.viewdata.SettingsData;
+import com.flat.view.viewdata.settings.LanguageData;
+import com.flat.view.viewdata.menubar.MenuBarData;
+import com.flat.view.viewdata.settings.SettingsData;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.menubar.JsonMenuBar;
 import com.flat.models.json.settings.JsonSettings;

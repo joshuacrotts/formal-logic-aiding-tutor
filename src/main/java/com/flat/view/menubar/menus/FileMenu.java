@@ -1,6 +1,6 @@
 package com.flat.view.menubar.menus;
 
-import com.flat.view.viewdata.MenuBarData;
+import com.flat.view.viewdata.menubar.MenuBarData;
 import com.flat.view.menubar.items.file.ExitMenuItem;
 import com.flat.view.menubar.items.file.ResetViewMenuItem;
 import com.flat.view.menubar.items.file.SettingsMenuItem;

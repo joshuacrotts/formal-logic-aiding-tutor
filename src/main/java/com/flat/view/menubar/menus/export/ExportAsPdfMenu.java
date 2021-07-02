@@ -1,6 +1,6 @@
 package com.flat.view.menubar.menus.export;
 
-import com.flat.view.viewdata.MenuBarData;
+import com.flat.view.viewdata.menubar.MenuBarData;
 import com.flat.view.menubar.items.export.pdf.PdfLatexParseTreeMenuItem;
 import com.flat.view.menubar.items.export.pdf.PdfLatexTruthTableMenuItem;
 import com.flat.view.menubar.items.export.pdf.PdfLatexTruthTreeMenuItem;

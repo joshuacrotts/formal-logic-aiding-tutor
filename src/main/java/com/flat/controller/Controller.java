@@ -8,7 +8,7 @@ import com.flat.tools.json.JsonData;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
 import com.flat.view.settings.SettingsStage;
-import com.flat.view.viewdata.SettingsData;
+import com.flat.view.viewdata.settings.SettingsData;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 

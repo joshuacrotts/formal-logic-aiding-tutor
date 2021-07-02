@@ -1,4 +1,4 @@
-package com.flat.view.viewdata.border.panes.fxextension.properties;
+package com.flat.view.viewdata.pane.fxextension.properties;
 
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -14,12 +14,17 @@ import javafx.scene.paint.Color;
  */
 public class BorderProperties {
     private Pane pane;
-    private Color borderColor;
-    private BorderStrokeStyle borderStrokeStyle;
-    private CornerRadii cornerRadii;
-    private BorderWidths borderWidths;
+    private Color borderColor = Color.BLACK;
+    private BorderStrokeStyle borderStrokeStyle = BorderStrokeStyle.SOLID;
+    private CornerRadii cornerRadii = CornerRadii.EMPTY;
+    private BorderWidths borderWidths = BorderWidths.EMPTY;
 
-    public BorderProperties (Color _borderColor, BorderStrokeStyle _borderStrokeStyle, CornerRadii _cornerRadii,  BorderWidths _borderWidths) {
+    public BorderProperties (Pane _pane) {
+        this.pane = _pane;
+    }
+
+    public BorderProperties (Pane _pane, Color _borderColor, BorderStrokeStyle _borderStrokeStyle, CornerRadii _cornerRadii,  BorderWidths _borderWidths) {
+        this.pane = _pane;
         this.borderColor = _borderColor;
         this.borderStrokeStyle = _borderStrokeStyle;
         this.cornerRadii = _cornerRadii;
@@ -30,8 +35,7 @@ public class BorderProperties {
     }
 
     private void updateBorder () {
-        if (this.pane != null)
-            this.pane.setBorder(new Border(new BorderStroke(this.borderColor, this.borderStrokeStyle, this.cornerRadii, this.borderWidths)));
+        this.pane.setBorder(new Border(new BorderStroke(this.borderColor, this.borderStrokeStyle, this.cornerRadii, this.borderWidths)));
     }
 
     // Getters for object's attributes.

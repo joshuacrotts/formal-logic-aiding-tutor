@@ -1,4 +1,4 @@
-package com.flat.view.viewdata;
+package com.flat.view.viewdata.settings;
 
 import com.flat.models.json.language.JsonLanguage;
 import edu.emory.mathcs.backport.java.util.Arrays;

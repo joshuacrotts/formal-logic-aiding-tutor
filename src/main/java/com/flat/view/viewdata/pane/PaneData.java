@@ -1,20 +1,21 @@
-package com.flat.view.viewdata.border;
+package com.flat.view.viewdata.pane;
 
-import com.flat.view.viewdata.border.panes.BottomPaneProperties;
-import com.flat.view.viewdata.border.panes.LeftPaneProperties;
-import com.flat.view.viewdata.border.panes.RightPaneProperties;
-import com.flat.view.viewdata.border.panes.TopPaneProperties;
+import com.flat.view.viewdata.pane.panes.BorderPaneProperties;
+import com.flat.view.viewdata.pane.panes.BottomPaneProperties;
+import com.flat.view.viewdata.pane.panes.LeftPaneProperties;
+import com.flat.view.viewdata.pane.panes.RightPaneProperties;
+import com.flat.view.viewdata.pane.panes.TopPaneProperties;
 
 /**
  *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
-public class BorderData {
-    public final static int WIDTH = 3;
+public class PaneData {
     private final static TopPaneProperties topProperty = new TopPaneProperties();
     private final static RightPaneProperties rightProperty = new RightPaneProperties();
     private final static BottomPaneProperties bottomProperty = new BottomPaneProperties();
     private final static LeftPaneProperties leftProperty = new LeftPaneProperties();
+    private final static BorderPaneProperties borderProperty = new BorderPaneProperties();
 
     // Getters for object's attributes.
 
@@ -32,6 +33,10 @@ public class BorderData {
 
     public static LeftPaneProperties getLeftProperty() {
         return leftProperty;
+    }
+
+    public static BorderPaneProperties getBorderProperty() {
+        return borderProperty;
     }
 
 }

@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.languagepane.languagelistpane.listview;
 
-import com.flat.view.viewdata.LanguageData;
+import com.flat.view.viewdata.settings.LanguageData;
 import com.flat.models.json.language.JsonLanguage;
 import javafx.scene.control.ListView;
 

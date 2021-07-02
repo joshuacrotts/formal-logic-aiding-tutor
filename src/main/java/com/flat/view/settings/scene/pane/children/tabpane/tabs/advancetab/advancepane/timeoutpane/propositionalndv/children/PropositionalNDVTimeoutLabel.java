@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.propositionalndv.children;
 
-import com.flat.view.viewdata.SettingsData;
+import com.flat.view.viewdata.settings.SettingsData;
 import javafx.scene.control.Label;
 
 /**

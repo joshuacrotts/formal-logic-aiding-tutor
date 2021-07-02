@@ -1,4 +1,4 @@
-package com.flat.view.viewdata.border.panes.fxextension.properties;
+package com.flat.view.viewdata.pane.fxextension.properties;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
@@ -13,19 +13,23 @@ import javafx.scene.paint.Color;
  */
 public class BackgroundProperties {
     private Pane pane;
-    private Color color;
-    private CornerRadii cornerRadii;
-    private Insets insets;
+    private Color color = Color.WHITE;
+    private CornerRadii cornerRadii = CornerRadii.EMPTY;
+    private Insets insets = Insets.EMPTY;
 
-    public BackgroundProperties (Color _color, CornerRadii _cornerRadii, Insets _insets) {
+    public BackgroundProperties (Pane _pane) {
+        this.pane = _pane;
+    }
+
+    public BackgroundProperties (Pane _pane, Color _color, CornerRadii _cornerRadii, Insets _insets) {
+        this.pane = _pane;
         this.color = _color;
         this.cornerRadii = _cornerRadii;
         this.insets = _insets;
     }
 
     private void updateBackground () {
-        if (this.pane != null)
-            this.pane.setBackground(new Background(new BackgroundFill(this.color, this.cornerRadii, this.insets)));
+        this.pane.setBackground(new Background(new BackgroundFill(this.color, this.cornerRadii, this.insets)));
     }
 
     // Getters for object's attributes.

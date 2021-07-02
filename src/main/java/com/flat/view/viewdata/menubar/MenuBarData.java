@@ -1,4 +1,4 @@
-package com.flat.view.viewdata;
+package com.flat.view.viewdata.menubar;
 
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.menubar.JsonMenuBar;

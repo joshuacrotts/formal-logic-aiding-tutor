@@ -1,6 +1,6 @@
 package com.flat.view.menubar.items.export.pdf;
 
-import com.flat.view.viewdata.MenuBarData;
+import com.flat.view.viewdata.menubar.MenuBarData;
 import javafx.scene.control.MenuItem;
 
 /**

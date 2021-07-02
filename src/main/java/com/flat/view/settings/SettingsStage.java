@@ -1,7 +1,7 @@
 package com.flat.view.settings;
 
 import com.flat.controller.Controller;
-import com.flat.view.viewdata.SettingsData;
+import com.flat.view.viewdata.settings.SettingsData;
 import com.flat.view.settings.scene.SettingsScene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
