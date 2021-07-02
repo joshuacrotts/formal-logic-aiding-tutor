@@ -286,6 +286,10 @@ public class WffTree implements Copyable, TexPrintable {
         return this.nodeType == NodeType.IMP;
     }
 
+    public boolean isTrue() { return this.nodeType == NodeType.TRUTH; }
+
+    public boolean isFalse() { return this.nodeType == NodeType.FALSE; }
+
     public boolean isBicond() {
         return this.nodeType == NodeType.BICOND;
     }

@@ -79,7 +79,7 @@ public class ParserTest {
             result.printSyntaxTree();
 
             ConjunctiveNormalFormDetector cnf = new ConjunctiveNormalFormDetector(result.getChild(0));
-            System.out.println("CNF form: " + cnf.getConjunctiveNormalForm().getStringRep());
+            System.out.println("Conjunctive Normal Form (CNF): " + cnf.getConjunctiveNormalForm().getStringRep());
 
             // Print the parse tree in LaTeX.
             TexPrinter texParseTreePrinter = new TexParseTreePrinter(result, "latex_parse_tree.tex");
