@@ -24,14 +24,10 @@ public final class LogicallyEquivalentDeterminer {
     private final WffTree combinedTree;
 
     public LogicallyEquivalentDeterminer(WffTree _wffTreeOne, WffTree _wffTreeTwo) {
-        BicondNode bicond = new BicondNode();
-        bicond.addChild(_wffTreeOne.getChild(0));
-        bicond.addChild(_wffTreeTwo.getChild(0));
-
+        BicondNode bicond = new BicondNode(_wffTreeOne.getChild(0), _wffTreeTwo.getChild(0));
         this.combinedTree = new WffTree();
         this.combinedTree.setFlags(_wffTreeOne.isPropositionalWff() ? NodeFlag.PROPOSITIONAL : NodeFlag.PREDICATE);
-        this.combinedTree.addChild(new NegNode());
-        this.combinedTree.getChild(0).addChild(bicond);
+        this.combinedTree.addChild(new NegNode(bicond));
 
         BaseTruthTreeGenerator treeGenerator;
         if (this.combinedTree.isPropositionalWff()) {
