@@ -4,6 +4,7 @@ import com.flat.controller.Controller;
 import com.flat.view.viewdata.settings.SettingsData;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.languagepane.languagelistpane.listview.LanguageListView;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * @author Christopher Brantley <ccbrantley@uncg.edu>
@@ -19,6 +20,8 @@ public class LanguageApplyButton extends Button {
         super.setOnAction(event -> {
             if (!(LanguageListView.getSelectedLanguage() == null)) {
                 Controller.setJsonLanguage(LanguageListView.getSelectedLanguage());
+                // Extend stage to have a list of scenes to remove this line.
+                Controller.applyFont(((Stage)this.getScene().getWindow()));
             }
         });
     }
