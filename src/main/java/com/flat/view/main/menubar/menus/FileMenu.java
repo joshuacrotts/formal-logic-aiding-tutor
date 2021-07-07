@@ -1,9 +1,9 @@
-package com.flat.view.menubar.menus;
+package com.flat.view.main.menubar.menus;
 
 import com.flat.view.viewdata.menubar.MenuBarData;
-import com.flat.view.menubar.items.file.ExitMenuItem;
-import com.flat.view.menubar.items.file.ResetViewMenuItem;
-import com.flat.view.menubar.items.file.SettingsMenuItem;
+import com.flat.view.main.menubar.items.file.ExitMenuItem;
+import com.flat.view.main.menubar.items.file.ResetViewMenuItem;
+import com.flat.view.main.menubar.items.file.SettingsMenuItem;
 import javafx.scene.control.Menu;
 
 /**

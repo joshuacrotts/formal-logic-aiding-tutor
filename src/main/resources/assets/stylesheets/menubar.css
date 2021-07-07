@@ -1,12 +1,10 @@
-/* 
+/*
     Created on : Jun 25, 2021, 12:36:20 PM
     Author     : Christopher Brantley <ccbrantley@uncg.edu>
 */
 
-.menu-item {
-    -fx-background-color: gray;
-}
-
-.menu-button {
-    -fx-background-color: gray;
+.menu-item, .menu-button{
+    -fx-alignment: center;
+    -fx-border-color: black;
+    -fx-border-width: 0, 1, 0, 0;
 }

@@ -3,6 +3,10 @@
     Author     : Christopher Brantley <ccbrantley@uncg.edu>
 */
 
+@import "alerts.css";
+@import "textfield.css";
+@import "previewborderpane.css";
+
 .tab-pane {
     -fx-background-color: white;
     -fx-tab-min-height: 100px;

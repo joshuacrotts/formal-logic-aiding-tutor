@@ -1,4 +1,4 @@
-package com.flat.view.menubar.items.file;
+package com.flat.view.main.menubar.items.file;
 
 import com.flat.view.viewdata.menubar.MenuBarData;
 import javafx.scene.control.MenuItem;

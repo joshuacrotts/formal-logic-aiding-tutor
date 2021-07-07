@@ -1,7 +1,7 @@
 package com.flat.view.main.panes;
 
 import com.flat.view.action.ResizePane;
-import com.flat.view.menubar.FLATMenuBar;
+import com.flat.view.main.menubar.FLATMenuBar;
 import com.flat.view.viewdata.pane.PaneData;
 import javafx.scene.layout.Pane;
 
@@ -20,12 +20,12 @@ public class MainTop extends Pane {
     }
 
     // Calls all FX property setters.
-    private void initializeFx() {
+    private void initializeFx () {
         this.setResizePaneFx();
     }
 
     // Setters for initial FX properties
-    public void setResizePaneFx() {
+    public void setResizePaneFx () {
         super.widthProperty().addListener((obs, oldVal, newVal) -> {
             this.resizePane.getParentPane().setMinWidth(newVal.doubleValue());
             this.resizePane.getParentPane().setMaxWidth(newVal.doubleValue());

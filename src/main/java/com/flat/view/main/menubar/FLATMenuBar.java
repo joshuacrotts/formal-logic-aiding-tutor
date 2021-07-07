@@ -1,8 +1,8 @@
-package com.flat.view.menubar;
+package com.flat.view.main.menubar;
 
-import com.flat.view.menubar.menus.FileMenu;
-import com.flat.view.menubar.menus.HelpMenu;
-import com.flat.view.menubar.menus.export.ExportMenu;
+import com.flat.view.main.menubar.menus.FileMenu;
+import com.flat.view.main.menubar.menus.HelpMenu;
+import com.flat.view.main.menubar.menus.export.ExportMenu;
 import javafx.scene.control.MenuBar;
 
 /**

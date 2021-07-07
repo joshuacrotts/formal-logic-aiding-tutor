@@ -1,4 +1,4 @@
-package com.flat.view.menubar.items.help;
+package com.flat.view.main.menubar.items.help;
 
 import com.flat.view.viewdata.menubar.MenuBarData;
 import javafx.scene.control.MenuItem;

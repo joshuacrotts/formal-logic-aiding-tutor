@@ -6,10 +6,7 @@
 
 @import "resizepane.css";
 @import "menubar.css";
-@import "settings.css";
-@import "previewborderpane.css";
-@import "textfield.css";
-@import "alerts.css";
+@import "settings/settings.css";
 
 .root {
     -fx-background-color: black;

@@ -1,9 +1,9 @@
-package com.flat.view.menubar.menus.export;
+package com.flat.view.main.menubar.menus.export;
 
 import com.flat.view.viewdata.menubar.MenuBarData;
-import com.flat.view.menubar.items.export.latex.LatexParseTreeMenuItem;
-import com.flat.view.menubar.items.export.latex.LatexTruthTableMenuItem;
-import com.flat.view.menubar.items.export.latex.LatexTruthTreeMenuItem;
+import com.flat.view.main.menubar.items.export.latex.LatexParseTreeMenuItem;
+import com.flat.view.main.menubar.items.export.latex.LatexTruthTableMenuItem;
+import com.flat.view.main.menubar.items.export.latex.LatexTruthTreeMenuItem;
 import javafx.scene.control.Menu;
 
 /**
