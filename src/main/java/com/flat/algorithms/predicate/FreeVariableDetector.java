@@ -13,7 +13,7 @@ import java.util.Stack;
 public final class FreeVariableDetector {
 
     /**
-     *
+     * WffTree to use in the free variable detector.
      */
     private final WffTree wffTree;
 

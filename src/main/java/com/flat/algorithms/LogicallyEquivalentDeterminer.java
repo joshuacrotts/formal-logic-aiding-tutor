@@ -14,12 +14,12 @@ import com.flat.models.treenode.WffTree;
 public final class LogicallyEquivalentDeterminer {
 
     /**
-     *
+     * TruthTree that is constructed from the generator.
      */
     private final TruthTree truthTree;
 
     /**
-     *
+     * Combined WffTree is the negated biconditional.
      */
     private final WffTree combinedTree;
 

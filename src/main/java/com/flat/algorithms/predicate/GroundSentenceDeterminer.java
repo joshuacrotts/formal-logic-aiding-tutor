@@ -11,7 +11,7 @@ import java.util.Queue;
 public final class GroundSentenceDeterminer {
 
     /**
-     *
+     * WffTree to be used in the ground sentence determiner.
      */
     private final WffTree wffTree;
 
@@ -20,7 +20,9 @@ public final class GroundSentenceDeterminer {
     }
 
     /**
-     * @return
+     * A wff is ground if it contains no variables.
+     *
+     * @return true if the wff is ground, false otherwise.
      */
     public boolean isGroundSentence() {
         Queue<WffTree> queue = new LinkedList<>();

@@ -8,7 +8,7 @@ import com.flat.models.treenode.WffTree;
 public final class OpenSentenceDeterminer {
 
     /**
-     *
+     * WffTree to use in the open sentence determiner.
      */
     private final WffTree wffTree;
 
@@ -17,7 +17,9 @@ public final class OpenSentenceDeterminer {
     }
 
     /**
-     * @return
+     * A sentence is open if there is at least one free variable.
+     *
+     * @return true if sentence is open, false otherwise.
      */
     public boolean isOpenSentence() {
         FreeVariableDetector fvd = new FreeVariableDetector(this.wffTree);

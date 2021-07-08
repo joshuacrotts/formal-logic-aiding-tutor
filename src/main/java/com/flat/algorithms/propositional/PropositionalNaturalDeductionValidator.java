@@ -188,7 +188,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
      *
      * @param _tree   - WffTree object to recursively check for satisfaction.
      * @param _parent - NDWffTree "parent" of _tree; any children of _tree will be temporary "children" of _parent.
-     * @return
+     * @return true if the node is satisfied, false otherwise.
      */
     private boolean satisfy(WffTree _tree, NDWffTree _parent) {
         boolean satisfied = false;
@@ -340,7 +340,7 @@ public final class PropositionalNaturalDeductionValidator extends BaseNaturalDed
      * @precondition _parent cannot be the conclusion.
      * @precondition _bicondTree must represent the same tree as _parent.
      *
-     * A biconditional is satisfied via either a BCE rule, or the creation of
+     * A biconditional is satisfied via either a BCB rule, or the creation of
      * a biconditional via two implications conjoined with &.
      *
      * @param _bicondTree - biconditional WffTree

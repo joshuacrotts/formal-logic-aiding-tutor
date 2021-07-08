@@ -17,22 +17,16 @@ import java.util.Scanner;
 public final class NaturalDeductionProofVerifier {
 
     /**
-     *
-     */
-    private final ArrayList<WffTree> originalWffTreeList;
-
-    /**
-     *
+     * Premises list - this is updated throughout the verification.
      */
     private final ArrayList<NDWffTree> premisesList;
 
     /**
-     *
+     * Conclusion NDWffTree - this is the last element in the original WffTree list.
      */
     private final NDWffTree conclusionWff;
 
     public NaturalDeductionProofVerifier(ArrayList<WffTree> _wffTreeList) {
-        this.originalWffTreeList = _wffTreeList;
         this.premisesList = new ArrayList<>();
         this.conclusionWff = new NDWffTree(_wffTreeList.get(_wffTreeList.size() - 1).getNodeType() == NodeType.ROOT
                 ? _wffTreeList.get(_wffTreeList.size() - 1).getChild(0)
@@ -49,11 +43,13 @@ public final class NaturalDeductionProofVerifier {
     }
 
     /**
+     * Adds one step to this natural deduction proof. Returns whether or not this step derived the
+     * conclusion of the proof or not.
      *
-     * @param _wffTree
-     * @param _step
-     * @param _values
-     * @return
+     * @param _wffTree - single WffTree to be used as the next premise.
+     * @param _step - step that is being derived.
+     * @param _values - integer list in the form of a string e.g., "1, 2, 3".
+     * @return true if this premise derived the conclusion, false otherwise.
      */
     public boolean proveNaturalDeduction(WffTree _wffTree, NDStep _step, String _values) {
         // Trim the root if it is a root node.
@@ -96,6 +92,8 @@ public final class NaturalDeductionProofVerifier {
     }
 
     /**
+     * Determines if a WffTree, NDStep, and parent indices create a valid step for the
+     * natural deduction proof.
      *
      * @param _wffTree
      * @param _step
@@ -118,7 +116,7 @@ public final class NaturalDeductionProofVerifier {
             case DS: return this.isValidDisjunctiveSyllogism(_wffTree, _parents);
             case DNE: return this.isValidDoubleNegationElimination(_wffTree, _parents);
             case DNI: return this.isValidDoubleNegationIntroduction(_wffTree, _parents);
-            case BCE: return this.isValidBiconditionalElimination(_wffTree, _parents);
+            case BCB: return this.isValidBiconditionalElimination(_wffTree, _parents);
             case BCI: return this.isValidBiconditionalIntroduction(_wffTree, _parents);
             default: throw new IllegalArgumentException(_step + " is currently unsupported.");
         }
@@ -375,7 +373,7 @@ public final class NaturalDeductionProofVerifier {
                  && _wffTree.getChild(0).getChild(1).stringEquals(op2)
                  && _wffTree.getChild(1).getChild(0).stringEquals(op2)
                  && _wffTree.getChild(1).getChild(1).stringEquals(op1)) {
-                    this.addPremise(new NDWffTree(_wffTree, NDStep.BCE, parentOne));
+                    this.addPremise(new NDWffTree(_wffTree, NDStep.BCB, parentOne));
                     return true;
                 }
             }

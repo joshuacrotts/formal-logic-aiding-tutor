@@ -219,9 +219,11 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     }
 
     /**
-     * @param _tree
-     * @param _parent
-     * @return
+     * Attempts to satisfy a WffTree and its parent node.
+     *
+     * @param _tree - WffTree that is passed recursively.
+     * @param _parent - NDWffTree that parents the original WffTree in the recursive calls.
+     * @return NDWffTree that was satisfied, null if no satisfaction was discovered.
      */
     private NDWffTree satisfy(WffTree _tree, NDWffTree _parent) {
         NDWffTree satisfiedNDWffTree = null;
@@ -265,9 +267,14 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     }
 
     /**
-     * @param _tree
-     * @param _parent
-     * @return
+     * A predicate is satisfied if it meets one of the following properties:
+     * 1. It already exists as a premise.
+     * 2. If, as a quantifier, there exists a premise that matches it
+     *    this implies (x)Pxx matches with Paa.
+     *
+     * @param _tree - WffTree predicate to match against.
+     * @param _parent - parent node.
+     * @return NDWffTree that is satisfied if we could satisfy _tree, null otherwise.
      */
     private NDWffTree satisfyPredicate(WffTree _tree, NDWffTree _parent) {
         // First, check to see if the premise is a satisfied goal or not.
@@ -431,7 +438,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      * @precondition _parent cannot be the conclusion.
      * @precondition _bicondTree must represent the same tree as _parent.
      * <p>
-     * A biconditional is satisfied via either a BCE rule, or the creation of
+     * A biconditional is satisfied via either a BCB rule, or the creation of
      * a biconditional via two implications conjoined with &.
      */
     private NDWffTree satisfyBiconditional(WffTree _bicondTree, NDWffTree _parent) {

@@ -16,12 +16,13 @@ import java.util.Stack;
 public final class ArgumentTruthTreeValidator {
 
     /**
-     *
+     * Each WffTree from the original list is combined via conjunctions with the last
+     * being negated, acting as the conclusion.
      */
     private final WffTree combinedTree;
 
     /**
-     *
+     * TruthTreeGenerator object to use later.
      */
     private BaseTruthTreeGenerator truthTreeGenerator;
 

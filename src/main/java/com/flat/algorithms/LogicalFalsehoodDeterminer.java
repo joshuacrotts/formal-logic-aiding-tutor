@@ -11,7 +11,7 @@ import com.flat.models.treenode.WffTree;
 public final class LogicalFalsehoodDeterminer {
 
     /**
-     *
+     * TruthTree that is constructed from the generator.
      */
     private final TruthTree truthTree;
 

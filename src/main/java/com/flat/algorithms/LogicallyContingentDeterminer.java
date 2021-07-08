@@ -10,7 +10,7 @@ import com.flat.models.treenode.WffTree;
 public final class LogicallyContingentDeterminer {
 
     /**
-     *
+     * TruthTree that is constructed from the generator.
      */
     private final WffTree wffTree;
 

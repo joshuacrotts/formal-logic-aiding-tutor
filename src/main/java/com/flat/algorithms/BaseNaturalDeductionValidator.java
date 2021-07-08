@@ -133,7 +133,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
 
     /**
      * Determines if we can apply a modus tollens rule to this implication node. This is only possible if we have
-     * not used MT previously nor used II. We iterate through to see if we have the negation of the consequent
+     * not used MT previously nor used →I. We iterate through to see if we have the negation of the consequent
      * satisfied.
      *
      * @param _mtTree
@@ -237,7 +237,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
             ImpNode impLhs = new ImpNode(_bicondTree.getChild(0), _bicondTree.getChild(1));
             ImpNode impRhs = new ImpNode(_bicondTree.getChild(1), _bicondTree.getChild(0));
             AndNode and = new AndNode(impLhs, impRhs);
-            this.addPremise(new NDWffTree(and, NDStep.BCE, _parent));
+            this.addPremise(new NDWffTree(and, NDStep.BCB, _parent));
             return true;
         }
         return false;

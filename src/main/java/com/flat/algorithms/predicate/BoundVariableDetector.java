@@ -13,7 +13,7 @@ import java.util.Stack;
 public final class BoundVariableDetector {
 
     /**
-     *
+     * WffTree to use in the bound variable detector.
      */
     private final WffTree wffTree;
 
@@ -26,7 +26,10 @@ public final class BoundVariableDetector {
     }
 
     /**
-     * @return
+     * Gets a list of all bound variables in the WffTree recursively. A variable is
+     * bound if there exists a quantifier that binds it in its scope.
+     *
+     * @return ArrayList<WffTree> of all bound variables.
      */
     public ArrayList<WffTree> getBoundVariables() {
         ArrayList<WffTree> S = new ArrayList<>();
