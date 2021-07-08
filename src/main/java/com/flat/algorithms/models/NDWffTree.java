@@ -114,16 +114,19 @@ public class NDWffTree {
             return String.format("%-50s%-50s", this.wffTree.getStringRep(), this.derivationStep);
         } else {
             // It's a little ugly but it works.
-            StringBuilder sb = new StringBuilder(String.format("%-50s", this.wffTree.getStringRep()));
-            sb.append(this.derivationStep);
+            if (!this.derivedParentIndices.isEmpty()) {
+                StringBuilder sb = new StringBuilder(String.format("%-50s", this.wffTree.getStringRep()));
+                sb.append(this.derivationStep);
 
-            sb.append(", ");
-            for (int i = 0; i < this.derivedParentIndices.size() - 1; i++) {
-                sb.append(this.derivedParentIndices.get(i));
                 sb.append(", ");
+                for (int i = 0; i < this.derivedParentIndices.size() - 1; i++) {
+                    sb.append(this.derivedParentIndices.get(i));
+                    sb.append(", ");
+                }
+                sb.append(this.derivedParentIndices.get(this.derivedParentIndices.size() - 1));
+                return sb.toString();
             }
-            sb.append(this.derivedParentIndices.get(this.derivedParentIndices.size() - 1));
-            return sb.toString();
+            return "";
         }
     }
 
