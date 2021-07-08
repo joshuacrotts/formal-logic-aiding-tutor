@@ -9,14 +9,14 @@ import javafx.scene.layout.Pane;
  */
 public class ResizePane {
 
-    private final Orientation orientation;
-    private final Side side;
-    private Pane parentPane = new Pane();
-    private Pane activeObject;
-    private double clickedWidth = 0;
-    private double clickedHeight = 0;
-    private double clickedX = 0;
-    private double clickedY = 0;
+    protected final Orientation orientation;
+    protected final Side side;
+    protected Pane parentPane = new Pane();
+    protected Pane activeObject;
+    protected double clickedWidth = 0;
+    protected double clickedHeight = 0;
+    protected double clickedX = 0;
+    protected double clickedY = 0;
 
     /**
      * @param _activeObject The pane that will be resized.
@@ -57,7 +57,7 @@ public class ResizePane {
      * Sets the coordinate values, relative to the scene, when the resize pane
      * is pressed.
      */
-    private void setPositionAction() {
+    protected void setPositionAction() {
         this.parentPane.setOnMousePressed((MouseEvent event) -> {
             this.clickedWidth = this.activeObject.getWidth();
             this.clickedHeight = this.activeObject.getHeight();
@@ -70,7 +70,7 @@ public class ResizePane {
      * Checks constraints on resizing and then resizes object, when the resize
      * pane is clicked and dragged.
      */
-    private void setResizeAction() {
+    protected void setResizeAction() {
         this.parentPane.setOnMouseDragged((MouseEvent event) -> {
             if (this.checkBoundaries(event) == (BoundaryCheck.SATISFIED))
                 this.resizeObject(event);
@@ -83,7 +83,7 @@ public class ResizePane {
      *
      * @param _event Event thrown that contains data on the cursor and mouse.
      */
-    private void resizeObject(MouseEvent _event) {
+    protected void resizeObject(MouseEvent _event) {
         switch (this.side) {
             case LEFT:
                 this.activeObject.setPrefWidth(this.clickedWidth + (this.clickedX - _event.getSceneX()));

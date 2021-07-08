@@ -2,9 +2,27 @@
     Created on : Jun 25, 2021, 12:36:20 PM
     Author     : Christopher Brantley <ccbrantley@uncg.edu>
 */
-
-.menu-item, .menu-button{
+.menu {
     -fx-alignment: center;
+    -fx-background-color: whitesmoke;
     -fx-border-color: black;
-    -fx-border-width: 0, 1, 0, 0;
+    -fx-border-width: 1 1 1 0;
+    -fx-pref-width: 150;
+    -fx-pref-height: 40;
+    -fx-padding: 10;
+}
+
+.menu-item {
+    -fx-border-color: black;
+    -fx-background-color: whitesmoke;
+    -fx-border-width: 0 1 1 0;
+    -fx-pref-width: 150;
+    -fx-pref-height: 40;
+    -fx-padding: 10;
+
+}
+
+.context-menu {
+    -fx-border-color: black;
+    -fx-border-width: 1;
 }

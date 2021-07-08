@@ -50,8 +50,6 @@ public class MainView {
 
     // Setters for initial FX properties.
     public void setMainTopFx() {
-        this.mainTop.setPrefHeight(50);
-        this.mainTop.setMaxHeight(50);
     }
 
     public void setMainRightFx() {
