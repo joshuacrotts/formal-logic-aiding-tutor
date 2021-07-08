@@ -14,32 +14,26 @@ import java.util.Scanner;
 /**
  *
  */
-public class NaturalDeductionProofVerifier {
+public final class NaturalDeductionProofVerifier {
 
     /**
      *
      */
-    protected final ArrayList<WffTree> originalWffTreeList;
+    private final ArrayList<WffTree> originalWffTreeList;
 
     /**
      *
      */
-    protected final ArrayList<NDWffTree> originalPremisesList;
+    private final ArrayList<NDWffTree> premisesList;
 
     /**
      *
      */
-    protected final ArrayList<NDWffTree> premisesList;
-
-    /**
-     *
-     */
-    protected final NDWffTree conclusionWff;
+    private final NDWffTree conclusionWff;
 
     public NaturalDeductionProofVerifier(ArrayList<WffTree> _wffTreeList) {
         this.originalWffTreeList = _wffTreeList;
         this.premisesList = new ArrayList<>();
-        this.originalPremisesList = new ArrayList<>();
         this.conclusionWff = new NDWffTree(_wffTreeList.get(_wffTreeList.size() - 1).getNodeType() == NodeType.ROOT
                 ? _wffTreeList.get(_wffTreeList.size() - 1).getChild(0)
                 : _wffTreeList.get(_wffTreeList.size() - 1), NDStep.C);
@@ -71,7 +65,7 @@ public class NaturalDeductionProofVerifier {
             int[] nums = this.convertToIntArray(nextArg.substring(nextArg.indexOf(";") + 1).split(","));
             // Convert the string input to a WffTree list - this should be a singleton.
             ArrayList<WffTree> wffTreeList = FLATParserAdapter.getAbstractSyntaxTree(wff);
-            // Trim the root if it is that node.
+            // Trim the root if necessary (almost always is).
             WffTree wffTree = wffTreeList.get(0).isRoot() ? wffTreeList.get(0).getChild(0) : wffTreeList.get(0);
             if (!this.isValidStep(wffTree, step, nums)) {
                 throw new IllegalArgumentException("Invalid rule applied.");
@@ -89,7 +83,11 @@ public class NaturalDeductionProofVerifier {
      * @param _parents
      * @return
      */
-    private boolean isValidStep(WffTree _wffTree, NDStep _step, int[] _parents) {
+    public boolean isValidStep(WffTree _wffTree, NDStep _step, int[] _parents) {
+        if (_parents.length != _step.getOpCount()) {
+            throw new IllegalArgumentException(_step + " requires " + _step.getOpCount() + " parent(s) to derive but was provided " + _parents.length);
+        }
+
         switch (_step) {
             case MP: return this.isValidModusPonens(_wffTree, _parents);
             case MT: return this.isValidModusTollens(_wffTree, _parents);
@@ -97,8 +95,22 @@ public class NaturalDeductionProofVerifier {
             case AI: return this.isValidConjunctionIntroduction(_wffTree, _parents);
             case II: return this.isValidImplicationIntroduction(_wffTree, _parents);
             case OI: return this.isValidDisjunctionIntroduction(_wffTree, _parents);
+            case HS: return this.isValidHypotheticalSyllogism(_wffTree, _parents);
+            case DS: return this.isValidDisjunctiveSyllogism(_wffTree, _parents);
+            case DNE: return this.isValidDoubleNegationElimination(_wffTree, _parents);
+            case DNI: return this.isValidDoubleNegationIntroduction(_wffTree, _parents);
+            case BCE: return this.isValidBiconditionalElimination(_wffTree, _parents);
+            case BCI: return this.isValidBiconditionalIntroduction(_wffTree, _parents);
             default: throw new IllegalArgumentException(_step + " is currently unsupported.");
         }
+    }
+
+    public NDWffTree getConclusionWff() {
+        return this.conclusionWff;
+    }
+
+    public ArrayList<NDWffTree> getPremisesList() {
+        return this.premisesList;
     }
 
     /**
@@ -108,10 +120,8 @@ public class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidModusPonens(WffTree _wffTree, int[] _parents) {
-        if (_parents.length != 2) { return false; }
         NDWffTree parentOne = this.getPremise(_parents[0]);
         NDWffTree parentTwo = this.getPremise(_parents[1]);
-
         // At least one of them has to be an implication.
         if (parentOne.getWffTree().isImp() || parentTwo.getWffTree().isImp()) {
             NDWffTree impNode = parentOne.getWffTree().isImp() ? parentOne : parentTwo;
@@ -134,15 +144,18 @@ public class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidModusTollens(WffTree _wffTree, int[] _parents) {
-        if (_parents.length != 2) { return false; }
         NDWffTree parentOne = this.getPremise(_parents[0]);
         NDWffTree parentTwo = this.getPremise(_parents[1]);
+        // At least one of them has to be an implication.
         if (parentOne.getWffTree().isImp() || parentTwo.getWffTree().isImp()) {
             NDWffTree impNode = parentOne.getWffTree().isImp() ? parentOne : parentTwo;
             NDWffTree othNode = parentOne.getWffTree().isImp() ? parentTwo : parentOne;
-            // We need to check quite a few conditions here. First, let's assume ImpNode IS the actual implication.
-            if (impNode.getWffTree().getChild(1).stringEquals(BaseTruthTreeGenerator.getFlippedNode(othNode.getWffTree()))
-             && _wffTree.stringEquals(BaseTruthTreeGenerator.getFlippedNode(impNode.getWffTree().getChild(0)))) {
+            // We need to check quite a few conditions here. First let's check to see if flipping the implication nodes
+            // satisfies the MT property.
+            if ((impNode.getWffTree().getChild(1).stringEquals(BaseTruthTreeGenerator.getFlippedNode(othNode.getWffTree()))
+                    && _wffTree.stringEquals(BaseTruthTreeGenerator.getFlippedNode(impNode.getWffTree().getChild(0))))
+                || (othNode.getWffTree().stringEquals(BaseTruthTreeGenerator.getFlippedNode(impNode.getWffTree().getChild(1)))
+                    && _wffTree.stringEquals(BaseTruthTreeGenerator.getFlippedNode(impNode.getWffTree().getChild(0))))) {
                 this.addPremise(new NDWffTree(_wffTree, NDStep.MT, parentOne, parentTwo));
                 return true;
             }
@@ -157,9 +170,7 @@ public class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidConjunctionElimination(WffTree _wffTree, int[] _parents) {
-        if (_parents.length != 1) return false;
         NDWffTree parentOne = this.getPremise(_parents[0]);
-
         // The node has to be a conjunction and one of the operands must be the WffTree.
         if (parentOne.getWffTree().isAnd()) {
             if (parentOne.getWffTree().getChild(0).stringEquals(_wffTree)
@@ -179,7 +190,6 @@ public class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidConjunctionIntroduction(WffTree _wffTree, int[] _parents) {
-        if (_parents.length != 2) return false;
         NDWffTree parentOne = this.getPremise(_parents[0]);
         NDWffTree parentTwo = this.getPremise(_parents[1]);
         // Two conditions: 1. the new Wff must be a conjunction and its operands must be parentOne/Two.
@@ -200,7 +210,6 @@ public class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidImplicationIntroduction(WffTree _wffTree, int[] _parents) {
-        if (_parents.length != 2) return false;
         NDWffTree parentOne = this.getPremise(_parents[0]);
         NDWffTree parentTwo = this.getPremise(_parents[1]);
         // The WffTree must be an implication and parentOne must be the lhs and parentTwo the rhs.
@@ -222,9 +231,7 @@ public class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidDisjunctionIntroduction(WffTree _wffTree, int[] _parents) {
-        if (_parents.length != 1) return false;
         NDWffTree parentOne = this.getPremise(_parents[0]);
-
         // The node has to be a disjunction and at least one of the children must be parentOne.
         if (_wffTree.isOr()) {
             if (_wffTree.getChild(0).stringEquals(parentOne.getWffTree())
@@ -233,6 +240,156 @@ public class NaturalDeductionProofVerifier {
                 return true;
             }
         }
+        return false;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidHypotheticalSyllogism(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        NDWffTree parentTwo = this.getPremise(_parents[1]);
+        // The condition is that the two parents must be implications and the
+        // current node must be an implication and the HS property must be satisfied.
+        if (_wffTree.isImp()) {
+            if (parentOne.getWffTree().isImp() && parentTwo.getWffTree().isImp()) {
+                WffTree antecedent = _wffTree.getChild(0);
+                WffTree consequent = _wffTree.getChild(1);
+                // Case 1: (X > Y), (Y > Z) => (X > Z)
+                if (antecedent.stringEquals(parentOne.getWffTree().getChild(0)) &&
+                    consequent.stringEquals(parentTwo.getWffTree().getChild(1))) {
+                    this.addPremise(new NDWffTree(_wffTree, NDStep.HS, parentOne, parentTwo));
+                    return true;
+                }
+                // Case 2: (Y > Z), (X > Y) => (X > Z)
+                if (antecedent.stringEquals(parentTwo.getWffTree().getChild(0)) &&
+                    consequent.stringEquals(parentOne.getWffTree().getChild(1))) {
+                    this.addPremise(new NDWffTree(_wffTree, NDStep.HS, parentTwo, parentOne));
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidDisjunctiveSyllogism(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        NDWffTree parentTwo = this.getPremise(_parents[1]);
+
+        // The condition is that one of the parents MUST be a disjunction and
+        // the other must be the negation of one operand.
+        if (parentOne.getWffTree().isOr() || parentTwo.getWffTree().isOr()) {
+            // Case 1: parentOne is the OR we're checking against and parentTwo is the negated operand.
+            NDWffTree orNode = parentOne.getWffTree().isOr() ? parentOne : parentTwo;
+            NDWffTree othNode = parentOne.getWffTree().isOr() ? parentTwo : parentOne;
+            if (orNode.getWffTree().getChild(0).stringEquals(BaseTruthTreeGenerator.getFlippedNode(othNode.getWffTree()))) {
+                // Now check to see if _wffTree is equal to the other operand.
+                if (_wffTree.stringEquals(orNode.getWffTree().getChild(1))) {
+                    this.addPremise(new NDWffTree(_wffTree, NDStep.DS, parentOne, parentTwo));
+                    return true;
+                }
+            } else if (orNode.getWffTree().getChild(1).stringEquals(BaseTruthTreeGenerator.getFlippedNode(othNode.getWffTree()))) {
+                // Now check to see if _wffTree is equal to the other operand.
+                if (_wffTree.stringEquals(orNode.getWffTree().getChild(0))) {
+                    this.addPremise(new NDWffTree(_wffTree, NDStep.DS, parentOne, parentTwo));
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidDoubleNegationElimination(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        // The only condition is that the parent is equivalent to this node if the DN is removed.
+
+
+        return false;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidDoubleNegationIntroduction(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        // The only condition is that the parent is equivalent to the node is the DN is introduced.
+
+        return false;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidBiconditionalElimination(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        // The wff must be a conjunction of implications.
+        if (_wffTree.isAnd() && _wffTree.getChild(0).isImp() && _wffTree.getChild(1).isImp()) {
+            // The single parent must be a biconditional.
+            if (parentOne.getWffTree().isBicond()) {
+                // Now, the two implications must be of op1 > op2 and op2 > op1.
+                WffTree op1 = parentOne.getWffTree().getChild(0);
+                WffTree op2 = parentOne.getWffTree().getChild(1);
+                if (_wffTree.getChild(0).getChild(0).stringEquals(op1)
+                 && _wffTree.getChild(0).getChild(1).stringEquals(op2)
+                 && _wffTree.getChild(1).getChild(0).stringEquals(op2)
+                 && _wffTree.getChild(1).getChild(1).stringEquals(op1)) {
+                    this.addPremise(new NDWffTree(_wffTree, NDStep.BCE, parentOne));
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidBiconditionalIntroduction(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        NDWffTree parentTwo = this.getPremise(_parents[1]);
+        // The wff must be a biconditional and the two parents must be implications.
+        // The BC must have its operands be the antecedent and consequent of the implications.
+        if (_wffTree.isBicond()) {
+            if (parentOne.getWffTree().isImp() && parentTwo.getWffTree().isImp()) {
+                WffTree op1 = _wffTree.getChild(0);
+                WffTree op2 = _wffTree.getChild(1);
+                if (parentOne.getWffTree().getChild(0).stringEquals(op1)
+                        && parentOne.getWffTree().getChild(1).stringEquals(op2)
+                        && parentTwo.getWffTree().getChild(0).stringEquals(op2)
+                        && parentTwo.getWffTree().getChild(1).stringEquals(op1)) {
+                    this.addPremise(new NDWffTree(_wffTree, NDStep.BCI, parentOne, parentTwo));
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
@@ -316,12 +473,5 @@ public class NaturalDeductionProofVerifier {
      */
     private NDStep getStep(String _step) {
         return NDStep.valueOf(_step);
-    }
-
-    public static void main(String[] args) {
-        Scanner stdin = new Scanner(System.in);
-        ArrayList<WffTree> initArgsWffTrees = FLATParserAdapter.getAbstractSyntaxTree(stdin.nextLine());
-        NaturalDeductionProofVerifier verifier = new NaturalDeductionProofVerifier(initArgsWffTrees);
-        verifier.proveNaturalDeductionStdin();
     }
 }

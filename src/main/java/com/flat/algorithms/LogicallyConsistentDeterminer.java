@@ -31,6 +31,7 @@ public final class LogicallyConsistentDeterminer {
     }
 
     /**
+     * (A > (B > C)), ((B > C) > ~E), A, (E | (P > ~Q)), P / (P <> ~E)
      * @return
      */
     public boolean isConsistent() {

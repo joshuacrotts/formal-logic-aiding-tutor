@@ -22,7 +22,7 @@ import java.util.Stack;
  * the two are not equivalent, and the tautology test returns true,
  * then A semantically entails B.
  */
-public class SemanticEntailmentDeterminer {
+public final class SemanticEntailmentDeterminer {
 
     /**
      *

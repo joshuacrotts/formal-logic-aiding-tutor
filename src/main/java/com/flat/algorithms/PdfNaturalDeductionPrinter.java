@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  *
  */
-public class PdfNaturalDeductionPrinter extends PdfPrinter {
+public final class PdfNaturalDeductionPrinter extends PdfPrinter {
 
     /**
      * Template location to read from.

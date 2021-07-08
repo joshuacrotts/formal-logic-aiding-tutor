@@ -4,7 +4,7 @@ import com.flat.algorithms.models.TruthTree;
 
 import java.io.*;
 
-public class TexTruthTreePrinter extends TexPrinter {
+public final class TexTruthTreePrinter extends TexPrinter {
 
     /**
      * Template location to read from.

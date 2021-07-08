@@ -29,7 +29,7 @@ import java.util.*;
  *
  * </p>
  */
-public class TruthTree implements Comparable<TruthTree> {
+public final class TruthTree implements Comparable<TruthTree> {
 
     /**
      * Maximum number of iterations that a truth tree can substitute a

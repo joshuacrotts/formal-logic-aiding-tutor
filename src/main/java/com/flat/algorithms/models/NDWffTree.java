@@ -8,34 +8,40 @@ import java.util.Collections;
 /**
  *
  */
-public class NDWffTree {
+public final class NDWffTree {
 
     /**
-     *
+     * Each NDWffTree has a list of parents that it is derived from unless it is an assumption or conclusion.
      */
     private ArrayList<NDWffTree> derivedParents;
 
     /**
-     *
+     * Because we need a way of keeping track which indices the parents are stored in, we use an ArrayList
+     * but populate it after the proof is built (or in the case of the proof checker, while it's built).
      */
     private ArrayList<Integer> derivedParentIndices;
 
     /**
-     *
+     * WffTree that backs this NDWffTree.
      */
     private WffTree wffTree;
 
     /**
-     *
+     * Each NDWffTree has a derivation step - that is, the rule that generated this NDWffTree.
      */
     private NDStep derivationStep;
 
     /**
-     *
+     * Status of this NDWffTree. These flags are to determine whether or not a rule has been applied to this
+     * NDWffTree ex. NDFlag.MP means that this node has been used in a MP rule.
      */
     private int flags;
 
-    private int value;
+    /**
+     * When sorting the nodes for evaluation in the proof generator, we need a way to know which nodes we should
+     * evaluate first.
+     */
+    private int priority;
 
     public NDWffTree(WffTree _wffTree, int _flags, NDStep _derivationStep, NDWffTree... _derivedParents) {
         this.wffTree = _wffTree;
@@ -223,43 +229,43 @@ public class NDWffTree {
     }
 
     /**
-     * Assigns the precedence value of this truth tree. This is described in
+     * Assigns the precedence value of this NDWffTree. This is described in
      * further detail in the above javadoc.
      */
     private void setTruthTreeValue() {
         WffTree _node = this.wffTree;
         // This is kind of ugly, I know...
         if (_node.isAtom() || _node.isPredicate()) {
-            this.value = 0;
+            this.priority = 0;
         } else if (_node.isDoubleNegation()) {
             // Double negations have to have a higher priority.
-            this.value = 3;
+            this.priority = 3;
         } else if (_node.isNegation() && !_node.isNegAnd() && !_node.isNegImp() && !_node.isNegOr()) {
-            this.value = 4;
+            this.priority = 4;
         } else if (_node.isExistential()) {
             // Existential HAS to be the last operation because we can't risk performing EE too early.
             // Performing UE too early adds an UNNECESSARY constant, but it's fine.
-            this.value = 14;
+            this.priority = 14;
         } else if (_node.isUniversal()) {
-            this.value = 13;
+            this.priority = 13;
         } else if (_node.isAnd()) {
-            this.value = 6;
+            this.priority = 6;
         } else if (_node.isNegOr() || _node.isNegImp()) {
-            this.value = 7;
+            this.priority = 7;
         } else if (_node.isOr()) {
-            this.value = 8;
+            this.priority = 8;
         } else if (_node.isNegAnd()) {
-            this.value = 9;
+            this.priority = 9;
         } else if (_node.isImp()) {
-            this.value = 10;
+            this.priority = 10;
         } else if (_node.isBicond()) {
-            this.value = 11;
+            this.priority = 11;
         } else {
-            this.value = 12;
+            this.priority = 12;
         }
     }
 
-    public int getValue() {
-        return this.value;
+    public int getPriority() {
+        return this.priority;
     }
 }

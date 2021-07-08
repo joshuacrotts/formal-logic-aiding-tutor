@@ -7,6 +7,9 @@ import com.flat.models.treenode.WffTree;
 import java.util.ArrayList;
 import java.util.Stack;
 
+/**
+ * 
+ */
 public final class FreeVariableDetector {
 
     /**
