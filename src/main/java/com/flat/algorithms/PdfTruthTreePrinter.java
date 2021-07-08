@@ -8,7 +8,7 @@ import java.io.FileReader;
 /**
  *
  */
-public class PdfTruthTreePrinter extends PdfPrinter {
+public final class PdfTruthTreePrinter extends PdfPrinter {
 
     /**
      * Template location to read from.

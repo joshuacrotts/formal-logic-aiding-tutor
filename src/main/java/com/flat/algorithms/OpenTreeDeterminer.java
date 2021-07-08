@@ -11,7 +11,7 @@ import java.util.Queue;
 /**
  *
  */
-public class OpenTreeDeterminer {
+public final class OpenTreeDeterminer {
 
     /**
      *

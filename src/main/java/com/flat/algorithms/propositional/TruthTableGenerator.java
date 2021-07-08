@@ -54,42 +54,6 @@ public final class TruthTableGenerator {
     }
 
     /**
-     * Performs a logical conjunction (AND) (&&) on two boolean values, meaning that
-     * both values must be true to return true.
-     *
-     * @param _a
-     * @param _b
-     * @return logical AND operation result.
-     */
-    private static boolean logicalAnd(boolean _a, boolean _b) {
-        return _a && _b;
-    }
-
-    /**
-     * Performs a logical disjunction (OR) (||) on two boolean values, meaning that
-     * at least value values must be true to return true.
-     *
-     * @param _a
-     * @param _b
-     * @return logical OR operation result.
-     */
-    private static boolean logicalOr(boolean _a, boolean _b) {
-        return _a || _b;
-    }
-
-    /**
-     * Performs a logical exclusive or (XOR) (^) on two boolean values, meaning that
-     * both operands must be different to be true.
-     *
-     * @param _a
-     * @param _b
-     * @return logical XOR operation result.
-     */
-    private static boolean logicalXOR(boolean _a, boolean _b) {
-        return _a ^ _b;
-    }
-
-    /**
      * Performs a logical implication (if-then) (->) on two boolean values, meaning that
      * if _a is true and _b is false, we return false. This otherwise returns
      * true. We use the logically equivalent form of NOT A OR B to compute this.
@@ -112,7 +76,7 @@ public final class TruthTableGenerator {
      * @return logical AND operation result.
      */
     private static boolean logicalBicond(boolean _a, boolean _b) {
-        return !logicalXOR(_a, _b);
+        return !Boolean.logicalXor(_a, _b);
     }
 
     /**
@@ -316,15 +280,15 @@ public final class TruthTableGenerator {
                 boolean op1Bool = _operand1.getTruthValues().get(i);
                 boolean op2Bool = _operand2.getTruthValues().get(i);
                 if (_op.isAnd()) {
-                    _op.setTruthValue(logicalAnd(op1Bool, op2Bool), i);
+                    _op.setTruthValue(Boolean.logicalAnd(op1Bool, op2Bool), i);
                 } else if (_op.isOr()) {
-                    _op.setTruthValue(logicalOr(op1Bool, op2Bool), i);
+                    _op.setTruthValue(Boolean.logicalOr(op1Bool, op2Bool), i);
                 } else if (_op.isImp()) {
-                    _op.setTruthValue(logicalImp(op1Bool, op2Bool), i);
+                    _op.setTruthValue(TruthTableGenerator.logicalImp(op1Bool, op2Bool), i);
                 } else if (_op.isBicond()) {
-                    _op.setTruthValue(logicalBicond(op1Bool, op2Bool), i);
+                    _op.setTruthValue(TruthTableGenerator.logicalBicond(op1Bool, op2Bool), i);
                 } else if (_op.isExclusiveOr()) {
-                    _op.setTruthValue(logicalXOR(op1Bool, op2Bool), i);
+                    _op.setTruthValue(Boolean.logicalXor(op1Bool, op2Bool), i);
                 }
             }
         }

@@ -35,15 +35,11 @@ public final class ArgumentTruthTreeValidator {
             nodes.push(_wffTreeList.get(i).getChild(0));
             // If we have two nodes, pop them and perform a conjunction.
             if (nodes.size() == 2) {
-                AndNode andNode = new AndNode();
                 WffTree ch2 = nodes.pop();
                 WffTree ch1 = nodes.pop();
-                andNode.addChild(ch1);
-                andNode.addChild(ch2);
+                AndNode andNode = new AndNode(ch1, ch2);
                 // Save the leaf so we can continue adding children.
-                if (leaf != null) {
-                    leaf.addChild(andNode);
-                }
+                if (leaf != null) { leaf.addChild(andNode); }
                 leaf = andNode;
                 nodes.push(andNode);
             }

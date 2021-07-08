@@ -8,7 +8,7 @@ import java.io.*;
 /**
  *
  */
-public class TexParseTreePrinter extends TexPrinter {
+public final class TexParseTreePrinter extends TexPrinter {
 
     /**
      * Template location to read from.

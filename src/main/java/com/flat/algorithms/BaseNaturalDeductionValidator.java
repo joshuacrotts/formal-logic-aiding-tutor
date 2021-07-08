@@ -610,8 +610,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      */
     protected boolean isEventualNegatedGoal(WffTree _tree, int maxIterations) {
         if (maxIterations > FLATParserListener.MAXIMUM_NEGATED_NODES) return false;
-        NegNode neg = new NegNode();
-        neg.addChild(_tree);
+        NegNode neg = new NegNode(_tree);
         for (NDWffTree ndWffTree : this.premisesList) { if (neg.stringEquals(ndWffTree.getWffTree())) { return true; } }
         return neg.stringEquals(this.conclusionWff.getWffTree()) || this.isEventualNegatedGoal(neg, maxIterations + 1);
     }
@@ -624,7 +623,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
         public int compare(NDWffTree _o1, NDWffTree _o2) {
             if (_o1.getWffTree().getNodeType() == _o2.getWffTree().getNodeType())
                 return _o1.getWffTree().getStringRep().length() - _o2.getWffTree().getStringRep().length();
-            return _o1.getValue() - _o2.getValue();
+            return _o1.getPriority() - _o2.getPriority();
         }
     }
 }

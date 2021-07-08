@@ -538,7 +538,7 @@ public abstract class BaseTruthTreeGenerator {
      * ~(A & B) == (~A | ~B)
      * ~(A -> B) == (~~A & ~B)
      * <p>
-     * Each of these equivalences on the rhs of the rule *is* applied when building
+     * Each of these equivalences on the rhs of the rule *are* applied when building
      * the tree. This means that there are some redundant steps added. These ought
      * be noted in the final version if time permits.
      * </p>
