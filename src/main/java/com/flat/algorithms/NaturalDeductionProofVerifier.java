@@ -50,6 +50,25 @@ public final class NaturalDeductionProofVerifier {
 
     /**
      *
+     * @param _wffTree
+     * @param _step
+     * @param _values
+     * @return
+     */
+    public boolean proveNaturalDeduction(WffTree _wffTree, NDStep _step, String _values) {
+        // Trim the root if it is a root node.
+        _wffTree = _wffTree.isRoot() ? _wffTree.getChild(0) : _wffTree;
+        // Remove all spaces in the parent string of indices.
+        _values = _values.replaceAll("\\s+", "");
+        // Now split at the comma to get the numbers.
+        int[] nums = this.convertToIntArray(_values.split(","));
+        if (!this.isValidStep(_wffTree, _step, nums)) return false;
+        this.assignParentIndices();
+        return this.findConclusion();
+    }
+
+    /**
+     *
      */
     public void proveNaturalDeductionStdin() {
         Scanner stdin = new Scanner(System.in);
@@ -83,7 +102,7 @@ public final class NaturalDeductionProofVerifier {
      * @param _parents
      * @return
      */
-    public boolean isValidStep(WffTree _wffTree, NDStep _step, int[] _parents) {
+    private boolean isValidStep(WffTree _wffTree, NDStep _step, int[] _parents) {
         if (_parents.length != _step.getOpCount()) {
             throw new IllegalArgumentException(_step + " requires " + _step.getOpCount() + " parent(s) to derive but was provided " + _parents.length);
         }
