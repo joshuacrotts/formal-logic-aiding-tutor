@@ -118,6 +118,7 @@ public final class NaturalDeductionProofVerifier {
             case DNI: return this.isValidDoubleNegationIntroduction(_wffTree, _parents);
             case BCB: return this.isValidBiconditionalElimination(_wffTree, _parents);
             case BCI: return this.isValidBiconditionalIntroduction(_wffTree, _parents);
+            case MI: return this.isValidMaterialImplication(_wffTree, _parents);
             default: throw new IllegalArgumentException(_step + " is currently unsupported.");
         }
     }
@@ -408,6 +409,27 @@ public final class NaturalDeductionProofVerifier {
         }
 
         return false;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidMaterialImplication(WffTree _wffTree, int[] _parents) {
+       NDWffTree parentOne = this.getPremise(_parents[0]);
+
+       if ((parentOne.getWffTree().isOr() && _wffTree.isImp())
+        || (parentOne.getWffTree().isImp() && _wffTree.isOr())) {
+           // Now check to see if the implication gets rid of the negation of the lhs.
+           if (parentOne.getWffTree().getChild(0).stringEquals(BaseTruthTreeGenerator.getFlippedNode(_wffTree.getChild(0)))
+            && parentOne.getWffTree().getChild(1).stringEquals(_wffTree.getChild(1))) {
+               this.addPremise(new NDWffTree(_wffTree, NDStep.MI, parentOne));
+               return true;
+           }
+       }
+       return false;
     }
 
     /**
