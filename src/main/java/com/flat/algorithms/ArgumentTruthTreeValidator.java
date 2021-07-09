@@ -16,12 +16,13 @@ import java.util.Stack;
 public final class ArgumentTruthTreeValidator {
 
     /**
-     *
+     * Each WffTree from the original list is combined via conjunctions with the last
+     * being negated, acting as the conclusion.
      */
     private final WffTree combinedTree;
 
     /**
-     *
+     * TruthTreeGenerator object to use later.
      */
     private BaseTruthTreeGenerator truthTreeGenerator;
 
@@ -35,15 +36,11 @@ public final class ArgumentTruthTreeValidator {
             nodes.push(_wffTreeList.get(i).getChild(0));
             // If we have two nodes, pop them and perform a conjunction.
             if (nodes.size() == 2) {
-                AndNode andNode = new AndNode();
                 WffTree ch2 = nodes.pop();
                 WffTree ch1 = nodes.pop();
-                andNode.addChild(ch1);
-                andNode.addChild(ch2);
+                AndNode andNode = new AndNode(ch1, ch2);
                 // Save the leaf so we can continue adding children.
-                if (leaf != null) {
-                    leaf.addChild(andNode);
-                }
+                if (leaf != null) { leaf.addChild(andNode); }
                 leaf = andNode;
                 nodes.push(andNode);
             }
@@ -78,7 +75,7 @@ public final class ArgumentTruthTreeValidator {
      * <p>
      * Where A, B, C, and D are wffs that represent premises, and E is a wff that represents a conclusion.
      *
-     * @return
+     * @return true if the formula is valid, false otherwise.
      */
     public boolean isValid() {
         if (this.combinedTree.isPropositionalWff()) {

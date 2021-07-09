@@ -13,12 +13,12 @@ import com.flat.models.treenode.WffTree;
 public final class LogicallyConsistentDeterminer {
 
     /**
-     *
+     * Combined WffTree - represents the biconditional of the two nodes.
      */
     private final WffTree combinedTree;
 
     /**
-     *
+     * Combined truth tree made from the generator.
      */
     private TruthTree combinedTruthTree;
 
@@ -31,7 +31,11 @@ public final class LogicallyConsistentDeterminer {
     }
 
     /**
-     * @return
+     * Two formulas are consistent if there is one model in which they are both true. In other words,
+     * if we create a biconditional between the two, and check the consistency branch (where both
+     * operands are affirmed), at least one branch is open.
+     *
+     * @return true if the two formulas are logically consistent, false otherwise.
      */
     public boolean isConsistent() {
         BaseTruthTreeGenerator truthTreeGenerator;
@@ -45,7 +49,7 @@ public final class LogicallyConsistentDeterminer {
         TruthTree consistentTree = truthTreeGenerator.getTruthTree().getLeft();
         TruthTree inconsistentTree = truthTreeGenerator.getTruthTree().getRight();
 
-        // The consistency branch must close, and the right must have at least one open branch.
+        // The consistency branch must have at least one open branch.
         return new OpenTreeDeterminer(inconsistentTree).hasSomeOpen();
     }
 

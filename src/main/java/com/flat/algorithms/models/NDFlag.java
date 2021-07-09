@@ -3,7 +3,7 @@ package com.flat.algorithms.models;
 /**
  *
  */
-public class NDFlag {
+public final class NDFlag {
 
     /**
      *

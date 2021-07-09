@@ -20,7 +20,8 @@ import java.util.Stack;
 public class FLATParserListener extends FLATBaseListener {
 
     /**
-     *
+     * Max # of negated nodes that are stackable on any given Wff. That is,
+     * ~~~~W is the max.
      */
     public static final int MAXIMUM_NEGATED_NODES = 4;
 
@@ -36,7 +37,7 @@ public class FLATParserListener extends FLATBaseListener {
     private final FLATParser FLAT_PARSER;
 
     /**
-     *
+     * Lookup table of predicates to see if they exist or have been marked.
      */
     private final FLATPredicateTable predicateTable;
 

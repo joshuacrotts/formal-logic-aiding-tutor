@@ -13,12 +13,13 @@ import com.flat.models.treenode.WffTree;
 public final class LogicalTautologyDeterminer {
 
     /**
-     *
+     * TruthTree that is constructed from the generator.
      */
     private final TruthTree truthTree;
 
     /**
-     *
+     * Combined WffTree for determining if the formula is a tautology. Takes the original node
+     * and appends a negation.
      */
     private final WffTree wffTree;
 
@@ -39,7 +40,9 @@ public final class LogicalTautologyDeterminer {
     }
 
     /**
-     * @return
+     * A formula is a tautology if its negation is a closed tree.
+     *
+     * @return true if this formula is a tautology, false otherwise.
      */
     public boolean isTautology() {
         return new ClosedTreeDeterminer(this.truthTree).hasAllClosed();

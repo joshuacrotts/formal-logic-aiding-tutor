@@ -9,6 +9,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
+/**
+ * 
+ */
 public final class PdfTruthTablePrinter extends PdfPrinter {
 
     /**

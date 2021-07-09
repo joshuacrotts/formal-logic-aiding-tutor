@@ -83,7 +83,7 @@ public class ParserTest {
             texParseTreePrinter.outputToFile();
 
             // Prints the parse tree to a Pdf.
-            PdfPrinter pdfParseTreePrinter = new PdfParseTreePrinter(result, "pdf_parse_tree.pdf");
+            PdfPrinter pdfParseTreePrinter = new PdfParseTreePrinter(result, "latex_parse_tree.pdf");
             pdfParseTreePrinter.outputToFile();
 
             BaseTruthTreeGenerator truthTreeGenerator;

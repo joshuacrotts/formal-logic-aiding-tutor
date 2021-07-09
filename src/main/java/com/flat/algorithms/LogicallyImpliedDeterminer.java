@@ -14,24 +14,20 @@ import com.flat.models.treenode.WffTree;
 public final class LogicallyImpliedDeterminer {
 
     /**
-     *
+     * TruthTree that is constructed from the generator.
      */
     private final TruthTree truthTree;
 
     /**
-     *
+     * The combined tree represents the implication node.
      */
     private final WffTree combinedTree;
 
     public LogicallyImpliedDeterminer(WffTree _wffTreeOne, WffTree _wffTreeTwo) {
-        ImpNode impNode = new ImpNode();
-        impNode.addChild(_wffTreeOne.getChild(0));
-        impNode.addChild(_wffTreeTwo.getChild(0));
-
+        ImpNode impNode = new ImpNode(_wffTreeOne.getChild(0), _wffTreeTwo.getChild(0));
         this.combinedTree = new WffTree();
         this.combinedTree.setFlags(_wffTreeOne.isPropositionalWff() ? NodeFlag.PROPOSITIONAL : NodeFlag.PREDICATE);
-        this.combinedTree.addChild(new NegNode());
-        this.combinedTree.getChild(0).addChild(impNode);
+        this.combinedTree.addChild(new NegNode(impNode));
 
         BaseTruthTreeGenerator treeGenerator;
         if (this.combinedTree.isPropositionalWff()) {
@@ -44,7 +40,10 @@ public final class LogicallyImpliedDeterminer {
     }
 
     /**
-     * @return
+     * One wff logically implies the other if, when running the TT for (A > B), all branches are closed.
+     * In other words, there is no model in which T is true and F is false.
+     *
+     * @return true if A implies B, false otherwise.
      */
     public boolean isImplied() {
         return new ClosedTreeDeterminer(this.truthTree).hasAllClosed();

@@ -133,7 +133,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
 
     /**
      * Determines if we can apply a modus tollens rule to this implication node. This is only possible if we have
-     * not used MT previously nor used II. We iterate through to see if we have the negation of the consequent
+     * not used MT previously nor used →I. We iterate through to see if we have the negation of the consequent
      * satisfied.
      *
      * @param _mtTree
@@ -237,7 +237,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
             ImpNode impLhs = new ImpNode(_bicondTree.getChild(0), _bicondTree.getChild(1));
             ImpNode impRhs = new ImpNode(_bicondTree.getChild(1), _bicondTree.getChild(0));
             AndNode and = new AndNode(impLhs, impRhs);
-            this.addPremise(new NDWffTree(and, NDStep.BCE, _parent));
+            this.addPremise(new NDWffTree(and, NDStep.BCB, _parent));
             return true;
         }
         return false;
@@ -264,6 +264,10 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
     }
 
     /**
+     * Determines if we can apply the constructive dilemma on a disjunction node. Constructive dilemma
+     * occurs when we have a disjunction (A | B), with two implications where the antecedents are the
+     * operands are A and B, resulting in the disjunction of the consequents.
+     *
      * @param _disjNode
      * @param _parent
      * @return
@@ -603,15 +607,14 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
 
     /**
      * Recursively determines if, by applying double negations, we can find a goal. This can blow up the running time if
-     * MAXIMUM_NEGATED_NODES is a large value, so we use 3 since it makes no sense to have any more.
+     * MAXIMUM_NEGATED_NODES is a large value, so we use 4 since it makes no sense to have any more.
      * @param _tree
      * @param maxIterations
      * @return true if we can eventually derive a goal by applying negation introductions, false otherwise.
      */
     protected boolean isEventualNegatedGoal(WffTree _tree, int maxIterations) {
         if (maxIterations > FLATParserListener.MAXIMUM_NEGATED_NODES) return false;
-        NegNode neg = new NegNode();
-        neg.addChild(_tree);
+        NegNode neg = new NegNode(_tree);
         for (NDWffTree ndWffTree : this.premisesList) { if (neg.stringEquals(ndWffTree.getWffTree())) { return true; } }
         return neg.stringEquals(this.conclusionWff.getWffTree()) || this.isEventualNegatedGoal(neg, maxIterations + 1);
     }
@@ -624,7 +627,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
         public int compare(NDWffTree _o1, NDWffTree _o2) {
             if (_o1.getWffTree().getNodeType() == _o2.getWffTree().getNodeType())
                 return _o1.getWffTree().getStringRep().length() - _o2.getWffTree().getStringRep().length();
-            return _o1.getValue() - _o2.getValue();
+            return _o1.getPriority() - _o2.getPriority();
         }
     }
 }

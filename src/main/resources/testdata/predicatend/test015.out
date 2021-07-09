@@ -1,6 +1,6 @@
 1: (Cd <> (∃x)Fax)                                   Ass.
 2: ~Cd                                               Ass.
-3: ((Cd -> (∃x)Fax) & ((∃x)Fax -> Cd))               ↔E, 1
+3: ((Cd -> (∃x)Fax) & ((∃x)Fax -> Cd))               BCB, 1
 4: ((∃x)Fax -> Cd)                                   &E, 3
 5: ~(∃x)Fax                                          MT, 2, 4
 6: (x)~Fax                                           DeM, 5

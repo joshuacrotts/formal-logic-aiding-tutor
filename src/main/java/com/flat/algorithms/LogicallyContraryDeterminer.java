@@ -13,12 +13,12 @@ import com.flat.models.treenode.WffTree;
 public final class LogicallyContraryDeterminer {
 
     /**
-     *
+     * TruthTree that is constructed from the generator.
      */
     private final WffTree combinedTree;
 
     /**
-     *
+     * Contrary tree - generated from biconditional of two operands.
      */
     private TruthTree combinedTruthTree;
 
@@ -31,7 +31,12 @@ public final class LogicallyContraryDeterminer {
     }
 
     /**
-     * @return
+     * Two formulas are logically contrary if the consistency branch (where the bicond operands are affirmed)
+     * is closed, but the inconsistency branch (where the bicond operands are negated) must have at least one
+     * branch open. In other words, there is no model where both are true but there's at least one where they
+     * are false.
+     *
+     * @return true if the two formulas are logically contrary, false otherwise.
      */
     public boolean isContrary() {
         BaseTruthTreeGenerator truthTreeGenerator;

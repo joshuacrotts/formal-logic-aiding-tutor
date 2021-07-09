@@ -8,7 +8,7 @@ import com.flat.models.treenode.WffTree;
 public final class ClosedSentenceDeterminer {
 
     /**
-     *
+     * WffTree to use in the closed sentece determiner.
      */
     private final WffTree wffTree;
 
@@ -17,7 +17,9 @@ public final class ClosedSentenceDeterminer {
     }
 
     /**
-     * @return
+     * A wff is closed if all variables are bound and the sentence is not ground.
+     *
+     * @return true if the wff is closed, false otherwise.
      */
     public boolean isClosedSentence() {
         FreeVariableDetector fvd = new FreeVariableDetector(this.wffTree);

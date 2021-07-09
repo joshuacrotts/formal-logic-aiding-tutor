@@ -117,7 +117,7 @@ public class SimpleNLPTest {
     }
 
     private static String createPremise(int _id, String _nounOne, String _nounTwo, String _clauseTwoObj) {
-        NPPhraseSpec clauseOneObj = nlgFactory.createNounPhrase(_id == 1 ? _nounOne : _clauseTwoObj);
+        NPPhraseSpec clauseOneObj = nlgFactory.createNounPhrase(_id == 1 ? _nounOne : _nounTwo);
         clauseOneObj.setPlural(true);
         clauseOneObj.setDeterminer((Math.random() < 0.25 ? generateRandomNegatedPrefix() : "")
                 + " " + quantifiers.get(FLATUtils.randomInt(quantifiers.size() - 1)));

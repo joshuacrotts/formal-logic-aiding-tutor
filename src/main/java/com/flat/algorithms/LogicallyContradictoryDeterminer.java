@@ -10,12 +10,12 @@ import com.flat.models.treenode.WffTree;
 public final class LogicallyContradictoryDeterminer {
 
     /**
-     *
+     * TruthTree that is constructed from the generator.
      */
     private final TruthTree truthTree;
 
     /**
-     *
+     * Contradictory tree - generated from biconditional of two operands.
      */
     private final WffTree combinedTree;
 
@@ -37,7 +37,9 @@ public final class LogicallyContradictoryDeterminer {
     }
 
     /**
-     * @return
+     * Two formulas are logically contradictory if their biconditional has all closed branches.
+     *
+     * @return true if the two formulas are contradictory, false otherwise.
      */
     public boolean isContradictory() {
         return new ClosedTreeDeterminer(this.truthTree).hasAllClosed();

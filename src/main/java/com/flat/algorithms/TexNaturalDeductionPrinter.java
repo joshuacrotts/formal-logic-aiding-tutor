@@ -4,7 +4,7 @@ import com.flat.algorithms.models.NDWffTree;
 
 import java.util.ArrayList;
 
-public class TexNaturalDeductionPrinter extends TexPrinter {
+public final class TexNaturalDeductionPrinter extends TexPrinter {
 
     /**
      * Template location to read from.

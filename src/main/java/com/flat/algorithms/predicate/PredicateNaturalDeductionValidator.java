@@ -134,17 +134,10 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
             WffTree deMorganNode = null;
             // Negate a biconditional to get ~(X <-> Y) => ~((X->Y) & (Y->X)).
             if (conclusionNode.isNegation() && conclusionNode.getChild(0).isBicond()) {
-                NegNode neg = new NegNode();
-                AndNode and = new AndNode();
-                ImpNode lhs = new ImpNode();
-                ImpNode rhs = new ImpNode();
-                lhs.addChild(conclusionNode.getChild(0).getChild(0));
-                lhs.addChild(conclusionNode.getChild(0).getChild(1));
-                rhs.addChild(conclusionNode.getChild(0).getChild(1));
-                rhs.addChild(conclusionNode.getChild(0).getChild(0));
-                and.addChild(lhs);
-                and.addChild(rhs);
-                neg.addChild(and);
+                ImpNode lhs = new ImpNode(conclusionNode.getChild(0).getChild(0), conclusionNode.getChild(0).getChild(1));
+                ImpNode rhs = new ImpNode(conclusionNode.getChild(0).getChild(1), conclusionNode.getChild(0).getChild(0));
+                AndNode and = new AndNode(lhs, rhs);
+                NegNode neg = new NegNode(and);
                 deMorganNode = neg;
             }
             // "Unnegate" a conjunction with two implications to get the negated biconditional.
@@ -152,11 +145,9 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
                     && conclusionNode.getChild(0).getChild(0).isImp() && conclusionNode.getChild(0).getChild(1).isImp()
                     && conclusionNode.getChild(0).getChild(0).getChild(0).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(1))
                     && conclusionNode.getChild(0).getChild(0).getChild(1).stringEquals(conclusionNode.getChild(0).getChild(1).getChild(0))) {
-                NegNode negNode = new NegNode();
-                BicondNode bicondNode = new BicondNode();
-                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(0));
-                bicondNode.addChild(conclusionNode.getChild(0).getChild(0).getChild(1));
-                negNode.addChild(bicondNode);
+                BicondNode bicondNode = new BicondNode(conclusionNode.getChild(0).getChild(0).getChild(0),
+                        conclusionNode.getChild(0).getChild(0).getChild(1));
+                NegNode negNode = new NegNode(bicondNode);
                 deMorganNode = negNode;
             }
             // Four types: one is ~(X B Y) => (~X ~B ~Y)
@@ -171,8 +162,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
                 WffTree negBinaryNode = BaseTruthTreeGenerator.getNegatedBinaryNode(conclusionNode); // B
                 negBinaryNode.addChild(conclusionNode.isImp() ? conclusionNode.getChild(0) : BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(0))); // LHS X
                 negBinaryNode.addChild(BaseTruthTreeGenerator.getFlippedNode(conclusionNode.getChild(1))); // RHS Y
-                deMorganNode = new NegNode();
-                deMorganNode.addChild(negBinaryNode);
+                deMorganNode = new NegNode(negBinaryNode);
             }
             // Other turns ~(x)W to (Ex)~W
             else if (conclusionNode.isNegation() && conclusionNode.getChild(0).isUniversal()) {
@@ -205,11 +195,8 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
             WffTree newWff = null;
             // Convert (P -> Q) to (~P V Q).3
             if (conclusionNode.isImp()) {
-                OrNode orNode = new OrNode();
-                NegNode negLhs = new NegNode();
-                negLhs.addChild(conclusionNode.getChild(0));
-                orNode.addChild(negLhs);
-                orNode.addChild(conclusionNode.getChild(1));
+                NegNode negLhs = new NegNode(conclusionNode.getChild(0));
+                OrNode orNode = new OrNode(negLhs, conclusionNode.getChild(1));
                 newWff = orNode;
             }
             // Convert (~P V Q) to (P -> Q)
@@ -217,9 +204,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
                 WffTree lhs = conclusionNode.getChild(0);
                 WffTree rhs = conclusionNode.getChild(1);
                 if (lhs.isNegation()) {
-                    ImpNode impNode = new ImpNode();
-                    impNode.addChild(lhs.getChild(0)); // Un-negate the lhs.
-                    impNode.addChild(rhs);
+                    ImpNode impNode = new ImpNode(lhs.getChild(0), rhs); // Un-negate the lhs.
                     newWff = impNode;
                 }
             }
@@ -234,9 +219,11 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     }
 
     /**
-     * @param _tree
-     * @param _parent
-     * @return
+     * Attempts to satisfy a WffTree and its parent node.
+     *
+     * @param _tree - WffTree that is passed recursively.
+     * @param _parent - NDWffTree that parents the original WffTree in the recursive calls.
+     * @return NDWffTree that was satisfied, null if no satisfaction was discovered.
      */
     private NDWffTree satisfy(WffTree _tree, NDWffTree _parent) {
         NDWffTree satisfiedNDWffTree = null;
@@ -280,9 +267,14 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     }
 
     /**
-     * @param _tree
-     * @param _parent
-     * @return
+     * A predicate is satisfied if it meets one of the following properties:
+     * 1. It already exists as a premise.
+     * 2. If, as a quantifier, there exists a premise that matches it
+     *    this implies (x)Pxx matches with Paa.
+     *
+     * @param _tree - WffTree predicate to match against.
+     * @param _parent - parent node.
+     * @return NDWffTree that is satisfied if we could satisfy _tree, null otherwise.
      */
     private NDWffTree satisfyPredicate(WffTree _tree, NDWffTree _parent) {
         // First, check to see if the premise is a satisfied goal or not.
@@ -345,9 +337,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         NDWffTree lhsNDWffTree = this.satisfy(_impTree.getChild(0), _parent);
         NDWffTree rhsNDWffTree = this.satisfy(_impTree.getChild(1), _parent);
         if (lhsNDWffTree != null && rhsNDWffTree != null) {
-            ImpNode impNode = new ImpNode();
-            impNode.addChild(_impTree.getChild(0));
-            impNode.addChild(_impTree.getChild(1));
+            ImpNode impNode = new ImpNode(_impTree.getChild(0), _impTree.getChild(1));
             NDWffTree impNDWffTree = new NDWffTree(impNode, NDFlag.II, NDStep.II,
                     this.getPremiseNDWffTree(_impTree.getChild(0)),
                     this.getPremiseNDWffTree(_impTree.getChild(1)));
@@ -383,9 +373,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         NDWffTree lhs = this.satisfy(_conjTree.getChild(0), _parent);
         NDWffTree rhs = this.satisfy(_conjTree.getChild(1), _parent);
         if (lhs != null && rhs != null) {
-            AndNode andNode = new AndNode();
-            andNode.addChild(lhs.getWffTree());
-            andNode.addChild(rhs.getWffTree());
+            AndNode andNode = new AndNode(lhs.getWffTree(), rhs.getWffTree());
             NDWffTree andNDWffTree = new NDWffTree(andNode, NDFlag.AI, NDStep.AI, lhs, rhs);
             this.addPremise(andNDWffTree);
             return andNDWffTree;
@@ -421,9 +409,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
             // There's two conditions: we're either adding from the conclusion or from
             // another premise. If the parent is the conclusion, then we're adding from
             // that (obviously) and one of the nodes won't be retrievable via getPremise....
-            OrNode orNode = new OrNode();
-            orNode.addChild(_disjTree.getChild(0));
-            orNode.addChild(_disjTree.getChild(1));
+            OrNode orNode = new OrNode(_disjTree.getChild(0), _disjTree.getChild(1));
 
             // Find out which operand is null (if any).
             NDWffTree lhsDisj = this.getPremiseNDWffTree(_disjTree.getChild(0));
@@ -452,7 +438,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      * @precondition _parent cannot be the conclusion.
      * @precondition _bicondTree must represent the same tree as _parent.
      * <p>
-     * A biconditional is satisfied via either a BCE rule, or the creation of
+     * A biconditional is satisfied via either a BCB rule, or the creation of
      * a biconditional via two implications conjoined with &.
      */
     private NDWffTree satisfyBiconditional(WffTree _bicondTree, NDWffTree _parent) {
@@ -463,20 +449,14 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
             }
         }
         // We first have a subgoal of X -> Y and Y -> X.
-        ImpNode impLhs = new ImpNode();
-        ImpNode impRhs = new ImpNode();
-        impLhs.addChild(_bicondTree.getChild(0));
-        impLhs.addChild(_bicondTree.getChild(1));
-        impRhs.addChild(_bicondTree.getChild(1));
-        impRhs.addChild(_bicondTree.getChild(0));
+        ImpNode impLhs = new ImpNode(_bicondTree.getChild(0), _bicondTree.getChild(1));
+        ImpNode impRhs = new ImpNode(_bicondTree.getChild(1), _bicondTree.getChild(0));
 
         // Check to see if both implications are satisfied.
         NDWffTree lhsNDWffTree = this.satisfy(impLhs, _parent);
         NDWffTree rhsNDWffTree = this.satisfy(impRhs, _parent);
         if (lhsNDWffTree != null && rhsNDWffTree != null) {
-            BicondNode bicondNode = new BicondNode();
-            bicondNode.addChild(_bicondTree.getChild(0));
-            bicondNode.addChild(_bicondTree.getChild(1));
+            BicondNode bicondNode = new BicondNode(_bicondTree.getChild(0), _bicondTree.getChild(1));
             NDWffTree bicondNDWffTree = new NDWffTree(bicondNode, NDFlag.BC, NDStep.BCI,
                     this.getPremiseNDWffTree(impLhs),
                     this.getPremiseNDWffTree(impRhs));
@@ -556,30 +536,19 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
             WffTree deMorganNode = null;
             // Negate a biconditional to get ~(X <-> Y) => ~((X->Y) & (Y->X)).
             if (_binopTree.isNegation() && _binopTree.getChild(0).isBicond()) {
-                NegNode neg = new NegNode();
-                AndNode and = new AndNode();
-                ImpNode lhs = new ImpNode();
-                ImpNode rhs = new ImpNode();
-                lhs.addChild(_binopTree.getChild(0).getChild(0));
-                lhs.addChild(_binopTree.getChild(0).getChild(1));
-                rhs.addChild(_binopTree.getChild(0).getChild(1));
-                rhs.addChild(_binopTree.getChild(0).getChild(0));
-                and.addChild(lhs);
-                and.addChild(rhs);
-                neg.addChild(and);
-                deMorganNode = neg;
+                ImpNode lhs = new ImpNode(_binopTree.getChild(0).getChild(0), _binopTree.getChild(0).getChild(1));
+                ImpNode rhs = new ImpNode(_binopTree.getChild(0).getChild(1), _binopTree.getChild(0).getChild(0));
+                AndNode and = new AndNode(lhs, rhs);
+                deMorganNode = new NegNode(and);
             }
             // "Unnegate" a conjunction with two implications to get the negated biconditional.
             else if (_binopTree.isNegation() && _binopTree.getChild(0).isAnd()
                     && _binopTree.getChild(0).getChild(0).isImp() && _binopTree.getChild(0).getChild(1).isImp()
                     && _binopTree.getChild(0).getChild(0).getChild(0).stringEquals(_binopTree.getChild(0).getChild(1).getChild(1))
                     && _binopTree.getChild(0).getChild(0).getChild(1).stringEquals(_binopTree.getChild(0).getChild(1).getChild(0))) {
-                NegNode negNode = new NegNode();
-                BicondNode bicondNode = new BicondNode();
-                bicondNode.addChild(_binopTree.getChild(0).getChild(0).getChild(0));
-                bicondNode.addChild(_binopTree.getChild(0).getChild(0).getChild(1));
-                negNode.addChild(bicondNode);
-                deMorganNode = negNode;
+                BicondNode bicondNode = new BicondNode(_binopTree.getChild(0).getChild(0).getChild(0),
+                        _binopTree.getChild(0).getChild(0).getChild(1));
+                deMorganNode = new NegNode(bicondNode);
             }
             // Four types: one is ~(X B Y) => (~X ~B ~Y)
             else if (_binopTree.isNegation() && (_binopTree.getChild(0).isOr() || _binopTree.getChild(0).isAnd() || _binopTree.getChild(0).isImp())) {
@@ -593,8 +562,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
                 WffTree negBinaryNode = BaseTruthTreeGenerator.getNegatedBinaryNode(_binopTree); // B
                 negBinaryNode.addChild(_binopTree.isImp() ? _binopTree.getChild(0) : BaseTruthTreeGenerator.getFlippedNode(_binopTree.getChild(0))); // LHS X
                 negBinaryNode.addChild(BaseTruthTreeGenerator.getFlippedNode(_binopTree.getChild(1))); // RHS Y
-                deMorganNode = new NegNode();
-                deMorganNode.addChild(negBinaryNode);
+                deMorganNode = new NegNode(negBinaryNode);
             }
             // Other turns ~(x)W to (Ex)~W
             else if (_binopTree.isNegation() && _binopTree.getChild(0).isUniversal()) {
