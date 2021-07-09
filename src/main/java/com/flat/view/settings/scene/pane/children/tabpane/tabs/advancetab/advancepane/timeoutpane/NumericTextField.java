@@ -14,7 +14,7 @@ public class NumericTextField extends TextField {
 
     public NumericTextField () {
         this.setOnKeyPressed();
-        //this.setOnKeyTyped();
+        this.setOnKeyTyped();
     }
 
     @Override

@@ -31,7 +31,7 @@ public class Controller {
     public static Pane getView (View _view) {
         switch (_view) {
             case MAIN:
-                return new MainView().getParentPane();
+                return new MainView();
             case SETTINGS:
             default:
                 return new Pane();

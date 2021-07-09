@@ -1,7 +1,7 @@
 package com.flat.view.action;
 
 import com.flat.view.action.ResizePane.Side;
-import com.flat.view.main.menubar.FLATMenuBar;
+import com.flat.view.main.menupane.FlatMenuPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -9,13 +9,13 @@ import javafx.scene.layout.Pane;
  *
  * @author Christopher Brantley <ccbrantley@uncg.edu>
  */
-public class PopupPane extends ResizePane {
-    protected FLATMenuBar flatMenuBar;
+public class PopupMenuPane extends ResizePane {
+    protected FlatMenuPane flatMenuPane;
     protected boolean toggle = false;
 
-    public PopupPane (Pane _activeObject, Orientation _orientation, Side _side, FLATMenuBar _menuBar) {
+    public PopupMenuPane (Pane _activeObject, Orientation _orientation, Side _side, FlatMenuPane _menuPane) {
         super(_activeObject, _orientation, _side);
-        this.flatMenuBar = _menuBar;
+        this.flatMenuPane = _menuPane;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class PopupPane extends ResizePane {
             case LEFT:
             case RIGHT:
                 if (this.toggle){
-                    this.activeObject.setPrefWidth(flatMenuBar.getHeight());
+                    this.activeObject.setPrefWidth(flatMenuPane.getHeight());
                 }
                 else
                     this.activeObject.setPrefWidth(this.parentPane.getWidth() - 1);
@@ -39,13 +39,13 @@ public class PopupPane extends ResizePane {
             case TOP:
             case BOTTOM:
                 if (this.toggle) {
-                    this.activeObject.setPrefHeight(flatMenuBar.getHeight());
+                    this.activeObject.setPrefHeight(flatMenuPane.getHeight());
                 }
                 else
                     this.activeObject.setPrefHeight(this.parentPane.getHeight() - 1);
                 break;
         }
-        this.flatMenuBar.setVisible(toggle);
+        this.flatMenuPane.setVisible(toggle);
         this.toggle = !this.toggle;
     }
 
