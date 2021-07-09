@@ -11,7 +11,7 @@ import java.util.Queue;
 public final class ClosedTreeDeterminer {
 
     /**
-     *
+     * Truth Tree to check.
      */
     private final TruthTree tree;
 

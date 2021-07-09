@@ -15,7 +15,7 @@ public final class LogicallyContingentDeterminer {
     private final WffTree wffTree;
 
     /**
-     *
+     * Negated truth tree created from generator.
      */
     private final WffTree negatedTree;
 
@@ -31,7 +31,9 @@ public final class LogicallyContingentDeterminer {
     }
 
     /**
-     * @return
+     * A wff is contingent if it and its negation have at least one open branch.
+     *
+     * @return true if the formula is contingent, false otherwise.
      */
     public boolean isContingent() {
         BaseTruthTreeGenerator treeGenerator;
@@ -47,7 +49,7 @@ public final class LogicallyContingentDeterminer {
         TruthTree truthTree = treeGenerator.getTruthTree();
         TruthTree negatedTruthTree = negatedTreeGenerator.getTruthTree();
 
-        // The consistency branch must close, and the right must have at least one open branch.
+        // Both truth trees must have at least one open branch.
         return (new OpenTreeDeterminer(truthTree).hasSomeOpen())
                 && (new OpenTreeDeterminer(negatedTruthTree).hasSomeOpen());
     }

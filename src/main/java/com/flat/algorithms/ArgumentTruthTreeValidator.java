@@ -75,7 +75,7 @@ public final class ArgumentTruthTreeValidator {
      * <p>
      * Where A, B, C, and D are wffs that represent premises, and E is a wff that represents a conclusion.
      *
-     * @return
+     * @return true if the formula is valid, false otherwise.
      */
     public boolean isValid() {
         if (this.combinedTree.isPropositionalWff()) {

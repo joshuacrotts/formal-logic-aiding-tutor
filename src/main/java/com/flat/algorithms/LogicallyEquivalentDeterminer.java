@@ -40,7 +40,10 @@ public final class LogicallyEquivalentDeterminer {
     }
 
     /**
-     * @return
+     * Two formulas are logically equivalent if they are the same in every model. When running a truth
+     * tree, we check the negated version of the wff and determine if it is closed.
+     *
+     * @return true if the wffs are logically equivalent, false otherwise.
      */
     public boolean isEquivalent() {
         return new ClosedTreeDeterminer(this.truthTree).hasAllClosed();

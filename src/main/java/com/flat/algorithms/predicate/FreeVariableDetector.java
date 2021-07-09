@@ -26,7 +26,10 @@ public final class FreeVariableDetector {
     }
 
     /**
-     * @return
+     * Returns a list of all free variables in a FOPL formula. A variable is free if
+     * there is no quantifier that binds it.
+     *
+     * @return ArrayList<WffTree> of all VariableNodes that are free.
      */
     public ArrayList<WffTree> getFreeVariables() {
         ArrayList<WffTree> S = new ArrayList<>();
@@ -36,6 +39,8 @@ public final class FreeVariableDetector {
     }
 
     /**
+     * Recursively builds a list of nodes that are free in the Wff.
+     *
      * @param T
      * @param S
      * @param L

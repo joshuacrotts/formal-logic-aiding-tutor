@@ -264,6 +264,10 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
     }
 
     /**
+     * Determines if we can apply the constructive dilemma on a disjunction node. Constructive dilemma
+     * occurs when we have a disjunction (A | B), with two implications where the antecedents are the
+     * operands are A and B, resulting in the disjunction of the consequents.
+     *
      * @param _disjNode
      * @param _parent
      * @return
@@ -603,7 +607,7 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
 
     /**
      * Recursively determines if, by applying double negations, we can find a goal. This can blow up the running time if
-     * MAXIMUM_NEGATED_NODES is a large value, so we use 3 since it makes no sense to have any more.
+     * MAXIMUM_NEGATED_NODES is a large value, so we use 4 since it makes no sense to have any more.
      * @param _tree
      * @param maxIterations
      * @return true if we can eventually derive a goal by applying negation introductions, false otherwise.

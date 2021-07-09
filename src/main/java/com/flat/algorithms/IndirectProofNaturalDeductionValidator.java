@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class IndirectProofNaturalDeductionValidator implements NaturalDeductionAlgorithm {
 
     /**
-     *
+     * NaturalDeductionValidator object to create in the constructor.
      */
-    private final BaseNaturalDeductionValidator NATURAL_DEDUCTION_VALIDATOR;
+    private final BaseNaturalDeductionValidator naturalDeductionValidator;
 
     public IndirectProofNaturalDeductionValidator(ArrayList<WffTree> _args) {
         // The first thing we need to do is add the negated conclusion as a premise.
@@ -27,14 +27,14 @@ public class IndirectProofNaturalDeductionValidator implements NaturalDeductionA
         premiseList.add(premiseList.size() - 1, negConclusion);
 
         if (premiseList.get(0).isPropositionalWff()) {
-            this.NATURAL_DEDUCTION_VALIDATOR = new PropositionalNaturalDeductionValidator(premiseList, ProofType.INDIRECT);
+            this.naturalDeductionValidator = new PropositionalNaturalDeductionValidator(premiseList, ProofType.INDIRECT);
         } else {
-            this.NATURAL_DEDUCTION_VALIDATOR = new PredicateNaturalDeductionValidator(premiseList, ProofType.INDIRECT);
+            this.naturalDeductionValidator = new PredicateNaturalDeductionValidator(premiseList, ProofType.INDIRECT);
         }
     }
 
     @Override
     public ArrayList<NDWffTree> getNaturalDeductionProof() {
-        return NATURAL_DEDUCTION_VALIDATOR.getNaturalDeductionProof();
+        return naturalDeductionValidator.getNaturalDeductionProof();
     }
 }

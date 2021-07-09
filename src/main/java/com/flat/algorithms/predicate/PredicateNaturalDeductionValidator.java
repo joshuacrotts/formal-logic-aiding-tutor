@@ -562,8 +562,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
                 WffTree negBinaryNode = BaseTruthTreeGenerator.getNegatedBinaryNode(_binopTree); // B
                 negBinaryNode.addChild(_binopTree.isImp() ? _binopTree.getChild(0) : BaseTruthTreeGenerator.getFlippedNode(_binopTree.getChild(0))); // LHS X
                 negBinaryNode.addChild(BaseTruthTreeGenerator.getFlippedNode(_binopTree.getChild(1))); // RHS Y
-                deMorganNode = new NegNode();
-                deMorganNode.addChild(negBinaryNode);
+                deMorganNode = new NegNode(negBinaryNode);
             }
             // Other turns ~(x)W to (Ex)~W
             else if (_binopTree.isNegation() && _binopTree.getChild(0).isUniversal()) {

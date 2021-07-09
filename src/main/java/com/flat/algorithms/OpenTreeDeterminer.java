@@ -14,7 +14,7 @@ import java.util.Queue;
 public final class OpenTreeDeterminer {
 
     /**
-     *
+     * Truth Tree to check.
      */
     private final TruthTree tree;
 
@@ -31,7 +31,10 @@ public final class OpenTreeDeterminer {
     }
 
     /**
-     * @return
+     * Determines if every branch is open in a truth tree. This method really isn't used since
+     * there is never an instance where an all open tree matters, but it's nice to have.
+     *
+     * @return true if every branch is open in this truth tree, false otherwise.
      */
     public boolean hasAllOpen() {
         Queue<TruthTree> queue = new LinkedList<>();
@@ -53,7 +56,9 @@ public final class OpenTreeDeterminer {
     }
 
     /**
-     * @return
+     * Determines if there is at least one open branch in this truth tree.
+     *
+     * @return true if so, false otherwise.
      */
     public boolean hasSomeOpen() {
         Queue<TruthTree> queue = new LinkedList<>();

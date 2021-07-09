@@ -16,7 +16,7 @@ public final class LogicalFalsehoodDeterminer {
     private final TruthTree truthTree;
 
     /**
-     *
+     * WffTree that we want to check.
      */
     private final WffTree wffTree;
 
@@ -33,7 +33,9 @@ public final class LogicalFalsehoodDeterminer {
     }
 
     /**
-     * @return
+     * A wff is a logical falsehood if it is a closed tree.
+     *
+     * @return true if the wff is a falsehood, false otherwise.
      */
     public boolean isFalsehood() {
         return new ClosedTreeDeterminer(this.truthTree).hasAllClosed();

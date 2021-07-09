@@ -116,7 +116,7 @@ public final class NDWffTree {
     @Override
     public String toString() {
         if ((this.derivedParents == null || this.derivedParents.isEmpty())
-                && (this.derivationStep == NDStep.C || this.derivationStep == NDStep.P)) {
+                && (this.derivationStep == NDStep.C || this.derivationStep == NDStep.P || this.derivationStep == NDStep.PRAA )) {
             return String.format("%-50s%-50s", this.wffTree.getStringRep(), this.derivationStep);
         } else {
             // It's a little ugly but it works.
