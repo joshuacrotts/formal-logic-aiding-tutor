@@ -8,7 +8,7 @@ import com.flat.algorithms.propositional.TruthTableGenerator;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class TimeoutManager {
     private final static int maxValue = 1000;

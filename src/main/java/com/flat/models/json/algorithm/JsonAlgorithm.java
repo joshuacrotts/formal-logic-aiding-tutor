@@ -7,28 +7,28 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonAlgorithm extends Translatable {
-    private JsonString string;
+    private JsonString jsonString;
     private AlgorithmType algorithmType;
 
     public JsonAlgorithm (String _string, AlgorithmType _algorithmType) {
-        this.string = new JsonString(_string);
+        this.jsonString = new JsonString(_string);
         this.algorithmType = _algorithmType;
     }
 
     // Getters for object's attributes
-    public JsonString getString() {
-        return string;
+    public JsonString getJsonString() {
+        return jsonString;
     }
 
     public AlgorithmType getAlgorithmType() {
         return algorithmType;
     }
     // Setters for object's attributes.
-    public void setString(JsonString string) {
-        this.string = string;
+    public void setJsonString(JsonString jsonString) {
+        this.jsonString = jsonString;
     }
 
     public void setAlgorithmType(AlgorithmType algorithmType) {
@@ -38,7 +38,7 @@ public class JsonAlgorithm extends Translatable {
     @Override
     public LinkedList<JsonString> toTranslate() {
         return new LinkedList <JsonString> () {{
-            add(string);
+            add(jsonString);
         }};
     }
 

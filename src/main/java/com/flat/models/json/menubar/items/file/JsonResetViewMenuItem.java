@@ -6,7 +6,7 @@ import com.flat.models.translation.Translatable;
 import java.util.LinkedList;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonResetViewMenuItem extends Translatable {
     private JsonString reset = new JsonString("Reset");

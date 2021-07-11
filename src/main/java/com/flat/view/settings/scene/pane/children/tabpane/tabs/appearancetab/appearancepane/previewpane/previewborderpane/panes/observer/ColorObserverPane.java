@@ -1,17 +1,16 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.previewpane.previewborderpane.panes.observer;
 
 import com.flat.view.viewdata.settings.AppearancePreviewData;
-import com.flat.view.viewdata.observables.color.extend.ObservableBorderColor;
-import com.flat.view.viewdata.observables.color.extend.ObservablePrimaryColor;
-import com.flat.view.viewdata.observables.color.extend.ObservableSecondaryColor;
+import com.flat.view.viewdata.settings.observables.color.extend.ObservableBorderColor;
+import com.flat.view.viewdata.settings.observables.color.extend.ObservablePrimaryColor;
+import com.flat.view.viewdata.settings.observables.color.extend.ObservableSecondaryColor;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
-
 import java.util.Observable;
 import java.util.Observer;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public abstract class ColorObserverPane extends Pane implements Observer {
     private final BorderWidths borderWidths;

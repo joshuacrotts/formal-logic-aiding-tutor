@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PredicateNDVTimeoutPane extends HBox {
     private PredicateNDVTimeoutLabel label = new PredicateNDVTimeoutLabel();

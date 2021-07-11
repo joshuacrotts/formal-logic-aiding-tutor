@@ -2,7 +2,7 @@ package com.flat.models.json.algorithm.enums;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public enum AlgorithmType {
     // General algorithms.

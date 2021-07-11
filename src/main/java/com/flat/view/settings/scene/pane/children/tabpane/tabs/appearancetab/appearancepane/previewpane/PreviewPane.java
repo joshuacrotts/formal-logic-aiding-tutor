@@ -6,7 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PreviewPane extends HBox {
     private final ColorPane colorPane = new ColorPane();

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonAdvanceAlert extends Translatable {
     private JsonString message = new JsonString("Message");

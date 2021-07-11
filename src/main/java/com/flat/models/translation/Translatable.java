@@ -8,7 +8,7 @@ import com.google.cloud.translate.Translation;
 import java.util.List;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public abstract class Translatable implements TranslateProperty {
 

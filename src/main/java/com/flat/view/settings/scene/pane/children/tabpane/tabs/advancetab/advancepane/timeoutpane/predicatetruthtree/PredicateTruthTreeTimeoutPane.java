@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PredicateTruthTreeTimeoutPane extends HBox {
     private PredicateTruthTreeTimeoutLabel label = new PredicateTruthTreeTimeoutLabel();

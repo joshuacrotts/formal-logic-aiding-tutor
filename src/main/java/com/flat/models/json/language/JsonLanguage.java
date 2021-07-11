@@ -3,7 +3,7 @@ package com.flat.models.json.language;
 import com.flat.tools.font.enums.FontLocal.FontFamily;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  * Structure for the Json JsonLanguage object.
  */
 public class JsonLanguage {

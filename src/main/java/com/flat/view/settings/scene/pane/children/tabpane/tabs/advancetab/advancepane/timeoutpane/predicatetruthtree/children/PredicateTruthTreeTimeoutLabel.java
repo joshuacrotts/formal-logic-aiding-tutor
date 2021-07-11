@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PredicateTruthTreeTimeoutLabel extends Label {
 

@@ -5,7 +5,7 @@ import com.flat.models.json.menubar.JsonMenuBar;
 import javafx.scene.text.Text;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class MenuBarData {
     private final static Text file = new Text("File");

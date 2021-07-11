@@ -9,7 +9,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonAlgorithms extends Translatable {
     private JsonGeneralAlgorithms generalAlgorithms = new JsonGeneralAlgorithms();

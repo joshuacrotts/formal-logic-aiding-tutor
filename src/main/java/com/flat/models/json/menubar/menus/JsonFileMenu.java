@@ -9,7 +9,7 @@ import com.flat.models.translation.Translatable;
 import java.util.LinkedList;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonFileMenu extends Translatable {
     private JsonString file = new JsonString("File");

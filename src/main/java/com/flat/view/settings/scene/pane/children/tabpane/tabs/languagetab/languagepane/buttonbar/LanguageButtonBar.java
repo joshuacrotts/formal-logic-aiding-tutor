@@ -6,7 +6,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ButtonBar;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class LanguageButtonBar extends ButtonBar {
     private LanguageApplyButton applyButton = new LanguageApplyButton();

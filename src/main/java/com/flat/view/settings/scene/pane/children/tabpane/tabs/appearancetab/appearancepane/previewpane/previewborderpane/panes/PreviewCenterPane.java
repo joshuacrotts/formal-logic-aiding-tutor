@@ -3,7 +3,7 @@ package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.ap
 import javafx.scene.layout.Pane;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PreviewCenterPane extends Pane {
 

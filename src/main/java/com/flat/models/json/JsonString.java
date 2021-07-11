@@ -1,7 +1,7 @@
 package com.flat.models.json;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonString {
     private String string;

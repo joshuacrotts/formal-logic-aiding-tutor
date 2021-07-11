@@ -4,7 +4,7 @@ import com.flat.view.settings.scene.pane.SettingsPane;
 import javafx.scene.Scene;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class SettingsScene extends Scene {
 

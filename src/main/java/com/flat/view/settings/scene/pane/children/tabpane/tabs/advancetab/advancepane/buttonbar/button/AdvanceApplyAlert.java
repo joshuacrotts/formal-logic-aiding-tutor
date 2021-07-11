@@ -11,7 +11,7 @@ import javafx.stage.Window;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class AdvanceApplyAlert extends Alert {
 

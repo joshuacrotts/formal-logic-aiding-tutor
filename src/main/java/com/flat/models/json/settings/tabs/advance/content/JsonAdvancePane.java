@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonAdvancePane extends Translatable {
     private JsonString predicateNDV = new JsonString("Predicate natural deduction validator");

@@ -7,7 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class ColorPane extends VBox {
     private final PrimaryColorPane primaryColorPane = new PrimaryColorPane();

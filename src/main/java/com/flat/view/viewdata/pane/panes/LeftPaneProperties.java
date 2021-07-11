@@ -1,16 +1,16 @@
 package com.flat.view.viewdata.pane.panes;
 
-import com.flat.view.viewdata.pane.fxextension.PanePropertyExtension;
-import javafx.scene.paint.Color;
+import com.flat.view.viewdata.pane.panes.fxextension.PanePropertyExtension;
+import com.flat.view.viewdata.settings.AppearancePreviewData;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class LeftPaneProperties extends PanePropertyExtension {
 
     public LeftPaneProperties () {
-        super.getBackgroundProperties().setColor(Color.LIGHTGRAY);
+        super.getBackgroundProperties().setColor(AppearancePreviewData.getSecondaryColor().getColor());
     }
 
 }

@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class TimeoutPane extends VBox {
     private PredicateNDVTimeoutPane predicateNDV = new PredicateNDVTimeoutPane();

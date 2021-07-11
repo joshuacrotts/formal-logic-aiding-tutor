@@ -5,7 +5,7 @@ import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.app
 import javafx.scene.layout.BorderWidths;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PreviewLeftPane extends ColorObserverPane {
 

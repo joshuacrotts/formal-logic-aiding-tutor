@@ -7,7 +7,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class SettingsStage extends Stage {
     private final SettingsScene settingsScene = new SettingsScene();

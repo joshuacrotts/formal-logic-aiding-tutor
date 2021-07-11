@@ -8,7 +8,7 @@ import org.codehaus.plexus.util.StringUtils;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class NumericTextField extends TextField {
 

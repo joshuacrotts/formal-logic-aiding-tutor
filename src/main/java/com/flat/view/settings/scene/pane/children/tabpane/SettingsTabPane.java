@@ -7,7 +7,7 @@ import javafx.geometry.Side;
 import javafx.scene.control.TabPane;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class SettingsTabPane extends TabPane {
     private final AppearanceTab appearanceTab = new AppearanceTab();

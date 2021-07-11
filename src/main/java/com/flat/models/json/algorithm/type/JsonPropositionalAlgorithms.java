@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonPropositionalAlgorithms extends Translatable {
     private JsonString label = new JsonString("Propositional Logic Algorithm");

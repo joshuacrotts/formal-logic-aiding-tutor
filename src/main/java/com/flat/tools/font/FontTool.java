@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class FontTool {
     private final static double FONTSIZE = USE_PREF_SIZE;

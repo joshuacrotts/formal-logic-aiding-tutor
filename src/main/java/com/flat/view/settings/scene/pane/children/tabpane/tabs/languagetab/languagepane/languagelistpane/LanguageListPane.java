@@ -5,7 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class LanguageListPane extends HBox {
     private LanguageListView languageListView = new LanguageListView();

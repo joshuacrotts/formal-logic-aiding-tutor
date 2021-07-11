@@ -5,7 +5,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class SettingsPane extends VBox {
     private final SettingsTabPane settingsTabPane = new SettingsTabPane();

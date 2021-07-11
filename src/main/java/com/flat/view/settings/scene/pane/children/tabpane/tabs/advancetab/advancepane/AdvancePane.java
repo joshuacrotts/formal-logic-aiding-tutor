@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class AdvancePane extends VBox {
     private TimeoutPane timeoutPane = new TimeoutPane();

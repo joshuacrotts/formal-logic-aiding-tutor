@@ -6,7 +6,7 @@ import com.flat.models.translation.Translatable;
 import java.util.LinkedList;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonExportMenu extends Translatable {
     private JsonString export = new JsonString("Export");

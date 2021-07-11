@@ -7,7 +7,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class AppearancePane extends VBox {
     private final PreviewPane previewPane = new PreviewPane();

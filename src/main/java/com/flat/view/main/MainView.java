@@ -1,19 +1,17 @@
 package com.flat.view.main;
 
-import com.flat.view.main.panes.MainBottom;
-import com.flat.view.main.panes.MainRight;
-import com.flat.view.main.panes.MainCenter;
-import com.flat.view.main.panes.MainTop;
-import com.flat.view.main.panes.MainLeft;
+import com.flat.view.main.panes.bottom.MainBottom;
+import com.flat.view.main.panes.right.MainRight;
+import com.flat.view.main.panes.center.MainCenter;
+import com.flat.view.main.panes.top.MainTop;
+import com.flat.view.main.panes.left.MainLeft;
 import com.flat.controller.Controller;
-import com.flat.view.main.menupane.FlatMenuPane;
 import javafx.scene.layout.BorderPane;
 
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class MainView extends BorderPane {
-    private final FlatMenuPane menuPane = new FlatMenuPane();
     private final MainTop mainTop = new MainTop();
     private final MainRight mainRight = new MainRight();
     private final MainBottom mainBottom = new MainBottom();

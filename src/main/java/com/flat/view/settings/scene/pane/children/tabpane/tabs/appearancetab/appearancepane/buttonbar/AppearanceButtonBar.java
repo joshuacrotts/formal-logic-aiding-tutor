@@ -19,5 +19,5 @@ public class AppearanceButtonBar extends ButtonBar {
         super.getButtons().addAll(this.applyButton, this.closeButton);
         super.setPadding(new Insets(10, 10, 10, 10));
     }
- 
+
 }

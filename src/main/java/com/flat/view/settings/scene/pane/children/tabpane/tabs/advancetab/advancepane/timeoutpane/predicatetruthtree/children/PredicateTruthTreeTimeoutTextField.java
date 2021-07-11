@@ -5,7 +5,7 @@ import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advanc
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PredicateTruthTreeTimeoutTextField extends NumericTextField {
 

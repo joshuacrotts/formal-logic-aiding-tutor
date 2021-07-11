@@ -1,17 +1,18 @@
 package com.flat.view.action;
 
 import com.flat.view.action.ResizePane.Side;
-import com.flat.view.main.menupane.FlatMenuPane;
+import com.flat.view.main.panes.top.menupane.FlatMenuPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PopupMenuPane extends ResizePane {
     protected FlatMenuPane flatMenuPane;
     protected boolean toggle = false;
+    private int childIndex = 0;
 
     public PopupMenuPane (Pane _activeObject, Orientation _orientation, Side _side, FlatMenuPane _menuPane) {
         super(_activeObject, _orientation, _side);
@@ -45,8 +46,13 @@ public class PopupMenuPane extends ResizePane {
                     this.activeObject.setPrefHeight(this.parentPane.getHeight() - 1);
                 break;
         }
-        this.flatMenuPane.setVisible(toggle);
-        this.toggle = !this.toggle;
+        if (!this.toggle) {
+            this.childIndex = this.activeObject.getChildren().indexOf(this.flatMenuPane);
+            this.activeObject.getChildren().remove(this.childIndex);
+        }
+        else
+            this.activeObject.getChildren().add(this.childIndex, this.flatMenuPane);
+        this.toggle ^= true;
     }
 
 }

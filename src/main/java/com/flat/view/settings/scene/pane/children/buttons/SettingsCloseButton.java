@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class SettingsCloseButton extends Button {
 

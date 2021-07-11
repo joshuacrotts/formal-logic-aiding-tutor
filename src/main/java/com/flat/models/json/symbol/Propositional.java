@@ -1,7 +1,7 @@
 package com.flat.models.json.symbol;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  * Structure for the Json Propositional object.
  */
 public class Propositional extends SymbolBase {

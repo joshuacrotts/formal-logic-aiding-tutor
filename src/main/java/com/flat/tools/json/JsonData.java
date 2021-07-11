@@ -13,7 +13,7 @@ import com.flat.tools.json.enums.JsonLocal;
 import java.io.File;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonData {
     private static JsonData instance = null;

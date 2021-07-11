@@ -1,7 +1,7 @@
 package com.flat.tools.json.enums;
 
 /**
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonLocal {
 

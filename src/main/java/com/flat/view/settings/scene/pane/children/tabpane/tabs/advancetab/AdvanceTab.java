@@ -6,7 +6,7 @@ import javafx.scene.control.Tab;
 
 /**
  *
- * @author Christopher Brantley <ccbrantley@uncg.edu>
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class AdvanceTab extends Tab {
     private AdvancePane advancePane = new AdvancePane();
