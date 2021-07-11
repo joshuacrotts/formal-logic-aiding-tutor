@@ -29,7 +29,7 @@ public class FLAT extends Application {
         System.setProperty("GOOGLE_API_KEY", "AIzaSyBWaA57xlPumWThhPfGmHSkPFj82fMRa1Y");
         Application.setUserAgentStylesheet(ResourceManager.getDefaultStyle());
         this.initializeStage(_stage);
-        Controller.setStage(_stage);
+        Controller.setSTAGE(_stage);
         Controller.changeView(View.MAIN);
         _stage.show();
     }

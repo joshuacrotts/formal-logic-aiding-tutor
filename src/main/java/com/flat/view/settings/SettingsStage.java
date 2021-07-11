@@ -23,7 +23,7 @@ public class SettingsStage extends Stage {
     private void setFxProperties() {
         super.titleProperty().bind(SettingsData.getTitle().textProperty());
         super.initModality(Modality.WINDOW_MODAL);
-        super.initOwner(Controller.getStage().getScene().getWindow());
+        super.initOwner(Controller.getSTAGE().getScene().getWindow());
     }
 
     private void setSize() {
@@ -32,8 +32,8 @@ public class SettingsStage extends Stage {
     }
 
     private void centerOnStage() {
-        super.setX(Controller.getStage().getX() + ((Controller.getStage().getWidth() - super.getWidth()) / 2));
-        super.setY(Controller.getStage().getY() + ((Controller.getStage().getHeight() - super.getHeight()) / 2));
+        super.setX(Controller.getSTAGE().getX() + ((Controller.getSTAGE().getWidth() - super.getWidth()) / 2));
+        super.setY(Controller.getSTAGE().getY() + ((Controller.getSTAGE().getHeight() - super.getHeight()) / 2));
     }
 
 }

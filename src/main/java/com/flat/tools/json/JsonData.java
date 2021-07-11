@@ -1,13 +1,12 @@
 package com.flat.tools.json;
 
+import com.flat.models.json.algorithm.JsonAlgorithms;
 import com.flat.view.viewdata.settings.LanguageData;
 import com.flat.view.viewdata.menubar.MenuBarData;
 import com.flat.view.viewdata.settings.SettingsData;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.menubar.JsonMenuBar;
 import com.flat.models.json.settings.JsonSettings;
-import com.flat.models.json.symbol.Predicate;
-import com.flat.models.json.symbol.Propositional;
 import com.flat.tools.json.enums.JsonLocal;
 
 import java.io.File;
@@ -19,8 +18,7 @@ public class JsonData {
     private static JsonData instance = null;
     private JsonMenuBar jsonMenuBar;
     private JsonSettings jsonSettings;
-    private Predicate predicates;
-    private Propositional propositional;
+    private JsonAlgorithms jsonAlgorithms;
     private JsonLanguage[] language = JsonTools.jsonToObjectList(JsonLanguage.NONE, JsonLocal.File.LANGUAGE, JsonLanguage[].class);
 
     private JsonData() {
@@ -57,24 +55,28 @@ public class JsonData {
     private void constructDefaultData () {
         this.jsonMenuBar = new JsonMenuBar();
         this.jsonSettings = new JsonSettings();
+        this.jsonAlgorithms = new JsonAlgorithms();
     }
 
-    private void readData(JsonLanguage _language) {
+    private void readData (JsonLanguage _language) {
         this.jsonMenuBar = JsonTools.jsonToObject(_language, JsonLocal.File.MENUBAR, JsonMenuBar.class);
         this.jsonSettings = JsonTools.jsonToObject(_language, JsonLocal.File.SETTINGS, JsonSettings.class);
+        this.jsonAlgorithms = JsonTools.jsonToObject(_language, JsonLocal.File.ALGORITHMS, JsonAlgorithms.class);
     }
 
-    private void translateData(JsonLanguage _language) {
+    private void translateData (JsonLanguage _language) {
         this.jsonMenuBar.translate(_language);
         this.jsonSettings.translate(_language);
+        this.jsonAlgorithms.translate(_language);
     }
 
-    private void writeData(JsonLanguage _language) {
+    private void writeData (JsonLanguage _language) {
         JsonTools.objectToJson(_language, JsonLocal.File.MENUBAR, this.jsonMenuBar, JsonMenuBar.class);
         JsonTools.objectToJson(_language, JsonLocal.File.SETTINGS, this.jsonSettings, JsonSettings.class);
+        JsonTools.objectToJson(_language, JsonLocal.File.ALGORITHMS, this.jsonAlgorithms, JsonAlgorithms.class);
     }
 
-    private void updateFxData(JsonLanguage _language) {
+    private void updateFxData (JsonLanguage _language) {
         MenuBarData.injectData(_language, this.jsonMenuBar);
         SettingsData.injectData(_language, this.jsonSettings);
     }
@@ -84,29 +86,33 @@ public class JsonData {
         return jsonMenuBar;
     }
 
+    public JsonSettings getJsonSettings() {
+        return jsonSettings;
+    }
+
+    public JsonAlgorithms getJsonAlgorithms() {
+        return jsonAlgorithms;
+    }
+
+    public JsonLanguage[] getLanguage() {
+        return language;
+    }
+
     // Setters for object's attributes.
     public void setJsonMenuBar(JsonMenuBar jsonMenuBar) {
         this.jsonMenuBar = jsonMenuBar;
     }
 
-    public Predicate getPredicates() {
-        return predicates;
+    public static void setInstance(JsonData instance) {
+        JsonData.instance = instance;
     }
 
-    public void setPredicates(Predicate predicates) {
-        this.predicates = predicates;
+    public void setJsonSettings(JsonSettings jsonSettings) {
+        this.jsonSettings = jsonSettings;
     }
 
-    public Propositional getPropositional() {
-        return propositional;
-    }
-
-    public void setPropositional(Propositional propositional) {
-        this.propositional = propositional;
-    }
-
-    public JsonLanguage[] getLanguage() {
-        return language;
+    public void setJsonAlgorithms(JsonAlgorithms jsonAlgorithms) {
+        this.jsonAlgorithms = jsonAlgorithms;
     }
 
     public void setLanguage(JsonLanguage[] language) {

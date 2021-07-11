@@ -45,7 +45,7 @@ public class MainView extends BorderPane {
     }
 
     private void setStageMaximizedListener() {
-        Controller.getStage().maximizedProperty().addListener((obs, oldVal, newVal) -> {
+        Controller.getSTAGE().maximizedProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal) {
                 super.getChildren().forEach((child) -> {
                 });

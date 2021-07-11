@@ -19,7 +19,7 @@ public class FormulaApplyButton extends Button {
 
     private void setOnAction () {
         super.setOnAction(event -> {
-            Controller.getEventBus().throwEvent(new FormulaApplyButtonPressed());
+            Controller.getEVENT_BUS().throwEvent(new FormulaApplyButtonPressed());
         });
     }
 

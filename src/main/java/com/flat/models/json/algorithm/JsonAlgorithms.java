@@ -1,7 +1,7 @@
 package com.flat.models.json.algorithm;
 
 import com.flat.models.json.JsonString;
-import com.flat.models.json.algorithm.type.JsonGeneralAlgorithms;
+import com.flat.models.json.algorithm.type.general.JsonGeneralAlgorithms;
 import com.flat.models.json.algorithm.type.JsonPredicateAlgorithms;
 import com.flat.models.json.algorithm.type.JsonPropositionalAlgorithms;
 import com.flat.models.translation.Translatable;

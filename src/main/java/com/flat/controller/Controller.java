@@ -2,9 +2,9 @@ package com.flat.controller;
 
 import com.flat.input.FLATErrorListener;
 import com.flat.input.FLATParserAdapter;
-import com.flat.input.events.SolvedFormula;
 import com.flat.input.events.UnsolvedFormula;
 import com.flat.models.TimeoutManager;
+import com.flat.models.algorithms.ApplyAlgorithmAdapter;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.eventbus.EventBus;
@@ -13,6 +13,7 @@ import com.flat.tools.font.enums.FontLocal.FontFamily;
 import com.flat.tools.json.JsonData;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
+import com.flat.view.viewdata.algorithms.AvailableAlgorithms;
 import com.flat.view.viewdata.settings.SettingsData;
 import java.util.ArrayList;
 import javafx.scene.layout.Pane;
@@ -22,22 +23,23 @@ import javafx.stage.Stage;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class Controller {
-    private static JsonLanguage jsonLanguage = new JsonLanguage("English", "English", "en", FontFamily.DEFAULT);
-    private static Stage stage;
+    private static JsonLanguage JSON_LANGUAGE = new JsonLanguage("English", "English", "en", FontFamily.DEFAULT);
+    private static Stage STAGE;
+    private final static JsonData JSON_DATA = JsonData.getInstance();
+    private final static FontTool FONT_TOOL = FontTool.getInstance();
+    private final static EventBus EVENT_BUS = EventBus.getInstance();
+    private final static ApplyAlgorithmAdapter ALGORITHM_ADAPTER = new ApplyAlgorithmAdapter(JSON_DATA.getJsonAlgorithms());
 
-    private final static JsonData JSONDATA = JsonData.getInstance();
-    private final static FontTool FONTTOOL = FontTool.getInstance();
-    private final static EventBus eventBus = EventBus.getInstance();
-
-    // Retrieves view associated with the enum and displays it on stage.
+    // Retrieves view associated with the enum and displays it on STAGE.
     public static void changeView (View _view) {
-        stage.getScene().setRoot(Controller.getView(_view));
+        STAGE.getScene().setRoot(Controller.getView(_view));
     }
 
     // Returns the view associated with the enum.
     public static Pane getView (View _view) {
         switch (_view) {
             case MAIN:
+                updateFxAvailableAlgorithms();
                 return new MainView();
             case SETTINGS:
             default:
@@ -46,7 +48,7 @@ public class Controller {
     }
 
     public static void applyFont (Stage _stage) {
-        _stage.getScene().getRoot().setStyle("-fx-font-family: " + jsonLanguage.getFont().getFamily());
+        _stage.getScene().getRoot().setStyle("-fx-font-family: " + JSON_LANGUAGE.getFont().getFamily());
     }
 
     public static void inputFormula (String _formula) {
@@ -54,9 +56,17 @@ public class Controller {
         Controller.throwSyntaxErrors();
         Controller.throwSyntaxWarnings();
         if (linkedTree != null)
-            Controller.eventBus.throwEvent(new SolvedFormula(linkedTree.get(0)));
+            ALGORITHM_ADAPTER.setWffTree(linkedTree);
         else
-            Controller.eventBus.throwEvent(new UnsolvedFormula());
+            EVENT_BUS.throwEvent(new UnsolvedFormula());
+        updateFxAvailableAlgorithms();
+    }
+
+    public static void updateFxAvailableAlgorithms () {
+        AvailableAlgorithms.clearAlgorithms();
+        AvailableAlgorithms.addGeneralAlgorithms(ALGORITHM_ADAPTER.getApplicableAlgorithms().getGeneral());
+        AvailableAlgorithms.addPredicateAlgorithms(ALGORITHM_ADAPTER.getApplicableAlgorithms().getPredicate());
+        AvailableAlgorithms.addPropositionalAlgorithms(ALGORITHM_ADAPTER.getApplicableAlgorithms().getPropositional());
     }
 
     public static void throwSyntaxErrors () {
@@ -69,6 +79,9 @@ public class Controller {
         });
     }
 
+    public static void applyFormula () {
+    }
+
     public static boolean updateTimeouts () {
         return TimeoutManager.updateConstraints(
                 Integer.valueOf(SettingsData.getPredicateNDVTimeout().getText()),
@@ -79,41 +92,47 @@ public class Controller {
         );
     }
 
+    public static void updateModelData () {
+        ALGORITHM_ADAPTER.setJsonAlgorithms(Controller.JSON_DATA.getJsonAlgorithms());
+        updateFxAvailableAlgorithms();
+    }
+
     public static void resetView () {
-        Controller.changeView(View.MAIN);
+        changeView(View.MAIN);
     }
 
     // Getters for object's attributes.
-    public static JsonLanguage getJsonLanguage () {
-        return jsonLanguage;
+    public static JsonLanguage getJSON_LANGUAGE () {
+        return JSON_LANGUAGE;
     }
 
-    public static Stage getStage () {
-        return stage;
+    public static Stage getSTAGE () {
+        return STAGE;
     }
 
-    public static JsonData getJSONDATA () {
-        return JSONDATA;
+    public static JsonData getJSON_DATA () {
+        return JSON_DATA;
     }
 
-    public static FontTool getFONTTOOL () {
-        return FONTTOOL;
+    public static FontTool getFONT_TOOL () {
+        return FONT_TOOL;
     }
 
-    public static EventBus getEventBus() {
-        return eventBus;
+    public static EventBus getEVENT_BUS() {
+        return EVENT_BUS;
     }
 
     // Setters for for object's attributes.
-    public static void setStage (Stage stage) {
-        Controller.stage = stage;
-        Controller.applyFont(stage);
+    public static void setSTAGE (Stage STAGE) {
+        Controller.STAGE = STAGE;
+        Controller.applyFont(STAGE);
     }
 
-    public static void setJsonLanguage (JsonLanguage _language) {
-        jsonLanguage = _language;
-        JSONDATA.update(_language);
-        Controller.applyFont(stage);
+    public static void setJSON_LANGUAGE (JsonLanguage _language) {
+        JSON_LANGUAGE = _language;
+        JSON_DATA.update(_language);
+        updateModelData();
+        Controller.applyFont(STAGE);
     }
 
 }

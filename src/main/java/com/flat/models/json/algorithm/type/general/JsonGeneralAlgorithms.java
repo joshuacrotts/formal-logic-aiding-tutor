@@ -1,4 +1,4 @@
-package com.flat.models.json.algorithm.type;
+package com.flat.models.json.algorithm.type.general;
 
 import com.flat.models.json.JsonString;
 import com.flat.models.json.algorithm.JsonAlgorithm;
@@ -21,9 +21,10 @@ public class JsonGeneralAlgorithms extends Translatable {
     private JsonAlgorithm logicallyContraryDeterminer = new JsonAlgorithm("Logically Contrary Determiner", AlgorithmType.LOGICALLY_CONTRARY_DETERMINER);
     private JsonAlgorithm logicallyEquivalentDeterminer = new JsonAlgorithm("Logically Equivalent Determiner", AlgorithmType.LOGICALLY_EQUIVALENT_DETERMINER);
     private JsonAlgorithm logicallyImpliedDeterminer = new JsonAlgorithm("Logically Implied Determiner", AlgorithmType.LOGICALLY_IMPLIED_DETERMINER);
-    private JsonAlgorithm logicalTautologyDetector = new JsonAlgorithm("Logical Tautology Determiner", AlgorithmType.LOGICAL_TAUTOLOGY_DETERMINER);
+    private JsonAlgorithm logicalTautologyDeterminer = new JsonAlgorithm("Logical Tautology Determiner", AlgorithmType.LOGICAL_TAUTOLOGY_DETERMINER);
     private JsonAlgorithm mainOperatorDetector = new JsonAlgorithm("Main Operator Detector", AlgorithmType.MAIN_OPERATOR_DETECTOR);
     private JsonAlgorithm openTreeDeterminer = new JsonAlgorithm("Open Tree Determiner", AlgorithmType.OPEN_TREE_DETERMINER);
+    private JsonAlgorithm semanticEntailmentDeterminer = new JsonAlgorithm("Semantic Entailment Determiner", AlgorithmType.SEMANTIC_ENTAILMENT_DETERMINER);
 
     // Getters for object's attributes
     public JsonString getLabel() {
@@ -66,8 +67,8 @@ public class JsonGeneralAlgorithms extends Translatable {
         return logicallyImpliedDeterminer;
     }
 
-    public JsonAlgorithm getLogicalTautologyDetector() {
-        return logicalTautologyDetector;
+    public JsonAlgorithm getLogicalTautologyDeterminer() {
+        return logicalTautologyDeterminer;
     }
 
     public JsonAlgorithm getMainOperatorDetector() {
@@ -76,6 +77,10 @@ public class JsonGeneralAlgorithms extends Translatable {
 
     public JsonAlgorithm getOpenTreeDeterminer() {
         return openTreeDeterminer;
+    }
+
+    public JsonAlgorithm getSemanticEntailmentDeterminer() {
+        return semanticEntailmentDeterminer;
     }
 
     // Setters for object's attributes.
@@ -119,8 +124,8 @@ public class JsonGeneralAlgorithms extends Translatable {
         this.logicallyImpliedDeterminer = logicallyImpliedDeterminer;
     }
 
-    public void setLogicalTautologyDetector(JsonAlgorithm logicalTautologyDetector) {
-        this.logicalTautologyDetector = logicalTautologyDetector;
+    public void setLogicalTautologyDeterminer(JsonAlgorithm logicalTautologyDeterminer) {
+        this.logicalTautologyDeterminer = logicalTautologyDeterminer;
     }
 
     public void setMainOperatorDetector(JsonAlgorithm mainOperatorDetector) {
@@ -129,6 +134,10 @@ public class JsonGeneralAlgorithms extends Translatable {
 
     public void setOpenTreeDeterminer(JsonAlgorithm openTreeDeterminer) {
         this.openTreeDeterminer = openTreeDeterminer;
+    }
+
+    public void setSemanticEntailmentDeterminer(JsonAlgorithm semanticEntailmentDeterminer) {
+        this.semanticEntailmentDeterminer = semanticEntailmentDeterminer;
     }
 
     @Override
@@ -144,9 +153,10 @@ public class JsonGeneralAlgorithms extends Translatable {
             addAll(logicallyContraryDeterminer.toTranslate());
             addAll(logicallyEquivalentDeterminer.toTranslate());
             addAll(logicallyImpliedDeterminer.toTranslate());
-            addAll(logicalTautologyDetector.toTranslate());
+            addAll(logicalTautologyDeterminer.toTranslate());
             addAll(mainOperatorDetector.toTranslate());
             addAll(openTreeDeterminer.toTranslate());
+            addAll(semanticEntailmentDeterminer.toTranslate());
         }};
     }
 

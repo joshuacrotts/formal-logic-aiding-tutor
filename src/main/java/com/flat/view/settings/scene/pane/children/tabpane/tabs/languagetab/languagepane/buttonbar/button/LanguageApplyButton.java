@@ -19,7 +19,7 @@ public class LanguageApplyButton extends Button {
     private void setOnAction() {
         super.setOnAction(event -> {
             if (!(LanguageListView.getSelectedLanguage() == null)) {
-                Controller.setJsonLanguage(LanguageListView.getSelectedLanguage());
+                Controller.setJSON_LANGUAGE(LanguageListView.getSelectedLanguage());
                 // Extend stage to have a list of scenes to remove this line.
                 Controller.applyFont(((Stage)this.getScene().getWindow()));
             }
