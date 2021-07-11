@@ -70,6 +70,7 @@ public class MainView extends BorderPane {
     }
 
     private void setMainCenterFx() {
+        this.mainCenter.setMinSize(0,0);
     }
 
 }

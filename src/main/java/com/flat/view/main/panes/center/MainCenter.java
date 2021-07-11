@@ -17,18 +17,28 @@ public class MainCenter extends VBox {
         this.initializeFx();
     }
 
-    public void initializeFx () {
+    private void initializeFx () {
         this.setThisFx();
         this.setEmptyRegionFx();
     }
 
-    public void setThisFx () {
+    private void setThisFx () {
         super.setStyle("-fx-background-color: white");
         super.getChildren().addAll(this.algorithmSelection, this.emptyRegion);
         super.setAlignment(Pos.CENTER);
+        this.onInvalidLocalBounds();
     }
 
-    public void setEmptyRegionFx () {
+    private void onInvalidLocalBounds () {
+        super.boundsInLocalProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.getMinX() < 0 || newVal.getMinY() < 0)
+                    super.setVisible(false);
+                else
+                    super.setVisible(true);
+        });
+    }
+
+    private void setEmptyRegionFx () {
         VBox.setVgrow(this.emptyRegion, Priority.ALWAYS);
     }
 
