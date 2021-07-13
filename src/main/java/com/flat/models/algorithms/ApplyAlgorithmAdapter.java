@@ -9,7 +9,7 @@ import com.flat.models.json.algorithm.JsonAlgorithms;
 public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
 
     public ApplyAlgorithmAdapter (JsonAlgorithms _algorithms) {
-        super.setJsonAlgorithms(_algorithms);
+        super(_algorithms);
     }
 
 }

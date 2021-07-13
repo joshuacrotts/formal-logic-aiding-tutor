@@ -1,5 +1,7 @@
 package com.flat.models.algorithms;
 
+import com.flat.algorithms.ClosedTreeDeterminer;
+import com.flat.models.json.algorithm.JsonAlgorithm;
 import com.flat.models.json.algorithm.JsonAlgorithms;
 import com.flat.models.treenode.WffTree;
 import java.util.ArrayList;
@@ -13,7 +15,60 @@ public class ApplyAlgorithm {
     private JsonAlgorithms jsonAlgorithms = null;
     private ApplicableAlgorithms applicableAlgorithms = new ApplicableAlgorithms();
 
-    public ApplyAlgorithm () {
+    public ApplyAlgorithm (JsonAlgorithms _algorithms) {
+        setJsonAlgorithms(_algorithms);
+    }
+
+    public LogicReturn apply (JsonAlgorithm _jsonAlgorithm) {
+        switch (_jsonAlgorithm.getAlgorithmType()) {
+            case CLOSED_TREE_DETERMINER:
+                return new LogicReturn(new ClosedTreeDeterminer(this.wffTree.get(0)).hasAllClosed(), null, this.wffTree.get(0));
+            case LOGICAL_FALSEHOOD_DETERMINER:
+                break;
+            case LOGICALLY_CONTINGENT_DETERMINER:
+                break;
+            case LOGICAL_TAUTOLOGY_DETERMINER:
+                break;
+            case MAIN_OPERATOR_DETECTOR:
+                break;
+            case OPEN_TREE_DETERMINER:
+                break;
+            case LOGICALLY_CONTRADICTORY_DETERMINER:
+                break;
+            case LOGICALLY_CONSISTENT_DETERMINER:
+                break;
+            case LOGICALLY_CONTRARY_DETERMINER:
+                break;
+            case LOGICALLY_EQUIVALENT_DETERMINER:
+                break;
+            case LOGICALLY_IMPLIED_DETERMINER:
+                break;
+            case ARGUMENT_TRUTH_TREE_VALIDATOR:
+                break;
+            case SEMANTIC_ENTAILMENT_DETERMINER:
+                break;
+            case RANDOM_PROPOSITIONAL_FORMULA:
+                break;
+            case PROPOSITIONAL_TRUTH_TREE_GENERATOR:
+                break;
+            case TRUTH_TABLE_GENERATOR:
+                break;
+            case RANDOM_PREDICATE_FORMULA:
+                break;
+            case BOUND_VARIABLE_DETECTOR:
+                break;
+            case CLOSED_SENTENCE_DETERMINER:
+                break;
+            case FREE_VARIABLE_DETECTOR:
+                break;
+            case GROUND_SENTENCE_DETERMINER:
+                break;
+            case OPEN_SENTENCE_DETERMINER:
+                break;
+            case PREDICATE_TRUTH_TREE_GENERATOR:
+                break;
+        }
+        return null;
     }
 
     // Getters for object's attributes

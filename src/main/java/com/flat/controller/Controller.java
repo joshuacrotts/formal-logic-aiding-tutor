@@ -5,6 +5,7 @@ import com.flat.input.FLATParserAdapter;
 import com.flat.input.events.UnsolvedFormula;
 import com.flat.models.TimeoutManager;
 import com.flat.models.algorithms.ApplyAlgorithmAdapter;
+import com.flat.models.json.algorithm.JsonAlgorithm;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.eventbus.EventBus;
@@ -79,7 +80,8 @@ public class Controller {
         });
     }
 
-    public static void applyFormula () {
+    public static void applyFormula (JsonAlgorithm _jsonAlgorithm) {
+        ALGORITHM_ADAPTER.apply(_jsonAlgorithm);
     }
 
     public static boolean updateTimeouts () {

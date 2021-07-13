@@ -1,5 +1,6 @@
 package com.flat.view.main.panes.center.children.algorithmselection.listener;
 
+import com.flat.controller.Controller;
 import com.flat.tools.eventbus.base.Event;
 import com.flat.tools.eventbus.base.Listener;
 import com.flat.view.main.panes.center.children.algorithmselection.AlgorithmSelectionPane;
@@ -20,8 +21,7 @@ public class AlgorithmSelectionPaneListener implements Listener {
         switch (_event.getType()) {
             case FORMULA_APPLY_BUTTON_PRESSED:
                 if (algorithmSelectionPane.getSelectedAlgorithm() != null)
-                    return;
-                break;
+                    Controller.applyFormula(this.algorithmSelectionPane.getSelectedAlgorithm());
         }
     }
 
