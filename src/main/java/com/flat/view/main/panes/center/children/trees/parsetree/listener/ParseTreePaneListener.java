@@ -4,9 +4,9 @@ import com.flat.controller.Controller;
 import com.flat.models.algorithms.events.UpdateParseTree;
 import com.flat.tools.eventbus.base.Event;
 import com.flat.tools.eventbus.base.Listener;
-import com.flat.view.main.panes.center.children.trees.base.BuchheimTree;
 import com.flat.view.main.panes.center.children.trees.base.TreeNode;
 import com.flat.view.main.panes.center.children.trees.parsetree.ParseTreePane;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -33,12 +33,15 @@ public class ParseTreePaneListener implements Listener {
     }
 
     public void layoutTree (TreeNode _treeNode) {
-        _treeNode.getTreeNodeChildren().forEach((treeNode) -> {
+        _treeNode.getChildren().forEach((treeNode) -> {
             this.layoutTree(treeNode);
         });
-        this.parseTreePane.getChildren().add(_treeNode);
-        _treeNode.setX(_treeNode.getX() + (this.parseTreePane.getWidth() / 2));
-        _treeNode.setY(_treeNode.getY() + (this.parseTreePane.getHeight() / 2));
+        Text text = new Text(_treeNode.getText());
+        this.parseTreePane.getChildren().add(text);
+        text.setLayoutX(_treeNode.getX());
+        text.setLayoutY(_treeNode.getY());
+        text.setX(_treeNode.getX() + _treeNode.getWidth() / 2);
+        text.setY(_treeNode.getY() + _treeNode.getHeight() / 2);
     }
 
 }

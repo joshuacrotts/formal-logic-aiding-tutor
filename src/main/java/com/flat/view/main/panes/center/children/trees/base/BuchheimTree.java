@@ -23,26 +23,26 @@ public class BuchheimTree {
     }
 
     private TreeNode firstWalk (TreeNode _node) {
-        if (_node.getTreeNodeChildren().isEmpty()) {
+        if (_node.getChildren().isEmpty()) {
             if (_node.getLeftMostSibling() != null) {
-                _node.setX(_node.getLeftSibling().getX() + _node.getLeftSibling().getLayoutBounds().getWidth() + this.widthGap);
+                _node.setX(_node.getLeftSibling().getX() + _node.getLeftSibling().getWidth() + this.widthGap);
             }
             else {
                 _node.setX(this.maxWidth);
             }
         }
         else {
-            TreeNode defaultAncestor = _node.getTreeNodeChildren().get(0);
-            for (TreeNode node : _node.getTreeNodeChildren()) {
+            TreeNode defaultAncestor = _node.getChildren().get(0);
+            for (TreeNode node : _node.getChildren()) {
                 this.firstWalk(node);
                 defaultAncestor = this.apportion(node, defaultAncestor, this.widthGap);
             }
             this.executeShifts(_node);
-            double midPoint = (_node.getFirstChild().getX() + _node.getLastChild().getX() + _node.getLastChild().getLayoutBounds().getWidth()) / 2;
-            _node.setX(midPoint - (_node.getLayoutBounds().getWidth() / 2));
+            double midPoint = (_node.getFirstChild().getX() + _node.getLastChild().getX() + _node.getLastChild().getWidth()) / 2;
+            _node.setX(midPoint - (_node.getWidth() / 2));
         }
-        if ((_node.getX() + _node.getLayoutBounds().getWidth()) > this.maxWidth) {
-            this.maxWidth = _node.getX() + _node.getLayoutBounds().getWidth() + this.widthGap;
+        if ((_node.getX() + _node.getWidth()) > this.maxWidth) {
+            this.maxWidth = _node.getX() + _node.getWidth() + this.widthGap;
         }
         return _node;
     }
@@ -52,15 +52,15 @@ public class BuchheimTree {
         _node.setY(_depth);
         if (_node.getX() < _min)
             _min = _node.getX();
-        for (TreeNode node : _node.getTreeNodeChildren()) {
-            _min = this.secondWalk(node, _m + _node.getMod(), _depth + _node.getLayoutBounds().getHeight()+ this.heightGap, _min);
+        for (TreeNode node : _node.getChildren()) {
+            _min = this.secondWalk(node, _m + _node.getMod(), _depth + _node.getHeight() + this.heightGap, _min);
         }
         return _min;
     }
 
     private void thirdWalk (TreeNode _node, double _n) {
         _node.setX(_node.getX() + _n);
-        _node.getTreeNodeChildren().forEach(child -> {
+        _node.getChildren().forEach(child -> {
             this.thirdWalk(child, _n);
         });
     }
@@ -69,8 +69,8 @@ public class BuchheimTree {
         double shift = 0;
         double change = 0;
         TreeNode curNode;
-        for (int i = _node.getTreeNodeChildren().size() - 1; i > -1; i--) {
-            curNode = _node.getTreeNodeChildren().get(i);
+        for (int i = _node.getChildren().size() - 1; i > -1; i--) {
+            curNode = _node.getChildren().get(i);
             curNode.setX(curNode.getX() + shift);
             curNode.setMod(curNode.getMod() + shift);
             change += curNode.getChange();
@@ -79,7 +79,7 @@ public class BuchheimTree {
     }
 
     private TreeNode ancestor (TreeNode _vil, TreeNode _v, TreeNode _defaultAncestor) {
-        return _v.getTreeNodeParent().getTreeNodeChildren().contains(_vil.getAncestor()) ? _vil.getAncestor() : _defaultAncestor;
+        return _v.getParent().getChildren().contains(_vil.getAncestor()) ? _vil.getAncestor() : _defaultAncestor;
     }
 
     private void moveSubtrees (TreeNode _left, TreeNode _right, double _shift) {
@@ -108,7 +108,7 @@ public class BuchheimTree {
                 outerLeft = outerLeft.getNextLeft();
                 outerRight = outerRight.getNextRight();
                 outerRight.setAncestor(_node);
-                double shift = innerLeft.getX() + shiftInnerLeft + innerLeft.getLayoutBounds().getWidth() - innerRight.getX() + shiftInnerRight + _distance;
+                double shift = innerLeft.getX() + shiftInnerLeft + innerLeft.getWidth() - innerRight.getX() + shiftInnerRight + _distance;
                 if (shift > 0) {
                     this.moveSubtrees(this.ancestor(innerLeft, _node, _defaultAncestor), _node, shift);
                     shiftInnerRight = shiftInnerRight + shift;

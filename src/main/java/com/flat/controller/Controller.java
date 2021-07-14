@@ -31,7 +31,7 @@ public class Controller {
     private final static FontTool FONT_TOOL = FontTool.getInstance();
     private final static EventBus EVENT_BUS = EventBus.getInstance();
     private final static ApplyAlgorithmAdapter ALGORITHM_ADAPTER = new ApplyAlgorithmAdapter(JSON_DATA.getJsonAlgorithms());
-    private final static BuchheimTree buccheimTree = new BuchheimTree(20, 20);
+    private final static BuchheimTree BUCCHEIM_TREE = new BuchheimTree(0, 0);
 
     // Retrieves view associated with the enum and displays it on STAGE.
     public static void changeView (View _view) {
@@ -131,7 +131,7 @@ public class Controller {
     }
 
     public static BuchheimTree getBuccheimTree() {
-        return buccheimTree;
+        return BUCCHEIM_TREE;
     }
 
     // Setters for for object's attributes.

@@ -2,15 +2,14 @@ package com.flat.view.main.panes.center.children.trees.base;
 
 import com.flat.models.treenode.WffTree;
 import java.util.ArrayList;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class TreeNode extends Text {
-    private WffTree wffTree = null;
+public class TreeNode {
+    private String text;
     private TreeNode ancestor = this;
     private TreeNode parent = null;
     private TreeNode thread = null;
@@ -18,26 +17,25 @@ public class TreeNode extends Text {
     private double mod = 0;
     private double change = 0;
     private double shift = 0;
+    private double x = 0;
+    private double y = 0;
+    private double width = 0;
+    private double height = 0;
     private ArrayList <TreeNode> children = new ArrayList();
 
     public TreeNode (WffTree _wffTree) {
-        super.setText(_wffTree.getSymbol());
-        super.setX(0);
-        super.setY(0);
-        this.wffTree = _wffTree;
+        this.text = _wffTree.getStringRep();
+        this.width = new Text(this.text).getLayoutBounds().getWidth();
+        this.height = new Text(this.text).getLayoutBounds().getHeight();
         int counter = 1;
         TreeNode curNode;
-        for (WffTree node : _wffTree.getChildren()) {
-            curNode = new TreeNode(node);
-            this.children.add(curNode);
-            curNode.setTreeNodeParent(this);
+        for (WffTree wffTree : _wffTree.getChildren()) {
+            curNode = new TreeNode(wffTree);
+            curNode.setParent(this);
             curNode.setNumber(counter);
+            this.children.add(curNode);
             counter++;
         }
-    }
-
-    public WffTree getWffTree() {
-        return wffTree;
     }
 
     public TreeNode getLeftMostSibling () {
@@ -83,11 +81,15 @@ public class TreeNode extends Text {
         return this.getFirstChild() != null ? this.getFirstChild() : this.thread;
     }
 
+    public String getText () {
+        return text;
+    }
+
     public TreeNode getAncestor () {
         return ancestor;
     }
 
-    public TreeNode getTreeNodeParent () {
+    public TreeNode getParent () {
         return parent;
     }
 
@@ -111,20 +113,36 @@ public class TreeNode extends Text {
         return shift;
     }
 
-    public ArrayList <TreeNode> getTreeNodeChildren () {
+    public double getX () {
+        return x;
+    }
+
+    public double getY () {
+        return y;
+    }
+
+    public double getWidth () {
+        return width;
+    }
+
+    public double getHeight () {
+        return height;
+    }
+
+    public ArrayList <TreeNode> getChildren () {
         return children;
     }
 
     // Setters for object's attributes.
-    public void setWffTree (WffTree wffTree) {
-        this.wffTree = wffTree;
+    public void setText (String text) {
+        this.text = text;
     }
 
-    public void setAncestor(TreeNode ancestor) {
+    public void setAncestor (TreeNode ancestor) {
         this.ancestor = ancestor;
     }
 
-    public void setTreeNodeParent (TreeNode parent) {
+    public void setParent (TreeNode parent) {
         this.parent = parent;
     }
 
@@ -148,7 +166,23 @@ public class TreeNode extends Text {
         this.shift = shift;
     }
 
-    public void setTreeNodeChildren (ArrayList <TreeNode> children) {
+    public void setX (double x) {
+        this.x = x;
+    }
+
+    public void setY (double y) {
+        this.y = y;
+    }
+
+    public void setWidth (double width) {
+        this.width = width;
+    }
+
+    public void setHeight (double height) {
+        this.height = height;
+    }
+
+    public void setChildren (ArrayList <TreeNode> children) {
         this.children = children;
     }
 
