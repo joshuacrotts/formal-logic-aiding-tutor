@@ -24,6 +24,7 @@ public class EventBus {
     }
 
     public void throwEvent (Event _event) {
+        System.out.println(_event.getType());
         this.listeners.forEach(listener -> {
             try {
                 listener.catchEvent(_event);

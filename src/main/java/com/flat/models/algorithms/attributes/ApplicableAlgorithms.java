@@ -1,4 +1,4 @@
-package com.flat.models.algorithms;
+package com.flat.models.algorithms.attributes;
 
 import com.flat.models.json.algorithm.JsonAlgorithm;
 import java.util.ArrayList;

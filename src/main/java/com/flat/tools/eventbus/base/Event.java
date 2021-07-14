@@ -11,7 +11,13 @@ public abstract class Event {
         FORMULA_APPLY_BUTTON_PRESSED,
         FORMULA_INPUT,
         UNSOLVED_FORMULA,
-        SOLVED_FORMULA
+        SOLVED_FORMULA,
+        // Events thrown from ApplyAlgorithmAdapter.
+        CLEAR_LOGIC_VISUALS,
+        FORMULA_GENERATED,
+        UPDATE_PARSE_TREE,
+        UPDATE_TRUTH_TABLE,
+        UPDATE_TRUTH_TREE,
     }
 
     private Type type;

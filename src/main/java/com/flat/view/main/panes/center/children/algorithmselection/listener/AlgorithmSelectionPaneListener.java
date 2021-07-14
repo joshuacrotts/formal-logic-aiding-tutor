@@ -20,6 +20,7 @@ public class AlgorithmSelectionPaneListener implements Listener {
     public void catchEvent(Event _event) {
         switch (_event.getType()) {
             case FORMULA_APPLY_BUTTON_PRESSED:
+                System.out.println("FORMULA_APPLY_BUTTON_PRESSED");
                 if (algorithmSelectionPane.getSelectedAlgorithm() != null)
                     Controller.applyFormula(this.algorithmSelectionPane.getSelectedAlgorithm());
         }

@@ -1,9 +1,11 @@
 package com.flat.view.main.panes.center.children.algorithmselection;
 
+import com.flat.controller.Controller;
 import com.flat.models.json.algorithm.JsonAlgorithm;
 import com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.GeneralComboBox;
 import com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.PredicateComboBox;
 import com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.PropositionalComboBox;
+import com.flat.view.main.panes.center.children.algorithmselection.listener.AlgorithmSelectionPaneListener;
 import java.util.Arrays;
 import java.util.List;
 import javafx.geometry.Pos;
@@ -23,6 +25,7 @@ public class AlgorithmSelectionPane extends HBox {
 
     public AlgorithmSelectionPane () {
         this.initializeFx();
+        Controller.getEVENT_BUS().addListener(new AlgorithmSelectionPaneListener(this));
     }
 
     private void initializeFx () {

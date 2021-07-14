@@ -15,14 +15,13 @@ public class FormulaInputTextFieldListener implements Listener {
 
     public FormulaInputTextFieldListener (FormulaInputTextField _formulaInputTextField) {
         this.formulaInputTextField = _formulaInputTextField;
-        Controller.getEVENT_BUS().addListener(this);
     }
 
     @Override
     public void catchEvent(Event _event) {
         switch (_event.getType()) {
             case FORMULA_SOLVE_BUTTON_PRESSED:
-                if (this.formulaInputTextField.getText() != "")
+                if (!this.formulaInputTextField.getText().isEmpty())
                     Controller.inputFormula(this.formulaInputTextField.getText());
                 break;
         }

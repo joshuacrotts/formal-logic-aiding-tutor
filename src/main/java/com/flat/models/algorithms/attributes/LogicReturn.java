@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.flat.models.algorithms;
+package com.flat.models.algorithms.attributes;
 
 import com.flat.algorithms.models.TruthTree;
 import com.flat.models.treenode.WffTree;
@@ -13,18 +8,26 @@ import com.flat.models.treenode.WffTree;
  * @author christopherbrantley
  */
 public class LogicReturn {
-    private boolean truthValue;
-    private TruthTree truthTree;
-    private WffTree wffTree;
+    private Boolean truthValue = null;
+    private TruthTree truthTree = null;
+    private WffTree wffTree = null;
+    private String formula = null;
 
-    public LogicReturn (boolean _truthValue, TruthTree _truthTree, WffTree _wffTree) {
+    public LogicReturn () {
+    }
+
+    public LogicReturn (String _formula) {
+        this.formula = _formula;
+    }
+
+    public LogicReturn (Boolean _truthValue, TruthTree _truthTree, WffTree _wffTree) {
         this.truthValue = _truthValue;
         this.truthTree = _truthTree;
         this.wffTree = _wffTree;
     }
 
     // Getters for object's attributes.
-    public boolean isTruthValue() {
+    public Boolean getTruthValue() {
         return truthValue;
     }
 
@@ -36,8 +39,12 @@ public class LogicReturn {
         return wffTree;
     }
 
+    public String getFormula() {
+        return formula;
+    }
+
     // Setters for object's attributes.
-    public void setTruthValue(boolean truthValue) {
+    public void setTruthValue(Boolean truthValue) {
         this.truthValue = truthValue;
     }
 
@@ -47,6 +54,10 @@ public class LogicReturn {
 
     public void setWffTree(WffTree wffTree) {
         this.wffTree = wffTree;
+    }
+
+    public void setFormula(String formula) {
+        this.formula = formula;
     }
 
 }
