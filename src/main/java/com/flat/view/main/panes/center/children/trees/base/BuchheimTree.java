@@ -1,75 +1,76 @@
-package com.flat.models.buchheim;
+package com.flat.view.main.panes.center.children.trees.base;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class Buchheim {
+public class BuchheimTree {
     private int widthGap = 0;
     private int heightGap = 0;
     private double maxWidth = 0;
 
-    public Buchheim(int _widthGap, int _heightGap) {
+    public BuchheimTree(int _widthGap, int _heightGap) {
         this.widthGap = _widthGap;
         this.heightGap = _heightGap;
     }
 
-    public void execute (BuchheimNode _node) {
+    public void execute (TreeNode _node) {
+        this.maxWidth = 0;
         this.firstWalk(_node);
         double min = this.secondWalk(_node, 0, 0, Double.MAX_VALUE);
         if (min < 0)
             this.thirdWalk(_node, -min);
     }
 
-    private BuchheimNode firstWalk (BuchheimNode _node) {
-        if (_node.getChildren().isEmpty()) {
+    private TreeNode firstWalk (TreeNode _node) {
+        if (_node.getTreeNodeChildren().isEmpty()) {
             if (_node.getLeftMostSibling() != null) {
-                _node.setX(_node.getLeftSibling().getX() + _node.getLeftSibling().getWidth() + this.widthGap);
+                _node.setX(_node.getLeftSibling().getX() + _node.getLeftSibling().getLayoutBounds().getWidth() + this.widthGap);
             }
             else {
                 _node.setX(this.maxWidth);
             }
         }
         else {
-            BuchheimNode defaultAncestor = _node.getChildren().get(0);
-            for (BuchheimNode node : _node.getChildren()) {
+            TreeNode defaultAncestor = _node.getTreeNodeChildren().get(0);
+            for (TreeNode node : _node.getTreeNodeChildren()) {
                 this.firstWalk(node);
                 defaultAncestor = this.apportion(node, defaultAncestor, this.widthGap);
             }
             this.executeShifts(_node);
-            double midPoint = (_node.getFirstChild().getX() + _node.getLastChild().getX() + _node.getLastChild().getWidth()) / 2;
-            _node.setX(midPoint - (_node.getWidth() / 2));
+            double midPoint = (_node.getFirstChild().getX() + _node.getLastChild().getX() + _node.getLastChild().getLayoutBounds().getWidth()) / 2;
+            _node.setX(midPoint - (_node.getLayoutBounds().getWidth() / 2));
         }
-        if ((_node.getX() + _node.getWidth()) > this.maxWidth) {
-            this.maxWidth = _node.getX() + _node.getWidth() + this.widthGap;
+        if ((_node.getX() + _node.getLayoutBounds().getWidth()) > this.maxWidth) {
+            this.maxWidth = _node.getX() + _node.getLayoutBounds().getWidth() + this.widthGap;
         }
         return _node;
     }
 
-    private double secondWalk (BuchheimNode _node, double _m, double _depth, double _min) {
+    private double secondWalk (TreeNode _node, double _m, double _depth, double _min) {
         _node.setX(_node.getX() + _m);
         _node.setY(_depth);
         if (_node.getX() < _min)
             _min = _node.getX();
-        for (BuchheimNode node : _node.getChildren()) {
-            _min = this.secondWalk(node, _m + _node.getMod(), _depth + _node.getHeight() + this.heightGap, _min);
+        for (TreeNode node : _node.getTreeNodeChildren()) {
+            _min = this.secondWalk(node, _m + _node.getMod(), _depth + _node.getLayoutBounds().getHeight()+ this.heightGap, _min);
         }
         return _min;
     }
 
-    private void thirdWalk (BuchheimNode _node, double _n) {
+    private void thirdWalk (TreeNode _node, double _n) {
         _node.setX(_node.getX() + _n);
-        _node.getChildren().forEach(child -> {
+        _node.getTreeNodeChildren().forEach(child -> {
             this.thirdWalk(child, _n);
         });
     }
 
-    private void executeShifts (BuchheimNode _node) {
+    private void executeShifts (TreeNode _node) {
         double shift = 0;
         double change = 0;
-        BuchheimNode curNode;
-        for (int i = _node.getChildren().size() - 1; i > -1; i--) {
-            curNode = _node.getChildren().get(i);
+        TreeNode curNode;
+        for (int i = _node.getTreeNodeChildren().size() - 1; i > -1; i--) {
+            curNode = _node.getTreeNodeChildren().get(i);
             curNode.setX(curNode.getX() + shift);
             curNode.setMod(curNode.getMod() + shift);
             change += curNode.getChange();
@@ -77,11 +78,11 @@ public class Buchheim {
         }
     }
 
-    private BuchheimNode ancestor (BuchheimNode _vil, BuchheimNode _v, BuchheimNode _defaultAncestor) {
-        return _v.getParent().getChildren().contains(_vil.getAncestor()) ? _vil.getAncestor() : _defaultAncestor;
+    private TreeNode ancestor (TreeNode _vil, TreeNode _v, TreeNode _defaultAncestor) {
+        return _v.getTreeNodeParent().getTreeNodeChildren().contains(_vil.getAncestor()) ? _vil.getAncestor() : _defaultAncestor;
     }
 
-    private void moveSubtrees (BuchheimNode _left, BuchheimNode _right, double _shift) {
+    private void moveSubtrees (TreeNode _left, TreeNode _right, double _shift) {
         double subtrees = _right.getNumber() - _left.getNumber();
         _right.setChange(_right.getChange() - _shift / subtrees);
         _right.setShift(_right.getShift() + _shift);
@@ -90,13 +91,13 @@ public class Buchheim {
         _right.setMod(_right.getMod() + _shift);
     }
 
-    private BuchheimNode apportion (BuchheimNode _node, BuchheimNode _defaultAncestor, double _distance) {
-        BuchheimNode leftBrother = _node.getLeftSibling();
+    private TreeNode apportion (TreeNode _node, TreeNode _defaultAncestor, double _distance) {
+        TreeNode leftBrother = _node.getLeftSibling();
         if (leftBrother != null) {
-            BuchheimNode innerRight = _node;
-            BuchheimNode outerRight = _node;
-            BuchheimNode innerLeft = leftBrother;
-            BuchheimNode outerLeft = _node.getLeftMostSibling();
+            TreeNode innerRight = _node;
+            TreeNode outerRight = _node;
+            TreeNode innerLeft = leftBrother;
+            TreeNode outerLeft = _node.getLeftMostSibling();
             double shiftInnerRight = _node.getMod();
             double shiftOuterRight = _node.getMod();
             double shiftInnerLeft = innerLeft.getMod();
@@ -107,7 +108,7 @@ public class Buchheim {
                 outerLeft = outerLeft.getNextLeft();
                 outerRight = outerRight.getNextRight();
                 outerRight.setAncestor(_node);
-                double shift = innerLeft.getX() + shiftInnerLeft + innerLeft.getWidth() - innerRight.getX() + shiftInnerRight + _distance;
+                double shift = innerLeft.getX() + shiftInnerLeft + innerLeft.getLayoutBounds().getWidth() - innerRight.getX() + shiftInnerRight + _distance;
                 if (shift > 0) {
                     this.moveSubtrees(this.ancestor(innerLeft, _node, _defaultAncestor), _node, shift);
                     shiftInnerRight = shiftInnerRight + shift;

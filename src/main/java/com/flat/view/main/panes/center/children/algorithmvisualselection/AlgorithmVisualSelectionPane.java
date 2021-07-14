@@ -1,8 +1,8 @@
 package com.flat.view.main.panes.center.children.algorithmvisualselection;
 
-import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.ParseTreeButton;
-import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.TruthTableButton;
-import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.TruthTreeButton;
+import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.parsetree.ParseTreeButton;
+import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.truthtable.TruthTableButton;
+import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.truthtree.TruthTreeButton;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 

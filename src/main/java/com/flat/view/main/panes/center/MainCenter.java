@@ -2,9 +2,11 @@ package com.flat.view.main.panes.center;
 
 import com.flat.view.main.panes.center.children.algorithmselection.AlgorithmSelectionPane;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.AlgorithmVisualSelectionPane;
+import com.flat.view.main.panes.center.children.trees.parsetree.ParseTreePane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 /**
@@ -15,6 +17,7 @@ public class MainCenter extends VBox {
     private Separator separator1 = new Separator();
     private AlgorithmVisualSelectionPane algorithmVisualSelection = new AlgorithmVisualSelectionPane();
     private Separator separator2 = new Separator();
+    private ParseTreePane parseTreePane = new ParseTreePane();
 
     public MainCenter() {
         this.initializeFx();
@@ -28,14 +31,12 @@ public class MainCenter extends VBox {
 
     private void setThisFx () {
         super.setStyle("-fx-background-color: white");
-        super.getChildren().addAll(this.algorithmSelection, this.separator1, this.algorithmVisualSelection, this.separator2);
+        super.getChildren().addAll(this.algorithmSelection, this.separator1, this.algorithmVisualSelection, this.separator2, this.parseTreePane);
         super.setAlignment(Pos.CENTER);
         super.setSpacing(10);
         this.onInvalidLocalBounds();
-        this.separator1.setStyle("-fx-border-width: 1px");
-        this.separator1.setStyle("-fx-border-color: black");
-        this.separator2.setStyle("-fx-border-width: 1px");
-        this.separator2.setStyle("-fx-border-color: black");
+        // FIX THIS
+        VBox.setVgrow(this.parseTreePane, Priority.ALWAYS);
     }
 
     private void onInvalidLocalBounds () {

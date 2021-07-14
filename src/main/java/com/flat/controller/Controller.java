@@ -14,6 +14,7 @@ import com.flat.tools.font.enums.FontLocal.FontFamily;
 import com.flat.tools.json.JsonData;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
+import com.flat.view.main.panes.center.children.trees.base.BuchheimTree;
 import com.flat.view.viewdata.algorithms.AvailableAlgorithms;
 import com.flat.view.viewdata.settings.SettingsData;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class Controller {
     private final static FontTool FONT_TOOL = FontTool.getInstance();
     private final static EventBus EVENT_BUS = EventBus.getInstance();
     private final static ApplyAlgorithmAdapter ALGORITHM_ADAPTER = new ApplyAlgorithmAdapter(JSON_DATA.getJsonAlgorithms());
+    private final static BuchheimTree buccheimTree = new BuchheimTree(20, 20);
 
     // Retrieves view associated with the enum and displays it on STAGE.
     public static void changeView (View _view) {
@@ -122,6 +124,14 @@ public class Controller {
 
     public static EventBus getEVENT_BUS() {
         return EVENT_BUS;
+    }
+
+    public static ApplyAlgorithmAdapter getALGORITHM_ADAPTER() {
+        return ALGORITHM_ADAPTER;
+    }
+
+    public static BuchheimTree getBuccheimTree() {
+        return buccheimTree;
     }
 
     // Setters for for object's attributes.

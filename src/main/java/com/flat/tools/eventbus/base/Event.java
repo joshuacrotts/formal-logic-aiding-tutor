@@ -18,6 +18,8 @@ public abstract class Event {
         UPDATE_PARSE_TREE,
         UPDATE_TRUTH_TABLE,
         UPDATE_TRUTH_TREE,
+        //
+        PARSE_TREE_BUTTON_PRESSED,
     }
 
     private Type type;
