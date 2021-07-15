@@ -5,8 +5,8 @@ package com.flat.view.main.panes.center.children.trees.base;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class TreeLayout {
-    private double widthGap = 0;
-    private double heightGap = 0;
+    private static double widthGap = 0;
+    private static double heightGap = 0;
     private double currentWidth = 0;
     public TreeLayout (int _widthGap, int _heightGap) {
         this.widthGap = _widthGap;
@@ -59,6 +59,16 @@ public class TreeLayout {
         _treeNode.getChildren().forEach(child -> {
             this.layoutHeight(child, _height + _treeNode.getHeight() + this.heightGap);
         });
+    }
+
+    // Getters for object's attributes.
+
+    public static double getWidthGap() {
+        return widthGap;
+    }
+
+    public static double getHeightGap() {
+        return heightGap;
     }
 
 }
