@@ -6,6 +6,7 @@ import com.flat.tools.eventbus.base.Event;
 import com.flat.tools.eventbus.base.Listener;
 import com.flat.view.main.panes.center.children.trees.base.TreeNode;
 import com.flat.view.main.panes.center.children.trees.parsetree.ParseTreePane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -24,24 +25,23 @@ public class ParseTreePaneListener implements Listener {
         switch (_event.getType()) {
             case UPDATE_PARSE_TREE:
                 TreeNode treeNode = new TreeNode(((UpdateParseTree)_event).getWffTree().getChild(0));
-                Controller.getBuccheimTree().execute(treeNode);
-                this.layoutTree(treeNode);
+                Controller.getTREE_LAYOUT().execute(treeNode);
+                this.layoutTree(treeNode, treeNode.getWidth());
                 break;
             case CLEAR_LOGIC_VISUALS:
                 this.parseTreePane.getChildren().clear();
         }
     }
 
-    public void layoutTree (TreeNode _treeNode) {
+    public void layoutTree (TreeNode _treeNode, double _offset) {
         _treeNode.getChildren().forEach((treeNode) -> {
-            this.layoutTree(treeNode);
+            this.layoutTree(treeNode, _offset);
         });
         Text text = new Text(_treeNode.getText());
-        this.parseTreePane.getChildren().add(text);
-        text.setLayoutX(_treeNode.getX());
-        text.setLayoutY(_treeNode.getY());
-        text.setX(_treeNode.getX() + _treeNode.getWidth() / 2);
-        text.setY(_treeNode.getY() + _treeNode.getHeight() / 2);
+        VBox vbox = new VBox(text);
+        this.parseTreePane.getChildren().add(vbox);
+        vbox.setLayoutX(((this.parseTreePane.getWidth() - _offset) / 2) + _treeNode.getX());
+        vbox.setLayoutY(((this.parseTreePane.getHeight()) / 2) + _treeNode.getY());
     }
 
 }

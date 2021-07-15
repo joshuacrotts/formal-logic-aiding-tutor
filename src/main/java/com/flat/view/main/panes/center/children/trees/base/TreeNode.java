@@ -24,7 +24,7 @@ public class TreeNode {
     private ArrayList <TreeNode> children = new ArrayList();
 
     public TreeNode (WffTree _wffTree) {
-        this.text = _wffTree.getStringRep();
+        this.text = _wffTree.getSymbol();
         this.width = new Text(this.text).getLayoutBounds().getWidth();
         this.height = new Text(this.text).getLayoutBounds().getHeight();
         int counter = 1;
@@ -64,15 +64,6 @@ public class TreeNode {
         return null;
     }
 
-    // Getters for object's attributes.
-    public TreeNode getFirstChild () {
-        return this.children.isEmpty() ? null : this.children.get(0);
-    }
-
-    public TreeNode getLastChild () {
-        return this.children.isEmpty() ? null : this.children.get(this.children.size() - 1);
-    }
-
     public TreeNode getNextRight () {
         return this.getLastChild() != null ? this.getLastChild() : this.thread;
     }
@@ -81,6 +72,15 @@ public class TreeNode {
         return this.getFirstChild() != null ? this.getFirstChild() : this.thread;
     }
 
+    public TreeNode getFirstChild () {
+        return this.children.isEmpty() ? null : this.children.get(0);
+    }
+
+    public TreeNode getLastChild () {
+        return this.children.isEmpty() ? null : this.children.get(this.children.size() - 1);
+    }
+
+    // Getters for object's attributes.
     public String getText () {
         return text;
     }
