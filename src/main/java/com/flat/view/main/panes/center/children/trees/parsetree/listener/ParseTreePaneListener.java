@@ -51,9 +51,9 @@ public class ParseTreePaneListener implements Listener {
         for (TreeNode child : _treeNode.getChildren()) {
             this.drawLines(child, _offset);
             Line line = new Line();
-            line.setStartX(((this.parseTreePane.getWidth() - _offset) / 2) + _treeNode.getX());
+            line.setStartX(((this.parseTreePane.getWidth() - _offset) / 2) + _treeNode.getX() + (_treeNode.getWidth() / 2));
             line.setStartY(((this.parseTreePane.getHeight()) / 2) + _treeNode.getY() + TreeLayout.getHeightGap());
-            line.setEndX(((this.parseTreePane.getWidth() - _offset) / 2) + child.getX() /*+ (child.getWidth() / 2)*/);
+            line.setEndX(((this.parseTreePane.getWidth() - _offset) / 2) + child.getX() + (child.getWidth() / 2));
             line.setEndY(((this.parseTreePane.getHeight()) / 2) + child.getY());
             this.parseTreePane.getChildren().add(line);
         }
