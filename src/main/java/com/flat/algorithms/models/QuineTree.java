@@ -102,7 +102,7 @@ public final class QuineTree {
         // because otherwise we'll end up with statements like this (T -> T) or (F -> F).
         do {
             this.evaluateWffHelper(_wffTree);
-        } while (this.hasOnlyTrueFalseNodes() && !this.isTerminalNode());
+        } while ((this.hasTrueFalseNode() || this.hasOnlyTrueFalseNodes()) && !this.isTerminalNode());
     }
 
     /**
@@ -259,6 +259,23 @@ public final class QuineTree {
         }
 
         return true;
+    }
+
+    /**
+     * If a wff has a true or false value somewhere in it, we want to keep trying to evaluate it.
+     *
+     * @return true if the formula has a T/F somewhere in it, false otherwise.
+     */
+    private boolean hasTrueFalseNode() {
+        Queue<WffTree> queue = new LinkedList<>();
+        queue.add(this.wffTree);
+        while (!queue.isEmpty()) {
+            WffTree wff = queue.poll();
+            if (wff.isTrue() || wff.isFalse()) { return true; }
+            for (WffTree ch : wff.getChildren()) { queue.add(ch); }
+        }
+
+        return false;
     }
 
     @Override
