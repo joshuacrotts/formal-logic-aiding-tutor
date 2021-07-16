@@ -7,10 +7,7 @@ import com.flat.algorithms.models.NDWffTree;
 import com.flat.algorithms.models.ProofType;
 import com.flat.algorithms.models.TruthTree;
 import com.flat.algorithms.predicate.*;
-import com.flat.algorithms.propositional.PdfTruthTablePrinter;
-import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
-import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
-import com.flat.algorithms.propositional.TexTablePrinter;
+import com.flat.algorithms.propositional.*;
 import com.flat.input.FLATErrorListener;
 import com.flat.input.FLATParserAdapter;
 import com.flat.input.FLATParserListener;
@@ -79,12 +76,12 @@ public class ParserTest {
             result.printSyntaxTree();
 
             // Print the parse tree in LaTeX.
-            TexPrinter texParseTreePrinter = new TexParseTreePrinter(result, "latex_parse_tree.tex");
-            texParseTreePrinter.outputToFile();
-
-            // Prints the parse tree to a Pdf.
-            PdfPrinter pdfParseTreePrinter = new PdfParseTreePrinter(result, "latex_parse_tree.pdf");
-            pdfParseTreePrinter.outputToFile();
+//            TexPrinter texParseTreePrinter = new TexParseTreePrinter(result, "latex_parse_tree.tex");
+//            texParseTreePrinter.outputToFile();
+//
+//            // Prints the parse tree to a Pdf.
+//            PdfPrinter pdfParseTreePrinter = new PdfParseTreePrinter(result, "latex_parse_tree.pdf");
+//            pdfParseTreePrinter.outputToFile();
 
             BaseTruthTreeGenerator truthTreeGenerator;
             if (result.isPredicateWff()) {
@@ -104,6 +101,9 @@ public class ParserTest {
                 // Print the truth table to a Pdf.
                 PdfPrinter pdfTruthTablePrinter = new PdfTruthTablePrinter(result, "latex_truth_table.pdf");
                 pdfTruthTablePrinter.outputToFile();
+
+                QuineEvaluator quineEvaluator = new QuineEvaluator(result);
+                quineEvaluator.evaluate();
             }
             // Generate the truth tree and print it to the console.
             TruthTree truthTree = truthTreeGenerator.getTruthTree();
