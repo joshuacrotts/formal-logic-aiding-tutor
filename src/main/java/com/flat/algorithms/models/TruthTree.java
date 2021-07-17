@@ -68,16 +68,6 @@ public final class TruthTree implements Comparable<TruthTree> {
     private final Map<Character, HashSet<Character>> substitutions;
 
     /**
-     * Identifier number of this truth tree node in the tree itself.
-     */
-    private final int identifierNo;
-
-    /**
-     * Order of precedence for this node (as described above).
-     */
-    private int value;
-
-    /**
      * Left pointer.
      */
     private TruthTree left;
@@ -86,6 +76,16 @@ public final class TruthTree implements Comparable<TruthTree> {
      * Right pointer.
      */
     private TruthTree right;
+
+    /**
+     * Identifier number of this truth tree node in the tree itself.
+     */
+    private final int identifierNo;
+
+    /**
+     * Order of precedence for this node (as described above).
+     */
+    private int value;
 
     /**
      * Flags for the Truth tree - determines the status (open/closed), and if
