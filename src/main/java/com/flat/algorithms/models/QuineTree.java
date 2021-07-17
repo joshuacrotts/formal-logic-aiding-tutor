@@ -1,10 +1,7 @@
 package com.flat.algorithms.models;
 
 import com.flat.FLAT;
-import com.flat.models.treenode.AtomNode;
-import com.flat.models.treenode.FalseNode;
-import com.flat.models.treenode.TruthNode;
-import com.flat.models.treenode.WffTree;
+import com.flat.models.treenode.*;
 import com.flat.tools.FLATUtils;
 
 import java.util.ArrayList;
@@ -119,6 +116,8 @@ public final class QuineTree {
                 this.evaluateDisjunction(i, _wffTree, ch);
             } else if (ch.isImp()) {
                 this.evaluateImplication(i, _wffTree, ch);
+            } else if (ch.isBicond()) {
+                this.evaluateBiconditional(i, _wffTree, ch);
             } else if (ch.isNegation()) {
                 this.evaluateNegation(i, _wffTree, ch);
             }
@@ -182,8 +181,37 @@ public final class QuineTree {
         // False implies anything is true.
         if (_impTree.getChild(0).isFalse()) {
             _parent.setChild(_idx, new TruthNode());
-        } else if (_impTree.getChild(0).isTrue()){
+        }
+        // Anything impies true is true or the lhs is true (we do the same thing).
+        else if (_impTree.getChild(0).isTrue() || _impTree.getChild(1).isTrue()){
             _parent.setChild(_idx, _impTree.getChild(1));
+        }
+        // A implies false is ~A
+        else if (_impTree.getChild(1).isFalse()) {
+            _parent.setChild(_idx, new NegNode(_impTree.getChild(0)));
+        }
+    }
+
+    /**
+     * We can do one of a few things with the biconditional:
+     * 1. If we have (P iff P), then that is true.
+     * 2. (True iff True) is true.
+     * 3. (False iff False) is true.
+     * Anything else needs to be broken down into a conjunction of implications
+     * .
+     * @param _idx
+     * @param _parent
+     * @param _bicondTree
+     */
+    private void evaluateBiconditional(int _idx, WffTree _parent, WffTree _bicondTree) {
+        // If they are the same then it's true.
+        if (_bicondTree.getChild(0).stringEquals(_bicondTree.getChild(1))) {
+            _parent.setChild(_idx, new TruthNode());
+        } else {
+            // Otherwise, replace it with a conjunction of implications.
+            WffTree lhs = _bicondTree.getChild(0);
+            WffTree rhs = _bicondTree.getChild(1);
+            _parent.setChild(_idx, new AndNode(new ImpNode(lhs, rhs), new ImpNode(rhs, lhs)));
         }
     }
 
