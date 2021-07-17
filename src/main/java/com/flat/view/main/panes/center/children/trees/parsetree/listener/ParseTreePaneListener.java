@@ -4,9 +4,11 @@ import com.flat.controller.Controller;
 import com.flat.models.algorithms.events.UpdateParseTree;
 import com.flat.tools.eventbus.base.Event;
 import com.flat.tools.eventbus.base.Listener;
+import com.flat.view.main.panes.center.children.trees.base.treelayout.FxTreeNode;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeNode;
 import com.flat.view.main.panes.center.children.trees.parsetree.ParseTreePane;
 import com.flat.view.main.panes.center.children.trees.parsetree.treelayout.ParseTreeNode;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.shape.Line;
 
 /**
@@ -41,20 +43,15 @@ public class ParseTreePaneListener implements Listener {
         this.parseTreePane.getChildren().add(_treeNode);
     }
 
-    public void drawLines (TreeNode _treeNode) {
-        for (TreeNode child : _treeNode.getChildren()) {
-            this.drawLines(child);
+    public void drawLines (FxTreeNode _fxNode) {
+        for (TreeNode child : _fxNode.getChildren()) {
+            FxTreeNode fxChild = (FxTreeNode)child;
             Line line = new Line();
-            _treeNode.layoutBoundsProperty().addListener(listener -> {
-                line.setStartX((_treeNode.getLayoutBounds().getMinX() + _treeNode.getLayoutBounds().getMaxX()) / 2);
-                line.setEndX((child.getLayoutBounds().getMinX() + child.getLayoutBounds().getMaxX()) / 2);
-                line.setStartY(_treeNode.getLayoutBounds().getMaxY());
-                line.setEndY(child.getLayoutBounds().getMinY());
-            });
-            line.setStartX((_treeNode.getLayoutBounds().getMinX() + _treeNode.getLayoutBounds().getMaxX()) / 2);
-            line.setEndX((child.getLayoutBounds().getMinX() + child.getLayoutBounds().getMaxX()) / 2);
-            line.setStartY(_treeNode.getLayoutBounds().getMaxY());
-            line.setEndY(child.getLayoutBounds().getMinY());
+            line.startXProperty().bind(_fxNode.getCenterX());
+            line.startYProperty().bind(_fxNode.getBottomCenterY());
+            line.endXProperty().bind(fxChild.getCenterX());
+            line.endYProperty().bind(fxChild.getTopCenterY());
+            this.drawLines(fxChild);
             this.parseTreePane.getChildren().add(line);
         }
     }

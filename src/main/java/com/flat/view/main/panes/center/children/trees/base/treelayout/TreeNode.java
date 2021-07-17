@@ -85,6 +85,10 @@ public class TreeNode extends Text {
         return super.getLayoutBounds().getHeight();
     }
 
+    public TreeNode getTreeNodeParent() {
+        return parent;
+    }
+
     // Setters for object's attributes.
     protected final void setParent (TreeNode parent) {
         this.parent = parent;
