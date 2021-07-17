@@ -4,12 +4,10 @@ import com.flat.controller.Controller;
 import com.flat.models.algorithms.events.UpdateParseTree;
 import com.flat.tools.eventbus.base.Event;
 import com.flat.tools.eventbus.base.Listener;
-import com.flat.view.main.panes.center.children.trees.base.TreeLayout;
-import com.flat.view.main.panes.center.children.trees.base.TreeNode;
+import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeNode;
 import com.flat.view.main.panes.center.children.trees.parsetree.ParseTreePane;
-import javafx.scene.layout.VBox;
+import com.flat.view.main.panes.center.children.trees.parsetree.treelayout.ParseTreeNode;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Text;
 
 /**
  *
@@ -26,35 +24,37 @@ public class ParseTreePaneListener implements Listener {
     public void catchEvent(Event _event) {
         switch (_event.getType()) {
             case UPDATE_PARSE_TREE:
-                TreeNode treeNode = new TreeNode(((UpdateParseTree)_event).getWffTree().getChild(0));
-                Controller.getTREE_LAYOUT().execute(treeNode);
-                this.layoutTree(treeNode, treeNode.getWidth());
-                this.drawLines(treeNode, treeNode.getWidth());
+                ParseTreeNode parseNode = new ParseTreeNode(((UpdateParseTree)_event).getWffTree().getChild(0));
+                Controller.getTREE_LAYOUT().execute(parseNode);
+                this.drawTree(parseNode);
+                this.drawLines(parseNode);
                 break;
             case CLEAR_LOGIC_VISUALS:
                 this.parseTreePane.getChildren().clear();
         }
     }
 
-    public void layoutTree (TreeNode _treeNode, double _offset) {
+    public void drawTree (TreeNode _treeNode) {
         _treeNode.getChildren().forEach((treeNode) -> {
-            this.layoutTree(treeNode, _offset);
+            this.drawTree(treeNode);
         });
-        Text text = new Text(_treeNode.getText());
-        VBox vbox = new VBox(text);
-        this.parseTreePane.getChildren().add(vbox);
-        vbox.setLayoutX(((this.parseTreePane.getWidth() - _offset) / 2) + _treeNode.getX());
-        vbox.setLayoutY(((this.parseTreePane.getHeight()) / 2) + _treeNode.getY());
+        this.parseTreePane.getChildren().add(_treeNode);
     }
 
-    public void drawLines (TreeNode _treeNode, double _offset) {
+    public void drawLines (TreeNode _treeNode) {
         for (TreeNode child : _treeNode.getChildren()) {
-            this.drawLines(child, _offset);
+            this.drawLines(child);
             Line line = new Line();
-            line.setStartX(((this.parseTreePane.getWidth() - _offset) / 2) + _treeNode.getX() + (_treeNode.getWidth() / 2));
-            line.setStartY(((this.parseTreePane.getHeight()) / 2) + _treeNode.getY() + TreeLayout.getHeightGap());
-            line.setEndX(((this.parseTreePane.getWidth() - _offset) / 2) + child.getX() + (child.getWidth() / 2));
-            line.setEndY(((this.parseTreePane.getHeight()) / 2) + child.getY());
+            _treeNode.layoutBoundsProperty().addListener(listener -> {
+                line.setStartX((_treeNode.getLayoutBounds().getMinX() + _treeNode.getLayoutBounds().getMaxX()) / 2);
+                line.setEndX((child.getLayoutBounds().getMinX() + child.getLayoutBounds().getMaxX()) / 2);
+                line.setStartY(_treeNode.getLayoutBounds().getMaxY());
+                line.setEndY(child.getLayoutBounds().getMinY());
+            });
+            line.setStartX((_treeNode.getLayoutBounds().getMinX() + _treeNode.getLayoutBounds().getMaxX()) / 2);
+            line.setEndX((child.getLayoutBounds().getMinX() + child.getLayoutBounds().getMaxX()) / 2);
+            line.setStartY(_treeNode.getLayoutBounds().getMaxY());
+            line.setEndY(child.getLayoutBounds().getMinY());
             this.parseTreePane.getChildren().add(line);
         }
     }

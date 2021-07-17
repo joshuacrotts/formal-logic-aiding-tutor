@@ -17,19 +17,25 @@ public class LogicVisualPane extends ScrollPane {
 
     private void initializeFx () {
         this.setThisFx();
-        this.onThisContentProperty();
     }
 
     private void setThisFx () {
         super.setPannable(true);
         VBox.setVgrow(this, Priority.ALWAYS);
+        super.setVbarPolicy(ScrollBarPolicy.NEVER);
+        super.setHbarPolicy(ScrollBarPolicy.NEVER);
+        super.setFitToHeight(true);
+        super.setFitToWidth(true);
     }
 
-    private void onThisContentProperty () {
-        super.contentProperty().addListener(listener -> {
-            ((Pane)super.getContent()).minWidthProperty().bind(super.widthProperty());
-            ((Pane)super.getContent()).minHeightProperty().bind(super.heightProperty());
-        });
+    public final void updateContent (Pane _pane) {
+        this.setContent(null);
+        this.setContent(_pane);
+    }
+
+    public final void centerViewPort () {
+        super.setVvalue(super.getVmax() / 2);
+        super.setHvalue(super.getHmax() / 2);
     }
 
 }

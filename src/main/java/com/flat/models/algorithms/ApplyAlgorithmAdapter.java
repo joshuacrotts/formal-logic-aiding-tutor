@@ -31,7 +31,6 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
             case LOGICALLY_CONTINGENT_DETERMINER:
             case OPEN_TREE_DETERMINER:
             case OPEN_SENTENCE_DETERMINER:
-                Controller.getEVENT_BUS().throwEvent(new UpdateTruthTree(logicReturn.getTruthTree()));
                 Controller.getEVENT_BUS().throwEvent(new UpdateParseTree(logicReturn.getWffTree()));
                 break;
             case TRUTH_TABLE_GENERATOR:

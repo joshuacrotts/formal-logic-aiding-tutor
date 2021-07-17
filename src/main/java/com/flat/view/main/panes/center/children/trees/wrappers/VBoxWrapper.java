@@ -1,15 +1,16 @@
 package com.flat.view.main.panes.center.children.trees.wrappers;
 
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.layout.VBox;
 
 /**
  *
- * @author christopherbrantley
+ * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class VBoxCenterWrapper extends VBox {
+public class VBoxWrapper extends VBox {
 
-    public VBoxCenterWrapper () {
+    public VBoxWrapper () {
         this.initializeFx();
     }
 
@@ -19,6 +20,12 @@ public class VBoxCenterWrapper extends VBox {
 
     private void setThisFx () {
         super.setAlignment(Pos.CENTER);
+        super.setManaged(true);
+    }
+
+    public final void setChild (Group _pane) {
+        super.getChildren().clear();
+        super.getChildren().add(_pane);
     }
 
 }

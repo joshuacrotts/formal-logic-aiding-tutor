@@ -1,4 +1,4 @@
-package com.flat.view.main.panes.center.children.trees.base;
+package com.flat.view.main.panes.center.children.trees.base.treelayout;
 
 /**
  *
@@ -17,11 +17,10 @@ public class TreeLayout {
         this.currentWidth = 0;
         this.layoutWidth(_treeNode);
         this.executeShifts(_treeNode, 0);
-        this.layoutHeight(_treeNode, 0);
+        this.layoutHeight(_treeNode, _treeNode.getHeight());
     }
 
     public void layoutWidth (TreeNode _treeNode) {
-        System.out.println("Node: " + _treeNode.getText());
         if (_treeNode.getChildren().isEmpty()) {
             if (_treeNode.getLeftSibling() != null)
                 _treeNode.setX(_treeNode.getLeftSibling().getX() + _treeNode.getLeftSibling().getWidth() + this.widthGap);
@@ -37,11 +36,8 @@ public class TreeLayout {
             _treeNode.setX(midpoint - (_treeNode.getWidth()/ 2));
             if (_treeNode.getLeftSibling() != null) {
                 double crossover = _treeNode.getX() - _treeNode.getLeftSibling().getX() - _treeNode.getLeftSibling().getWidth() - this.widthGap;
-                System.out.println("Crossover: " + crossover);
                 if (crossover < 0) {
-                    double halfCrossover = crossover / 2;
-                    this.executeShifts(_treeNode.getLeftSibling(), halfCrossover);
-                    this.executeShifts(_treeNode, -halfCrossover);
+                    this.executeShifts(_treeNode, -crossover);
                 }
             }
         }
@@ -62,7 +58,6 @@ public class TreeLayout {
     }
 
     // Getters for object's attributes.
-
     public static double getWidthGap() {
         return widthGap;
     }
