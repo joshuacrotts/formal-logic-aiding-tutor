@@ -10,16 +10,18 @@ import com.flat.view.main.panes.center.children.trees.base.treelayout.FxTreeNode
 public class ParseTreeNode extends FxTreeNode {
 
     public ParseTreeNode(WffTree _wffTree) {
+        super();
         super.setText(_wffTree.getSymbol());
         int counter = 1;
         ParseTreeNode curNode;
         for (WffTree wffTree : _wffTree.getChildren()) {
             curNode = new ParseTreeNode(wffTree);
-            curNode.setParent(this);
+            curNode.setTreeNodeParent(this);
             curNode.setNumber(counter);
             this.getChildren().add(curNode);
             counter++;
         }
+        super.initializeLines();
     }
 
 }

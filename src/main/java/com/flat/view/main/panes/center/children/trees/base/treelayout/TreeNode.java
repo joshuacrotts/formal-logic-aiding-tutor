@@ -8,52 +8,36 @@ import javafx.scene.text.Text;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class TreeNode extends Text {
-    private TreeNode parent = null;
+public abstract class TreeNode extends Text {
+    private TreeNode treeNodeParent = null;
     private int number = 1;
     private double shift = 0;
     private ArrayList <TreeNode> children = new ArrayList();
 
-    public TreeNode () {
-    }
-
-    public TreeNode (WffTree _wffTree) {
-        super.setText(_wffTree.toString());
-        int counter = 1;
-        TreeNode curNode;
-        for (WffTree wffTree : _wffTree.getChildren()) {
-            curNode = new TreeNode(wffTree);
-            curNode.setParent(this);
-            curNode.setNumber(counter);
-            this.children.add(curNode);
-            counter++;
-        }
-    }
-
     // Getters for object's attributes.
     public final TreeNode getLeftMostSibling () {
-        if (this.parent != null && this.number > 1)
-            return this.parent.children.get(0);
+        if (this.treeNodeParent != null && this.number > 1)
+            return this.treeNodeParent.children.get(0);
         return null;
     }
 
     public final TreeNode getRightMostSibling () {
-        if (this.parent != null)
-            if (this.parent.children.size() > this.number)
-                return this.parent.children.get(this.parent.children.size() - 1);
+        if (this.treeNodeParent != null)
+            if (this.treeNodeParent.children.size() > this.number)
+                return this.treeNodeParent.children.get(this.treeNodeParent.children.size() - 1);
         return null;
     }
 
     public final TreeNode getLeftSibling () {
-        if (this.parent != null && this.number > 1)
-            return this.parent.children.get(this.number - 2);
+        if (this.treeNodeParent != null && this.number > 1)
+            return this.treeNodeParent.children.get(this.number - 2);
         return null;
     }
 
     public final TreeNode getRightSibling () {
-        if (this.parent != null)
-            if (this.parent.children.size() > this.number)
-                return this.parent.children.get(this.number);
+        if (this.treeNodeParent != null)
+            if (this.treeNodeParent.children.size() > this.number)
+                return this.treeNodeParent.children.get(this.number);
         return null;
     }
 
@@ -86,12 +70,12 @@ public class TreeNode extends Text {
     }
 
     public TreeNode getTreeNodeParent() {
-        return parent;
+        return treeNodeParent;
     }
 
     // Setters for object's attributes.
-    protected final void setParent (TreeNode parent) {
-        this.parent = parent;
+    protected final void setTreeNodeParent (TreeNode treeNodeParent) {
+        this.treeNodeParent = treeNodeParent;
     }
 
     protected final void setNumber (int number) {

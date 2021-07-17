@@ -1,7 +1,9 @@
 package com.flat.view.main.panes.center.children.trees.base.treelayout;
 
+import java.util.ArrayList;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Line;
 
 /**
  *
@@ -11,6 +13,7 @@ public class FxTreeNode extends TreeNode {
     private SimpleDoubleProperty centerX = new SimpleDoubleProperty();
     private SimpleDoubleProperty topCenterY = new SimpleDoubleProperty();
     private SimpleDoubleProperty bottomCenterY = new SimpleDoubleProperty();
+    private ArrayList<Line> lines = new ArrayList();
 
     public FxTreeNode () {
         this.initializeFx();
@@ -50,6 +53,21 @@ public class FxTreeNode extends TreeNode {
         _treeNode.setY(_treeNode.getY() - _deltaY);
     }
 
+    public void initializeLines () {
+        this.addLines(this);
+    }
+
+    private void addLines (FxTreeNode _fxNode) {
+        _fxNode.getChildren().forEach(child -> {
+            Line line = new Line();
+            line.startXProperty().bind(_fxNode.getCenterX());
+            line.startYProperty().bind(_fxNode.getBottomCenterY());
+            line.endXProperty().bind(((FxTreeNode)child).getCenterX());
+            line.endYProperty().bind(((FxTreeNode)child).getTopCenterY());
+            this.lines.add(line);
+        });
+    }
+
     // Getters for object's attributes.
     public SimpleDoubleProperty getCenterX() {
         return centerX;
@@ -61,6 +79,10 @@ public class FxTreeNode extends TreeNode {
 
     public SimpleDoubleProperty getBottomCenterY() {
         return bottomCenterY;
+    }
+
+    public ArrayList<Line> getLines() {
+        return lines;
     }
 
 }

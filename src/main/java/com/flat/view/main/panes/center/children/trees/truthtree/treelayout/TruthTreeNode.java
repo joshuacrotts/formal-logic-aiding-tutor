@@ -1,16 +1,17 @@
 package com.flat.view.main.panes.center.children.trees.truthtree.treelayout;
 
 import com.flat.algorithms.models.TruthTree;
-import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeNode;
+import com.flat.view.main.panes.center.children.trees.base.treelayout.FxTreeNode;
 import javafx.scene.text.TextAlignment;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class TruthTreeNode extends TreeNode {
+public class TruthTreeNode extends FxTreeNode {
 
     public TruthTreeNode (TruthTree _truthTree) {
+        super();
         super.setText(_truthTree.getWff().getStringRep());
         super.setTextAlignment(TextAlignment.CENTER);
         if (_truthTree.getLeft() == null && _truthTree.getRight() == null) {
@@ -33,11 +34,12 @@ public class TruthTreeNode extends TreeNode {
                 this.addChild(_truthTree.getRight(), 2);
             }
         }
+        super.initializeLines();
     }
 
     private void addChild (TruthTree _truthTree, int _number) {
         TruthTreeNode _truthNode = new TruthTreeNode(_truthTree);
-        _truthNode.setParent(this);
+        _truthNode.setTreeNodeParent(this);
         _truthNode.setNumber(_number);
         this.getChildren().add(_truthNode);
     }
