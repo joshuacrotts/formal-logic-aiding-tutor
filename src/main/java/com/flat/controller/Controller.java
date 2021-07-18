@@ -17,6 +17,8 @@ import com.flat.tools.json.JsonData;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeLayout;
+import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
+import com.flat.view.popups.syntax.warning.SyntaxWarningPopup;
 import com.flat.view.viewdata.algorithms.AvailableAlgorithms;
 import com.flat.view.viewdata.settings.SettingsData;
 import java.util.ArrayList;
@@ -75,11 +77,11 @@ public class Controller {
     }
 
     public static void throwSyntaxErrors () {
-        EVENT_BUS.throwEvent(new SyntaxError(FLATErrorListener.getErrorIterator()));
+        new SyntaxErrorPopup(FLATErrorListener.getErrorIterator());
     }
 
     public static void throwSyntaxWarnings () {
-        EVENT_BUS.throwEvent(new SyntaxWarning(FLATErrorListener.getWarningIterator()));
+        new SyntaxWarningPopup(FLATErrorListener.getWarningIterator());
     }
 
     public static void applyFormula (JsonAlgorithm _jsonAlgorithm) {
