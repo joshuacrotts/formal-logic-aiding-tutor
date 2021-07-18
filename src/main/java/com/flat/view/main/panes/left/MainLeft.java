@@ -2,35 +2,35 @@ package com.flat.view.main.panes.left;
 
 import com.flat.view.action.ResizePane;
 import com.flat.view.viewdata.pane.PaneData;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class MainLeft extends Pane {
+public class MainLeft extends HBox {
+    private Region emptyRegion = new Region();
     private final ResizePane resizePane = new ResizePane(this, ResizePane.Orientation.HORIZONTAL, ResizePane.Side.RIGHT);
 
     public MainLeft() {
-        super.backgroundProperty().bind(PaneData.getLeftProperty().backgroundProperty());
-        super.borderProperty().bind(PaneData.getLeftProperty().borderProperty());
-        super.getChildren().add(this.resizePane.getParentPane());
         this.initializeFx();
     }
 
     // Calls all FX property setters.
     private void initializeFx() {
-        this.setResizePaneFx();
+        this.setThisFx();
+        this.setEmptyRegionFx();
     }
 
-    // Setters for initial FX properties
-    private void setResizePaneFx() {
-        super.widthProperty().addListener((obs, oldVal, newVal) -> {
-            this.resizePane.getParentPane().setLayoutX(newVal.doubleValue() - this.resizePane.getParentPane().getMaxWidth());
-        });
-        super.heightProperty().addListener((obs, oldVal, newVal) -> {
-            this.resizePane.getParentPane().setMinHeight(newVal.doubleValue());
-            this.resizePane.getParentPane().setMaxHeight(newVal.doubleValue());
-        });
+    private void setThisFx () {
+        super.backgroundProperty().bind(PaneData.getLeftProperty().backgroundProperty());
+        super.borderProperty().bind(PaneData.getLeftProperty().borderProperty());
+        super.getChildren().addAll(this.emptyRegion, this.resizePane.getParentPane());
+    }
+
+    private void setEmptyRegionFx () {
+        HBox.setHgrow(this.emptyRegion, Priority.ALWAYS);
     }
 
     // Getters for object's attributes.

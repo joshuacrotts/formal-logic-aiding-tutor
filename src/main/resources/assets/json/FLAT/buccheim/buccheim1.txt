@@ -1,0 +1,153 @@
+package straighline.test;
+
+import java.util.ListIterator;
+
+/**
+ *
+ * @author Christopher Brantley <ccbrantley@uncg.edu>
+ */
+public class Buchheim {
+    private double WIDTH_GAP = 0;
+    private double HEIGHT_GAP = 0;
+    public void execute (Node _node) {
+        this.firstWalk(_node, this.WIDTH_GAP);
+        double min = this.secondWalk(_node, 0, 0, Double.MAX_VALUE);
+        if (min < 0)
+            this.thirdWalk(_node, -min);
+    }
+
+    private double getDistance (Node _node1, Node _node2) {
+        return (_node1.getWidth() + _node2.getWidth()) / 2;
+    }
+
+    private Node firstWalk (Node _node, double _distance) {
+        if (_node.getChildren().isEmpty()) {
+            if (_node.getLeftMostSibling() != null) {
+                _node.setX(_node.getLeftSibling().getX() + _node.getLeftSibling().getWidth() + _distance);
+            }
+        }
+        else {
+            Node defaultAncestor = _node.getChildren().get(0);
+            for (Node node : _node.getChildren()) {
+                this.firstWalk(node, this.WIDTH_GAP + _node.getWidth());
+                defaultAncestor = this.apportion(node, defaultAncestor, _distance + node.getWidth());
+            }
+            this.executeShifts(_node);
+            double midPoint = (_node.getFirstChild().getX() + _node.getLastChild().getX()) / 2;
+            Node ell = _node.getFirstChild();
+            Node arr = _node.getLastChild();
+            Node w = _node.getLeftSibling();
+            if (w != null) {
+                _node.setX(w.getX() + w.getWidth() + _distance);
+                _node.setMod(_node.getX() - midPoint);
+            }
+            else {
+                _node.setX((_node.getFirstChild().getX() + _node.getLastChild().getX() + _node.getLastChild().getWidth() - _node.getWidth()) / 2);
+            }
+        }
+        return _node;
+    }
+
+    private double secondWalk (Node _node, double _m, double _depth, double _min) {
+        _node.setX(_node.getX() + _m);
+        _node.setY(_depth);
+        // MODIFIED
+        if (_node.getX() < _min) {
+            _min = _node.getX();
+        }
+        for (Node node : _node.getChildren()) {
+            if (_node.getParent() == null){
+                _min = this.secondWalk(node, _m + _node.getMod(), _depth + _node.getHeight() + this.HEIGHT_GAP, _min);
+            }
+            else
+                _min = this.secondWalk(node, _m + _node.getMod(), _node.getY() + _node.getHeight() + this.HEIGHT_GAP, _min);
+        }
+        return _min;
+    }
+
+    private void thirdWalk (Node _node, double _n) {
+        _node.setX(_node.getX() + _n);
+        _node.getChildren().forEach(child -> {
+            this.thirdWalk(child, _n);
+        });
+    }
+
+    private void executeShifts (Node _node) {
+        double shift = 0;
+        double change = 0;
+        ListIterator<Node> iterator = _node.getChildren().listIterator(_node.getChildren().size());
+        Node curNode;
+        while (iterator.hasPrevious()) {
+            curNode = iterator.previous();
+            curNode.setX(curNode.getX() + shift);
+            curNode.setMod(curNode.getMod() + shift);
+            change += curNode.getChange();
+            shift += curNode.getShift() + change;
+        }
+    }
+
+    private Node ancestor (Node _vil, Node _v, Node _defaultAncestor) {
+        if (_v.getParent().getChildren().contains(_vil.getAncestor()))
+            return _vil.getAncestor();
+        else
+            return _defaultAncestor;
+    }
+
+    private void moveSubtrees (Node _left, Node _right, double _shift) {
+        double subtrees = _right.getNumber() - _left.getNumber();
+        double result;
+        if (subtrees == 0)
+            result = 0;
+        else
+            result = _shift / subtrees;
+        System.out.println(_left.getText() + " is conflicted with" + _right.getText() + ", moving shift = " + _shift + ", subtrees = " + subtrees);
+        _right.setChange(_right.getChange() - result);
+        _right.setShift(_right.getShift() + _shift);
+        _left.setChange(_left.getChange() + result);
+        _right.setX(_right.getX() + _shift);
+        _right.setMod(_right.getMod() + _shift);
+    }
+
+    private Node apportion (Node _node, Node _defaultAncestor, double _distance) {
+        Node leftBrother = _node.getLeftSibling();
+        if (leftBrother != null) {
+            Node vir = _node;
+            Node vor = _node;
+            Node vil = leftBrother;
+            Node vol = _node.getLeftMostSibling();
+            double sir = _node.getMod();
+            double sor = _node.getMod();
+            double sil = vil.getMod();
+            double sol = vol.getMod();
+            while (vil.getNextRight()!= null && vir.getNextLeft() != null) {
+                vil = vil.getNextRight();
+                vir = vir.getNextLeft();
+                vol = vol.getNextLeft();
+                vor = vor.getNextRight();
+                vor.setAncestor(_node);
+                double shift = (vil.getX() + sil) - (vir.getX() + sir) + _distance;
+                if (shift > 0) {
+                    this.moveSubtrees(this.ancestor(vil, _node, _defaultAncestor), _node, shift);
+                    sir = sir + shift;
+                    sor = sor + shift;
+                }
+                sil += vil.getMod();
+                sir += vir.getMod();
+                sol += vol.getMod();
+                sor += vor.getMod();
+            }
+            if (vil.getNextRight() != null && vor.getRightMostSibling() == null) {
+                vor.setThread(vil.getNextRight());
+                vor.setMod(vor.getMod() + (sir - sol));
+            }
+            else {
+                if (vir.getNextLeft() != null && vol.getNextLeft() == null) {
+                    vol.setThread(vir.getNextLeft());
+                    vol.setMod(vol.getMod() + (sir - sol));
+                }
+                _defaultAncestor = _node;
+            }
+        }
+        return _defaultAncestor;
+    }
+}

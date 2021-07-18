@@ -1,0 +1,59 @@
+{
+	"menu" : {
+		"file" : {
+			"label" : "File",
+			"content" : {
+				"restartApplication" : {
+					"label" : "Restart Application"
+				},
+				"settings" : {
+					"label" : "Settings"
+				},
+				"exit" : {
+					"label" : "Exit"
+				}
+			}
+		},
+		"export" : {
+			"label" : "Export",
+			"content" : {
+				"exportLatex" : {
+					"label" : "Export as LaTeX(.tex)",
+					"content" : {
+						"truthTable" : {
+							"label" : "LaTeX Truth Table"
+						},
+						"parseTree" : {
+							"label" : "LaTeX Parse Tree"
+						},
+						"truthTree" : {
+							"label" : "LaTeX Truth Tree"
+						}
+					}
+				},
+				"exportPdf" : {
+					"label" : "Export as PDF(.pdf)",
+					"content" : {
+						"truthTable" : {
+							"label" : "LaTeX Truth Table"
+						},
+						"parseTree" : {
+							"label" : "LaTeX Parse Tree"
+						},
+						"truthTree" : {
+							"label" : "LaTeX Truth Tree"
+						}
+					}
+				}
+			}
+		},
+		"help" : {
+			"label" : "Help",
+			"content" : {
+				"about" : {
+					"label" : "About"
+				}
+			}
+		},
+	}
+}

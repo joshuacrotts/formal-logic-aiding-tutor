@@ -18,10 +18,13 @@ public abstract class Event {
         UPDATE_PARSE_TREE,
         UPDATE_TRUTH_TABLE,
         UPDATE_TRUTH_TREE,
-        // Events thrown for Algorithm Visual Selection
+        // Events thrown for Algorithm Visual Selection.
         PARSE_TREE_BUTTON_PRESSED,
         TRUTH_TREE_BUTTON_PRESSED,
         TRUTH_TABLE_BUTTON_PRESSED,
+        // Events thrown for parser error/warnings.
+        SYNTAX_WARNING,
+        SYNTAX_ERROR,
     }
 
     private Type type;

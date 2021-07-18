@@ -1,0 +1,261 @@
+{
+	"language" : 
+	[
+		{
+			"name" : "Afrikaans",
+			"code" : "af"
+		},
+		{
+			"name" : "Azərbaycan",
+			"code" : "az"
+		},
+		{
+			"name" : "bahasa Indonesia",
+			"code" : "id"
+		},
+		{
+			"name" : "català",
+			"code" : "ca"
+		},
+		{
+			"name" : "čeština",
+			"code" : "cs"
+		},
+		{
+			"name" : "Cymraeg",
+			"code" : "cy"
+		},
+		{
+			"name" : "dansk",
+			"code" : "da"
+		},
+		{
+			"name" : "Deutsche",
+			"code" : "de"
+		},
+		{
+			"name" : "eesti",
+			"code" : "et"
+		},
+		{
+			"name" : "English",
+			"code" : "en"
+		},
+		{
+			"name" : "español",
+			"code" : "es"
+		},
+		{
+			"name" : "Esperanto",
+			"code" : "eo"
+		},
+		{
+			"name" : "Euskal",
+			"code" : "eu"
+		},
+		{
+			"name" : "Français",
+			"code" : "fr"
+		},
+		{
+			"name" : "Gaeilge",
+			"code" : "ga"
+		},
+		{
+			"name" : "galego",
+			"code" : "gl"
+		},
+		{
+			"name" : "Hrvatski",
+			"code" : "hr"
+		},
+		{
+			"name" : "icelandic",
+			"code" : "is"
+		},
+		{
+			"name" : "italiano",
+			"code" : "it"
+		},
+		{
+			"name" : "Kiswahili",
+			"code" : "sw"
+		},
+		{
+			"name" : "kreyòl ayisyen",
+			"code" : "ht"
+		},
+		{
+			"name" : "Latine",
+			"code" : "la"
+		},
+		{
+			"name" : "Latvijas",
+			"code" : "lv"
+		},
+		{
+			"name" : "Lietuvos",
+			"code" : "lt"
+		},
+		{
+			"name" : "Magyar",
+			"code" : "hu"
+		},
+		{
+			"name" : "Malay",
+			"code" : "ms"
+		},
+		{
+			"name" : "Malti",
+			"code" : "mt"
+		},
+		{
+			"name" : "Nederlands",
+			"code" : "nl"
+		},
+		{
+			"name" : "norsk",
+			"code" : "no"
+		},
+		{
+			"name" : "Pilipino",
+			"code" : "tl"
+		},
+		{
+			"name" : "Polskie",
+			"code" : "pl"
+		},
+		{
+			"name" : "português",
+			"code" : "pt"
+		},
+		{
+			"name" : "Română",
+			"code" : "ro"
+		},
+		{
+			"name" : "shqiptar",
+			"code" : "sq"
+		},
+		{
+			"name" : "Slovenščina",
+			"code" : "sl"
+		},
+		{
+			"name" : "slovenský",
+			"code" : "sk"
+		},
+		{
+			"name" : "Suomalainen",
+			"code" : "fi"
+		},
+		{
+			"name" : "svenska",
+			"code" : "sv"
+		},
+		{
+			"name" : "Tiếng Việt",
+			"code" : "vi"
+		},
+		{
+			"name" : "Türk",
+			"code" : "tr"
+		},
+		{
+			"name" : "Ελληνικά",
+			"code" : "el"
+		},
+		{
+			"name" : "беларускі",
+			"code" : "be"
+		},
+		{
+			"name" : "български",
+			"code" : "bg"
+		},
+		{
+			"name" : "Македонски",
+			"code" : "mk"
+		},
+		{
+			"name" : "русский",
+			"code" : "ru"
+		},
+		{
+			"name" : "Српски",
+			"code" : "sr"
+		},
+		{
+			"name" : "український",
+			"code" : "uk"
+		},
+		{
+			"name" : "ქართული",
+			"code" : "ka"
+		},
+		{
+			"name" : "ייִדיש",
+			"code" : "yi"
+		},
+		{
+			"name" : "עִברִית",
+			"code" : "iw"
+		},
+		{
+			"name" : "اردو",
+			"code" : "ur"
+		},
+		{
+			"name" : "عربى",
+			"code" : "ar"
+		},
+		{
+			"name" : "فارسی",
+			"code" : "fa"
+		},
+		{
+			"name" : "हिन्दी",
+			"code" : "hi"
+		},
+		{
+			"name" : "বাংলা",
+			"code" : "bn"
+		},
+		{
+			"name" : "ગુજરાતી",
+			"code" : "gu"
+		},
+		{
+			"name" : "தமிழ்",
+			"code" : "ta"
+		},
+		{
+			"name" : "తెలుగు",
+			"code" : "te"
+		},
+		{
+			"name" : "ಕನ್ನಡ",
+			"code" : "kn"
+		},
+		{
+			"name" : "ไทย",
+			"code" : "th"
+		},
+		{
+			"name" : "한국어",
+			"code" : "ko"
+		},
+		{
+			"name" : "中國傳統的",
+			"code" : "zh-TW"
+		},
+		{
+			"name" : "日本語",
+			"code" : "ja"
+		},
+		{
+			"name" : "简体中文",
+			"code" : "zh-CN"
+		}
+	]
+}

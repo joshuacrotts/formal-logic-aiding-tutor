@@ -1,0 +1,156 @@
+package com.flat.view.main.menupane.context.base;
+
+import com.flat.controller.Controller;
+import com.flat.view.action.ResizePane;
+import com.flat.view.action.ResizePane.Side;
+import javafx.beans.property.StringProperty;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+/**
+ *
+ * @author Christopher Brantley <ccbrantley@uncg.edu>
+ */
+public class ContextButton extends Button {
+    private ContextStage stage = new ContextStage();
+    private ContextWindow contextWindow = new ContextWindow();
+    private boolean toggle = false;
+    private double offsetX = 0;
+    private double offsetY = 0;
+
+    public ContextButton (StringProperty _stringProperty) {
+        super.textProperty().bind(_stringProperty);
+    }
+
+    public ContextButton (StringProperty _stringProperty, ContextButton... _flatMenuItems) {
+        this(_stringProperty);
+        this.contextWindow.getChildren().addAll(_flatMenuItems);
+        this.stage.setScene(new Scene(this.contextWindow));
+        this.setOnMouseThis();
+        this.setOnMouseContextWindow();
+    }
+
+    private void setOnMouseThis () {
+        this.setOnMouseEnteredThis();
+        this.setOnMouseExitedThis();
+    }
+
+    private void setOnMouseEnteredThis () {
+        super.setOnMouseEntered(event -> {
+            if (!this.toggle) {
+                this.applyFont();
+                this.layoutStage();
+                this.toggleStage();
+            }
+        });
+    }
+
+    private void setOnMouseExitedThis () {
+        super.setOnMouseExited(event -> {
+            System.out.println(event.getSceneY());
+            double minX = this.getLayoutX();
+            double maxX = this.getLayoutX() + this.getWidth();
+            double minY = this.getLayoutY();
+            double maxY = this.contextWindow.getScene().getWindow().getY() + this.contextWindow.getLayoutY() + this.contextWindow.getHeight();
+            if (!(event.getSceneX() > minX && event.getSceneX() < maxX)) {
+                this.toggleStage();
+                return;
+            }
+            if (!(event.getSceneY() > minY && event.getSceneY() < maxY))
+                this.toggleStage();
+        });
+    }
+
+    private void applyFont () {
+        Controller.applyFont(this.stage);
+    }
+
+    private void layoutStage () {
+        this.stage.setX(this.getScene().getWindow().getX() + this.getScene().getX() + this.getLayoutX() + this.offsetX);
+        this.stage.setY(this.getScene().getWindow().getY() + this.getScene().getY() + this.getLayoutY() + this.getHeight() + this.offsetY);
+    }
+
+    private void toggleStage () {
+        if (toggle)
+            this.stage.hide();
+        else
+            this.stage.show();
+        toggle ^= true;
+    }
+
+    private void setOnMouseContextWindow () {
+        this.setOnMouseExitedContextWindow();
+    }
+
+    private void setOnMouseExitedContextWindow () {
+        this.contextWindow.setOnMouseExited(event -> {
+            double minX = this.contextWindow.getScene().getX();
+            double maxX = this.contextWindow.getScene().getX() + this.contextWindow.getLayoutX() + this.contextWindow.getWidth();
+            double minY = -this.getHeight();
+            double maxY = this.contextWindow.getScene().getY() + this.contextWindow.getLayoutY() + this.contextWindow.getHeight();
+            if (!(event.getSceneX() > minX && event.getSceneX() < maxX)) {
+                this.toggleStage();
+                return;
+            }
+            if (!(event.getSceneY() > minY && event.getSceneY() < maxY))
+                this.toggleStage();
+        });
+    }
+
+    private Side getMouseDirectionX (MouseEvent _event) {
+        if (_event.getSceneX() > (this.getLayoutX() + this.getWidth()) / 2)
+            return Side.RIGHT;
+        return Side.LEFT;
+    }
+
+    private Side getMouseDirectionY (MouseEvent _event) {
+        if (_event.getSceneY() > (this.getLayoutY() + this.getHeight()))
+            return Side.BOTTOM;
+        return Side.TOP;
+    }
+
+    public ContextStage getStage() {
+        return stage;
+    }
+
+    public ContextWindow getContextWindow() {
+        return contextWindow;
+    }
+
+    public boolean isToggle() {
+        return toggle;
+    }
+
+    public double getOffsetX() {
+        return offsetX;
+    }
+
+    public double getOffsetY() {
+        return offsetY;
+    }
+
+    public void setStage(ContextStage stage) {
+        this.stage = stage;
+    }
+
+    public void setContextWindow(ContextWindow contextWindow) {
+        this.contextWindow = contextWindow;
+    }
+
+    public void setToggle(boolean toggle) {
+        this.toggle = toggle;
+        if (!this.toggle)
+            ((Stage)this.contextWindow.getScene().getWindow()).close();
+    }
+
+    public void setOffsetX(double offsetX) {
+        this.offsetX = offsetX;
+    }
+
+    public void setOffsetY(double offsetY) {
+        this.offsetY = offsetY;
+    }
+
+}
