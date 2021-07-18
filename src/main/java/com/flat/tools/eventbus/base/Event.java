@@ -22,9 +22,6 @@ public abstract class Event {
         PARSE_TREE_BUTTON_PRESSED,
         TRUTH_TREE_BUTTON_PRESSED,
         TRUTH_TABLE_BUTTON_PRESSED,
-        // Events thrown for parser error/warnings.
-        SYNTAX_WARNING,
-        SYNTAX_ERROR,
     }
 
     private Type type;

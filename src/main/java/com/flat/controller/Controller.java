@@ -9,8 +9,6 @@ import com.flat.models.json.algorithm.JsonAlgorithm;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.eventbus.EventBus;
-import com.flat.tools.eventbus.events.parsererrors.SyntaxError;
-import com.flat.tools.eventbus.events.parsererrors.SyntaxWarning;
 import com.flat.tools.font.FontTool;
 import com.flat.tools.font.enums.FontLocal.FontFamily;
 import com.flat.tools.json.JsonData;
