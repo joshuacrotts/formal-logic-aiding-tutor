@@ -42,7 +42,7 @@ public class Popup extends Stage {
     private void setThisFx () {
         super.initModality(Modality.WINDOW_MODAL);
         super.initOwner(Controller.getSTAGE().getScene().getWindow());
-        super.initStyle(StageStyle.UTILITY);
+        super.initStyle(StageStyle.UNDECORATED);
     }
 
     private void setSize () {

@@ -1,0 +1,22 @@
+/*
+    Created on : Jul 18, 2021, 11:37:02 PM
+    Author     : Christopher Brantley <c_brantl@uncg.edu>
+*/
+
+.popupIcon {
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-background-size: stretch;
+    -fx-background-image: url("../images/popup/warning.png");
+}
+
+.closeButton {
+    -fx-min-width: 25;
+    -fx-min-height: 25;
+    -fx-background-size: stretch;
+    -fx-background-image: url("../images/popup/close.png");
+}
+
+.closeButton:hover {
+    -fx-background-image: url("../images/popup/closeHover.png");
+}

@@ -73,7 +73,8 @@ public class Controller {
     }
 
     public static void throwSyntaxErrors () {
-        new SyntaxErrorPopup(FLATErrorListener.getErrorIterator());
+        if (FLATErrorListener.getErrorIterator().hasNext())
+            new SyntaxErrorPopup(FLATErrorListener.getErrorIterator());
     }
 
     public static void applyFormula (JsonAlgorithm _jsonAlgorithm) {

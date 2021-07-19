@@ -16,8 +16,8 @@ public class SyntaxErrorPane extends PopupPane {
     }
 
     private void setMessages (Iterator<Message> _errors) {
-        StringBuilder sb = new StringBuilder();
         if (_errors.hasNext()) {
+            StringBuilder sb = new StringBuilder("");
             sb.append(_errors.next().toString());
             _errors.forEachRemaining(message -> {
                 sb.append("\n").append(message.toString());

@@ -8,6 +8,7 @@
 @import "menubar.css";
 @import "settings/settings.css";
 @import "separator.css";
+@import "popup.css";
 
 .root {
     -fx-background-color: black;
