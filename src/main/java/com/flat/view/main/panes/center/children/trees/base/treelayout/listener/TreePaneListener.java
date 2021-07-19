@@ -38,7 +38,6 @@ public abstract class TreePaneListener implements Listener {
         });
         _fxNode.getLines().forEach(line -> {
             this.treePane.getChildren().add(line);
-            System.out.println(line);
         });
     }
 

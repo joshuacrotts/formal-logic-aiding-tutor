@@ -5,6 +5,7 @@ import com.flat.models.algorithms.attributes.LogicReturn;
 import com.flat.models.algorithms.events.ClearLogicVisuals;
 import com.flat.models.algorithms.events.FormulaGenerated;
 import com.flat.models.algorithms.events.UpdateParseTree;
+import com.flat.models.algorithms.events.UpdateTruth;
 import com.flat.models.algorithms.events.UpdateTruthTable;
 import com.flat.models.algorithms.events.UpdateTruthTree;
 import com.flat.models.json.algorithm.JsonAlgorithm;
@@ -32,9 +33,7 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
             case OPEN_TREE_DETERMINER:
             case OPEN_SENTENCE_DETERMINER:
                 Controller.getEVENT_BUS().throwEvent(new UpdateParseTree(logicReturn.getWffTree()));
-                break;
-            case TRUTH_TABLE_GENERATOR:
-                Controller.getEVENT_BUS().throwEvent(new UpdateTruthTable(logicReturn.getWffTree()));
+                Controller.getEVENT_BUS().throwEvent(new UpdateTruth(logicReturn.getTruthValue()));
                 break;
             case BOUND_VARIABLE_DETECTOR:
             case FREE_VARIABLE_DETECTOR:
@@ -45,6 +44,7 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
             case PROPOSITIONAL_TRUTH_TREE_GENERATOR:
                 Controller.getEVENT_BUS().throwEvent(new UpdateTruthTree(logicReturn.getTruthTree()));
                 Controller.getEVENT_BUS().throwEvent(new UpdateParseTree(logicReturn.getWffTree()));
+                Controller.getEVENT_BUS().throwEvent(new UpdateTruth(logicReturn.getTruthValue()));
                 break;
             case ARGUMENT_TRUTH_TREE_VALIDATOR:
             case LOGICAL_FALSEHOOD_DETERMINER:
@@ -58,6 +58,10 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
                 logicReturn.getWffTree().setFlags(logicReturn.getWffTree().getFlags());
                 Controller.getEVENT_BUS().throwEvent(new UpdateTruthTree(logicReturn.getTruthTree()));
                 Controller.getEVENT_BUS().throwEvent(new UpdateParseTree(logicReturn.getWffTree()));
+                Controller.getEVENT_BUS().throwEvent(new UpdateTruth(logicReturn.getTruthValue()));
+                break;
+            case TRUTH_TABLE_GENERATOR:
+                Controller.getEVENT_BUS().throwEvent(new UpdateTruthTable(logicReturn.getWffTree()));
                 break;
             case RANDOM_PREDICATE_FORMULA:
             case RANDOM_PROPOSITIONAL_FORMULA:

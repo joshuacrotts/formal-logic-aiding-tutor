@@ -18,6 +18,7 @@ public abstract class Event {
         UPDATE_PARSE_TREE,
         UPDATE_TRUTH_TABLE,
         UPDATE_TRUTH_TREE,
+        UPDATE_TRUTH,
         // Events thrown for Algorithm Visual Selection.
         PARSE_TREE_BUTTON_PRESSED,
         TRUTH_TREE_BUTTON_PRESSED,
