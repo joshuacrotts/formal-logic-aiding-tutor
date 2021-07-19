@@ -18,7 +18,7 @@ public class TruthTable {
         switch (_wffTree.getChildrenSize()) {
             case 1:
                 this.headers.add(new TableHeader(this.headers.size(), _wffTree.getSymbol(), _wffTree));
-                this.addHeaders(_wffTree.getChildren().get(0), 0, 2);
+                this.addHeaders(_wffTree.getChildren().get(0), _leftMod, _rightMod);
                 break;
             case 2:
                 this.addHeaders(_wffTree.getChildren().get(0), _leftMod + 1, 0);
@@ -27,7 +27,7 @@ public class TruthTable {
                 break;
             default:
                 this.addParentheticalHeaders(_leftMod, "(");
-                this.headers.add(new TableHeader(this.headers.size(), /*_leftMod +*/ _wffTree.getSymbol() /*+ _rightMod*/, _wffTree));
+                this.headers.add(new TableHeader(this.headers.size(), _wffTree.getSymbol(), _wffTree));
                 this.addParentheticalHeaders(_rightMod, ")");
                 break;
         }
