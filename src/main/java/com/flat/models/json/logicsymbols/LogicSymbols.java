@@ -14,9 +14,29 @@ public class LogicSymbols extends Translatable {
     private PropositionalSymbols propositional = new PropositionalSymbols();
     private PredicateSymbols predicate = new PredicateSymbols();
 
+    // Getters for object's attributes.
+    public PropositionalSymbols getPropositional() {
+        return propositional;
+    }
+
+    public PredicateSymbols getPredicate() {
+        return predicate;
+    }
+
+    // Setters for object's attributes.
+    public void setPropositional(PropositionalSymbols propositional) {
+        this.propositional = propositional;
+    }
+
+    public void setPredicate(PredicateSymbols predicate) {
+        this.predicate = predicate;
+    }
+
     @Override
     public LinkedList<JsonString> toTranslate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new LinkedList <JsonString> () {{
+            addAll(predicate.toTranslate());
+        }};
     }
 
 }

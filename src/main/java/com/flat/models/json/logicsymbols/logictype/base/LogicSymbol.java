@@ -1,8 +1,8 @@
 package com.flat.models.json.logicsymbols.logictype.base;
 
+import com.flat.models.json.logicsymbols.logictype.base.attributes.Axioms;
+import com.flat.models.json.logicsymbols.logictype.base.attributes.Symbols;
 import com.flat.models.json.JsonString;
-import com.flat.models.json.logicsymbols.Axioms;
-import com.flat.models.json.logicsymbols.Symbols;
 import com.flat.models.translation.Translatable;
 import java.util.LinkedList;
 
@@ -11,15 +11,23 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public abstract class LogicSymbol extends Translatable {
-    private String label;
+    private JsonString label;
     private Symbols symbols;
-    private String toolTip;
-    private String description;
-    private String readAs;
+    private JsonString toolTip;
+    private JsonString description;
+    private JsonString readAs;
     private Axioms axioms;
 
-    public LogicSymbol(String _label, Symbols _symbols, String _toolTip,
-                      String _description, String _readAs, Axioms _axioms) {
+    public LogicSymbol (String _label, Symbols _symbols, String _toolTip, String _description, String _readAs, Axioms _axioms) {
+        this.label = new JsonString(_label);
+        this.symbols = _symbols;
+        this.toolTip = new JsonString(_toolTip);
+        this.description = new JsonString(_description);
+        this.readAs = new JsonString(_readAs);
+        this.axioms = _axioms;
+    }
+
+    public LogicSymbol (JsonString _label, Symbols _symbols, JsonString _toolTip, JsonString _description, JsonString _readAs, Axioms _axioms) {
         this.label = _label;
         this.symbols = _symbols;
         this.toolTip = _toolTip;
@@ -29,49 +37,49 @@ public abstract class LogicSymbol extends Translatable {
     }
 
     // Getters for object's attributes.
-    public String getLabel() {
+    public JsonString getLabel() {
         return label;
-    }
-
-    // Setters for object's attributes.
-    public void setLabel(String label) {
-        this.label = label;
     }
 
     public Symbols getSymbols() {
         return symbols;
     }
 
-    public void setSymbols(Symbols symbols) {
-        this.symbols = symbols;
-    }
-
-    public String getToolTip() {
+    public JsonString getToolTip() {
         return toolTip;
     }
 
-    public void setToolTip(String toolTip) {
-        this.toolTip = toolTip;
-    }
-
-    public String getDescription() {
+    public JsonString getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getReadAs() {
+    public JsonString getReadAs() {
         return readAs;
-    }
-
-    public void setReadAs(String readAs) {
-        this.readAs = readAs;
     }
 
     public Axioms getAxioms() {
         return axioms;
+    }
+
+    // Setters for object's attributes.
+    public void setLabel(JsonString label) {
+        this.label = label;
+    }
+
+    public void setSymbols(Symbols symbols) {
+        this.symbols = symbols;
+    }
+
+    public void setToolTip(JsonString toolTip) {
+        this.toolTip = toolTip;
+    }
+
+    public void setDescription(JsonString description) {
+        this.description = description;
+    }
+
+    public void setReadAs(JsonString readAs) {
+        this.readAs = readAs;
     }
 
     public void setAxioms(Axioms axioms) {
@@ -81,7 +89,11 @@ public abstract class LogicSymbol extends Translatable {
     @Override
     public LinkedList <JsonString> toTranslate() {
         return new LinkedList <JsonString> () {{
-
+            add(label);
+            add(toolTip);
+            add(description);
+            add(readAs);
+            addAll(axioms.toTranslate());
         }};
     }
 
