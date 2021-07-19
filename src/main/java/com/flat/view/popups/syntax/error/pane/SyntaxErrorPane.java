@@ -11,17 +11,19 @@ import java.util.Iterator;
 public class SyntaxErrorPane extends PopupPane {
 
     public SyntaxErrorPane (Iterator<Message> _errors) {
-        super.getMessagHeader().setText("Syntax Error");
+        super.getMessageHeader().setText("Syntax Error");
         this.setMessages(_errors);
     }
 
     private void setMessages (Iterator<Message> _errors) {
         StringBuilder sb = new StringBuilder();
-        sb.append(_errors.next().toString());
-        _errors.forEachRemaining(message -> {
-            sb.append("\n").append(message.toString());
-        });
-        super.getMessage().setText(sb.toString());
+        if (_errors.hasNext()) {
+            sb.append(_errors.next().toString());
+            _errors.forEachRemaining(message -> {
+                sb.append("\n").append(message.toString());
+            });
+            super.getMessage().setText(sb.toString());
+        }
     }
 
 }

@@ -16,7 +16,6 @@ import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeLayout;
 import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
-import com.flat.view.popups.syntax.warning.SyntaxWarningPopup;
 import com.flat.view.viewdata.algorithms.AvailableAlgorithms;
 import com.flat.view.viewdata.settings.SettingsData;
 import java.util.ArrayList;
@@ -59,7 +58,6 @@ public class Controller {
     public static void inputFormula (String _formula) {
         ArrayList <WffTree> linkedTree = FLATParserAdapter.getAbstractSyntaxTree(_formula);
         Controller.throwSyntaxErrors();
-        Controller.throwSyntaxWarnings();
         if (linkedTree != null)
             ALGORITHM_ADAPTER.setWffTree(linkedTree);
         else
@@ -76,10 +74,6 @@ public class Controller {
 
     public static void throwSyntaxErrors () {
         new SyntaxErrorPopup(FLATErrorListener.getErrorIterator());
-    }
-
-    public static void throwSyntaxWarnings () {
-        new SyntaxWarningPopup(FLATErrorListener.getWarningIterator());
     }
 
     public static void applyFormula (JsonAlgorithm _jsonAlgorithm) {

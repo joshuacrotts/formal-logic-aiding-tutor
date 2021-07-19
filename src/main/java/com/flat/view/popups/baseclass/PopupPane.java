@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
  */
 public class PopupPane extends VBox {
     private HBox headerBox = new HBox();
-    private Text messagHeader = new Text();
+    private Text messageHeader = new Text();
     private VBox messageBox = new VBox();
     private Text message = new Text();
     private PopupOkButton okButton = new PopupOkButton();
@@ -38,7 +38,7 @@ public class PopupPane extends VBox {
     }
 
     private void setHeaderBoxFx () {
-        this.headerBox.getChildren().add(this.messagHeader);
+        this.headerBox.getChildren().add(this.messageHeader);
         VBox.setMargin(this.headerBox, new Insets(10));
         this.headerBox.setAlignment(Pos.CENTER_LEFT);
         this.headerBox.backgroundProperty().bind(PaneData.getLeftProperty().backgroundProperty());
@@ -60,8 +60,8 @@ public class PopupPane extends VBox {
         return headerBox;
     }
 
-    public Text getMessagHeader() {
-        return messagHeader;
+    public Text getMessageHeader() {
+        return messageHeader;
     }
 
     public VBox getMessageBox() {
@@ -81,8 +81,8 @@ public class PopupPane extends VBox {
         this.headerBox = headerBox;
     }
 
-    public void setMessagHeader(Text messagHeader) {
-        this.messagHeader = messagHeader;
+    public void setMessageHeader(Text messageHeader) {
+        this.messageHeader = messageHeader;
     }
 
     public void setMessageBox(VBox messageBox) {

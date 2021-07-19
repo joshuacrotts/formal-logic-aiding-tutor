@@ -26,11 +26,6 @@ public class FLATErrorListener extends BaseErrorListener {
     private static final Set<Message> errors = new HashSet<>();
 
     /**
-     * Set of all warning errors generated while parsing.
-     */
-    private static final Set<Message> warnings = new HashSet<>();
-
-    /**
      * Keeps track of whether we have encountered a parser error or not.
      */
     private static boolean gotParserError = false;
@@ -120,22 +115,11 @@ public class FLATErrorListener extends BaseErrorListener {
     }
 
     /**
-     * Returns an Iterator object for the warnings generated during
-     * parsing and semantic analysis.
-     *
-     * @return Iterator<Message> object.
-     */
-    public static Iterator<Message> getWarningIterator() {
-        return warnings.iterator();
-    }
-
-    /**
      * Since this is a static error listener, we need to reset the warnings and
      * errors each time we use this in a unit testing environment or we'll have
      * false positives.
      */
     public static void reset() {
-        FLATErrorListener.warnings.clear();
         FLATErrorListener.errors.clear();
         FLATErrorListener.gotParserError = false;
         FLATErrorListener.gotLexerError = false;
