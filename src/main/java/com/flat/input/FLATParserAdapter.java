@@ -29,7 +29,6 @@ public class FLATParserAdapter {
         // For now, the errors are just printed in the tester class - if
         // JUnit is integrated, these should be removed so they align with the tests.
         FLATErrorListener.printErrors();
-        FLATErrorListener.printWarnings();
         return parser.getSyntaxTrees();
     }
 

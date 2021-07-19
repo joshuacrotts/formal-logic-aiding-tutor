@@ -31,14 +31,14 @@ public class FLATErrorListener extends BaseErrorListener {
     private static final Set<Message> warnings = new HashSet<>();
 
     /**
-     * Keeps track of whether we have encountered an error or not.
+     * Keeps track of whether we have encountered a parser error or not.
      */
-    private static boolean gotError = false;
+    private static boolean gotParserError = false;
 
     /**
-     * Keeps track of whether we have encountered a warning or not.
+     * Keeps track of whether or not we encountered a lexer error or not.
      */
-    private static boolean gotWarning = false;
+    private static boolean gotLexerError = false;
 
     public FLATErrorListener() {
         super();
@@ -52,7 +52,7 @@ public class FLATErrorListener extends BaseErrorListener {
      * @param errorMsg
      */
     public static void syntaxError(ParserRuleContext ctx, String errorMsg) {
-        FLATErrorListener.gotError = true;
+        FLATErrorListener.gotParserError = true;
         int lineNo = -1;
         int colNo = -1;
 
@@ -65,30 +65,6 @@ public class FLATErrorListener extends BaseErrorListener {
         }
 
         FLATErrorListener.errors.add(new Message(errorMsg, colNo));
-    }
-
-    /**
-     * Prints an warning message to the console with the line and column number
-     * specified by the ParserRuleContext.
-     *
-     * @param ctx
-     * @param warningMsg
-     * @return void.
-     */
-    public static void syntaxWarning(ParserRuleContext ctx, String warningMsg) {
-        FLATErrorListener.gotWarning = true;
-        int lineNo = -1;
-        int colNo = -1;
-
-        if (ctx != null) {
-            lineNo = ctx.start.getLine();
-            colNo = ctx.start.getCharPositionInLine();
-        } else {
-            throw new IllegalArgumentException(
-                    "Internal compiler error - ParserRuleContext cannot be null in ErrorListener.");
-        }
-
-        FLATErrorListener.warnings.add(new Message(warningMsg, colNo));
     }
 
     /**
@@ -107,36 +83,30 @@ public class FLATErrorListener extends BaseErrorListener {
     }
 
     /**
-     * Prints warning messages generated through parsing the syntax tree to standard
-     * out.
+     * Returns whether or not we found either a lexer or parser error.
      *
-     * @return void.
-     */
-    public static void printWarnings() {
-        List<Message> warningList = new ArrayList<Message>(FLATErrorListener.warnings);
-        warningList.sort(Comparator.comparing(Message::getColNo));
-        System.out.print("WARNINGS(" + FLATErrorListener.warnings.size() + "):\n");
-        for (Message warning : warningList) {
-            System.out.println(warning);
-        }
-    }
-
-    /**
-     * Was an error encountered?
-     *
-     * @return true if an error was seen.
+     * @return true if either boolean is true, false otherwise.
      */
     public static boolean sawError() {
-        return gotError;
+        return gotParserError || gotLexerError;
     }
 
     /**
-     * Was a warning encountered? This probably serves little use.
+     * Was a parser error encountered?
      *
-     * @return true if a warning was seen.
+     * @return true if a parser error was seen.
      */
-    public static boolean sawWarning() {
-        return gotWarning;
+    public static boolean sawParserError() {
+        return gotParserError;
+    }
+
+    /**
+     * Was a lexer error encountered?
+     *
+     * @return true if a lexer error was seen.
+     */
+    public static boolean sawLexerError() {
+        return gotLexerError;
     }
 
     /**
@@ -167,69 +137,79 @@ public class FLATErrorListener extends BaseErrorListener {
     public static void reset() {
         FLATErrorListener.warnings.clear();
         FLATErrorListener.errors.clear();
-        FLATErrorListener.gotError = false;
-        FLATErrorListener.gotWarning = false;
+        FLATErrorListener.gotParserError = false;
+        FLATErrorListener.gotLexerError = false;
     }
 
     /**
      * This is the syntaxError method from the BaseErrorListener ANTLR class. We have
      * overridden it to set the error flag and add a new Message to our running set of
-     * objects.
+     * objects. If we have already found a lexer error and we encounter a parser error,
+     * bail out. Also, if we are in the lexer and (somehow) get a parser error (that should
+     * honestly never happen...), bail out.
      */
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int col, String errorMsg,
                             RecognitionException e) {
         // Lexer errors should always generate an unrecognized character message.
         if (recognizer instanceof Lexer) {
+            if (gotParserError) { return; }
             Lexer lexer = (Lexer) recognizer;
             CharStream input = lexer.getInputStream();
             String offTok = lexer.getErrorDisplay(input.getText(new Interval(lexer._tokenStartCharIndex, input.index())));
             errorMsg = "Unrecognized character: '" + offTok + "'";
+            gotLexerError = true;
         } else {
-            Parser parser = (Parser) recognizer;
+            if (gotLexerError) { return; }
             // First we grab the current token as well as the previous token.
+            Parser parser = (Parser) recognizer;
             Token offTok = (Token) offendingSymbol;
-            Token prevOffTok = parser.getTokenStream().get(offTok.getCharPositionInLine() - 1);
             int offTokPos = offTok.getCharPositionInLine();
             int tokId = offTok.getType();
-            int prevTokId = prevOffTok.getType();
-            String surroundingText = this.getSurroundingText(parser.getTokenStream().getText(), offTokPos);
+            // Check to see if the token is the first token and if it is, just throw an invalid message.
+            if (offTokPos == 0) {
+                errorMsg = "First character " + this.getSurroundingText(parser.getTokenStream().getText(), offTokPos) + " is invalid, check to make sure your parentheses are balanced and your input is as well.";
+            } else {
+                Token prevOffTok = parser.getTokenStream().get(offTok.getCharPositionInLine() - 1);
+                int prevTokId = prevOffTok.getType();
+                String surroundingText = this.getSurroundingText(parser.getTokenStream().getText(), offTokPos);
 
-            // Now check to see which type of error it is. If the offending token is a ) and the previous one is
-            // either whitespace or an operator then they didn't enter an operand on the rhs.
-            if (this.isCloseParenthesisToken(tokId) && (this.isWhitespaceToken(prevTokId) || this.isBinaryOpToken(prevTokId))) {
-                errorMsg = "Missing operand on right-hand side at closing parenthesis ')' near " + surroundingText;
+                // Now check to see which type of error it is. If the offending token is a ) and the previous one is
+                // either whitespace or an operator then they didn't enter an operand on the rhs.
+                if (this.isCloseParenthesisToken(tokId) && (this.isWhitespaceToken(prevTokId) || this.isBinaryOpToken(prevTokId))) {
+                    errorMsg = "Missing operand on right-hand side at closing parenthesis ')' near " + surroundingText;
+                }
+                // If the offending token is a ) then there are too many.
+                else if (this.isCloseParenthesisToken(tokId)) {
+                    errorMsg = "Extra closing ')' parentheses at " + surroundingText
+                            + ". Check your formula for\t\n1. Too many closing ')' parentheses\t\n"
+                            + "2. If your formula needs them/invalid characters\t\n3. If you put extra opening '(' parentheses.";
+                }
+                // If the PREVIOUS token is an opening parenthesis and the current offending one is a binop or a whitespace,
+                // then we forgot an operand on the lhs.
+                else if (this.isOpenParenthesisToken(prevTokId) && (this.isWhitespaceToken(tokId) || this.isBinaryOpToken(tokId))) {
+                    errorMsg = "Missing operand on left-hand side at opening parenthesis '(' near " + surroundingText;
+                }
+                // If the PREVIOUS token (prior to the offending one) is a binary operator, then we used one where we shouldn't have.
+                else if (this.isBinaryOpToken(tokId)) {
+                    errorMsg = "Too many binary connectives found at " + surroundingText + ". Check your input!";
+                }
+                // If the offending token is EOF or a binop then we have unbalanced parentheses.
+                else if (tokId == FLATLexer.EOF) {
+                    errorMsg = "Unbalanced parenthesis near " + surroundingText + ". Check your input!";
+                }
+                // If the offending token is an atom, then we combined two atoms when we shouldn't have.
+                else if (tokId == FLATLexer.ATOM) {
+                    errorMsg = "Missing operator at " + surroundingText + ". Did you forget a connective (or use an invalid one)?";
+                }
+                // Otherwise, just throw a generic error and let them figure it out ;D
+                else {
+                    errorMsg = "Invalid input at " + surroundingText + " (usually because of invalid characters. Check your input!)";
+                }
             }
-            // If the offending token is a ) then there are too many.
-            else if (this.isCloseParenthesisToken(tokId)) {
-                errorMsg = "Extra closing ')' parentheses at " + surroundingText
-                        + ". Check your formula for\t\n1. Too many closing ')' parentheses\t\n"
-                        + "2. If your formula needs them/invalid characters\t\n3. If you put extra opening '(' parentheses.";
-            }
-            // If the PREVIOUS token is an opening parenthesis and the current offending one is a binop or a whitespace,
-            // then we forgot an operand on the lhs.
-            else if (this.isOpenParenthesisToken(prevTokId) && (this.isWhitespaceToken(tokId) || this.isBinaryOpToken(tokId))) {
-                errorMsg = "Missing operand on left-hand side at opening parenthesis '(' near " + surroundingText;
-            }
-            // If the PREVIOUS token (prior to the offending one) is a binary operator, then we used one where we shouldn't have.
-            else if (this.isBinaryOpToken(tokId)) {
-                errorMsg = "Too many binary connectives found at " + surroundingText + ". Check your input!";
-            }
-            // If the offending token is EOF or a binop then we have unbalanced parentheses.
-            else if (tokId == FLATLexer.EOF) {
-                errorMsg = "Unbalanced parenthesis near " + surroundingText + ". Check your input!";
-            }
-            // If the offending token is an atom, then we combined two atoms when we shouldn't have.
-            else if (tokId == FLATLexer.ATOM) {
-                errorMsg = "Missing operator at " + surroundingText + ". Did you forget a connective (or use an invalid one)?";
-            }
-            // Otherwise, just throw a generic error and let them figure it out ;D
-            else {
-                errorMsg = "Invalid input at " + surroundingText + " (usually because of invalid characters. Check your input!)";
-            }
+            gotParserError = true;
         }
 
-        gotError = true;
         FLATErrorListener.errors.add(new Message(errorMsg, col + 1));
     }
 

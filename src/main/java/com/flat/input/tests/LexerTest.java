@@ -62,11 +62,11 @@ public class LexerTest {
      * @param argv command line arguments
      */
     public static void main(String[] argv) {
-//        if (argv.length > 0) {
-//            System.err.println("...terminal arguments not supported.");
-//        } else {
-//            lexFromStdin();
-//        }
+        if (argv.length > 0) {
+            System.err.println("...terminal arguments not supported.");
+        } else {
+            lexFromStdin();
+        }
     }
 
     /**
