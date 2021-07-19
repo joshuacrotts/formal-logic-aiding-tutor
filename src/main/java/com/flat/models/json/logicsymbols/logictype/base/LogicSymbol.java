@@ -1,10 +1,16 @@
-package com.flat.models.json.symbol;
+package com.flat.models.json.logicsymbols.logictype.base;
+
+import com.flat.models.json.JsonString;
+import com.flat.models.json.logicsymbols.Axioms;
+import com.flat.models.json.logicsymbols.Symbols;
+import com.flat.models.translation.Translatable;
+import java.util.LinkedList;
 
 /**
+ *
  * @author Christopher Brantley <c_brantl@uncg.edu>
- * Structure for the Json SymbolBase object.
  */
-abstract class SymbolBase {
+public abstract class LogicSymbol extends Translatable {
     private String label;
     private Symbols symbols;
     private String toolTip;
@@ -12,7 +18,7 @@ abstract class SymbolBase {
     private String readAs;
     private Axioms axioms;
 
-    public SymbolBase(String _label, Symbols _symbols, String _toolTip,
+    public LogicSymbol(String _label, Symbols _symbols, String _toolTip,
                       String _description, String _readAs, Axioms _axioms) {
         this.label = _label;
         this.symbols = _symbols;
@@ -73,8 +79,10 @@ abstract class SymbolBase {
     }
 
     @Override
-    public String toString() {
-        return "SymbolBase{" + "label=" + label + ", symbols=" + symbols + ", toolTip=" + toolTip + ", description=" + description + ", readAs=" + readAs + ", axioms=" + axioms + '}';
+    public LinkedList <JsonString> toTranslate() {
+        return new LinkedList <JsonString> () {{
+
+        }};
     }
 
 }

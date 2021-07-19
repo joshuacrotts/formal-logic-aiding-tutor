@@ -1,4 +1,4 @@
-package com.flat.models.json.symbol;
+package com.flat.models.json.logicsymbols;
 
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>

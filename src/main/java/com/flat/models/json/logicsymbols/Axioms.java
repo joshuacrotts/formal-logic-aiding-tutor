@@ -1,4 +1,4 @@
-package com.flat.models.json.symbol;
+package com.flat.models.json.logicsymbols;
 
 import java.util.ArrayList;
 import java.util.Arrays;

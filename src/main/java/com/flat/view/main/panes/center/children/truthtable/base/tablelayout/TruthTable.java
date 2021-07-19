@@ -15,15 +15,21 @@ public class TruthTable {
     }
 
     private void addHeaders (WffTree _wffTree, int _leftMod, int _rightMod) {
-        if (!_wffTree.getChildren().isEmpty()) {
-            this.addHeaders(_wffTree.getChildren().get(0), _leftMod + 1, 0);
-            this.headers.add(new TableHeader(this.headers.size(), _wffTree.getSymbol(), _wffTree));
-            this.addHeaders(_wffTree.getChildren().get(1), 0, _rightMod + 1);
-        }
-        else {
-            this.addParentheticalHeaders(_leftMod, "(");
-            this.headers.add(new TableHeader(this.headers.size(), /*_leftMod +*/ _wffTree.getSymbol() /*+ _rightMod*/, _wffTree));
-            this.addParentheticalHeaders(_rightMod, ")");
+        switch (_wffTree.getChildrenSize()) {
+            case 1:
+                this.headers.add(new TableHeader(this.headers.size(), _wffTree.getSymbol(), _wffTree));
+                this.addHeaders(_wffTree.getChildren().get(0), 0, 2);
+                break;
+            case 2:
+                this.addHeaders(_wffTree.getChildren().get(0), _leftMod + 1, 0);
+                this.headers.add(new TableHeader(this.headers.size(), _wffTree.getSymbol(), _wffTree));
+                this.addHeaders(_wffTree.getChildren().get(1), 0, _rightMod + 1);
+                break;
+            default:
+                this.addParentheticalHeaders(_leftMod, "(");
+                this.headers.add(new TableHeader(this.headers.size(), /*_leftMod +*/ _wffTree.getSymbol() /*+ _rightMod*/, _wffTree));
+                this.addParentheticalHeaders(_rightMod, ")");
+                break;
         }
     }
 
