@@ -34,8 +34,16 @@ public class LogicVisualPane extends ScrollPane {
     }
 
     public final void centerViewPort () {
-        super.setVvalue(super.getVmax() / 2);
+        this.centerViewPortHorizontally();
+        this.centerViewPortVertically();
+    }
+
+    public final void centerViewPortHorizontally () {
         super.setHvalue(super.getHmax() / 2);
+    }
+
+    public final void centerViewPortVertically () {
+     super.setVvalue(super.getVmax() / 2);
     }
 
 }

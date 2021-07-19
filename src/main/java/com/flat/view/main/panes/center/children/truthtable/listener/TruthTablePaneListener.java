@@ -5,7 +5,10 @@ import com.flat.models.treenode.WffTree;
 import com.flat.tools.eventbus.base.Event;
 import com.flat.tools.eventbus.base.Listener;
 import com.flat.view.main.panes.center.children.truthtable.TruthTablePane;
-import javafx.scene.layout.VBox;
+import com.flat.view.main.panes.center.children.truthtable.base.tablelayout.TruthTable;
+import javafx.geometry.HPos;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 
 /**
@@ -32,21 +35,25 @@ public class TruthTablePaneListener implements Listener {
     }
 
     private void updateTruthTable (WffTree _wffTree) {
-        System.out.println("here");
         this.truthTablePane.getChildren().clear();
-        this.createTruthTable(_wffTree);
+        GridPane gridPane = this.createTruthTable(new TruthTable(_wffTree));
+        this.truthTablePane.getChildren().add(gridPane);
     }
 
-    private void createTruthTable (WffTree _wffTree) {
-        Text wffSymbol = new Text(_wffTree.getStringRep());
-        VBox truthColumn = new VBox(wffSymbol);
-        _wffTree.getTruthValues().forEach(truthValue -> {
-            truthColumn.getChildren().add(new Text(truthValue.toString()));
+    private GridPane createTruthTable (TruthTable _table) {
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(5);
+        _table.getHeaders().forEach(header -> {
+            gridPane.add(new Text(header.getText()), header.getColumn(), 0);
+            header.getElements().forEach(element -> {
+                gridPane.add(new Text(element.getText()), header.getColumn(), element.getRow());
+            });
         });
-        _wffTree.getChildren().forEach(child -> {
-            this.createTruthTable(child);
+        gridPane.getChildren().forEach(child -> {
+            GridPane.setHgrow(child, Priority.ALWAYS);
+            GridPane.setHalignment(child, HPos.CENTER);
         });
-        this.truthTablePane.getChildren().add(truthColumn);
+        return gridPane;
     }
 
 }

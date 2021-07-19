@@ -6,39 +6,42 @@ package com.flat.view.main.panes.center.children.truthtable.base.tablelayout;
  */
 public class TableElement {
     private int row;
-    private int column;
+    private boolean truthValue;
     private String text;
 
-    public TableElement (int _row, int _column, String _text) {
+    public TableElement (int _row, boolean _truthValue) {
         this.row = _row;
-        this.column = _column;
-        this.text = _text;
+        this.truthValue = _truthValue;
+        this.setText(_truthValue);
     }
 
     // Getters for object's attributes.
-    public int getRow() {
+    public int getRow () {
         return row;
     }
 
-    public int getColumn() {
-        return column;
+    public boolean getTruthValue() {
+        return truthValue;
     }
 
-    public String getText() {
+    public String getText () {
         return text;
     }
 
     // Setters for object's attributes.
-    public void setRow(int row) {
+    public void setRow (int row) {
         this.row = row;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
+    public void setTruthValue(boolean truthValue) {
+        this.truthValue = truthValue;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public final void setText (boolean text) {
+        if (text)
+            this.text = "T";
+        else
+            this.text = "F";
     }
 
 }

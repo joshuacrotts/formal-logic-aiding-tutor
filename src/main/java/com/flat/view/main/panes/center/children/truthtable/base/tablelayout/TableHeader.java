@@ -1,5 +1,6 @@
 package com.flat.view.main.panes.center.children.truthtable.base.tablelayout;
 
+import com.flat.models.treenode.WffTree;
 import java.util.ArrayList;
 
 /**
@@ -11,10 +12,21 @@ public class TableHeader {
     private String text;
     private ArrayList <TableElement> elements = new ArrayList();
 
-    public TableHeader (int _column, String _text, ArrayList <TableElement> _elements) {
+    public TableHeader (int _column, String _text) {
         this.column = _column;
         this.text = _text;
-        this.elements = _elements;
+    }
+
+    public TableHeader (int _column, String _text, WffTree _wffTree) {
+        this.column = _column;
+        this.text = _text;
+        this.addElements(_wffTree);
+    }
+
+    private void addElements (WffTree _wffTree) {
+        _wffTree.getTruthValues().forEach(truth -> {
+            this.elements.add(new TableElement(this.elements.size() + 1, truth));
+        });
     }
 
     // Getters for object's attributes.

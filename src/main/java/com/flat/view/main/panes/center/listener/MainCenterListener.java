@@ -43,7 +43,7 @@ public class MainCenterListener implements Listener {
             case TRUTH_TABLE_BUTTON_PRESSED:
                 this.group.setChild(this.mainCenter.getTruthTablePane());
                 this.mainCenter.getLogicVisualPane().updateContent(this.hWrapper);
-                this.mainCenter.getLogicVisualPane().centerViewPort();
+                this.mainCenter.getLogicVisualPane().centerViewPortHorizontally();
                 break;
         }
     }
