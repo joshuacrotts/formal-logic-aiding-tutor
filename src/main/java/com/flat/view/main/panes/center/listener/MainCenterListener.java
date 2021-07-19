@@ -39,6 +39,12 @@ public class MainCenterListener implements Listener {
                 this.group.setChild(this.mainCenter.getTruthTreePane());
                 this.mainCenter.getLogicVisualPane().updateContent(this.hWrapper);
                 this.mainCenter.getLogicVisualPane().centerViewPort();
+                break;
+            case TRUTH_TABLE_BUTTON_PRESSED:
+                this.group.setChild(this.mainCenter.getTruthTablePane());
+                this.mainCenter.getLogicVisualPane().updateContent(this.hWrapper);
+                this.mainCenter.getLogicVisualPane().centerViewPort();
+                break;
         }
     }
 

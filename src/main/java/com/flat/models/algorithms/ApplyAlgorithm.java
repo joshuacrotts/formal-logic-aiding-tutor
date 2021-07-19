@@ -152,7 +152,7 @@ public class ApplyAlgorithm {
                 break;
             case 1:
                 this.setGeneralOneAlgorithms();
-                if (this.wffTree.get(0).isPredicate())
+                if (this.wffTree.get(0).isPredicateWff())
                     this.setPredicateOneAlgorithms();
                 else
                     this.setPropositionalOneAlgorithms();
