@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.previewpane.previewborderpane.panes;
 
-import com.flat.view.viewdata.settings.AppearancePreviewData;
+import com.flat.view.data.settings.AppearancePreviewData;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.previewpane.previewborderpane.panes.observer.ColorObserverPane;
 import javafx.scene.layout.BorderWidths;
 

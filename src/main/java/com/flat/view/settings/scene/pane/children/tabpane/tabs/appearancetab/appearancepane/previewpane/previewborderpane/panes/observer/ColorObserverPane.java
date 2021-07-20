@@ -1,9 +1,9 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.previewpane.previewborderpane.panes.observer;
 
-import com.flat.view.viewdata.settings.AppearancePreviewData;
-import com.flat.view.viewdata.settings.observables.color.extend.ObservableBorderColor;
-import com.flat.view.viewdata.settings.observables.color.extend.ObservablePrimaryColor;
-import com.flat.view.viewdata.settings.observables.color.extend.ObservableSecondaryColor;
+import com.flat.view.data.settings.AppearancePreviewData;
+import com.flat.view.data.settings.observables.color.extend.ObservableBorderColor;
+import com.flat.view.data.settings.observables.color.extend.ObservablePrimaryColor;
+import com.flat.view.data.settings.observables.color.extend.ObservableSecondaryColor;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import java.util.Observable;

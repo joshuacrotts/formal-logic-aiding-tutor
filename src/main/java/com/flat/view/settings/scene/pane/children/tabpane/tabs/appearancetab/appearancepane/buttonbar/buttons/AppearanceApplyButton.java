@@ -1,8 +1,8 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.buttonbar.buttons;
 
-import com.flat.view.viewdata.settings.AppearancePreviewData;
-import com.flat.view.viewdata.settings.SettingsData;
-import com.flat.view.viewdata.pane.PaneData;
+import com.flat.view.data.settings.AppearancePreviewData;
+import com.flat.view.data.settings.SettingsData;
+import com.flat.view.data.pane.PaneData;
 import javafx.scene.control.Button;
 
 /**

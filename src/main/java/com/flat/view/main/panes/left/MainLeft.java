@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.left;
 
 import com.flat.view.action.ResizePane;
-import com.flat.view.viewdata.pane.PaneData;
+import com.flat.view.data.pane.PaneData;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;

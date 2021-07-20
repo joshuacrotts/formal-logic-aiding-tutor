@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.buttons;
 
-import com.flat.view.viewdata.settings.SettingsData;
+import com.flat.view.data.settings.SettingsData;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 

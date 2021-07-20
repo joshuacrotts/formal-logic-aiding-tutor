@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.previewpane.colorpane.primarycolorpane.children;
 
-import com.flat.view.viewdata.settings.AppearancePreviewData;
+import com.flat.view.data.settings.AppearancePreviewData;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 

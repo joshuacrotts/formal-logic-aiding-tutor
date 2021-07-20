@@ -4,8 +4,8 @@ import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexParseTreeContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexTruthTableContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexTruthTreeContextButton;
-import com.flat.view.viewdata.menubar.MenuBarData;
-import com.flat.view.viewdata.pane.PaneData;
+import com.flat.view.data.menubar.MenuBarData;
+import com.flat.view.data.pane.PaneData;
 
 /**
  *

@@ -2,7 +2,7 @@ package com.flat.view.main.panes.bottom;
 
 import com.flat.view.action.ResizePane;
 import com.flat.view.main.panes.bottom.children.formulainput.FormulaInputPane;
-import com.flat.view.viewdata.pane.PaneData;
+import com.flat.view.data.pane.PaneData;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;

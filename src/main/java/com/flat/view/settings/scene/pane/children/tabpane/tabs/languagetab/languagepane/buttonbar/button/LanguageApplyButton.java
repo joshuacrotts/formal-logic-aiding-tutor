@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.languagepane.buttonbar.button;
 
 import com.flat.controller.Controller;
-import com.flat.view.viewdata.settings.SettingsData;
+import com.flat.view.data.settings.SettingsData;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.languagepane.languagelistpane.listview.LanguageListView;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;

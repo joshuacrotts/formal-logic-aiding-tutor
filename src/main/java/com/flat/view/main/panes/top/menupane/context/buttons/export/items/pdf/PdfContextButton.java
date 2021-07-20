@@ -4,8 +4,8 @@ import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfParseTreeContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfTruthTableContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfTruthTreeContextButton;
-import com.flat.view.viewdata.menubar.MenuBarData;
-import com.flat.view.viewdata.pane.PaneData;
+import com.flat.view.data.menubar.MenuBarData;
+import com.flat.view.data.pane.PaneData;
 
 /**
  *

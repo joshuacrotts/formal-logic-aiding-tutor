@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab;
 
-import com.flat.view.viewdata.settings.SettingsData;
+import com.flat.view.data.settings.SettingsData;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.AppearancePane;
 import javafx.scene.control.Tab;
 

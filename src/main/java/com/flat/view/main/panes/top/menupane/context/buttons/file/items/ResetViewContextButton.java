@@ -2,8 +2,8 @@ package com.flat.view.main.panes.top.menupane.context.buttons.file.items;
 
 import com.flat.controller.Controller;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
-import com.flat.view.viewdata.menubar.MenuBarData;
-import com.flat.view.viewdata.pane.PaneData;
+import com.flat.view.data.menubar.MenuBarData;
+import com.flat.view.data.pane.PaneData;
 import javafx.stage.Stage;
 
 /**

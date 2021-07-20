@@ -1,9 +1,10 @@
 package com.flat.tools.json;
 
 import com.flat.models.json.algorithm.JsonAlgorithms;
-import com.flat.view.viewdata.settings.LanguageData;
-import com.flat.view.viewdata.menubar.MenuBarData;
-import com.flat.view.viewdata.settings.SettingsData;
+import com.flat.models.json.base.keyed.KeyedJsonString;
+import com.flat.view.data.settings.LanguageData;
+import com.flat.view.data.menubar.MenuBarData;
+import com.flat.view.data.settings.SettingsData;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.logicsymbols.JsonLogicSymbols;
 import com.flat.models.json.menubar.JsonMenuBar;
@@ -11,6 +12,7 @@ import com.flat.models.json.settings.JsonSettings;
 import com.flat.tools.json.enums.JsonLocal;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>
@@ -22,6 +24,8 @@ public class JsonData {
     private JsonAlgorithms jsonAlgorithms;
     private JsonLogicSymbols jsonLogicSymbols = new JsonLogicSymbols();
     private JsonLanguage[] language = JsonTools.jsonToObjectList(JsonLanguage.NONE, JsonLocal.File.LANGUAGE, JsonLanguage[].class);
+    private final ArrayList <KeyedJsonString> updates = new ArrayList();
+    // Need to have updates for all Keyed objects.
 
     private JsonData() {
         LanguageData.injectData(language);
@@ -36,7 +40,7 @@ public class JsonData {
     }
 
     public final void update(JsonLanguage _language) {
-        if (_language.equals(JsonLanguage.DEFAULT)) {
+        if (_language.getCode().equals(JsonLanguage.DEFAULT.getCode())) {
             this.constructDefaultData();
         }
         else if (!this.languageDirectoryExists(_language)) {
@@ -47,6 +51,7 @@ public class JsonData {
         else {
             this.readData(_language);
         }
+        this.updateKeyedData();
         this.updateFxData(_language);
     }
 
@@ -83,6 +88,13 @@ public class JsonData {
         SettingsData.injectData(_language, this.jsonSettings);
     }
 
+    private void updateKeyedData () {
+        this.updates.forEach(update -> {
+            update.updateMap();
+        });
+        this.updates.clear();
+    }
+
     // Getters for object's attributes.
     public JsonMenuBar getJsonMenuBar() {
         return jsonMenuBar;
@@ -98,6 +110,14 @@ public class JsonData {
 
     public JsonLanguage[] getLanguage() {
         return language;
+    }
+
+    public JsonLogicSymbols getJsonLogicSymbols() {
+        return jsonLogicSymbols;
+    }
+
+    public ArrayList<KeyedJsonString> getUpdates() {
+        return updates;
     }
 
     // Setters for object's attributes.

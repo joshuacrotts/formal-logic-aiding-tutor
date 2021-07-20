@@ -2,7 +2,7 @@ package com.flat.view.main.panes.bottom.children.formulainput.children.applybutt
 
 import com.flat.controller.Controller;
 import com.flat.view.main.panes.bottom.children.formulainput.children.applybutton.events.FormulaApplyButtonPressed;
-import com.flat.view.viewdata.pane.PaneData;
+import com.flat.view.data.pane.PaneData;
 import javafx.scene.control.Button;
 
 /**

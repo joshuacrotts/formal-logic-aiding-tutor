@@ -7,6 +7,9 @@ package com.flat.models.json.base;
 public class JsonString {
     private String string;
 
+    public JsonString () {
+    }
+
     public JsonString (String _string) {
         this.string = _string;
     }
