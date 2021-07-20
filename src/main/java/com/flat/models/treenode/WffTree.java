@@ -52,34 +52,25 @@ public class WffTree implements Copyable, TexPrintable {
         this(null, NodeType.ROOT);
     }
 
-    /**
-     * Replaces all instances of the customized symbols to a standard
-     * notation so the equivalence checker has some uniformity.
-     * <p>
-     * We should probably replace these as static regex compilers...
-     *
-     * @param _strRep
-     * @return
-     */
-    private static String getStandardizedEquiv(String _strRep) {
-        String s = _strRep.replaceAll(" ", "");
-        s = s.replaceAll("[~¬!]|(not|NOT)", "~"); // NEG
-        s = s.replaceAll("[∧^⋅]|(and|AND)", "&"); // AND
-        s = s.replaceAll("[\\|+\\|\\|]|(or|OR)", "∨"); // OR
-        s = s.replaceAll("[→⇒⊃>]|(implies|IMPLIES)", "→"); // IMP
-        s = s.replaceAll("[⇔≡↔]|(<>|iff|IFF)", "↔"); // BICOND
-        s = s.replaceAll("[⊻≢⩒↮]|(xor|XOR)", "⊕"); // XOR
-        s = s.replaceAll("[(]", "#");
-        s = s.replaceAll("[)]", "#"); // We need to standardize these as well!
-        return s;
-    }
-
     @Override
     public WffTree copy() {
         WffTree t = new WffTree(this.symbol, this.nodeType);
         t.setFlags(this.getFlags());
         this.copyHelper(this, t);
         return t;
+    }
+
+    /**
+     * Performs a recursive copy of all children in this truth tree.
+     * Applies to the second parameter.
+     *
+     * @param _root    - root of tree to copy.
+     * @param _newTree - tree to copy into.
+     */
+    private void copyHelper(WffTree _root, WffTree _newTree) {
+        for (WffTree ch : _root.children) {
+            _newTree.addChild(ch.copy());
+        }
     }
 
     /**
@@ -95,10 +86,200 @@ public class WffTree implements Copyable, TexPrintable {
     }
 
     /**
+     * Recursive clear highlighting method. This removes all highlighting
+     * performed by the front-end or anything that suggests that *this* node
+     * is the result of some algorithm.
+     *
+     * @param _root - root of WffTree.
+     */
+    private void clearHighlightingHelper(WffTree _root) {
+        for (WffTree ch : _root.children) {
+            ch.setHighlighted(false);
+            this.clearHighlightingHelper(ch);
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int allChildSizeCount() {
+        return allChildSizeCountHelper(this);
+    }
+
+    /**
+     *
+     * @param _tree
+     * @return
+     */
+    private int allChildSizeCountHelper(WffTree _tree) {
+        int size = 0;
+        for (int i = 0; i < _tree.children.size(); i++) {
+            size += _tree.getChild(i).getChildrenSize() + this.allChildSizeCountHelper(_tree.getChild(i));
+        }
+
+        return size;
+    }
+
+    /**
+     * Recursively collects all AtomNodes in a tree. The ArrayList is treated as a set.
+     *
+     * @throws IllegalArgumentException if the formula is a predicate logic formula since they don't
+     *         use atoms.
+     *
+     * @return new ArrayList of all distinct AtomNodes.
+     */
+    public ArrayList<AtomNode> getAtoms() {
+        if (this.isPredicateWff()) {
+            throw new IllegalArgumentException("Cannot retrieve atoms on a predicate logic formula.");
+        }
+
+        ArrayList<AtomNode> atoms = new ArrayList<>();
+        this.getAtomsHelper(this, atoms);
+        return atoms;
+    }
+
+    /**
+     * Recursive helper function for the above.
+     *
+     * @param _wffTreeNode - WffTree node to check.
+     * @param _atoms - ArrayList of AtomNodes to add onto.
+     */
+    private void getAtomsHelper(WffTree _wffTreeNode, ArrayList<AtomNode> _atoms) {
+        if (_wffTreeNode == null) return;
+        for (WffTree ch : _wffTreeNode.getChildren()) {
+            if (ch.isAtom() && !_atoms.contains(ch)) { _atoms.add((AtomNode) ch); }
+            this.getAtomsHelper(ch, _atoms);
+        }
+    }
+
+    /**
+     * Performs a recursive preorder traversal on the WffTree.
+     *
+     * @return ArrayList of WffTrees representing the preorder traversal of the parse tree.
+     */
+    public ArrayList<WffTree> preorderTraversal() {
+        ArrayList<WffTree> wffTreeArrayList = new ArrayList<>();
+        this.preorderTraversalHelper(this, wffTreeArrayList);
+        return wffTreeArrayList;
+    }
+
+    /**
+     * Helper function to perform preorder traversal.
+     *
+     * @param _wffTree - current node in the traversal.
+     * @param _preorderList - list to add to.
+     */
+    private void preorderTraversalHelper(WffTree _wffTree, ArrayList<WffTree> _preorderList) {
+        if (_wffTree == null) return;
+        _preorderList.add(_wffTree);
+        _wffTree.getChildren().forEach(child -> {
+            this.preorderTraversalHelper(child, _preorderList);
+        });
+    }
+
+    /**
+     * Performs a recursive inorder traversal on the WffTree.
+     *
+     * @return ArrayList of WffTrees representing the inorder traversal of the parse tree.
+     */
+    public ArrayList<WffTree> inorderTraversal() {
+        ArrayList<WffTree> wffTreeArrayList = new ArrayList<>();
+        this.inorderTraversalHelper(this, wffTreeArrayList);
+        return wffTreeArrayList;
+    }
+
+    /**
+     * Helper function to perform inorder traversal.
+     *
+     * @param _wffTree - current node in the traversal.
+     * @param _inorderTraversal - list to add to.
+     */
+    private void inorderTraversalHelper(WffTree _wffTree, ArrayList<WffTree> _inorderTraversal) {
+        if (_wffTree == null) { return; }
+
+        // Total children count
+        int total = _wffTree.children.size();
+        // Only one child means we traverse the child then add it.
+        if (total == 1) {
+            this.inorderTraversalHelper(_wffTree.children.get(0), _inorderTraversal);
+            _inorderTraversal.add(_wffTree);
+        } else {
+            // All the children except the last
+            for (int i = 0; i < total - 1; i++) {
+                this.inorderTraversalHelper(_wffTree.children.get(i), _inorderTraversal);
+            }
+
+            // Print the current node's data
+            _inorderTraversal.add(_wffTree);
+
+            // Last child
+            if (!_wffTree.children.isEmpty()) {
+                this.inorderTraversalHelper(_wffTree.children.get(total - 1), _inorderTraversal);
+            }
+        }
+    }
+
+    /**
+     * Performs a recursive postorder traversal on the WffTree.
+     *
+     * @return ArrayList of WffTrees representing the postorder traversal of the parse tree.
+     */
+    public ArrayList<WffTree> postorderTraversal() {
+        ArrayList<WffTree> wffTreeArrayList = new ArrayList<>();
+        this.postorderTraversalHelper(this, wffTreeArrayList);
+        return wffTreeArrayList;
+    }
+
+    /**
+     * Helper function to perform postorder traversal.
+     *
+     * @param _wffTree - current node in the traversal.
+     * @param _postorderTraversal - list to add to.
+     */
+    private void postorderTraversalHelper(WffTree _wffTree, ArrayList<WffTree> _postorderTraversal) {
+        if (_wffTree == null) return;
+        _wffTree.getChildren().forEach(child -> {
+            this.postorderTraversalHelper(child, _postorderTraversal);
+        });
+        _postorderTraversal.add(_wffTree);
+    }
+
+    /**
      * Recursively prints the syntax tree.
      */
     public void printSyntaxTree() {
         System.out.println(this.printSyntaxTreeHelper(0));
+    }
+
+    /**
+     * Recursive function to print a syntax tree. The current depth is passed
+     * as the "indent" parameter so that the output looks properly nested.
+     * Each recursive call for a child is indented by two additional spaces.
+     *
+     * @param indent current indentation level
+     * @return a string representation of this syntax tree node (and its descendants)
+     * @author Steve Tate
+     */
+    private StringBuilder printSyntaxTreeHelper(int indent) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(FLATUtils.repeatString(Math.max(0, indent), " "));
+        sb.append(this.toString());
+
+        if (!this.children.isEmpty()) {
+            sb.append(" (\n");
+            boolean isFirstChild = true;
+            for (WffTree child : this.children) {
+                if (!isFirstChild) {
+                    sb.append(",\n");
+                }
+                isFirstChild = false;
+                sb.append(child.printSyntaxTreeHelper(indent + 2));
+            }
+            sb.append(")");
+        }
+
+        return sb;
     }
 
     /**
@@ -153,6 +334,28 @@ public class WffTree implements Copyable, TexPrintable {
         return false;
     }
 
+    /**
+     * Replaces all instances of the customized symbols to a standard
+     * notation so the equivalence checker has some uniformity.
+     * <p>
+     * We should probably replace these as static regex compilers...
+     *
+     * @param _strRep
+     * @return
+     */
+    private static String getStandardizedEquiv(String _strRep) {
+        String s = _strRep.replaceAll(" ", "");
+        s = s.replaceAll("[~¬!]|(not|NOT)", "~"); // NEG
+        s = s.replaceAll("[∧^⋅]|(and|AND)", "&"); // AND
+        s = s.replaceAll("[\\|+\\|\\|]|(or|OR)", "∨"); // OR
+        s = s.replaceAll("[→⇒⊃>]|(implies|IMPLIES)", "→"); // IMP
+        s = s.replaceAll("[⇔≡↔]|(<>|iff|IFF)", "↔"); // BICOND
+        s = s.replaceAll("[⊻≢⩒↮]|(xor|XOR)", "⊕"); // XOR
+        s = s.replaceAll("[(]", "#");
+        s = s.replaceAll("[)]", "#"); // We need to standardize these as well!
+        return s;
+    }
+
     @Override
     public boolean equals(Object _obj) {
         return super.equals(_obj);
@@ -194,9 +397,10 @@ public class WffTree implements Copyable, TexPrintable {
             return true;
         }
         // Nodes of type ~P are good.
-        else if (this.isNegation() && this.getChild(0) != null && (this.getChild(0).isPredicate() || this.getChild(0).isAtom()))
+        else if (this.isNegation() && this.getChild(0) != null && (this.getChild(0).isPredicate() || this.getChild(0).isAtom())) {
             return true;
-            // Nodes of type ~identity are good.
+        }
+        // Nodes of type ~identity are good.
         else if (this.isNegation() && this.getChild(0) != null && this.getChild(0).isIdentity()) {
             return true;
         }
@@ -204,10 +408,6 @@ public class WffTree implements Copyable, TexPrintable {
         else {
             return this.isIdentity();
         }
-    }
-
-    public int allChildSizeCount() {
-        return allChildSizeCountHelper(this);
     }
 
     public int getChildrenSize() {
@@ -386,6 +586,10 @@ public class WffTree implements Copyable, TexPrintable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isPalindromeWff() {
         String s = this.getStringRep();
         int n = s.length();
@@ -435,71 +639,5 @@ public class WffTree implements Copyable, TexPrintable {
     @Override
     public String toString() {
         return this.nodeType.toString();
-    }
-
-    private int allChildSizeCountHelper(WffTree _tree) {
-        int size = 0;
-        for (int i = 0; i < _tree.children.size(); i++) {
-            size += _tree.getChild(i).getChildrenSize() + this.allChildSizeCountHelper(_tree.getChild(i));
-        }
-
-        return size;
-    }
-
-    /**
-     * Performs a recursive copy of all children in this truth tree.
-     * Applies to the second parameter.
-     *
-     * @param _root    - root of tree to copy.
-     * @param _newTree - tree to copy into.
-     */
-    private void copyHelper(WffTree _root, WffTree _newTree) {
-        for (WffTree ch : _root.children) {
-            _newTree.addChild(ch.copy());
-        }
-    }
-
-    /**
-     * Recursive clear highlighting method. This removes all highlighting
-     * performed by the front-end or anything that suggests that *this* node
-     * is the result of some algorithm.
-     *
-     * @param _root - root of WffTree.
-     */
-    private void clearHighlightingHelper(WffTree _root) {
-        for (WffTree ch : _root.children) {
-            ch.setHighlighted(false);
-            this.clearHighlightingHelper(ch);
-        }
-    }
-
-    /**
-     * Recursive function to print a syntax tree. The current depth is passed
-     * as the "indent" parameter so that the output looks properly nested.
-     * Each recursive call for a child is indented by two additional spaces.
-     *
-     * @param indent current indentation level
-     * @return a string representation of this syntax tree node (and its descendants)
-     * @author Steve Tate
-     */
-    private StringBuilder printSyntaxTreeHelper(int indent) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(FLATUtils.repeatString(Math.max(0, indent), " "));
-        sb.append(this.toString());
-
-        if (!this.children.isEmpty()) {
-            sb.append(" (\n");
-            boolean isFirstChild = true;
-            for (WffTree child : this.children) {
-                if (!isFirstChild) {
-                    sb.append(",\n");
-                }
-                isFirstChild = false;
-                sb.append(child.printSyntaxTreeHelper(indent + 2));
-            }
-            sb.append(")");
-        }
-
-        return sb;
     }
 }
