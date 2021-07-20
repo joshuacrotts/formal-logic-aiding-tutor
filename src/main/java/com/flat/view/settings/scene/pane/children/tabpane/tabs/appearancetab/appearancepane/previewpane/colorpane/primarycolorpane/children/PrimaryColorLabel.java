@@ -12,7 +12,7 @@ public class PrimaryColorLabel extends Label {
 
     public PrimaryColorLabel() {
         super.textProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonColorPane.class), KeyedText.toKey2(JsonColorPane.Keys.PRIMARY_COLOR)).textProperty());
-
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonColorPane.class), KeyedText.toKey2(JsonColorPane.Keys.PRIMARY_COLOR)).fontProperty());
     }
 
 }

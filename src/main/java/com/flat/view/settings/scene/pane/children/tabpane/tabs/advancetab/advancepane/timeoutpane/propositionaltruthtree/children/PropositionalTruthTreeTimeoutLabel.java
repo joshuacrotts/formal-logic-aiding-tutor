@@ -13,7 +13,7 @@ public class PropositionalTruthTreeTimeoutLabel extends Label {
 
     public PropositionalTruthTreeTimeoutLabel () {
         super.textProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonAdvancePane.class), KeyedText.toKey2(JsonAdvancePane.Keys.PROPOSITIONAL_TRUTH_TREE)).textProperty());
-
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonAdvancePane.class), KeyedText.toKey2(JsonAdvancePane.Keys.PROPOSITIONAL_TRUTH_TREE)).fontProperty());
     }
 
 }

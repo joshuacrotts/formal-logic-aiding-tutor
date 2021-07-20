@@ -13,6 +13,7 @@ public class TruthTableGeneratorTimeoutLabel extends Label {
 
     public TruthTableGeneratorTimeoutLabel () {
         super.textProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonAdvancePane.class), KeyedText.toKey2(JsonAdvancePane.Keys.TRUTH_TABLE_GENERATOR)).textProperty());
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonAdvancePane.class), KeyedText.toKey2(JsonAdvancePane.Keys.TRUTH_TABLE_GENERATOR)).fontProperty());
     }
 
 }

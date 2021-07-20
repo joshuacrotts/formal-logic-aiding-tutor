@@ -12,6 +12,8 @@ public class SecondaryColorLabel extends Label {
 
     public SecondaryColorLabel() {
         super.textProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonColorPane.class), KeyedText.toKey2(JsonColorPane.Keys.SECONDARY_COLOR)).textProperty());
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonColorPane.class), KeyedText.toKey2(JsonColorPane.Keys.SECONDARY_COLOR)).fontProperty());
+
     }
 
 }

@@ -14,6 +14,8 @@ public class LanguageApplyButton extends Button {
 
     public LanguageApplyButton() {
         super.textProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonSettings.class), KeyedText.toKey2(JsonSettings.Keys.APPLY)).textProperty());
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonSettings.class), KeyedText.toKey2(JsonSettings.Keys.APPLY)).fontProperty());
+
         this.setOnAction();
     }
 

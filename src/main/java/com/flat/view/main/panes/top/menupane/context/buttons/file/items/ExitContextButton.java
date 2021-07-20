@@ -12,7 +12,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class ExitContextButton extends ContextButton {
 
     public ExitContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonExitMenuItem.class, JsonExitMenuItem.Keys.EXIT).textProperty());
+        super(Controller.getKEYED_TEXT().getValue(JsonExitMenuItem.class, JsonExitMenuItem.Keys.EXIT));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         this.setOnAction();
     }

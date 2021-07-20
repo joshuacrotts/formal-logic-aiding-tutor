@@ -4,6 +4,7 @@ import com.flat.controller.Controller;
 import com.flat.models.json.base.JsonString;
 import com.flat.models.json.base.keyed.base.JsonKey;
 import com.flat.view.data.json.KeyedText;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -22,7 +23,7 @@ public class KeyedJsonString extends JsonString {
         super(_string);
         this.key1 = KeyedText.toKey1(_key1);
         this.key2 = KeyedText.toKey2(_key2);
-        this.updateMap();
+        this.updateMapText();
     }
 
     // Getters for object's attributes.
@@ -40,15 +41,25 @@ public class KeyedJsonString extends JsonString {
     public void setString(String _string) {
         super.setString(_string);
         System.out.println(_string);
-        this.updateMap();
+        this.updateMapText();
     }
 
-    public final void updateMap () {
-        if (Controller.getKEYED_TEXT().getValue(this.key1, this.key2) != null) {
+    public final Text getMappedValue () {
+        if (Controller.getKEYED_TEXT().getValue(this.key1, this.key2) != null)
+            return Controller.getKEYED_TEXT().getValue(this.key1, this.key2);
+        return null;
+    }
+
+    public final void updateMapText () {
+        if (getMappedValue() != null)
             Controller.getKEYED_TEXT().getValue(this.key1, this.key2).setText(this.getString());
-        }
         else
             Controller.getKEYED_TEXT().putValue(this.key1, this.key2, new Text(this.getString()));
+    }
+
+    public final void updateMapFont (Font _font) {
+        if (getMappedValue() != null)
+            getMappedValue().setFont(_font);
     }
 
 }

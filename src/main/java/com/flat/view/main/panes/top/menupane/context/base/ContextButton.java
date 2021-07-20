@@ -1,9 +1,9 @@
 package com.flat.view.main.panes.top.menupane.context.base;
 
 import com.flat.controller.Controller;
-import javafx.beans.property.StringProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -18,14 +18,15 @@ public class ContextButton extends Button {
     private double offsetX = 0;
     private double offsetY = 0;
 
-    public ContextButton (StringProperty _stringProperty) {
-        super.textProperty().bind(_stringProperty);
+    public ContextButton (Text _text) {
+        super.textProperty().bind(_text.textProperty());
+        super.fontProperty().bind(_text.fontProperty());
         super.setPrefWidth(MENU_WIDTH);
         super.setPrefHeight(MENU_HEIGHT);
     }
 
-    public ContextButton (StringProperty _stringProperty, ContextButton... _flatMenuItems) {
-        this(_stringProperty);
+    public ContextButton (Text _text, ContextButton... _flatMenuItems) {
+        this(_text);
         this.contextWindow.getChildren().addAll(_flatMenuItems);
         this.contextWindow.setPrefWidth(MENU_WIDTH);
         this.contextWindow.setPrefHeight(MENU_HEIGHT);

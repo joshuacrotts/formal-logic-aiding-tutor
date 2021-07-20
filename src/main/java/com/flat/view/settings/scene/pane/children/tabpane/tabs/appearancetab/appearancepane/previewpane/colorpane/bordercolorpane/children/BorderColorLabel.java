@@ -12,6 +12,8 @@ public class BorderColorLabel extends Label {
 
     public BorderColorLabel() {
         super.textProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonColorPane.class), KeyedText.toKey2(JsonColorPane.Keys.BORDER_COLOR)).textProperty());
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonColorPane.class), KeyedText.toKey2(JsonColorPane.Keys.BORDER_COLOR)).fontProperty());
+
     }
 
 }

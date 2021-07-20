@@ -15,7 +15,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class FileContextButton extends ContextButton {
 
     public FileContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonFileMenu.class, JsonFileMenu.Keys.FILE).textProperty(),
+        super(Controller.getKEYED_TEXT().getValue(JsonFileMenu.class, JsonFileMenu.Keys.FILE),
                 new ResetViewContextButton(),
                 new SettingsContextButton(),
                 new ExitContextButton()

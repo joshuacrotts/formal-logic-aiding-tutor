@@ -14,7 +14,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class ExportMenuButton extends ContextButton {
 
     public ExportMenuButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonExportMenu.class.getSimpleName(), JsonExportMenu.Key.EXPORT.toString()).textProperty(),
+        super(Controller.getKEYED_TEXT().getValue(JsonExportMenu.class.getSimpleName(), JsonExportMenu.Key.EXPORT.toString()),
                 new LatexContextButton(),
                 new PdfContextButton());
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());

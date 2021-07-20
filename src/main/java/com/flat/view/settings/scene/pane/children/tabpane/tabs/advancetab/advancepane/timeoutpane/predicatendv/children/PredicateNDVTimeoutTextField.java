@@ -11,6 +11,7 @@ public class PredicateNDVTimeoutTextField extends NumericTextField {
 
     public PredicateNDVTimeoutTextField () {
         super.textProperty().bindBidirectional(TimeoutManager.getPREDICATE_NDV().textProperty());
+        super.fontProperty().bindBidirectional(TimeoutManager.getPREDICATE_NDV().fontProperty());
     }
 
 }

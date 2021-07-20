@@ -12,6 +12,7 @@ public class PredicateTruthTreeTimeoutLabel extends Label {
 
     public PredicateTruthTreeTimeoutLabel () {
         super.textProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvancePane.class, JsonAdvancePane.Keys.PREDICATE_TRUTH_TRUTH).textProperty());
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvancePane.class, JsonAdvancePane.Keys.PREDICATE_TRUTH_TRUTH).fontProperty());
     }
 
 }

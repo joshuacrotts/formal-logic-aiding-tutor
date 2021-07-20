@@ -13,7 +13,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class SettingsContextButton extends ContextButton {
 
     public SettingsContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonSettingsMenuItem.class, JsonSettingsMenuItem.Keys.SETTINGS).textProperty());
+        super(Controller.getKEYED_TEXT().getValue(JsonSettingsMenuItem.class, JsonSettingsMenuItem.Keys.SETTINGS));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         this.setOnAction();
     }

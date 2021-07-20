@@ -12,6 +12,7 @@ public class SettingsCloseButton extends Button {
 
     public SettingsCloseButton() {
         super.textProperty().bind(Controller.getKEYED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.CLOSE).textProperty());
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.CLOSE).fontProperty());
         super.setCancelButton(true);
         this.setOnAction();
     }

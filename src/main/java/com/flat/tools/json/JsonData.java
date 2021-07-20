@@ -7,10 +7,11 @@ import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.logicsymbols.JsonLogicSymbols;
 import com.flat.models.json.menubar.JsonMenuBar;
 import com.flat.models.json.settings.JsonSettings;
+import com.flat.tools.font.FontTool;
 import com.flat.tools.json.enums.JsonLocal;
-
 import java.io.File;
 import java.util.ArrayList;
+import javafx.scene.text.Font;
 
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>
@@ -23,6 +24,7 @@ public class JsonData {
     private JsonLogicSymbols jsonLogicSymbols;
     private JsonLanguage[] language = JsonTools.jsonToObjectList(JsonLanguage.NONE, JsonLocal.File.LANGUAGE, JsonLanguage[].class);
     private final ArrayList <KeyedJsonString> updates = new ArrayList();
+    private Font currentFont;
     // Need to have updates for all Keyed objects.
 
     private JsonData (JsonLanguage _language) {
@@ -38,7 +40,8 @@ public class JsonData {
     }
 
     public final void update(JsonLanguage _language) {
-        if (_language.getCode().equals(JsonLanguage.DEFAULT.getCode())) {
+        this.currentFont = FontTool.getFont(_language.getFont());
+        if (_language.getCode().equals("en")) {
             this.constructDefaultData();
         }
         else if (!this.languageDirectoryExists(_language)) {
@@ -86,7 +89,8 @@ public class JsonData {
 
     private void updateKeyedData () {
         this.updates.forEach(update -> {
-            update.updateMap();
+            update.updateMapText();
+            update.updateMapFont(currentFont);
         });
         this.updates.clear();
     }

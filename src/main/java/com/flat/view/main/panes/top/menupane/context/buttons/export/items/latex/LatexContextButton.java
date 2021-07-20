@@ -15,7 +15,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class LatexContextButton extends ContextButton {
 
     public LatexContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonExportAsLatexMenu.class, JsonExportAsLatexMenu.Keys.EXPORT_AS_LATEX).textProperty(),
+        super(Controller.getKEYED_TEXT().getValue(JsonExportAsLatexMenu.class, JsonExportAsLatexMenu.Keys.EXPORT_AS_LATEX),
                 new LatexParseTreeContextButton(),
                 new LatexTruthTreeContextButton(),
                 new LatexTruthTableContextButton());

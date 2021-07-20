@@ -13,6 +13,7 @@ public class AdvanceApplyButton extends Button {
 
     public AdvanceApplyButton () {
         super.textProperty().bind(Controller.getKEYED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.APPLY).textProperty());
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.APPLY).fontProperty());
         this.setOnAction();
     }
 

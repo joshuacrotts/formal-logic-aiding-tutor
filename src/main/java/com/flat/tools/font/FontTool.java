@@ -14,12 +14,14 @@ import static javafx.scene.layout.Region.USE_PREF_SIZE;
 public class FontTool {
     private final static double FONTSIZE = USE_PREF_SIZE;
     private static FontTool instance = null;
+    private static Font DEFAULT;
     private static Font AMHARIC;
     private static Font BURMESE;
     private static Font JAVANESE;
 
-    private FontTool() {
+    private FontTool () {
         try {
+            FontTool.DEFAULT = new Font(FontFamily.DEFAULT.getFamily(), FONTSIZE);
             FontTool.AMHARIC = Font.loadFont(new FileInputStream(FontLocal.Paths.TTF.getPath() + FontFamily.AMHARIC.getFilePath()), FontTool.FONTSIZE);
             FontTool.BURMESE = Font.loadFont(new FileInputStream(FontLocal.Paths.TTF.getPath() + FontFamily.BURMESE.getFilePath()), FontTool.FONTSIZE);
             FontTool.JAVANESE = Font.loadFont(new FileInputStream(FontLocal.Paths.TTF.getPath() + FontFamily.JAVANESE.getFilePath()), FontTool.FONTSIZE);
@@ -44,7 +46,7 @@ public class FontTool {
             case JAVANESE:
                 return FontTool.JAVANESE;
             default:
-                return new Font(FONTSIZE);
+                return FontTool.DEFAULT;
         }
     }
 
