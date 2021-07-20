@@ -46,7 +46,7 @@ public final class TruthTableGenerator {
         this.wffTree = _wffTree;
         this.operands = new Stack<>();
         this.truthPattern = new LinkedHashMap<>();
-        this.size = this.getAtomCount(this.wffTree);
+        this.size = this.wffTree.getAtoms().size();
         this.rows = (int) Math.pow(2, this.size);
 
         // We want to clear the tree every time so we don't get duplicate values.
@@ -89,9 +89,7 @@ public final class TruthTableGenerator {
         while (!queue.isEmpty()) {
             WffTree tree = queue.poll();
             tree.getTruthValues().clear();
-            for (WffTree ch : tree.getChildren()) {
-                queue.add(ch);
-            }
+            queue.addAll(tree.getChildren());
         }
     }
 
@@ -106,15 +104,10 @@ public final class TruthTableGenerator {
      * also be done on each subtree for easy printing.
      */
     public boolean getTruthTable() {
-        if (this.size > TruthTableGenerator.maxAtoms) {
-            return false;
-        }
+        if (this.size > TruthTableGenerator.maxAtoms) { return false; }
 
         // If the tree already HAS truth values, then don't rebuild the tree.
-        if (this.wffTree.getTruthValues().isEmpty()) {
-            this.buildTable(this.wffTree);
-        }
-
+        if (this.wffTree.getTruthValues().isEmpty()) { this.buildTable(this.wffTree); }
         return true;
     }
 
@@ -126,47 +119,18 @@ public final class TruthTableGenerator {
     }
 
     /**
-     * Performs a post-order traversal of the WffTree. We do this to get the respective truth values.
-     * <p>
-     * To access these values, iterate over the list returned by this method, and do node.getTruthValues().
-     *
-     * @return list of nodes in post-order.
-     */
-    public LinkedHashSet<WffTree> postorder() {
-        LinkedHashSet<WffTree> list = new LinkedHashSet<>();
-        this.postorderHelper(this.wffTree.getChild(0), list);
-        return list;
-    }
-
-    /**
      * Function to print out the truth tree in a "table" fashion in the console. This, however, does not print
      * the atoms at the start of the truth table.
      */
     private void printHelper() {
-        ArrayList<WffTree> postorderTraversal = new ArrayList<>(this.postorder());
+        // We need a unique post order traversal so just convert it to a LHS then an AL.
+        LinkedHashSet<WffTree> postorderHashSet = new LinkedHashSet<>(this.wffTree.postorderTraversal());
+        ArrayList<WffTree> postorderTraversal = new ArrayList<>(postorderHashSet);
         int maxWidth = postorderTraversal.get(postorderTraversal.size() - 1).getStringRep().length();
         for (WffTree tree : postorderTraversal) {
             System.out.printf("%-" + maxWidth + "s : ", tree.getStringRep());
             System.out.println(tree.getTruthValues());
         }
-    }
-
-    /**
-     * Performs a recursive post-order traversal on the WffTree.
-     *
-     * @param _tree          - tree to search.
-     * @param _postorderList - list to continuously add to.
-     */
-    private void postorderHelper(WffTree _tree, HashSet<WffTree> _postorderList) {
-        if (_tree == null) {
-            return;
-        }
-
-        for (int i = 0; i < _tree.getChildrenSize(); i++) {
-            this.postorderHelper(_tree.getChild(i), _postorderList);
-        }
-
-        _postorderList.add(_tree);
     }
 
     /**
@@ -294,33 +258,6 @@ public final class TruthTableGenerator {
         }
     }
 
-    /**
-     * Counts the number of unique atoms in a propositional logic formula. This is
-     * counted in a bfs fashion.
-     *
-     * @param _tree - propositional logic wff root.
-     * @return number of unique atoms found.
-     */
-    private int getAtomCount(WffTree _tree) {
-        Queue<WffTree> q = new LinkedList<>();
-        HashSet<String> atoms = new HashSet<>();
-        q.add(_tree);
-
-        while (!q.isEmpty()) {
-            WffTree wt = q.poll();
-            for (WffTree ch : wt.getChildren()) {
-                if (ch.isAtom()) {
-                    String symbol = ch.getSymbol();
-                    atoms.add(symbol);
-                } else {
-                    q.add(ch);
-                }
-            }
-        }
-
-        return atoms.size();
-    }
-
     // Getters
     public static int getMaxAtoms() {
         return maxAtoms;
@@ -331,4 +268,7 @@ public final class TruthTableGenerator {
         TruthTableGenerator.maxAtoms = maxAtoms;
     }
 
+    public WffTree getWffTree() {
+        return this.wffTree;
+    }
 }

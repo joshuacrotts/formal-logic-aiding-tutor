@@ -33,7 +33,7 @@ public final class TexTablePrinter extends TexPrinter {
             System.err.println("Could not create truth table.");
             return;
         }
-        LinkedHashSet<WffTree> postOrderTraversal = ttg.postorder();
+        LinkedHashSet<WffTree> postOrderTraversal = new LinkedHashSet<>(ttg.getWffTree().postorderTraversal());
 
         // Now, print it out in TeX.
         try {
@@ -69,6 +69,8 @@ public final class TexTablePrinter extends TexPrinter {
     private String getTexTable(LinkedHashSet<WffTree> _set) {
         StringBuilder sb = new StringBuilder();
         ArrayList<WffTree> list = new ArrayList<>(_set);
+        // The last element is just ROOT so we can remove it.
+        list.remove(list.size() - 1);
         int rows = list.get(0).getTruthValues().size();
 
         // Print the preamble stuff.
@@ -83,17 +85,17 @@ public final class TexTablePrinter extends TexPrinter {
         }
 
         // Output the hline separator.
-        sb.append("$" + list.get(list.size() - 1).getTexCommand() + "$");
+        sb.append("$").append(list.get(list.size() - 1).getTexCommand()).append("$");
         sb.append("\\\\\n\\hline\n");
 
         // Now print the truth values.
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < list.size() - 1; j++) {
+            for (int j = 0; j < rows - 1; j++) {
                 sb.append(list.get(j).getTruthValues().get(i));
                 sb.append(" & ");
             }
-            // Output a new line on all rows except for the last.
-            sb.append(list.get(list.size() - 1).getTruthValues().get(i));
+
+            sb.append(list.get(rows - 1).getTruthValues().get(i));
             sb.append(" \\\\ ");
             if (i != rows - 1) {
                 sb.append("\n");

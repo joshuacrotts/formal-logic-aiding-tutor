@@ -10,6 +10,9 @@ import java.util.ArrayList;
  */
 public class TruthTable {
 
+    /**
+     *
+     */
     private ArrayList <TableHeader> headers = new ArrayList();
 
     public TruthTable (WffTree _wffTree) {
@@ -21,35 +24,10 @@ public class TruthTable {
      *
      */
     private void addAtomHeaders(WffTree _wffTree) {
-        ArrayList<AtomNode> atoms = this.getAtoms(_wffTree);
+        ArrayList<AtomNode> atoms = _wffTree.getAtoms();
         atoms.forEach( atomNode -> {
             this.headers.add(new TableHeader(this.headers.size(), atomNode.getSymbol(), atomNode));
         });
-    }
-
-    /**
-     * Recursively collects all AtomNodes in a tree. The ArrayList is treated as a set.
-     *
-     * @return new ArrayList of all distinct AtomNodes.
-     */
-    private ArrayList<AtomNode> getAtoms(WffTree _wffTree) {
-        ArrayList<AtomNode> atoms = new ArrayList<>();
-        this.getAtomsHelper(_wffTree, atoms);
-        return atoms;
-    }
-
-    /**
-     * Recursive helper function for the above.
-     *
-     * @param _wffTreeNode - WffTree node to check.
-     * @param _atoms - ArrayList of AtomNodes to add onto.
-     */
-    private void getAtomsHelper(WffTree _wffTreeNode, ArrayList<AtomNode> _atoms) {
-        if (_wffTreeNode == null) return;
-        for (WffTree ch : _wffTreeNode.getChildren()) {
-            if (ch.isAtom() && !_atoms.contains(ch)) { _atoms.add((AtomNode) ch); }
-            this.getAtomsHelper(ch, _atoms);
-        }
     }
 
     /**
@@ -95,5 +73,4 @@ public class TruthTable {
     public void setHeaders(ArrayList<TableHeader> headers) {
         this.headers = headers;
     }
-
 }
