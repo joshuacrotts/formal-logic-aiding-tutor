@@ -15,11 +15,11 @@ import java.util.LinkedList;
  */
 public class JsonFileMenu extends Translatable {
 
-    public enum Key implements JsonKey {
+    public enum Keys implements JsonKey {
         FILE,
     }
 
-    private KeyedJsonString file = new KeyedJsonString(JsonFileMenu.class, Key.FILE, "File");
+    private KeyedJsonString file = new KeyedJsonString(JsonFileMenu.class, Keys.FILE, "File");
     private JsonResetViewMenuItem resetViewMenuItem = new JsonResetViewMenuItem();
     private JsonSettingsMenuItem settingsMenuItem = new JsonSettingsMenuItem();
     private JsonExitMenuItem exitMenuItem = new JsonExitMenuItem();

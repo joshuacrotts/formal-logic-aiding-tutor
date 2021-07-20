@@ -3,7 +3,7 @@ package com.flat.view.main.panes.top;
 import com.flat.view.action.PopupMenuPane;
 import com.flat.view.action.ResizePane;
 import com.flat.view.main.panes.top.menupane.FlatMenuPane;
-import com.flat.view.data.pane.PaneData;
+import com.flat.view.data.fx.pane.PaneData;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;

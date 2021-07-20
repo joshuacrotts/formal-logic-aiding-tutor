@@ -10,16 +10,14 @@ import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.eventbus.EventBus;
 import com.flat.tools.font.FontTool;
-import com.flat.tools.font.enums.FontLocal.FontFamily;
 import com.flat.tools.json.JsonData;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeLayout;
 import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
-import com.flat.view.data.KeyedSymbol;
-import com.flat.view.data.KeyedText;
-import com.flat.view.data.algorithms.AvailableAlgorithms;
-import com.flat.view.data.settings.SettingsData;
+import com.flat.view.data.json.KeyedSymbol;
+import com.flat.view.data.json.KeyedText;
+import com.flat.view.data.fx.algorithms.AvailableAlgorithms;
 import java.util.ArrayList;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -28,11 +26,11 @@ import javafx.stage.Stage;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class Controller {
+    private static Stage STAGE;
     private final static KeyedText KEYED_TEXT = new KeyedText();
     private final static KeyedSymbol KEYED_SYMBOLS = new KeyedSymbol();
-    private static JsonLanguage JSON_LANGUAGE = new JsonLanguage("English", "English", "en", FontFamily.DEFAULT);
-    private static Stage STAGE;
-    private final static JsonData JSON_DATA = JsonData.getInstance();
+    private static JsonLanguage JSON_LANGUAGE = JsonLanguage.DEFAULT;
+    private final static JsonData JSON_DATA = JsonData.getInstance(JSON_LANGUAGE);
     private final static FontTool FONT_TOOL = FontTool.getInstance();
     private final static EventBus EVENT_BUS = EventBus.getInstance();
     private final static ApplyAlgorithmAdapter ALGORITHM_ADAPTER = new ApplyAlgorithmAdapter(JSON_DATA.getJsonAlgorithms());
@@ -86,13 +84,7 @@ public class Controller {
     }
 
     public static boolean updateTimeouts () {
-        return TimeoutManager.updateConstraints(
-                Integer.valueOf(SettingsData.getPredicateNDVTimeout().getText()),
-                Integer.valueOf(SettingsData.getPredicateTruthTreeTimeout().getText()),
-                Integer.valueOf(SettingsData.getPropositionalNDVTimeout().getText()),
-                Integer.valueOf(SettingsData.getPropositionalTruthTreeTimeout().getText()),
-                Integer.valueOf(SettingsData.getTruthTableTimeout().getText())
-        );
+        return TimeoutManager.updateConstraints();
     }
 
     public static void updateModelData () {

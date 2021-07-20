@@ -2,7 +2,7 @@ package com.flat.view.main.panes.center.children.algorithmvisualselection.childr
 
 import com.flat.controller.Controller;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.parsetree.events.ParseTreeButtonPressed;
-import com.flat.view.data.pane.PaneData;
+import com.flat.view.data.fx.pane.PaneData;
 import javafx.scene.control.Button;
 
 /**

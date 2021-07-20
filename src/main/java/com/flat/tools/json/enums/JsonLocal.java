@@ -7,8 +7,7 @@ public class JsonLocal {
 
     public enum File {
         ALGORITHMS("algorithms"),
-        PROPOSITIONAL("propositional"),
-        PREDICATE("predicate"),
+        LOGIC_SYMBOLS("logicsymbols"),
         MENUBAR("menubar"),
         LANGUAGE("languages"),
         SETTINGS("settings");

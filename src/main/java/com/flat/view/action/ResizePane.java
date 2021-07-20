@@ -1,6 +1,6 @@
 package com.flat.view.action;
 
-import com.flat.view.data.pane.PaneData;
+import com.flat.view.data.fx.pane.PaneData;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 

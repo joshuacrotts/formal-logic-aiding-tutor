@@ -1,7 +1,7 @@
 package com.flat.view.settings;
 
 import com.flat.controller.Controller;
-import com.flat.view.data.settings.SettingsData;
+import com.flat.models.json.settings.JsonSettings;
 import com.flat.view.settings.scene.SettingsScene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,7 +21,7 @@ public class SettingsStage extends Stage {
     }
 
     private void setFxProperties() {
-        super.titleProperty().bind(SettingsData.getTitle().textProperty());
+        super.titleProperty().bind(Controller.getKEYED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.TITLE).textProperty());
         super.initModality(Modality.WINDOW_MODAL);
         super.initOwner(Controller.getSTAGE().getScene().getWindow());
     }

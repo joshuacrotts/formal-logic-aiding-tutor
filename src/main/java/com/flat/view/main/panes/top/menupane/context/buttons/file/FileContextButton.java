@@ -1,11 +1,12 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.file;
 
+import com.flat.controller.Controller;
+import com.flat.models.json.menubar.menus.JsonFileMenu;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.file.items.ExitContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.file.items.ResetViewContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.file.items.SettingsContextButton;
-import com.flat.view.data.menubar.MenuBarData;
-import com.flat.view.data.pane.PaneData;
+import com.flat.view.data.fx.pane.PaneData;
 
 /**
  *
@@ -14,7 +15,7 @@ import com.flat.view.data.pane.PaneData;
 public class FileContextButton extends ContextButton {
 
     public FileContextButton () {
-        super(MenuBarData.getFile().textProperty(),
+        super(Controller.getKEYED_TEXT().getValue(JsonFileMenu.class, JsonFileMenu.Keys.FILE).textProperty(),
                 new ResetViewContextButton(),
                 new SettingsContextButton(),
                 new ExitContextButton()

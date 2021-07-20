@@ -2,9 +2,7 @@ package com.flat.tools.json;
 
 import com.flat.models.json.algorithm.JsonAlgorithms;
 import com.flat.models.json.base.keyed.KeyedJsonString;
-import com.flat.view.data.settings.LanguageData;
-import com.flat.view.data.menubar.MenuBarData;
-import com.flat.view.data.settings.SettingsData;
+import com.flat.view.data.json.settings.LanguageData;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.json.logicsymbols.JsonLogicSymbols;
 import com.flat.models.json.menubar.JsonMenuBar;
@@ -22,19 +20,19 @@ public class JsonData {
     private JsonMenuBar jsonMenuBar;
     private JsonSettings jsonSettings;
     private JsonAlgorithms jsonAlgorithms;
-    private JsonLogicSymbols jsonLogicSymbols = new JsonLogicSymbols();
+    private JsonLogicSymbols jsonLogicSymbols;
     private JsonLanguage[] language = JsonTools.jsonToObjectList(JsonLanguage.NONE, JsonLocal.File.LANGUAGE, JsonLanguage[].class);
     private final ArrayList <KeyedJsonString> updates = new ArrayList();
     // Need to have updates for all Keyed objects.
 
-    private JsonData() {
+    private JsonData (JsonLanguage _language) {
         LanguageData.injectData(language);
-        this.update(JsonLanguage.DEFAULT);
+        this.update(_language);
     }
 
-    public static JsonData getInstance() {
+    public static JsonData getInstance (JsonLanguage _language) {
         if (instance == null) {
-            instance = new JsonData();
+            instance = new JsonData(_language);
         }
         return instance;
     }
@@ -52,7 +50,6 @@ public class JsonData {
             this.readData(_language);
         }
         this.updateKeyedData();
-        this.updateFxData(_language);
     }
 
     private boolean languageDirectoryExists(JsonLanguage _language) {
@@ -63,29 +60,28 @@ public class JsonData {
         this.jsonMenuBar = new JsonMenuBar();
         this.jsonSettings = new JsonSettings();
         this.jsonAlgorithms = new JsonAlgorithms();
+        this.jsonLogicSymbols = new JsonLogicSymbols();
     }
 
     private void readData (JsonLanguage _language) {
         this.jsonMenuBar = JsonTools.jsonToObject(_language, JsonLocal.File.MENUBAR, JsonMenuBar.class);
         this.jsonSettings = JsonTools.jsonToObject(_language, JsonLocal.File.SETTINGS, JsonSettings.class);
         this.jsonAlgorithms = JsonTools.jsonToObject(_language, JsonLocal.File.ALGORITHMS, JsonAlgorithms.class);
+        this.jsonLogicSymbols = JsonTools.jsonToObject(_language, JsonLocal.File.LOGIC_SYMBOLS, JsonLogicSymbols.class);
     }
 
     private void translateData (JsonLanguage _language) {
         this.jsonMenuBar.translate(_language);
         this.jsonSettings.translate(_language);
         this.jsonAlgorithms.translate(_language);
+        this.jsonLogicSymbols.translate(_language);
     }
 
     private void writeData (JsonLanguage _language) {
         JsonTools.objectToJson(_language, JsonLocal.File.MENUBAR, this.jsonMenuBar, JsonMenuBar.class);
         JsonTools.objectToJson(_language, JsonLocal.File.SETTINGS, this.jsonSettings, JsonSettings.class);
         JsonTools.objectToJson(_language, JsonLocal.File.ALGORITHMS, this.jsonAlgorithms, JsonAlgorithms.class);
-    }
-
-    private void updateFxData (JsonLanguage _language) {
-        MenuBarData.injectData(_language, this.jsonMenuBar);
-        SettingsData.injectData(_language, this.jsonSettings);
+        JsonTools.objectToJson(_language, JsonLocal.File.LOGIC_SYMBOLS, this.jsonLogicSymbols, JsonLogicSymbols.class);
     }
 
     private void updateKeyedData () {

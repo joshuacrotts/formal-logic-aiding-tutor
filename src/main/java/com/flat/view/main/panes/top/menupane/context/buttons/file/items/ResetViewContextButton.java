@@ -1,9 +1,9 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.file.items;
 
 import com.flat.controller.Controller;
+import com.flat.models.json.menubar.items.file.JsonResetViewMenuItem;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
-import com.flat.view.data.menubar.MenuBarData;
-import com.flat.view.data.pane.PaneData;
+import com.flat.view.data.fx.pane.PaneData;
 import javafx.stage.Stage;
 
 /**
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class ResetViewContextButton extends ContextButton {
 
     public ResetViewContextButton () {
-        super(MenuBarData.getResetView().textProperty());
+        super(Controller.getKEYED_TEXT().getValue(JsonResetViewMenuItem.class, JsonResetViewMenuItem.Keys.RESET).textProperty());
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         this.setOnAction();
     }

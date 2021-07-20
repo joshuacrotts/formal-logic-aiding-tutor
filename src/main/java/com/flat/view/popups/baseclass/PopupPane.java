@@ -3,7 +3,7 @@ package com.flat.view.popups.baseclass;
 import com.flat.view.popups.baseclass.buttons.CloseButton;
 import com.flat.view.popups.baseclass.buttons.IconButton;
 import com.flat.view.popups.baseclass.buttons.PopupOkButton;
-import com.flat.view.data.pane.PaneData;
+import com.flat.view.data.fx.pane.PaneData;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;

@@ -1,8 +1,9 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items;
 
+import com.flat.controller.Controller;
+import com.flat.models.json.menubar.items.export.JsonLatexParseTreeMenuItem;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
-import com.flat.view.data.menubar.MenuBarData;
-import com.flat.view.data.pane.PaneData;
+import com.flat.view.data.fx.pane.PaneData;
 
 /**
  *
@@ -11,7 +12,7 @@ import com.flat.view.data.pane.PaneData;
 public class LatexParseTreeContextButton extends ContextButton {
 
     public LatexParseTreeContextButton () {
-        super(MenuBarData.getLatexParseTree().textProperty());
+        super(Controller.getKEYED_TEXT().getValue(JsonLatexParseTreeMenuItem.class, JsonLatexParseTreeMenuItem.Keys.LATEX_PARSE_TREE).textProperty());
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
     }
 

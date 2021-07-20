@@ -1,10 +1,10 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.file.items;
 
 import com.flat.controller.Controller;
+import com.flat.models.json.menubar.items.file.JsonSettingsMenuItem;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.settings.SettingsStage;
-import com.flat.view.data.menubar.MenuBarData;
-import com.flat.view.data.pane.PaneData;
+import com.flat.view.data.fx.pane.PaneData;
 
 /**
  *
@@ -13,7 +13,7 @@ import com.flat.view.data.pane.PaneData;
 public class SettingsContextButton extends ContextButton {
 
     public SettingsContextButton () {
-        super(MenuBarData.getSettings().textProperty());
+        super(Controller.getKEYED_TEXT().getValue(JsonSettingsMenuItem.class, JsonSettingsMenuItem.Keys.SETTINGS).textProperty());
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         this.setOnAction();
     }
