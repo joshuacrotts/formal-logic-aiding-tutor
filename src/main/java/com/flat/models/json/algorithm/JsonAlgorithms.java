@@ -1,10 +1,10 @@
 package com.flat.models.json.algorithm;
 
-import com.flat.models.json.JsonString;
 import com.flat.models.json.algorithm.type.general.JsonGeneralAlgorithms;
 import com.flat.models.json.algorithm.type.JsonPredicateAlgorithms;
 import com.flat.models.json.algorithm.type.JsonPropositionalAlgorithms;
-import com.flat.models.translation.Translatable;
+import com.flat.models.json.base.JsonString;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**
@@ -43,7 +43,7 @@ public class JsonAlgorithms extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
+    public LinkedList <JsonString> toTranslate() {
         return new LinkedList <JsonString> () {{
             addAll(generalAlgorithms.toTranslate());
             addAll(propositionalAlgorithms.toTranslate());

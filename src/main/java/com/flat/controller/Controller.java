@@ -16,6 +16,8 @@ import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeLayout;
 import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
+import com.flat.view.viewdata.KeyedSymbol;
+import com.flat.view.viewdata.KeyedText;
 import com.flat.view.viewdata.algorithms.AvailableAlgorithms;
 import com.flat.view.viewdata.settings.SettingsData;
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ import javafx.stage.Stage;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class Controller {
+    private final static KeyedText KEYED_TEXT = new KeyedText();
+    private final static KeyedSymbol KEYED_SYMBOLS = new KeyedSymbol();
     private static JsonLanguage JSON_LANGUAGE = new JsonLanguage("English", "English", "en", FontFamily.DEFAULT);
     private static Stage STAGE;
     private final static JsonData JSON_DATA = JsonData.getInstance();
@@ -127,6 +131,14 @@ public class Controller {
 
     public static TreeLayout getTREE_LAYOUT() {
         return TREE_LAYOUT;
+    }
+
+    public static KeyedText getKEYED_TEXT() {
+        return KEYED_TEXT;
+    }
+
+    public static KeyedSymbol getKEYED_SYMBOLS() {
+        return KEYED_SYMBOLS;
     }
 
     // Setters for for object's attributes.

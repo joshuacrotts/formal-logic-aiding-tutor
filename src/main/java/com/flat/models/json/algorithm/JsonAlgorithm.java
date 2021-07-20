@@ -1,8 +1,8 @@
 package com.flat.models.json.algorithm;
 
-import com.flat.models.json.JsonString;
 import com.flat.models.json.algorithm.enums.AlgorithmType;
-import com.flat.models.translation.Translatable;
+import com.flat.models.json.base.JsonString;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**
@@ -13,8 +13,8 @@ public class JsonAlgorithm extends Translatable {
     private JsonString jsonString;
     private AlgorithmType algorithmType;
 
-    public JsonAlgorithm (String _string, AlgorithmType _algorithmType) {
-        this.jsonString = new JsonString(_string);
+    public JsonAlgorithm (JsonString _string, AlgorithmType _algorithmType) {
+        this.jsonString = _string;
         this.algorithmType = _algorithmType;
     }
 
@@ -36,7 +36,7 @@ public class JsonAlgorithm extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
+    public LinkedList <JsonString> toTranslate() {
         return new LinkedList <JsonString> () {{
             add(jsonString);
         }};

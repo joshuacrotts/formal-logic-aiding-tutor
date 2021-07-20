@@ -1,16 +1,19 @@
 package com.flat.models.json.logicsymbols.logictype.propositional.symbols.implication.attributes;
 
-import com.flat.models.json.logicsymbols.logictype.base.attributes.Axioms;
+import com.flat.models.json.logicsymbols.logictype.base.attributes.axioms.keyed.KeyedAxioms;
+import com.flat.models.json.logicsymbols.logictype.propositional.symbols.implication.ImplicationSymbol;
 import java.util.ArrayList;
 
 /**
  *
  * @author christopherbrantley
  */
-public class ImplicationAxioms extends Axioms {
+public class ImplicationAxioms extends KeyedAxioms {
 
     public ImplicationAxioms () {
-        super("(A ⇒ B) is false when A is true and B is false,"
+        super(
+                ImplicationSymbol.class,
+                "(A ⇒ B) is false when A is true and B is false,"
                 + " but true otherwise. The implication operator"
                 + " is often difficult for students to understand,"
                 + " especially because if A is false and B is false,"

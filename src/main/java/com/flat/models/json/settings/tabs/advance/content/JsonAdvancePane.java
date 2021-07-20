@@ -1,8 +1,10 @@
 package com.flat.models.json.settings.tabs.advance.content;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.JsonString;
+import com.flat.models.json.base.keyed.KeyedJsonString;
+import com.flat.models.json.base.keyed.base.JsonKey;
 import com.flat.models.json.settings.tabs.advance.content.alert.JsonAdvanceAlert;
-import com.flat.models.translation.Translatable;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**
@@ -10,31 +12,40 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonAdvancePane extends Translatable {
-    private JsonString predicateNDV = new JsonString("Predicate natural deduction validator");
-    private JsonString predicateTruthTree = new JsonString("Predicate truth tree");
-    private JsonString propositionalNDV = new JsonString("Propositional natural deduction validator");
-    private JsonString propositionalTruthTree = new JsonString("Propositional truth tree");
-    private JsonString truthTableGenerator = new JsonString("Truth table generator");
+
+    public enum Keys implements JsonKey {
+        PREDICATE_NDV,
+        PREDICATE_TRUTH_TRUTH,
+        PROPOSITIONAL_NDV,
+        PROPOSITIONAL_TRUTH_TREE,
+        TRUTH_TABLE_GENERATOR
+    }
+
+    private KeyedJsonString predicateNDV = new KeyedJsonString(JsonAdvancePane.class, Keys.PREDICATE_NDV, "Predicate natural deduction validator");
+    private KeyedJsonString predicateTruthTree = new KeyedJsonString(JsonAdvancePane.class, Keys.PREDICATE_TRUTH_TRUTH, "Predicate truth tree");
+    private KeyedJsonString propositionalNDV = new KeyedJsonString(JsonAdvancePane.class, Keys.PROPOSITIONAL_NDV, "Propositional natural deduction validator");
+    private KeyedJsonString propositionalTruthTree = new KeyedJsonString(JsonAdvancePane.class, Keys.PROPOSITIONAL_TRUTH_TREE, "Propositional truth tree");
+    private KeyedJsonString truthTableGenerator = new KeyedJsonString(JsonAdvancePane.class, Keys.TRUTH_TABLE_GENERATOR, "Truth table generator");
     private JsonAdvanceAlert advanceAlert = new JsonAdvanceAlert();
 
     // Getters for object's attributes.
-    public JsonString getPredicateNDV() {
+    public KeyedJsonString getPredicateNDV() {
         return predicateNDV;
     }
 
-    public JsonString getPredicateTruthTree() {
+    public KeyedJsonString getPredicateTruthTree() {
         return predicateTruthTree;
     }
 
-    public JsonString getPropositionalNDV() {
+    public KeyedJsonString getPropositionalNDV() {
         return propositionalNDV;
     }
 
-    public JsonString getPropositionalTruthTree() {
+    public KeyedJsonString getPropositionalTruthTree() {
         return propositionalTruthTree;
     }
 
-    public JsonString getTruthTableGenerator() {
+    public KeyedJsonString getTruthTableGenerator() {
         return truthTableGenerator;
     }
 
@@ -43,23 +54,23 @@ public class JsonAdvancePane extends Translatable {
     }
 
     // Setters for object's attributes.
-    public void setPredicateNDV(JsonString predicateNDV) {
+    public void setPredicateNDV(KeyedJsonString predicateNDV) {
         this.predicateNDV = predicateNDV;
     }
 
-    public void setPredicateTruthTree(JsonString predicateTruthTree) {
+    public void setPredicateTruthTree(KeyedJsonString predicateTruthTree) {
         this.predicateTruthTree = predicateTruthTree;
     }
 
-    public void setPropositionalNDV(JsonString propositionalNDV) {
+    public void setPropositionalNDV(KeyedJsonString propositionalNDV) {
         this.propositionalNDV = propositionalNDV;
     }
 
-    public void setPropositionalTruthTree(JsonString propositionalTruthTree) {
+    public void setPropositionalTruthTree(KeyedJsonString propositionalTruthTree) {
         this.propositionalTruthTree = propositionalTruthTree;
     }
 
-    public void setTruthTableGenerator(JsonString truthTableGenerator) {
+    public void setTruthTableGenerator(KeyedJsonString truthTableGenerator) {
         this.truthTableGenerator = truthTableGenerator;
     }
 
@@ -68,8 +79,8 @@ public class JsonAdvancePane extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString> () {{
+    public LinkedList <JsonString> toTranslate() {
+        return new LinkedList <JsonString> () {{
             add(predicateNDV);
             add(predicateTruthTree);
             add(propositionalNDV);

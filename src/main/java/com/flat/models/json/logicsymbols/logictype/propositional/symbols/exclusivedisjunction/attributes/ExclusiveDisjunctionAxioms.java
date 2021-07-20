@@ -1,16 +1,19 @@
 package com.flat.models.json.logicsymbols.logictype.propositional.symbols.exclusivedisjunction.attributes;
 
-import com.flat.models.json.logicsymbols.logictype.base.attributes.Axioms;
+import com.flat.models.json.logicsymbols.logictype.base.attributes.axioms.keyed.KeyedAxioms;
+import com.flat.models.json.logicsymbols.logictype.propositional.symbols.exclusivedisjunction.ExclusiveDisjunctionSymbol;
 import java.util.ArrayList;
 
 /**
  *
  * @author christopherbrantley
  */
-public class ExclusiveDisjunctionAxioms extends Axioms {
+public class ExclusiveDisjunctionAxioms extends KeyedAxioms {
 
     public ExclusiveDisjunctionAxioms () {
-        super("The statement (A ⊕ B) is true when either"
+        super(
+                ExclusiveDisjunctionSymbol.class,
+                "The statement (A ⊕ B) is true when either"
                 + " A or B are true, but not both are true.",
                 new ArrayList <String> () {{
                     add("1. A common example of the exclusive"

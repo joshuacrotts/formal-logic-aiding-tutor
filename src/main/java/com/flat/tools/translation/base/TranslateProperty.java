@@ -1,6 +1,6 @@
-package com.flat.models.translation;
+package com.flat.tools.translation.base;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.JsonString;
 import com.flat.models.json.language.JsonLanguage;
 import com.google.cloud.translate.Translation;
 
@@ -12,10 +12,10 @@ import java.util.List;
  */
 public interface TranslateProperty {
 
-    LinkedList<JsonString> toTranslate();
+    LinkedList <JsonString> toTranslate();
 
-    void translate(JsonLanguage _language);
+    void translate (JsonLanguage _language);
 
-    void applyTranslation(List<Translation> _translations);
+    void applyTranslation (List<Translation> _translations);
 
 }

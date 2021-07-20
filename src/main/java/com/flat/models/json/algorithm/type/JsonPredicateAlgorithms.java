@@ -1,9 +1,11 @@
 package com.flat.models.json.algorithm.type;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.keyed.KeyedJsonString;
 import com.flat.models.json.algorithm.JsonAlgorithm;
 import com.flat.models.json.algorithm.enums.AlgorithmType;
-import com.flat.models.translation.Translatable;
+import com.flat.models.json.base.JsonString;
+import com.flat.models.json.base.keyed.base.JsonKey;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**
@@ -11,17 +13,29 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonPredicateAlgorithms extends Translatable {
-    private JsonString label = new JsonString("Predicate Logic Algorithms");
-    private JsonAlgorithm boundVariableDetector = new JsonAlgorithm("Bound Variable Detector", AlgorithmType.BOUND_VARIABLE_DETECTOR);
-    private JsonAlgorithm closedSentenceDeterminer = new JsonAlgorithm("Closed Sentence Determiner", AlgorithmType.CLOSED_SENTENCE_DETERMINER);
-    private JsonAlgorithm freeVariableDetector = new JsonAlgorithm("Free Variable Detector", AlgorithmType.FREE_VARIABLE_DETECTOR);
-    private JsonAlgorithm groundSentenceDeterminer = new JsonAlgorithm("Ground Sentence Determiner", AlgorithmType.GROUND_SENTENCE_DETERMINER);
-    private JsonAlgorithm openSentenceDeterminer = new JsonAlgorithm("Open Sentence Determiner", AlgorithmType.OPEN_SENTENCE_DETERMINER);
-    private JsonAlgorithm predicatetruthTreeGenerator = new JsonAlgorithm("Predicate Truth Tree Generator", AlgorithmType.PREDICATE_TRUTH_TREE_GENERATOR);
-    private JsonAlgorithm randomFormulaGenerator = new JsonAlgorithm("Random Formula Generator", AlgorithmType.RANDOM_PREDICATE_FORMULA);
+
+    public enum Keys implements JsonKey {
+        PREDICATE_LOGIC_ALGORITHMS,
+        BOUND_VARIABLE_DETECTOR,
+        CLOSED_SENTENCE_DETERMINER,
+        FREE_VARIABLE_DETECTOR,
+        GROUND_SENTENCE_DETERMINER,
+        OPEN_SENTENCE_DETERMINER,
+        PREDICATE_TRUTH_TREE_GENERATOR,
+        RANDOM_FORMULA_GENERATOR,
+    }
+
+    private KeyedJsonString label = new KeyedJsonString(JsonPredicateAlgorithms.class, Keys.PREDICATE_LOGIC_ALGORITHMS, "Predicate Logic Algorithms");
+    private JsonAlgorithm boundVariableDetector = new JsonAlgorithm(new KeyedJsonString(JsonPredicateAlgorithms.class, Keys.BOUND_VARIABLE_DETECTOR, "Bound Variable Detector"), AlgorithmType.BOUND_VARIABLE_DETECTOR);
+    private JsonAlgorithm closedSentenceDeterminer = new JsonAlgorithm(new KeyedJsonString(JsonPredicateAlgorithms.class, Keys.CLOSED_SENTENCE_DETERMINER, "Closed Sentence Determiner"), AlgorithmType.CLOSED_SENTENCE_DETERMINER);
+    private JsonAlgorithm freeVariableDetector = new JsonAlgorithm(new KeyedJsonString(JsonPredicateAlgorithms.class, Keys.FREE_VARIABLE_DETECTOR, "Free Variable Detector"), AlgorithmType.FREE_VARIABLE_DETECTOR);
+    private JsonAlgorithm groundSentenceDeterminer = new JsonAlgorithm(new KeyedJsonString(JsonPredicateAlgorithms.class, Keys.GROUND_SENTENCE_DETERMINER, "Ground Sentence Determiner"), AlgorithmType.GROUND_SENTENCE_DETERMINER);
+    private JsonAlgorithm openSentenceDeterminer = new JsonAlgorithm(new KeyedJsonString(JsonPredicateAlgorithms.class, Keys.OPEN_SENTENCE_DETERMINER, "Open Sentence Determiner"), AlgorithmType.OPEN_SENTENCE_DETERMINER);
+    private JsonAlgorithm predicatetruthTreeGenerator = new JsonAlgorithm(new KeyedJsonString(JsonPredicateAlgorithms.class, Keys.PREDICATE_TRUTH_TREE_GENERATOR, "Predicate Truth Tree Generator"), AlgorithmType.PREDICATE_TRUTH_TREE_GENERATOR);
+    private JsonAlgorithm randomFormulaGenerator = new JsonAlgorithm(new KeyedJsonString(JsonPredicateAlgorithms.class, Keys.RANDOM_FORMULA_GENERATOR, "Random Formula Generator"), AlgorithmType.RANDOM_PREDICATE_FORMULA);
 
     // Getters for object's attributes
-    public JsonString getLabel() {
+    public KeyedJsonString getLabel() {
         return label;
     }
 
@@ -54,7 +68,7 @@ public class JsonPredicateAlgorithms extends Translatable {
     }
 
     // Setters for object's attributes.
-    public void setLabel(JsonString label) {
+    public void setLabel(KeyedJsonString label) {
         this.label = label;
     }
 
@@ -87,7 +101,7 @@ public class JsonPredicateAlgorithms extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
+    public LinkedList <JsonString> toTranslate() {
         return new LinkedList <JsonString> () {{
             add(label);
             addAll(boundVariableDetector.toTranslate());

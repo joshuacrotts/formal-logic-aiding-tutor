@@ -1,16 +1,19 @@
 package com.flat.models.json.logicsymbols.logictype.propositional.symbols.negation.attributes;
 
-import com.flat.models.json.logicsymbols.logictype.base.attributes.Axioms;
+import com.flat.models.json.logicsymbols.logictype.base.attributes.axioms.keyed.KeyedAxioms;
+import com.flat.models.json.logicsymbols.logictype.propositional.symbols.negation.NegationSymbol;
 import java.util.ArrayList;
 
 /**
  *
  * @author christopherbrantley
  */
-public class NegationAxioms extends Axioms {
+public class NegationAxioms extends KeyedAxioms {
 
     public NegationAxioms () {
-        super("The negation operator (~) flips the truth"
+        super(
+                NegationSymbol.class,
+                "The negation operator (~) flips the truth"
                 + " value of a proposition A. So, if A is"
                 + " true, then ~A is false. Likewise, if ~A"
                 + " is false, then ~A is true. The negation"

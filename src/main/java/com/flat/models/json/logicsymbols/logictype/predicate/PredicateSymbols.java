@@ -1,9 +1,9 @@
 package com.flat.models.json.logicsymbols.logictype.predicate;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.JsonString;
 import com.flat.models.json.logicsymbols.logictype.predicate.symbols.existential.ExistentialSymbol;
 import com.flat.models.json.logicsymbols.logictype.predicate.symbols.universal.UniversalSymbol;
-import com.flat.models.translation.Translatable;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**

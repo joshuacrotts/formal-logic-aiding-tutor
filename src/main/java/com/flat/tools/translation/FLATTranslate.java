@@ -1,7 +1,7 @@
 package com.flat.tools.translation;
 
 import com.flat.models.json.language.JsonLanguage;
-import com.flat.models.translation.TranslateProperty;
+import com.flat.tools.translation.base.TranslateProperty;
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.Translate.TranslateOption;
 import com.google.cloud.translate.TranslateOptions;

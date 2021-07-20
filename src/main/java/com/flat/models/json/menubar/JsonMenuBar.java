@@ -1,10 +1,10 @@
 package com.flat.models.json.menubar;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.JsonString;
 import com.flat.models.json.menubar.menus.JsonFileMenu;
 import com.flat.models.json.menubar.menus.JsonHelpMenu;
 import com.flat.models.json.menubar.menus.export.JsonExportMenu;
-import com.flat.models.translation.Translatable;
+import com.flat.tools.translation.base.Translatable;
 
 import java.util.LinkedList;
 
@@ -12,6 +12,7 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonMenuBar extends Translatable {
+
     private JsonFileMenu fileMenu = new JsonFileMenu();
     private JsonExportMenu exportMenu = new JsonExportMenu();
     private JsonHelpMenu helpMenu = new JsonHelpMenu();
@@ -43,8 +44,8 @@ public class JsonMenuBar extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString>() {{
+    public LinkedList <JsonString> toTranslate() {
+        return new LinkedList <JsonString>() {{
             addAll(fileMenu.toTranslate());
             addAll(exportMenu.toTranslate());
             addAll(helpMenu.toTranslate());

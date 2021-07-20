@@ -1,8 +1,10 @@
 package com.flat.models.json.settings.tabs.advance;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.JsonString;
+import com.flat.models.json.base.keyed.KeyedJsonString;
+import com.flat.models.json.base.keyed.base.JsonKey;
 import com.flat.models.json.settings.tabs.advance.content.JsonAdvancePane;
-import com.flat.models.translation.Translatable;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**
@@ -10,11 +12,16 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonAdvanceTab extends Translatable {
-    private JsonString advance = new JsonString("Advance");
+
+    public enum Keys implements JsonKey {
+        ADVANCE
+    }
+
+    private KeyedJsonString advance = new KeyedJsonString(JsonAdvanceTab.class, Keys.ADVANCE, "Advance");
     private JsonAdvancePane advancePane = new JsonAdvancePane();
 
     // Getters for object's attributes.
-    public JsonString getAdvance() {
+    public KeyedJsonString getAdvance() {
         return advance;
     }
 
@@ -23,7 +30,7 @@ public class JsonAdvanceTab extends Translatable {
     }
 
     // Setters for object's attributes.
-    public void setAdvance(JsonString advance) {
+    public void setAdvance(KeyedJsonString advance) {
         this.advance = advance;
     }
 
@@ -32,8 +39,8 @@ public class JsonAdvanceTab extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString> () {{
+    public LinkedList <JsonString> toTranslate() {
+        return new LinkedList <JsonString> () {{
             add(advance);
             addAll(advancePane.toTranslate());
         }};

@@ -1,12 +1,13 @@
-package com.flat.models.json;
+package com.flat.models.json.base;
 
 /**
- * @author Christopher Brantley <c_brantl@uncg.edu>
+ *
+ * @author christopherbrantley
  */
 public class JsonString {
     private String string;
 
-    public JsonString(String _string) {
+    public JsonString (String _string) {
         this.string = _string;
     }
 

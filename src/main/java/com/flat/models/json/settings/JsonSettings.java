@@ -1,10 +1,12 @@
 package com.flat.models.json.settings;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.JsonString;
+import com.flat.models.json.base.keyed.KeyedJsonString;
+import com.flat.models.json.base.keyed.base.JsonKey;
 import com.flat.models.json.settings.tabs.advance.JsonAdvanceTab;
 import com.flat.models.json.settings.tabs.appearance.JsonAppearanceTab;
 import com.flat.models.json.settings.tabs.language.JsonLanguageTab;
-import com.flat.models.translation.Translatable;
+import com.flat.tools.translation.base.Translatable;
 
 import java.util.LinkedList;
 
@@ -12,23 +14,33 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonSettings extends Translatable {
-    private JsonString title = new JsonString("Settings");
-    private JsonString apply = new JsonString("Apply");
-    private JsonString close = new JsonString("Close");
+
+    public enum Keys implements JsonKey {
+        TITLE,
+        APPLY,
+        CLOSE,
+        APPEARANCE_TAB,
+        LANGUAGE_TAB,
+        ADVANCE_TAB,
+    }
+
+    private KeyedJsonString title = new KeyedJsonString(JsonSettings.class, Keys.TITLE, "Settings");
+    private KeyedJsonString apply = new KeyedJsonString(JsonSettings.class, Keys.APPLY, "Apply");
+    private KeyedJsonString close = new KeyedJsonString(JsonSettings.class, Keys.CLOSE, "Close");
     private JsonAppearanceTab appearanceTab = new JsonAppearanceTab();
     private JsonLanguageTab languageTab = new JsonLanguageTab();
     private JsonAdvanceTab advanceTab = new JsonAdvanceTab();
 
     // Getters for object's attributes.
-    public JsonString getTitle() {
+    public KeyedJsonString getTitle() {
         return title;
     }
 
-    public JsonString getApply() {
+    public KeyedJsonString getApply() {
         return apply;
     }
 
-    public JsonString getClose() {
+    public KeyedJsonString getClose() {
         return close;
     }
 
@@ -45,15 +57,15 @@ public class JsonSettings extends Translatable {
     }
 
     // Setters for object's attributes.
-    public void setTitle(JsonString title) {
+    public void setTitle(KeyedJsonString title) {
         this.title = title;
     }
 
-    public void setApply(JsonString apply) {
+    public void setApply(KeyedJsonString apply) {
         this.apply = apply;
     }
 
-    public void setClose(JsonString close) {
+    public void setClose(KeyedJsonString close) {
         this.close = close;
     }
 
@@ -70,8 +82,8 @@ public class JsonSettings extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString>() {{
+    public LinkedList <JsonString> toTranslate() {
+        return new LinkedList <JsonString>() {{
             add(title);
             add(apply);
             add(close);

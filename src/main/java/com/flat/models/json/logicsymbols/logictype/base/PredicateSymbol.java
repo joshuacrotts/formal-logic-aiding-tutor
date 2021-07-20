@@ -1,8 +1,8 @@
 package com.flat.models.json.logicsymbols.logictype.base;
 
-import com.flat.models.json.logicsymbols.logictype.base.attributes.Axioms;
-import com.flat.models.json.logicsymbols.logictype.base.attributes.Symbols;
-import com.flat.models.json.JsonString;
+import com.flat.models.json.logicsymbols.logictype.base.attributes.axioms.Axioms;
+import com.flat.models.json.logicsymbols.logictype.base.attributes.symbols.Symbols;
+import com.flat.models.json.base.keyed.KeyedJsonString;
 
 /**
  *
@@ -10,7 +10,7 @@ import com.flat.models.json.JsonString;
  */
 public class PredicateSymbol extends LogicSymbol {
 
-    public PredicateSymbol(JsonString _label, Symbols _symbols, JsonString _toolTip, JsonString _description, JsonString _readAs, Axioms _axioms) {
+    public PredicateSymbol(KeyedJsonString _label, Symbols _symbols, KeyedJsonString _toolTip, KeyedJsonString _description, KeyedJsonString _readAs, Axioms _axioms) {
         super(_label, _symbols, _toolTip, _description, _readAs, _axioms);
     }
 

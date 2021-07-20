@@ -1,16 +1,19 @@
 package com.flat.models.json.logicsymbols.logictype.propositional.symbols.turnstile.attributes;
 
-import com.flat.models.json.logicsymbols.logictype.base.attributes.Axioms;
+import com.flat.models.json.logicsymbols.logictype.base.attributes.axioms.keyed.KeyedAxioms;
+import com.flat.models.json.logicsymbols.logictype.propositional.symbols.turnstile.TurnstileSymbol;
 import java.util.ArrayList;
 
 /**
  *
  * @author christopherbrantley
  */
-public class TurnstileAxioms extends Axioms {
+public class TurnstileAxioms extends KeyedAxioms {
 
     public TurnstileAxioms () {
-        super("(x ⊢ y) means x proves (syntactically entails) y.",
+        super(
+                TurnstileSymbol.class,
+                "(x ⊢ y) means x proves (syntactically entails) y.",
                 new ArrayList <String> () {{
                     add("1. (A → B), (B → C) ⊢ (A → C). The two"
                             + " premises syntactically entail the"

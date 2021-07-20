@@ -1,7 +1,9 @@
 package com.flat.models.json.settings.tabs.advance.content.alert;
 
-import com.flat.models.json.JsonString;
-import com.flat.models.translation.Translatable;
+import com.flat.models.json.base.JsonString;
+import com.flat.models.json.base.keyed.KeyedJsonString;
+import com.flat.models.json.base.keyed.base.JsonKey;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**
@@ -9,57 +11,66 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonAdvanceAlert extends Translatable {
-    private JsonString message = new JsonString("Message");
-    private JsonString messageText = new JsonString("Timeout values were updated.");
-    private JsonString error = new JsonString("Error");
-    private JsonString errorText = new JsonString("Please ensure values are within the specified range.");
-    private JsonString ok = new JsonString("Ok");
+
+    public enum Keys implements JsonKey {
+        MESSAGE,
+        MESSAGE_TEXT,
+        ERROR,
+        ERROR_TEXT,
+        OK
+    }
+
+    private KeyedJsonString message = new KeyedJsonString(JsonAdvanceAlert.class, Keys.MESSAGE, "Message");
+    private KeyedJsonString messageText = new KeyedJsonString(JsonAdvanceAlert.class, Keys.MESSAGE_TEXT, "Timeout values were updated.");
+    private KeyedJsonString error = new KeyedJsonString(JsonAdvanceAlert.class, Keys.ERROR, "Error");
+    private KeyedJsonString errorText = new KeyedJsonString(JsonAdvanceAlert.class, Keys.ERROR_TEXT, "Please ensure values are within the specified range.");
+    private KeyedJsonString ok = new KeyedJsonString(JsonAdvanceAlert.class, Keys.OK, "Ok");
 
     // Getters for object's attributes.
-    public JsonString getMessage() {
+    public KeyedJsonString getMessage() {
         return message;
     }
 
-    public JsonString getMessageText() {
+    public KeyedJsonString getMessageText() {
         return messageText;
     }
 
-    public JsonString getError() {
+    public KeyedJsonString getError() {
         return error;
     }
 
-    public JsonString getErrorText() {
+    public KeyedJsonString getErrorText() {
         return errorText;
     }
 
-    public JsonString getOk() {
+    public KeyedJsonString getOk() {
         return ok;
     }
 
     // Setters for object's attributes.
-    public void setMessage(JsonString message) {
+    public void setMessage(KeyedJsonString message) {
         this.message = message;
     }
 
-    public void setMessageText(JsonString messageText) {
+    public void setMessageText(KeyedJsonString messageText) {
         this.messageText = messageText;
     }
 
-    public void setError(JsonString error) {
+    public void setError(KeyedJsonString error) {
         this.error = error;
     }
 
-    public void setErrorText(JsonString errorText) {
+    public void setErrorText(KeyedJsonString errorText) {
         this.errorText = errorText;
     }
 
-    public void setOk(JsonString ok) {
+    public void setOk(KeyedJsonString ok) {
         this.ok = ok;
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString> () {{
+    public LinkedList <JsonString> toTranslate() {
+        return new LinkedList <JsonString> () {{
             add(message);
             add(messageText);
             add(error);

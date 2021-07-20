@@ -1,9 +1,9 @@
 package com.flat.models.json.logicsymbols.logictype.base;
 
-import com.flat.models.json.logicsymbols.logictype.base.attributes.Axioms;
-import com.flat.models.json.logicsymbols.logictype.base.attributes.Symbols;
-import com.flat.models.json.JsonString;
-import com.flat.models.translation.Translatable;
+import com.flat.models.json.base.JsonString;
+import com.flat.models.json.logicsymbols.logictype.base.attributes.axioms.Axioms;
+import com.flat.models.json.logicsymbols.logictype.base.attributes.symbols.Symbols;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**
@@ -11,6 +11,7 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public abstract class LogicSymbol extends Translatable {
+
     private JsonString label;
     private Symbols symbols;
     private JsonString toolTip;
@@ -20,11 +21,7 @@ public abstract class LogicSymbol extends Translatable {
 
     public LogicSymbol (String _label, Symbols _symbols, String _toolTip, String _description, String _readAs, Axioms _axioms) {
         this.label = new JsonString(_label);
-        this.symbols = _symbols;
         this.toolTip = new JsonString(_toolTip);
-        this.description = new JsonString(_description);
-        this.readAs = new JsonString(_readAs);
-        this.axioms = _axioms;
     }
 
     public LogicSymbol (JsonString _label, Symbols _symbols, JsonString _toolTip, JsonString _description, JsonString _readAs, Axioms _axioms) {
@@ -85,6 +82,7 @@ public abstract class LogicSymbol extends Translatable {
     public void setAxioms(Axioms axioms) {
         this.axioms = axioms;
     }
+
 
     @Override
     public LinkedList <JsonString> toTranslate() {

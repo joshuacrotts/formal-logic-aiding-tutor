@@ -1,9 +1,9 @@
 package com.flat.models.json.logicsymbols;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.JsonString;
 import com.flat.models.json.logicsymbols.logictype.predicate.PredicateSymbols;
 import com.flat.models.json.logicsymbols.logictype.propositional.PropositionalSymbols;
-import com.flat.models.translation.Translatable;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**
@@ -36,7 +36,7 @@ public class LogicSymbols extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
+    public LinkedList <JsonString> toTranslate() {
         return new LinkedList <JsonString> () {{
             addAll(propositional.toTranslate());
             addAll(predicate.toTranslate());

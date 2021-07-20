@@ -1,8 +1,10 @@
 package com.flat.models.json.menubar.menus;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.JsonString;
+import com.flat.models.json.base.keyed.KeyedJsonString;
+import com.flat.models.json.base.keyed.base.JsonKey;
 import com.flat.models.json.menubar.items.help.JsonAboutMenuItem;
-import com.flat.models.translation.Translatable;
+import com.flat.tools.translation.base.Translatable;
 
 import java.util.LinkedList;
 
@@ -10,14 +12,19 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class JsonHelpMenu extends Translatable {
-    private JsonString help = new JsonString("Help");
+
+    public enum Keys implements JsonKey {
+        HELP,
+    }
+
+    private KeyedJsonString help = new KeyedJsonString(JsonHelpMenu.class, Keys.HELP, "Help");
     private JsonAboutMenuItem aboutMenuItem = new JsonAboutMenuItem();
 
-    public JsonString getHelp() {
+    public KeyedJsonString getHelp() {
         return help;
     }
 
-    public void setHelp(JsonString help) {
+    public void setHelp(KeyedJsonString help) {
         this.help = help;
     }
 
@@ -30,8 +37,8 @@ public class JsonHelpMenu extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
-        return new LinkedList<JsonString>() {{
+    public LinkedList <JsonString> toTranslate() {
+        return new LinkedList <JsonString>() {{
             add(help);
             addAll(aboutMenuItem.toTranslate());
         }};

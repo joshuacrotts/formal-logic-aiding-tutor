@@ -1,6 +1,6 @@
 package com.flat.models.json.logicsymbols.logictype.predicate.symbols.universal;
 
-import com.flat.models.json.logicsymbols.logictype.base.LogicSymbol;
+import com.flat.models.json.logicsymbols.logictype.base.keyed.KeyedLogicSymbol;
 import com.flat.models.json.logicsymbols.logictype.predicate.symbols.universal.attributes.UniversalAxioms;
 import com.flat.models.json.logicsymbols.logictype.predicate.symbols.universal.attributes.UniversalSymbols;
 
@@ -8,10 +8,12 @@ import com.flat.models.json.logicsymbols.logictype.predicate.symbols.universal.a
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class UniversalSymbol extends LogicSymbol {
+public class UniversalSymbol extends KeyedLogicSymbol {
 
     public UniversalSymbol() {
-        super("Universal",
+        super(
+                UniversalSymbol.class,
+                "Universal",
                 new UniversalSymbols(),
                 "Universal Quantification",
                 "This is the universal quantification button.",

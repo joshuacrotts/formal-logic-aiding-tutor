@@ -1,6 +1,6 @@
 package com.flat.models.json.logicsymbols.logictype.propositional;
 
-import com.flat.models.json.JsonString;
+import com.flat.models.json.base.JsonString;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.biconditional.BiconditionalSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.conjunction.ConjunctionSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.disjunction.DisjunctionSymbol;
@@ -9,7 +9,7 @@ import com.flat.models.json.logicsymbols.logictype.propositional.symbols.exclusi
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.implication.ImplicationSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.negation.NegationSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.turnstile.TurnstileSymbol;
-import com.flat.models.translation.Translatable;
+import com.flat.tools.translation.base.Translatable;
 import java.util.LinkedList;
 
 /**
@@ -96,7 +96,7 @@ public class PropositionalSymbols extends Translatable {
     }
 
     @Override
-    public LinkedList<JsonString> toTranslate() {
+    public LinkedList <JsonString> toTranslate() {
         return new LinkedList <JsonString> () {{
             addAll(implication.toTranslate());
             addAll(biconditional.toTranslate());
