@@ -1,4 +1,4 @@
-package com.flat.models.json.menubar.menus.export;
+package com.flat.models.json.menubar.menus.export.attributes;
 
 import com.flat.models.json.base.JsonString;
 import com.flat.models.json.base.keyed.KeyedJsonString;
@@ -13,23 +13,23 @@ import java.util.LinkedList;
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class JsonExportAsLatexMenu extends Translatable {
+public class JsonExportAsPdfMenu extends Translatable {
 
     public enum Keys implements JsonKey {
-        EXPORT_AS_LATEX,
+        EXPORT_AS_PDF,
     }
 
-    private KeyedJsonString exportAsLatex = new KeyedJsonString(JsonExportAsLatexMenu.class, Keys.EXPORT_AS_LATEX, "Export as LaTeX(.tex)");
+    private KeyedJsonString exportAsPdf = new KeyedJsonString(JsonExportAsPdfMenu.class, Keys.EXPORT_AS_PDF, "Export as Pdf(.pdf)");
     private JsonLatexParseTreeMenuItem latexParseTreeMenuItem = new JsonLatexParseTreeMenuItem();
     private JsonLatexTruthTreeMenuItem latexTruthTreeMenuItem = new JsonLatexTruthTreeMenuItem();
     private JsonLatexTruthTableMenuItem latexTruthTableMenuItem = new JsonLatexTruthTableMenuItem();
 
-    public KeyedJsonString getExportAsLatex() {
-        return exportAsLatex;
+    public KeyedJsonString getExportAsPdf() {
+        return exportAsPdf;
     }
 
-    public void setExportAsLatex(KeyedJsonString exportAsLatex) {
-        this.exportAsLatex = exportAsLatex;
+    public void setExportAsPdf(KeyedJsonString exportAsPdf) {
+        this.exportAsPdf = exportAsPdf;
     }
 
     public JsonLatexParseTreeMenuItem getLatexParseTreeMenuItem() {
@@ -59,7 +59,7 @@ public class JsonExportAsLatexMenu extends Translatable {
     @Override
     public LinkedList <JsonString> toTranslate() {
         return new LinkedList <JsonString>() {{
-            add(exportAsLatex);
+            add(exportAsPdf);
             addAll(latexParseTreeMenuItem.toTranslate());
             addAll(latexTruthTreeMenuItem.toTranslate());
             addAll(latexTruthTableMenuItem.toTranslate());

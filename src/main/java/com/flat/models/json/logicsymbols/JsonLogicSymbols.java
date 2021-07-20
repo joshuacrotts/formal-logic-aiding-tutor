@@ -10,11 +10,11 @@ import java.util.LinkedList;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class LogicSymbols extends Translatable {
+public class JsonLogicSymbols extends Translatable {
     private PropositionalSymbols propositional = new PropositionalSymbols();
     private PredicateSymbols predicate = new PredicateSymbols();
 
-    public LogicSymbols () {
+    public JsonLogicSymbols () {
     }
 
     // Getters for object's attributes.

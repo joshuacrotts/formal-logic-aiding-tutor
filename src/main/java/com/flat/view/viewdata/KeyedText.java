@@ -22,7 +22,6 @@ public class KeyedText {
         if (!this.data.containsKey(_key1))
             this.data.put(_key1, new HashMap<> ());
         this.data.get(_key1).put(_key2, _value);
-        System.out.println("Adding" + _value);
     }
 
 }

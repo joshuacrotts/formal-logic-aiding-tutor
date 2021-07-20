@@ -39,8 +39,9 @@ public class TruthTable {
     private void addColHeaders(WffTree _wffTree, int _leftMod, int _rightMod) {
         switch (_wffTree.getChildrenSize()) {
             case 1:
+                this.addParentheticalHeaders(_leftMod, "(");
                 this.headers.add(new TableHeader(this.headers.size(), _wffTree.getSymbol(), _wffTree));
-                this.addColHeaders(_wffTree.getChildren().get(0), _leftMod, _rightMod);
+                this.addColHeaders(_wffTree.getChildren().get(0), 0, _rightMod);
                 break;
             case 2:
                 this.addColHeaders(_wffTree.getChildren().get(0), _leftMod + 1, 0);

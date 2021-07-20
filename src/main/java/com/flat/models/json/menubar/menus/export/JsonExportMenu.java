@@ -1,5 +1,7 @@
 package com.flat.models.json.menubar.menus.export;
 
+import com.flat.models.json.menubar.menus.export.attributes.JsonExportAsPdfMenu;
+import com.flat.models.json.menubar.menus.export.attributes.JsonExportAsLatexMenu;
 import com.flat.models.json.base.JsonString;
 import com.flat.models.json.base.keyed.KeyedJsonString;
 import com.flat.models.json.base.keyed.base.JsonKey;

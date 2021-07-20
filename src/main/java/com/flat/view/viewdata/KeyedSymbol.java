@@ -13,7 +13,7 @@ public class KeyedSymbol {
     public KeyedSymbol () {
     }
 
-    public Symbols getAxioms (Class<?> _key) {
+    public Symbols getSymbols (Class<?> _key) {
         return this.symbols.get(_key);
     }
 

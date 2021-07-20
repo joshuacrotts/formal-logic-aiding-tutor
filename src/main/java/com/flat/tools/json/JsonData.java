@@ -5,6 +5,7 @@ import com.flat.view.viewdata.settings.LanguageData;
 import com.flat.view.viewdata.menubar.MenuBarData;
 import com.flat.view.viewdata.settings.SettingsData;
 import com.flat.models.json.language.JsonLanguage;
+import com.flat.models.json.logicsymbols.JsonLogicSymbols;
 import com.flat.models.json.menubar.JsonMenuBar;
 import com.flat.models.json.settings.JsonSettings;
 import com.flat.tools.json.enums.JsonLocal;
@@ -19,6 +20,7 @@ public class JsonData {
     private JsonMenuBar jsonMenuBar;
     private JsonSettings jsonSettings;
     private JsonAlgorithms jsonAlgorithms;
+    private JsonLogicSymbols jsonLogicSymbols = new JsonLogicSymbols();
     private JsonLanguage[] language = JsonTools.jsonToObjectList(JsonLanguage.NONE, JsonLocal.File.LANGUAGE, JsonLanguage[].class);
 
     private JsonData() {
