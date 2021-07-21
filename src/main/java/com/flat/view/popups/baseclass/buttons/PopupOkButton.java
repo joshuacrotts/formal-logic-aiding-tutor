@@ -1,6 +1,6 @@
 package com.flat.view.popups.baseclass.buttons;
 
-import com.flat.view.data.pane.PaneData;
+import com.flat.view.data.fx.pane.PaneData;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 

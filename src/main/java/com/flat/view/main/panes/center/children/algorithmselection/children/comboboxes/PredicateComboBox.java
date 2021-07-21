@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes;
 
 import com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.listcell.AlgorithmListCell;
-import com.flat.view.data.algorithms.AvailableAlgorithms;
+import com.flat.view.data.fx.algorithms.AvailableAlgorithms;
 import javafx.scene.control.ComboBox;
 
 /**

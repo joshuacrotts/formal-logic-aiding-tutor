@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.predicatendv.children;
 
-import com.flat.view.data.settings.SettingsData;
+import com.flat.models.TimeoutManager;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.NumericTextField;
 
 /**
@@ -10,7 +10,8 @@ import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advanc
 public class PredicateNDVTimeoutTextField extends NumericTextField {
 
     public PredicateNDVTimeoutTextField () {
-        super.textProperty().bindBidirectional(SettingsData.getPredicateNDVTimeout().textProperty());
+        super.textProperty().bindBidirectional(TimeoutManager.getPREDICATE_NDV().textProperty());
+        super.fontProperty().bindBidirectional(TimeoutManager.getPREDICATE_NDV().fontProperty());
     }
 
 }

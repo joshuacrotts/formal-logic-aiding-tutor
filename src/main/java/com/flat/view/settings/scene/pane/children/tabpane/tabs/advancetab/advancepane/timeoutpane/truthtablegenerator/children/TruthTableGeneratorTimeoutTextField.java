@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.truthtablegenerator.children;
 
-import com.flat.view.data.settings.SettingsData;
+import com.flat.models.TimeoutManager;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.NumericTextField;
 
 /**
@@ -10,7 +10,7 @@ import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advanc
 public class TruthTableGeneratorTimeoutTextField extends NumericTextField {
 
     public TruthTableGeneratorTimeoutTextField () {
-        super.textProperty().bindBidirectional(SettingsData.getTruthTableTimeout().textProperty());
+        super.textProperty().bindBidirectional(TimeoutManager.getTRUTH_TABLE().textProperty());
     }
 
 }

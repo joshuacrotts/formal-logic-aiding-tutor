@@ -1,8 +1,10 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.appearancetab.appearancepane.buttonbar.buttons;
 
-import com.flat.view.data.settings.AppearancePreviewData;
-import com.flat.view.data.settings.SettingsData;
-import com.flat.view.data.pane.PaneData;
+import com.flat.controller.Controller;
+import com.flat.models.json.settings.JsonSettings;
+import com.flat.view.data.json.KeyedText;
+import com.flat.view.data.fx.settings.AppearancePreviewData;
+import com.flat.view.data.fx.pane.PaneData;
 import javafx.scene.control.Button;
 
 /**
@@ -12,7 +14,8 @@ import javafx.scene.control.Button;
 public class AppearanceApplyButton extends Button {
 
     public  AppearanceApplyButton () {
-        super.textProperty().bind(SettingsData.getApply().textProperty());
+        super.textProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonSettings.class), KeyedText.toKey2(JsonSettings.Keys.APPLY)).textProperty());
+        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(KeyedText.toKey1(JsonSettings.class), KeyedText.toKey2(JsonSettings.Keys.APPLY)).fontProperty());
         this.setOnAction();
     }
 

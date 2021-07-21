@@ -1,6 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.buttonbar.button;
 
-import com.flat.view.data.settings.SettingsData;
+import com.flat.controller.Controller;
+import com.flat.models.json.settings.tabs.advance.content.alert.JsonAdvanceAlert;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -27,16 +28,16 @@ public class AdvanceApplyAlert extends Alert {
 
     private void setContent () {
         if (super.getAlertType().equals(AlertType.ERROR)) {
-            super.titleProperty().bind(SettingsData.getError().textProperty());
+            super.titleProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.ERROR).textProperty());
             super.setHeaderText("");
-            super.contentTextProperty().bind(SettingsData.getErrorText().textProperty());
+            super.contentTextProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.ERROR_TEXT).textProperty());
         }
         else {
-            super.titleProperty().bind(SettingsData.getMessage().textProperty());
+            super.titleProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.MESSAGE).textProperty());
             super.setHeaderText("");
-            super.contentTextProperty().bind(SettingsData.getMessageText().textProperty());
+            super.contentTextProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.MESSAGE_TEXT).textProperty());
         }
-        ((Button)super.getDialogPane().lookupButton(ButtonType.OK)).textProperty().bind(SettingsData.getOk().textProperty());
+        ((Button)super.getDialogPane().lookupButton(ButtonType.OK)).textProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.OK).textProperty());
     }
 
     private void centerOnStage () {
