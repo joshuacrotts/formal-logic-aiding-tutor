@@ -8,12 +8,17 @@ import java.util.HashMap;
  * @author christopherbrantley
  */
 public class KeyedSymbol {
-    private HashMap <Class<?>, Symbols> symbols = new HashMap();
+    private final HashMap <Class <?>, Symbols> symbols = new HashMap();
 
     public KeyedSymbol () {
     }
 
-    public Symbols getSymbols (Class<?> _key) {
+    // Getters for object's attibutes.
+    public HashMap<Class<?>, Symbols> getSymbols () {
+        return this.symbols;
+    }
+
+    public Symbols getValue (Class<?> _key) {
         return this.symbols.get(_key);
     }
 

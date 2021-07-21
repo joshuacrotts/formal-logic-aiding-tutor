@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
  * @author christopherbrantley
  */
 public class KeyedText {
-    private HashMap <String, HashMap<String, Text>> data = new HashMap();
+    private final HashMap <String, HashMap<String, Text>> data = new HashMap();
 
     public KeyedText () {
     }

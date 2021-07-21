@@ -9,12 +9,17 @@ import java.util.ArrayList;
  * @author christopherbrantley
  */
 public class KeyedSymbols extends Symbols {
-    private Class<?> key;
+    private final Class<?> key;
 
     public KeyedSymbols(Class <?> _key, String _general, ArrayList<String> _alternate) {
         super(_general, _alternate);
         this.key = _key;
         this.addToMap();
+    }
+
+    // Getters for object's attributes.
+    public Class<?> getKey() {
+        return key;
     }
 
     private void addToMap () {
