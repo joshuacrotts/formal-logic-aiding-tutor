@@ -1,6 +1,6 @@
 package com.flat.models.json.logicsymbols.logictype.propositional.symbols.negation;
 
-import com.flat.models.json.logicsymbols.logictype.base.LogicSymbol;
+import com.flat.models.json.logicsymbols.logictype.base.keyed.KeyedLogicSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.negation.attributes.NegationAxioms;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.negation.attributes.NegationSymbols;
 
@@ -8,10 +8,13 @@ import com.flat.models.json.logicsymbols.logictype.propositional.symbols.negatio
  *
  * @author christopherbrantley
  */
-public class NegationSymbol extends LogicSymbol {
+public class NegationSymbol extends KeyedLogicSymbol {
 
     public NegationSymbol () {
-        super("Negation",
+        super(
+                NegationSymbol.class,
+                Type.PROPOSITIONAL,
+                "Negation",
                 new NegationSymbols(),
                 "Negation",
                 "This is the negation button.",

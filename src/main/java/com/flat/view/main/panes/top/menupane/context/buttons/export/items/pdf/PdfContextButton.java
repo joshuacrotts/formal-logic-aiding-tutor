@@ -15,7 +15,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class PdfContextButton extends ContextButton {
 
     public PdfContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonExportAsPdfMenu.class, JsonExportAsPdfMenu.Keys.EXPORT_AS_PDF),
+        super(Controller.getMAPPED_TEXT().getValue(JsonExportAsPdfMenu.class, JsonExportAsPdfMenu.Keys.EXPORT_AS_PDF),
                 new PdfParseTreeContextButton(),
                 new PdfTruthTreeContextButton(),
                 new PdfTruthTableContextButton());

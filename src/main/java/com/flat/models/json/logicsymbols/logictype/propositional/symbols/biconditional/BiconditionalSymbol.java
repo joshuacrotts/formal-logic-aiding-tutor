@@ -1,6 +1,6 @@
 package com.flat.models.json.logicsymbols.logictype.propositional.symbols.biconditional;
 
-import com.flat.models.json.logicsymbols.logictype.base.LogicSymbol;
+import com.flat.models.json.logicsymbols.logictype.base.keyed.KeyedLogicSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.biconditional.attributes.BiconditionalAxioms;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.biconditional.attributes.BiconditionalSymbols;
 
@@ -8,10 +8,13 @@ import com.flat.models.json.logicsymbols.logictype.propositional.symbols.bicondi
  *
  * @author christopherbrantley
  */
-public class BiconditionalSymbol extends LogicSymbol {
+public class BiconditionalSymbol extends KeyedLogicSymbol {
 
     public BiconditionalSymbol () {
-        super("Biconditional",
+        super(
+                BiconditionalSymbol.class,
+                Type.PROPOSITIONAL,
+                "Biconditional",
                 new BiconditionalSymbols(),
                 "Equivalence",
                 "This is the equivalence button.",

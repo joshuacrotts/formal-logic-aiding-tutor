@@ -12,7 +12,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class LatexTruthTableContextButton extends ContextButton {
 
     public LatexTruthTableContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonLatexTruthTableMenuItem.class, JsonLatexTruthTableMenuItem.Keys.LATEX_TRUTH_TABLE));
+        super(Controller.getMAPPED_TEXT().getValue(JsonLatexTruthTableMenuItem.class, JsonLatexTruthTableMenuItem.Keys.LATEX_TRUTH_TABLE));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
     }
 

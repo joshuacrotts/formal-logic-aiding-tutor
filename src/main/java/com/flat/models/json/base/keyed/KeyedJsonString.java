@@ -11,8 +11,8 @@ import javafx.scene.text.Text;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class KeyedJsonString extends JsonString {
-    private  String key1;
-    private  String key2;
+    private String key1;
+    private String key2;
 
     private KeyedJsonString () {
         super();
@@ -34,7 +34,6 @@ public class KeyedJsonString extends JsonString {
     public String getKey2() {
         return key2;
     }
-
 
     // Setters for object's attributes.
     @Override

@@ -11,13 +11,14 @@ import com.flat.models.treenode.WffTree;
 import com.flat.tools.eventbus.EventBus;
 import com.flat.tools.font.FontTool;
 import com.flat.tools.json.JsonData;
+import com.flat.tools.translation.FLATTranslate;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeLayout;
 import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
-import com.flat.view.data.json.KeyedSymbol;
-import com.flat.view.data.json.KeyedText;
+import com.flat.view.data.json.MappedText;
 import com.flat.view.data.fx.algorithms.AvailableAlgorithms;
+import com.flat.view.data.json.MappedLogicSymbols;
 import java.util.ArrayList;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -27,14 +28,15 @@ import javafx.stage.Stage;
  */
 public class Controller {
     private static Stage STAGE;
-    private final static KeyedText KEYED_TEXT = new KeyedText();
-    private final static KeyedSymbol KEYED_SYMBOLS = new KeyedSymbol();
+    private final static MappedText MAPPED_TEXT = new MappedText();
+    private final static MappedLogicSymbols MAPPED_SYMBOLS = new MappedLogicSymbols();
     private static JsonLanguage JSON_LANGUAGE = JsonLanguage.DEFAULT;
     private final static JsonData JSON_DATA = JsonData.getInstance(JSON_LANGUAGE);
     private final static FontTool FONT_TOOL = FontTool.getInstance();
     private final static EventBus EVENT_BUS = EventBus.getInstance();
     private final static ApplyAlgorithmAdapter ALGORITHM_ADAPTER = new ApplyAlgorithmAdapter(JSON_DATA.getJsonAlgorithms());
     private final static TreeLayout TREE_LAYOUT = new TreeLayout(50, 40);
+    private final static FLATTranslate TRANSLATOR = new FLATTranslate();
 
     // Retrieves view associated with the enum and displays it on STAGE.
     public static void changeView (View _view) {
@@ -125,12 +127,16 @@ public class Controller {
         return TREE_LAYOUT;
     }
 
-    public static KeyedText getKEYED_TEXT() {
-        return KEYED_TEXT;
+    public static MappedText getMAPPED_TEXT() {
+        return MAPPED_TEXT;
     }
 
-    public static KeyedSymbol getKEYED_SYMBOLS() {
-        return KEYED_SYMBOLS;
+    public static MappedLogicSymbols getMAPPED_SYMBOLS() {
+        return MAPPED_SYMBOLS;
+    }
+
+    public static FLATTranslate getTRANSLATOR() {
+        return TRANSLATOR;
     }
 
     // Setters for for object's attributes.

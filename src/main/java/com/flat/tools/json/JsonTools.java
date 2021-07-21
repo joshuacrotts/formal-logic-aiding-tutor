@@ -65,7 +65,7 @@ public class JsonTools {
             return null;
         }
     }
-
+    
     public static <T> void objectToJson(JsonLanguage _language, JsonLocal.File _file, T _object, Class<T> _class) {
         Path path = Paths.get(JsonLocal.Paths.JSONROOT.getFilePath()
                 + _language.getCode() + "/"
@@ -81,6 +81,33 @@ public class JsonTools {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static <T> void serializeObject(JsonLanguage _language, JsonLocal.File _file, T _object, Class<T> _class) {
+        Path path = Paths.get(JsonLocal.Paths.JSONROOT.getFilePath()
+                + _language.getCode() + "/"
+                + _file.getFileName());
+        JsonTools.handleDirectory(path.getParent());
+        JsonTools.handleFile(path);
+        try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(path.toString()))) {
+            writer.writeObject(_object);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static <T> T deserializeObject (JsonLanguage _language, JsonLocal.File _file, Class<T> _class) {
+        Path path = Paths.get(JsonLocal.Paths.JSONROOT.getFilePath()
+                + _language.getCode() + "/"
+                + _file.getFileName());
+        JsonTools.handleDirectory(path.getParent());
+        JsonTools.handleFile(path);
+        try (ObjectInputStream  reader = new ObjectInputStream (new FileInputStream (path.toString()))) {
+            return ((T)reader.readObject());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static void handleDirectory(Path _path) {

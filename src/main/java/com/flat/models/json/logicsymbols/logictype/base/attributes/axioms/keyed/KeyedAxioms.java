@@ -17,6 +17,9 @@ public class KeyedAxioms extends Axioms {
         EXPLANATIONS
     }
 
+    private KeyedAxioms () {
+    }
+
     public KeyedAxioms(Class <?> _key, String _explanation, ArrayList <String> _examples) {
         super.setExplanation(new KeyedJsonString(_key, Keys.EXAMPLE, _explanation));
         _examples.forEach(example -> {

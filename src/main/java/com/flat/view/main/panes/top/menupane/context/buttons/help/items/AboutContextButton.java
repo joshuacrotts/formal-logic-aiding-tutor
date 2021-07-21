@@ -12,7 +12,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class AboutContextButton extends ContextButton {
 
     public AboutContextButton() {
-        super(Controller.getKEYED_TEXT().getValue(JsonAboutMenuItem.class, JsonAboutMenuItem.Keys.ABOUT));
+        super(Controller.getMAPPED_TEXT().getValue(JsonAboutMenuItem.class, JsonAboutMenuItem.Keys.ABOUT));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
     }
 

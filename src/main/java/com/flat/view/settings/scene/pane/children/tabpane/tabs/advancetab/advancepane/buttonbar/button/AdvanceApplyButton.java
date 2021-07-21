@@ -12,8 +12,8 @@ import javafx.scene.control.Button;
 public class AdvanceApplyButton extends Button {
 
     public AdvanceApplyButton () {
-        super.textProperty().bind(Controller.getKEYED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.APPLY).textProperty());
-        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.APPLY).fontProperty());
+        super.textProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.APPLY).textProperty());
+        super.fontProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.APPLY).fontProperty());
         this.setOnAction();
     }
 

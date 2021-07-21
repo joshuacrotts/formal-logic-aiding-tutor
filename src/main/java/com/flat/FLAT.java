@@ -1,13 +1,14 @@
 package com.flat;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.base.keyed.KeyedJsonString;
+import com.flat.models.data.base.text.KeyedText;
+import com.flat.models.data.base.text.key.KeyBase;
 import com.flat.models.json.language.JsonLanguage;
-import com.flat.models.json.logicsymbols.logictype.predicate.symbols.existential.attributes.ExistentialAxioms;
 import com.flat.tools.json.JsonTools;
 import com.flat.tools.json.enums.JsonLocal;
 import com.flat.view.enums.View;
 import com.flat.view.tools.ResourceManager;
+import java.io.UnsupportedEncodingException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -24,13 +25,19 @@ public class FLAT extends Application {
     public static void main(String[] _args) {
         launch(_args);
     }
+    public enum TestKey implements KeyBase {
+        TEST,
+    }
 
     @Override
-    public void start(Stage _stage) {
-        /*
-        JsonTools.objectToJson(JsonLanguage.DEFAULT, JsonLocal.File.MENUBAR, new KeyedJsonString(KeyedJsonString.class, ExistentialAxioms.Keys.EXAMPLE, "test"), KeyedJsonString.class);
+    public void start(Stage _stage) throws UnsupportedEncodingException {
+        JsonTools.serializeObject(JsonLanguage.DEFAULT, JsonLocal.File.MENUBAR, new KeyedText(KeyedText.class, TestKey.TEST, "Hello"), KeyedText.class);
+        KeyedText string = JsonTools.deserializeObject(JsonLanguage.DEFAULT, JsonLocal.File.MENUBAR, KeyedText.class);
+        System.out.println(string.toString());
+        System.out.println(string.getText());
+        System.out.println("Done");
         if (true)
-            return;*/
+            System.exit(0);
         System.setProperty("GOOGLE_API_KEY", "AIzaSyBWaA57xlPumWThhPfGmHSkPFj82fMRa1Y");
         Application.setUserAgentStylesheet(ResourceManager.getDefaultStyle());
         this.initializeStage(_stage);

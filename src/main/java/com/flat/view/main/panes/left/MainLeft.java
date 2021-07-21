@@ -2,15 +2,15 @@ package com.flat.view.main.panes.left;
 
 import com.flat.view.action.ResizePane;
 import com.flat.view.data.fx.pane.PaneData;
+import com.flat.view.main.panes.left.children.MainLeftWrapperPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class MainLeft extends HBox {
-    private Region emptyRegion = new Region();
+    private MainLeftWrapperPane vBox = new MainLeftWrapperPane();
     private final ResizePane resizePane = new ResizePane(this, ResizePane.Orientation.HORIZONTAL, ResizePane.Side.RIGHT);
 
     public MainLeft() {
@@ -20,17 +20,17 @@ public class MainLeft extends HBox {
     // Calls all FX property setters.
     private void initializeFx() {
         this.setThisFx();
-        this.setEmptyRegionFx();
+        this.setVBoxFx();
     }
 
     private void setThisFx () {
         super.backgroundProperty().bind(PaneData.getLeftProperty().backgroundProperty());
         super.borderProperty().bind(PaneData.getLeftProperty().borderProperty());
-        super.getChildren().addAll(this.emptyRegion, this.resizePane.getParentPane());
+        super.getChildren().addAll(this.vBox, this.resizePane.getParentPane());
     }
 
-    private void setEmptyRegionFx () {
-        HBox.setHgrow(this.emptyRegion, Priority.ALWAYS);
+    private void setVBoxFx () {
+        HBox.setHgrow(this.vBox, Priority.ALWAYS);
     }
 
     // Getters for object's attributes.

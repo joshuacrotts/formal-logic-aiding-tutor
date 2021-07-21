@@ -11,8 +11,8 @@ import javafx.scene.control.Label;
 public class PredicateNDVTimeoutLabel extends Label {
 
     public PredicateNDVTimeoutLabel () {
-        super.textProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvancePane.class, JsonAdvancePane.Keys.PREDICATE_NDV).textProperty());
-        super.fontProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvancePane.class, JsonAdvancePane.Keys.PREDICATE_NDV).fontProperty());
+        super.textProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvancePane.class, JsonAdvancePane.Keys.PREDICATE_NDV).textProperty());
+        super.fontProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvancePane.class, JsonAdvancePane.Keys.PREDICATE_NDV).fontProperty());
     }
 
 }

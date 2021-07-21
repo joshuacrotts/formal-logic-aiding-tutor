@@ -2,6 +2,7 @@ package com.flat.models.json.logicsymbols.logictype.predicate.symbols.existentia
 
 import com.flat.models.json.logicsymbols.logictype.base.attributes.axioms.keyed.KeyedAxioms;
 import com.flat.models.json.logicsymbols.logictype.predicate.symbols.existential.ExistentialSymbol;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class ExistentialAxioms extends KeyedAxioms {
+public class ExistentialAxioms extends KeyedAxioms implements Serializable {
 
     public ExistentialAxioms() {
         super(

@@ -1,6 +1,6 @@
 package com.flat.models.json.logicsymbols.logictype.propositional.symbols.doubleturnstile;
 
-import com.flat.models.json.logicsymbols.logictype.base.LogicSymbol;
+import com.flat.models.json.logicsymbols.logictype.base.keyed.KeyedLogicSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.doubleturnstile.attributes.DoubleTurnstileAxioms;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.doubleturnstile.attributes.DoubleTurnstileSymbols;
 
@@ -8,10 +8,13 @@ import com.flat.models.json.logicsymbols.logictype.propositional.symbols.doublet
  *
  * @author christopherbrantley
  */
-public class DoubleTurnstileSymbol extends LogicSymbol {
+public class DoubleTurnstileSymbol extends KeyedLogicSymbol {
 
     public DoubleTurnstileSymbol () {
-        super("Double Turnstile",
+        super(
+                DoubleTurnstileSymbol.class,
+                Type.PROPOSITIONAL,
+                "Double Turnstile",
                 new DoubleTurnstileSymbols(),
                 "Semantic Entailment",
                 "This is the \"models\" button.",

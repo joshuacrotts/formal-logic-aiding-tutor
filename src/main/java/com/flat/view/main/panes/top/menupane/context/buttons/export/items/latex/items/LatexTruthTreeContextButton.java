@@ -12,7 +12,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class LatexTruthTreeContextButton extends ContextButton {
 
     public LatexTruthTreeContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonLatexTruthTreeMenuItem.class, JsonLatexTruthTreeMenuItem.Keys.LATEX_TRUTH_TREE));
+        super(Controller.getMAPPED_TEXT().getValue(JsonLatexTruthTreeMenuItem.class, JsonLatexTruthTreeMenuItem.Keys.LATEX_TRUTH_TREE));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
     }
 

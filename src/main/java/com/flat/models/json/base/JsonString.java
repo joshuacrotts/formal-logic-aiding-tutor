@@ -1,10 +1,12 @@
 package com.flat.models.json.base;
 
+import java.io.Serializable;
+
 /**
  *
  * @author christopherbrantley
  */
-public class JsonString {
+public class JsonString implements Serializable {
     private String string;
 
     public JsonString () {

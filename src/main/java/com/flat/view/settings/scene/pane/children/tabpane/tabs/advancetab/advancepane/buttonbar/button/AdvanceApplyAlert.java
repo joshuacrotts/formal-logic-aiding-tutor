@@ -28,16 +28,16 @@ public class AdvanceApplyAlert extends Alert {
 
     private void setContent () {
         if (super.getAlertType().equals(AlertType.ERROR)) {
-            super.titleProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.ERROR).textProperty());
+            super.titleProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.ERROR).textProperty());
             super.setHeaderText("");
-            super.contentTextProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.ERROR_TEXT).textProperty());
+            super.contentTextProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.ERROR_TEXT).textProperty());
         }
         else {
-            super.titleProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.MESSAGE).textProperty());
+            super.titleProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.MESSAGE).textProperty());
             super.setHeaderText("");
-            super.contentTextProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.MESSAGE_TEXT).textProperty());
+            super.contentTextProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.MESSAGE_TEXT).textProperty());
         }
-        ((Button)super.getDialogPane().lookupButton(ButtonType.OK)).textProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.OK).textProperty());
+        ((Button)super.getDialogPane().lookupButton(ButtonType.OK)).textProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.OK).textProperty());
     }
 
     private void centerOnStage () {

@@ -4,13 +4,14 @@ import com.flat.models.json.base.JsonString;
 import com.flat.models.json.logicsymbols.logictype.predicate.PredicateSymbols;
 import com.flat.models.json.logicsymbols.logictype.propositional.PropositionalSymbols;
 import com.flat.tools.translation.base.Translatable;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class JsonLogicSymbols extends Translatable {
+public class JsonLogicSymbols extends Translatable implements Serializable {
     private PropositionalSymbols propositional = new PropositionalSymbols();
     private PredicateSymbols predicate = new PredicateSymbols();
 

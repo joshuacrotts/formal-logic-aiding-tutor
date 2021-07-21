@@ -4,13 +4,14 @@ import com.flat.models.json.base.JsonString;
 import com.flat.models.json.logicsymbols.logictype.base.attributes.axioms.Axioms;
 import com.flat.models.json.logicsymbols.logictype.base.attributes.symbols.Symbols;
 import com.flat.tools.translation.base.Translatable;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public abstract class LogicSymbol extends Translatable {
+public abstract class LogicSymbol extends Translatable implements Serializable {
 
     private JsonString label;
     private Symbols symbols;
@@ -18,6 +19,9 @@ public abstract class LogicSymbol extends Translatable {
     private JsonString description;
     private JsonString readAs;
     private Axioms axioms;
+
+    private LogicSymbol () {
+    }
 
     public LogicSymbol (String _label, Symbols _symbols, String _toolTip, String _description, String _readAs, Axioms _axioms) {
         this.label = new JsonString(_label);

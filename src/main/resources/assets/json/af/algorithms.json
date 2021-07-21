@@ -1,0 +1,207 @@
+{
+  "generalAlgorithms": {
+    "label": {
+      "key1": "JsonGeneralAlgorithms",
+      "key2": "GENERAL_LOGIC_ALGORITHM",
+      "string": "Algemene logiese algoritmes"
+    },
+    "argumentTruthTreeValidator": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "ARGUMENT_TRUTH_TREE_VALIDATOR",
+        "string": "Validator van waarheidsboom vir argumente"
+      },
+      "algorithmType": "ARGUMENT_TRUTH_TREE_VALIDATOR"
+    },
+    "closedTreeDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "CLOSED_TREE_DETERMINER",
+        "string": "Geslote boombepaler"
+      },
+      "algorithmType": "CLOSED_TREE_DETERMINER"
+    },
+    "logicalFalsehoodDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "LOGICAL_FALSEHOOD_DETERMINER",
+        "string": "Logiese valsheidsbepaler"
+      },
+      "algorithmType": "LOGICAL_FALSEHOOD_DETERMINER"
+    },
+    "logicallyConsistentDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "LOGICALLY_CONSISTENT_DETERMINER",
+        "string": "Logies konsekwent bepaal"
+      },
+      "algorithmType": "LOGICALLY_CONSISTENT_DETERMINER"
+    },
+    "logicallyContingentDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "LOGICALLY_CONTINGENT_DETERMINER",
+        "string": "Logies voorwaardelike bepaler"
+      },
+      "algorithmType": "LOGICALLY_CONTINGENT_DETERMINER"
+    },
+    "logicallyContradictoryDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "LOGICALLY_CONTRADICTORY_DETERMINER",
+        "string": "Logies weersprekende bepaler"
+      },
+      "algorithmType": "LOGICALLY_CONTRADICTORY_DETERMINER"
+    },
+    "logicallyContraryDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "LOGICALLY_CONTRARY_DETERMINER",
+        "string": "Logies In teenstelling met die bepaler"
+      },
+      "algorithmType": "LOGICALLY_CONTRARY_DETERMINER"
+    },
+    "logicallyEquivalentDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "LOGICALLY_EQUIVALENT_DETERMINER",
+        "string": "Logies ekwivalente bepaler"
+      },
+      "algorithmType": "LOGICALLY_EQUIVALENT_DETERMINER"
+    },
+    "logicallyImpliedDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "LOGICALLY_IMPLIED_DETERMINER",
+        "string": "Logies geïmpliseerde bepaler"
+      },
+      "algorithmType": "LOGICALLY_IMPLIED_DETERMINER"
+    },
+    "logicalTautologyDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "LOGICAL_TAUTOLOGY_DETERMINER",
+        "string": "Logiese tautologiebepaler"
+      },
+      "algorithmType": "LOGICAL_TAUTOLOGY_DETERMINER"
+    },
+    "mainOperatorDetector": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "MAIN_OPERATOR_DETECTOR",
+        "string": "Hoofoperateur Detector"
+      },
+      "algorithmType": "MAIN_OPERATOR_DETECTOR"
+    },
+    "openTreeDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "OPEN_TREE_DETERMINER",
+        "string": "Maak die boombepaler oop"
+      },
+      "algorithmType": "OPEN_TREE_DETERMINER"
+    },
+    "semanticEntailmentDeterminer": {
+      "jsonString": {
+        "key1": "JsonGeneralAlgorithms",
+        "key2": "SEMANTIC_ENTAILMENT_DETERMINER",
+        "string": "Semantiese bepaling van beslaglegging"
+      },
+      "algorithmType": "SEMANTIC_ENTAILMENT_DETERMINER"
+    }
+  },
+  "propositionalAlgorithms": {
+    "label": {
+      "key1": "JsonPropositionalAlgorithms",
+      "key2": "PROPOSITIONAL_LOGIC_ALGORITHM",
+      "string": "Proposisionele logiese algoritme"
+    },
+    "propositionalTruthTreeGenerator": {
+      "jsonString": {
+        "key1": "JsonPropositionalAlgorithms",
+        "key2": "PROPOSITIONAL_TRUTH_TREE_GENERATOR",
+        "string": "Proposisionele waarheidsboomgenerator"
+      },
+      "algorithmType": "PROPOSITIONAL_TRUTH_TREE_GENERATOR"
+    },
+    "randomFormulaGenerator": {
+      "jsonString": {
+        "key1": "JsonPropositionalAlgorithms",
+        "key2": "RANDOM_FORMULA_GENERATOR",
+        "string": "Willekeurige formuleopwekker"
+      },
+      "algorithmType": "RANDOM_PROPOSITIONAL_FORMULA"
+    },
+    "truthTableGenerator": {
+      "jsonString": {
+        "key1": "JsonPropositionalAlgorithms",
+        "key2": "PROPOSITIONAL_TRUTH_TREE_GENERATOR",
+        "string": "Waarheidstabelgenerator"
+      },
+      "algorithmType": "TRUTH_TABLE_GENERATOR"
+    }
+  },
+  "predicateAlgorithms": {
+    "label": {
+      "key1": "JsonPredicateAlgorithms",
+      "key2": "PREDICATE_LOGIC_ALGORITHMS",
+      "string": "Voorspel logiese algoritmes"
+    },
+    "boundVariableDetector": {
+      "jsonString": {
+        "key1": "JsonPredicateAlgorithms",
+        "key2": "BOUND_VARIABLE_DETECTOR",
+        "string": "Gebonde veranderlike detector"
+      },
+      "algorithmType": "BOUND_VARIABLE_DETECTOR"
+    },
+    "closedSentenceDeterminer": {
+      "jsonString": {
+        "key1": "JsonPredicateAlgorithms",
+        "key2": "CLOSED_SENTENCE_DETERMINER",
+        "string": "Geslote sinbepaler"
+      },
+      "algorithmType": "CLOSED_SENTENCE_DETERMINER"
+    },
+    "freeVariableDetector": {
+      "jsonString": {
+        "key1": "JsonPredicateAlgorithms",
+        "key2": "FREE_VARIABLE_DETECTOR",
+        "string": "Gratis veranderlike detector"
+      },
+      "algorithmType": "FREE_VARIABLE_DETECTOR"
+    },
+    "groundSentenceDeterminer": {
+      "jsonString": {
+        "key1": "JsonPredicateAlgorithms",
+        "key2": "GROUND_SENTENCE_DETERMINER",
+        "string": "Grondsinbepaler"
+      },
+      "algorithmType": "GROUND_SENTENCE_DETERMINER"
+    },
+    "openSentenceDeterminer": {
+      "jsonString": {
+        "key1": "JsonPredicateAlgorithms",
+        "key2": "OPEN_SENTENCE_DETERMINER",
+        "string": "Oop sinbepaler"
+      },
+      "algorithmType": "OPEN_SENTENCE_DETERMINER"
+    },
+    "predicatetruthTreeGenerator": {
+      "jsonString": {
+        "key1": "JsonPredicateAlgorithms",
+        "key2": "PREDICATE_TRUTH_TREE_GENERATOR",
+        "string": "Voorspel waarheidsboomgenerator"
+      },
+      "algorithmType": "PREDICATE_TRUTH_TREE_GENERATOR"
+    },
+    "randomFormulaGenerator": {
+      "jsonString": {
+        "key1": "JsonPredicateAlgorithms",
+        "key2": "RANDOM_FORMULA_GENERATOR",
+        "string": "Random Formula Generator"
+      },
+      "algorithmType": "RANDOM_PREDICATE_FORMULA"
+    }
+  }
+}

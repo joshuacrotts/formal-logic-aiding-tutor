@@ -12,7 +12,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class PdfParseTreeContextButton extends ContextButton {
 
     public PdfParseTreeContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonLatexParseTreeMenuItem.class, JsonLatexParseTreeMenuItem.Keys.LATEX_PARSE_TREE));
+        super(Controller.getMAPPED_TEXT().getValue(JsonLatexParseTreeMenuItem.class, JsonLatexParseTreeMenuItem.Keys.LATEX_PARSE_TREE));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
     }
 

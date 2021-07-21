@@ -13,6 +13,7 @@ public class UniversalSymbol extends KeyedLogicSymbol {
     public UniversalSymbol() {
         super(
                 UniversalSymbol.class,
+                Type.PREDICATE,
                 "Universal",
                 new UniversalSymbols(),
                 "Universal Quantification",

@@ -1,16 +1,25 @@
 package com.flat.models.json.logicsymbols.logictype.predicate;
 
 import com.flat.models.json.base.JsonString;
+import com.flat.models.json.base.keyed.KeyedJsonString;
+import com.flat.models.json.base.keyed.base.JsonKey;
 import com.flat.models.json.logicsymbols.logictype.predicate.symbols.existential.ExistentialSymbol;
 import com.flat.models.json.logicsymbols.logictype.predicate.symbols.universal.UniversalSymbol;
 import com.flat.tools.translation.base.Translatable;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class PredicateSymbols extends Translatable {
+public class PredicateSymbols extends Translatable implements Serializable {
+
+    public enum Keys implements JsonKey  {
+        LABEL,
+    }
+
+    private KeyedJsonString predicate = new KeyedJsonString(PredicateSymbols.class, Keys.LABEL, "Predicate");
     private ExistentialSymbol existential = new ExistentialSymbol();
     private UniversalSymbol universal = new UniversalSymbol();
 

@@ -13,7 +13,7 @@ public class AdvanceTab extends Tab {
     private AdvancePane advancePane = new AdvancePane();
 
     public AdvanceTab () {
-        super.textProperty().bind(Controller.getKEYED_TEXT().getValue(JsonAdvanceTab.class, JsonAdvanceTab.Keys.ADVANCE).textProperty());
+        super.textProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceTab.class, JsonAdvanceTab.Keys.ADVANCE).textProperty());
         super.setContent(this.advancePane);
     }
 

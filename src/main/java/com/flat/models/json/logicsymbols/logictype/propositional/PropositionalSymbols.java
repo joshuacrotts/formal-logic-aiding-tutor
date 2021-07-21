@@ -1,6 +1,8 @@
 package com.flat.models.json.logicsymbols.logictype.propositional;
 
 import com.flat.models.json.base.JsonString;
+import com.flat.models.json.base.keyed.KeyedJsonString;
+import com.flat.models.json.base.keyed.base.JsonKey;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.biconditional.BiconditionalSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.conjunction.ConjunctionSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.disjunction.DisjunctionSymbol;
@@ -10,13 +12,20 @@ import com.flat.models.json.logicsymbols.logictype.propositional.symbols.implica
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.negation.NegationSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.turnstile.TurnstileSymbol;
 import com.flat.tools.translation.base.Translatable;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class PropositionalSymbols extends Translatable {
+public class PropositionalSymbols extends Translatable implements Serializable {
+
+    public enum Keys implements JsonKey  {
+        LABEL,
+    }
+
+    private KeyedJsonString propositional = new KeyedJsonString(PropositionalSymbols.class, Keys.LABEL, "Propositional");
     private ImplicationSymbol implication = new ImplicationSymbol();
     private BiconditionalSymbol biconditional = new BiconditionalSymbol();
     private NegationSymbol negation = new NegationSymbol();

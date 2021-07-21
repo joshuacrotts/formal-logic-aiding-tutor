@@ -1,6 +1,6 @@
 package com.flat.models.json.logicsymbols.logictype.propositional.symbols.conjunction;
 
-import com.flat.models.json.logicsymbols.logictype.base.LogicSymbol;
+import com.flat.models.json.logicsymbols.logictype.base.keyed.KeyedLogicSymbol;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.conjunction.attributes.ConjunctionAxioms;
 import com.flat.models.json.logicsymbols.logictype.propositional.symbols.conjunction.attributes.ConjunctionSymbols;
 
@@ -8,10 +8,13 @@ import com.flat.models.json.logicsymbols.logictype.propositional.symbols.conjunc
  *
  * @author christopherbrantley
  */
-public class ConjunctionSymbol extends LogicSymbol {
+public class ConjunctionSymbol extends KeyedLogicSymbol {
 
     public ConjunctionSymbol () {
-        super("Conjunction",
+        super(
+                ConjunctionSymbol.class,
+                Type.PROPOSITIONAL,
+                "Conjunction",
                 new ConjunctionSymbols(),
                 "Conjunction",
                 "This is the conjunction button.",

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class ResetViewContextButton extends ContextButton {
 
     public ResetViewContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonResetViewMenuItem.class, JsonResetViewMenuItem.Keys.RESET));
+        super(Controller.getMAPPED_TEXT().getValue(JsonResetViewMenuItem.class, JsonResetViewMenuItem.Keys.RESET));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         this.setOnAction();
     }

@@ -13,7 +13,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class HelpContextButton extends ContextButton {
 
     public HelpContextButton () {
-        super(Controller.getKEYED_TEXT().getValue(JsonHelpMenu.class, JsonHelpMenu.Keys.HELP), new AboutContextButton());
+        super(Controller.getMAPPED_TEXT().getValue(JsonHelpMenu.class, JsonHelpMenu.Keys.HELP), new AboutContextButton());
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
     }
 

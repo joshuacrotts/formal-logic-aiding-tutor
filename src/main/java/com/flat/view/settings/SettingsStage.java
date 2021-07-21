@@ -21,7 +21,7 @@ public class SettingsStage extends Stage {
     }
 
     private void setFxProperties() {
-        super.titleProperty().bind(Controller.getKEYED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.TITLE).textProperty());
+        super.titleProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.TITLE).textProperty());
         super.initModality(Modality.WINDOW_MODAL);
         super.initOwner(Controller.getSTAGE().getScene().getWindow());
     }
