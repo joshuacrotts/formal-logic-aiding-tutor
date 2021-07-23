@@ -1,6 +1,6 @@
 package com.flat.view.main.panes.center.children.trees.base.treelayout.listener;
 
-import com.flat.tools.eventbus.base.Listener;
+import com.flat.tools.buses.eventbus.components.EventListener;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.FxTreeNode;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeNode;
 import javafx.scene.layout.Pane;
@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public abstract class TreePaneListener implements Listener {
+public abstract class TreePaneListener implements EventListener {
     public Pane treePane;
 
     public TreePaneListener (Pane _treePane) {

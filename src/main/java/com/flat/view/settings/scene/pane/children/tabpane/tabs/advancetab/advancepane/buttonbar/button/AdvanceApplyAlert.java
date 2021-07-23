@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.buttonbar.button;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.settings.tabs.advance.content.alert.JsonAdvanceAlert;
+import com.flat.models.data.settings.tabs.advance.content.alert.AdvanceAlert;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -28,16 +28,16 @@ public class AdvanceApplyAlert extends Alert {
 
     private void setContent () {
         if (super.getAlertType().equals(AlertType.ERROR)) {
-            super.titleProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.ERROR).textProperty());
+            super.titleProperty().bind(Controller.MAPPED_TEXT.getValue(AdvanceAlert.class, AdvanceAlert.Keys.ERROR).textProperty());
             super.setHeaderText("");
-            super.contentTextProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.ERROR_TEXT).textProperty());
+            super.contentTextProperty().bind(Controller.MAPPED_TEXT.getValue(AdvanceAlert.class, AdvanceAlert.Keys.ERROR_TEXT).textProperty());
         }
         else {
-            super.titleProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.MESSAGE).textProperty());
+            super.titleProperty().bind(Controller.MAPPED_TEXT.getValue(AdvanceAlert.class, AdvanceAlert.Keys.MESSAGE).textProperty());
             super.setHeaderText("");
-            super.contentTextProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.MESSAGE_TEXT).textProperty());
+            super.contentTextProperty().bind(Controller.MAPPED_TEXT.getValue(AdvanceAlert.class, AdvanceAlert.Keys.MESSAGE_TEXT).textProperty());
         }
-        ((Button)super.getDialogPane().lookupButton(ButtonType.OK)).textProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceAlert.class, JsonAdvanceAlert.Keys.OK).textProperty());
+        ((Button)super.getDialogPane().lookupButton(ButtonType.OK)).textProperty().bind(Controller.MAPPED_TEXT.getValue(AdvanceAlert.class, AdvanceAlert.Keys.OK).textProperty());
     }
 
     private void centerOnStage () {

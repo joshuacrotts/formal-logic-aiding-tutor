@@ -1,8 +1,5 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane;
 
-import com.flat.controller.Controller;
-import com.flat.models.json.logicsymbols.logictype.base.keyed.KeyedLogicSymbol;
-import com.flat.view.data.fx.pane.PaneData;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.LogicSymbolsButton;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.labels.PredicateLabel;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.labels.PropositionalLabel;
@@ -51,7 +48,7 @@ public class LogicSymbolsPane extends GridPane {
         super.getChildren().add(this.propositional);
     }
 
-    private void addPropositionalButtons () {
+    private void addPropositionalButtons () {/*
         int columnCount = 0;
         LogicSymbolsButton curButton;
         for (String key : Controller.getMAPPED_SYMBOLS().getType(KeyedLogicSymbol.Type.PROPOSITIONAL).keySet()) {
@@ -61,7 +58,7 @@ public class LogicSymbolsPane extends GridPane {
             columnCount++;
             if (!validColumn(columnCount))
                 this.cur_rows++;
-        }
+        }*/
     }
 
     private void addPredicateLabel () {
@@ -69,7 +66,7 @@ public class LogicSymbolsPane extends GridPane {
         super.getChildren().add(this.predicate);
     }
 
-    private void addPredicateButtons () {
+    private void addPredicateButtons () {/*
         int columnCount = 1;
         LogicSymbolsButton curButton;
         for (String key : Controller.getMAPPED_SYMBOLS().getType(KeyedLogicSymbol.Type.PREDICATE).keySet()) {
@@ -79,7 +76,7 @@ public class LogicSymbolsPane extends GridPane {
             columnCount++;
             if (!validColumn(columnCount))
                 this.cur_rows++;
-        }
+        }*/
     }
 
     private void setLabelFx (Node _node) {

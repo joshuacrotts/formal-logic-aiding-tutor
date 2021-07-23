@@ -25,8 +25,8 @@ import com.flat.algorithms.predicate.RandomPredicateFormulaGenerator;
 import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.algorithms.propositional.RandomPropositionalFormulaGenerator;
 import com.flat.algorithms.propositional.TruthTableGenerator;
-import com.flat.models.json.algorithm.JsonAlgorithm;
-import com.flat.models.json.algorithm.JsonAlgorithms;
+import com.flat.models.data.algorithms.Algorithms;
+import com.flat.models.data.algorithms.base.Algorithm;
 import com.flat.models.treenode.WffTree;
 import java.util.ArrayList;
 
@@ -36,15 +36,15 @@ import java.util.ArrayList;
  */
 public class ApplyAlgorithm {
     private ArrayList <WffTree> wffTree = new ArrayList();
-    private JsonAlgorithms jsonAlgorithms = null;
+    private Algorithms algorithms = null;
     private ApplicableAlgorithms applicableAlgorithms = new ApplicableAlgorithms();
 
-    public ApplyAlgorithm (JsonAlgorithms _algorithms) {
-        setJsonAlgorithms(_algorithms);
+    public ApplyAlgorithm (Algorithms _algorithm) {
+        this.setAlgorithms(_algorithm);
     }
 
-    public LogicReturn apply (JsonAlgorithm _jsonAlgorithm) {
-        switch (_jsonAlgorithm.getAlgorithmType()) {
+    public LogicReturn apply (Algorithm _algorithm) {
+        switch (_algorithm.getType()) {
             case CLOSED_TREE_DETERMINER:
                 return new LogicReturn(new ClosedTreeDeterminer(this.wffTree.get(0)).hasAllClosed(), null, this.wffTree.get(0));
             case LOGICAL_FALSEHOOD_DETERMINER:
@@ -124,8 +124,8 @@ public class ApplyAlgorithm {
         return wffTree;
     }
 
-    public JsonAlgorithms getJsonAlgorithms() {
-        return jsonAlgorithms;
+    public Algorithms getAlgorithms() {
+        return algorithms;
     }
 
     public ApplicableAlgorithms getApplicableAlgorithms () {
@@ -138,8 +138,8 @@ public class ApplyAlgorithm {
         this.setApplicableAlgorithms();
     }
 
-    public final void setJsonAlgorithms(JsonAlgorithms jsonAlgorithms) {
-        this.jsonAlgorithms = jsonAlgorithms;
+    public final void setAlgorithms(Algorithms _algorithms) {
+        this.algorithms = _algorithms;
         setApplicableAlgorithms();
     }
 
@@ -167,47 +167,47 @@ public class ApplyAlgorithm {
     }
 
     private void setGeneralOneAlgorithms () {
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getMainOperatorDetector());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getClosedTreeDeterminer());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getOpenTreeDeterminer());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getLogicalFalsehoodDeterminer());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getLogicallyContingentDeterminer());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getLogicalTautologyDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getMainOperatorDetector());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getClosedTreeDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getOpenTreeDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getLogicalFalsehoodDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getLogicallyContingentDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getLogicalTautologyDeterminer());
     }
 
     private void setGeneralTwoAlgorithms () {
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getLogicallyContradictoryDeterminer());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getLogicallyConsistentDeterminer());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getLogicallyContraryDeterminer());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getLogicallyEquivalentDeterminer());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getLogicallyImpliedDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getLogicallyContradictoryDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getLogicallyConsistentDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getLogicallyContraryDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getLogicallyEquivalentDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getLogicallyImpliedDeterminer());
     }
 
     private void setGeneralMoreAlgorithms () {
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getArgumentTruthTreeValidator());
-        applicableAlgorithms.getGeneral().add(jsonAlgorithms.getGeneralAlgorithms().getSemanticEntailmentDeterminer());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getArgumentTruthTreeValidator());
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getSemanticEntailmentDeterminer());
     }
 
     private void setPredicateAlgorithms () {
-        applicableAlgorithms.getPredicate().add(jsonAlgorithms.getPredicateAlgorithms().getRandomFormulaGenerator());
+        applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getRandomPredicateFormula());
     }
 
     private void setPredicateOneAlgorithms () {
-        applicableAlgorithms.getPredicate().add(jsonAlgorithms.getPredicateAlgorithms().getBoundVariableDetector());
-        applicableAlgorithms.getPredicate().add(jsonAlgorithms.getPredicateAlgorithms().getClosedSentenceDeterminer());
-        applicableAlgorithms.getPredicate().add(jsonAlgorithms.getPredicateAlgorithms().getFreeVariableDetector());
-        applicableAlgorithms.getPredicate().add(jsonAlgorithms.getPredicateAlgorithms().getGroundSentenceDeterminer());
-        applicableAlgorithms.getPredicate().add(jsonAlgorithms.getPredicateAlgorithms().getOpenSentenceDeterminer());
-        applicableAlgorithms.getPredicate().add(jsonAlgorithms.getPredicateAlgorithms().getPredicatetruthTreeGenerator());
+        applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getBoundVariableDetector());
+        applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getClosedSentenceDeterminer());
+        applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getFreeVariableDetector());
+        applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getGroundSentenceDeterminer());
+        applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getOpenSentenceDeterminer());
+        applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getPredicateTruthTreeGenerator());
     }
 
     private void setPropositionalAlgorithms () {
-        applicableAlgorithms.getPropositional().add(jsonAlgorithms.getPropositionalAlgorithms().getRandomFormulaGenerator());
+        applicableAlgorithms.getPropositional().add(algorithms.getPropositionalAlgorithms().getRandomPropositionalFormula());
     }
 
     private void setPropositionalOneAlgorithms () {
-        applicableAlgorithms.getPropositional().add(jsonAlgorithms.getPropositionalAlgorithms().getPropositionalTruthTreeGenerator());
-        applicableAlgorithms.getPropositional().add(jsonAlgorithms.getPropositionalAlgorithms().getTruthTableGenerator());
+        applicableAlgorithms.getPropositional().add(algorithms.getPropositionalAlgorithms().getPropositionalTruthTreeGenerator());
+        applicableAlgorithms.getPropositional().add(algorithms.getPropositionalAlgorithms().getTruthTableGenerator());
     }
 
 }

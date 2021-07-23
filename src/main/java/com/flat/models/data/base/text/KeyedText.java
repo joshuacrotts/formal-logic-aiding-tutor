@@ -1,5 +1,6 @@
 package com.flat.models.data.base.text;
 
+import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.controller.Controller;
 import com.flat.models.data.base.text.key.KeyBase;
 import java.io.ObjectInputStream;
@@ -25,26 +26,25 @@ public class KeyedText extends TranslatableText implements Serializable {
     }
 
     public boolean isMapped () {
-        return Controller.getMAPPED_TEXT().getValue(this.key1, this.key2) != null;
+        return Controller.MAPPED_TEXT.getValue(this.key1, this.key2) != null;
     }
 
     private void addToMap () {
         if (this.isMapped()) {
-            Controller.getMAPPED_TEXT().getValue(this.key1, this.key2).textProperty().bind(super.textProperty());
-            Controller.getMAPPED_TEXT().getValue(this.key1, this.key2).fontProperty().bind(super.fontProperty());
+            Controller.MAPPED_TEXT.getValue(this.key1, this.key2).textProperty().bind(super.textProperty());
+            Controller.MAPPED_TEXT.getValue(this.key1, this.key2).fontProperty().bind(super.fontProperty());
         }
         else
-            Controller.getMAPPED_TEXT().putValue(this.key1, this.key2, this);
+            Controller.MAPPED_TEXT.putValue(this.key1, this.key2, this);
     }
 
     @Override
     public String toString() {
-        return "KeyedText{" + "key1=" + this.key1 + ", key2=" + this.key2 + "\n" + super.toString() + '}';
+        return "KeyedText{" + "key1=" + this.key1 + ", key2=" + this.key2 + ", " + super.toString() + '}';
     }
 
     private void writeObject (ObjectOutputStream os) {
         try {
-            os.defaultWriteObject();
             os.writeObject(this.key1);
             os.writeObject(this.key2);
         }
@@ -55,9 +55,9 @@ public class KeyedText extends TranslatableText implements Serializable {
 
     private void readObject (ObjectInputStream  is) {
         try {
-            is.defaultReadObject();
             this.key1 = (Class)is.readObject();
             this.key2 = (KeyBase)is.readObject();
+            this.addToMap();
         }
         catch (Exception e) {
             e.printStackTrace();

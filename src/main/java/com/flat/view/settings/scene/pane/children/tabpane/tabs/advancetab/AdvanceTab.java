@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.settings.tabs.advance.JsonAdvanceTab;
+import com.flat.models.data.settings.tabs.advance.AdvanceTabData;
 import com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.AdvancePane;
 import javafx.scene.control.Tab;
 
@@ -13,7 +13,7 @@ public class AdvanceTab extends Tab {
     private AdvancePane advancePane = new AdvancePane();
 
     public AdvanceTab () {
-        super.textProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvanceTab.class, JsonAdvanceTab.Keys.ADVANCE).textProperty());
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(AdvanceTabData.class, AdvanceTabData.Keys.ADVANCE).textProperty());
         super.setContent(this.advancePane);
     }
 

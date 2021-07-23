@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane.children.labels;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.logicsymbols.logictype.predicate.PredicateSymbols;
+import com.flat.models.data.logicsymbols.predicate.PredicateSymbols;
 import javafx.scene.control.Label;
 
 /**
@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 public class PredicateLabel extends Label {
 
     public PredicateLabel () {
-        super.textProperty().bind(Controller.getMAPPED_TEXT().getValue(PredicateSymbols.class, PredicateSymbols.Keys.LABEL).textProperty());
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(PredicateSymbols.class, PredicateSymbols.Keys.LABEL).textProperty());
     }
 
 }

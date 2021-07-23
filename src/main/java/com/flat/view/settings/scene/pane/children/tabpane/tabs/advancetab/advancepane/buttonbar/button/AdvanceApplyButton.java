@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.buttonbar.button;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.settings.JsonSettings;
+import com.flat.models.data.settings.Settings;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
@@ -12,8 +12,8 @@ import javafx.scene.control.Button;
 public class AdvanceApplyButton extends Button {
 
     public AdvanceApplyButton () {
-        super.textProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.APPLY).textProperty());
-        super.fontProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.APPLY).fontProperty());
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(Settings.class, Settings.Keys.APPLY).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(Settings.class, Settings.Keys.APPLY).fontProperty());
         this.setOnAction();
     }
 

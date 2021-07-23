@@ -1,20 +1,26 @@
 package com.flat.models.data.logicsymbols.base.attributes;
 
 import com.flat.models.data.base.text.KeyedText;
+import com.flat.models.data.base.text.KeyedTextArrayList;
+import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.tools.translation.base.Translatable;
-import java.util.ArrayList;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.LinkedList;
-import javafx.scene.text.Text;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class Axioms extends Translatable {
+public class Axioms extends Translatable implements Serializable {
     private KeyedText explanation;
-    private ArrayList <KeyedText> examples = new ArrayList ();
+    private KeyedTextArrayList examples = new KeyedTextArrayList();
 
-    public Axioms (KeyedText _explanation, ArrayList <KeyedText> _examples) {
+    public Axioms () {
+    }
+
+    public Axioms (KeyedText _explanation, KeyedTextArrayList _examples) {
         this.explanation = _explanation;
         this.examples = _examples;
     }
@@ -24,7 +30,7 @@ public class Axioms extends Translatable {
         return explanation;
     }
 
-    public ArrayList<KeyedText> getExamples() {
+    public KeyedTextArrayList getExamples() {
         return examples;
     }
 
@@ -33,13 +39,38 @@ public class Axioms extends Translatable {
         this.explanation = explanation;
     }
 
-    public void setExamples(ArrayList<KeyedText> examples) {
+    public void setExamples(KeyedTextArrayList examples) {
         this.examples = examples;
     }
 
     @Override
-    public LinkedList<Text> toTranslate() {
-        return new LinkedList <Text> () {{
+    public String toString() {
+        return "Axioms{" + "explanation=" + explanation + ", examples=" + examples + '}';
+    }
+
+    private void writeObject (ObjectOutputStream os) {
+        try {
+            os.writeObject(this.explanation);
+            os.writeObject(this.examples);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void readObject (ObjectInputStream  is) {
+        try {
+            this.explanation = (KeyedText) is.readObject();
+            this.examples = (KeyedTextArrayList) is.readObject();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public LinkedList <TranslatableText> toTranslate() {
+        return new LinkedList <TranslatableText> () {{
             add(explanation);
             addAll(examples);
         }};

@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.advancetab.advancepane.timeoutpane.predicatendv.children;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.settings.tabs.advance.content.JsonAdvancePane;
+import com.flat.models.data.settings.tabs.advance.content.AdvancePane;
 import javafx.scene.control.Label;
 
 /**
@@ -11,8 +11,8 @@ import javafx.scene.control.Label;
 public class PredicateNDVTimeoutLabel extends Label {
 
     public PredicateNDVTimeoutLabel () {
-        super.textProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvancePane.class, JsonAdvancePane.Keys.PREDICATE_NDV).textProperty());
-        super.fontProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonAdvancePane.class, JsonAdvancePane.Keys.PREDICATE_NDV).fontProperty());
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(AdvancePane.class, AdvancePane.Keys.PREDICATE_NDV).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(AdvancePane.class, AdvancePane.Keys.PREDICATE_NDV).fontProperty());
     }
 
 }

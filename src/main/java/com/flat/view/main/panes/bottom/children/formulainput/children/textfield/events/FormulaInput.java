@@ -1,6 +1,6 @@
 package com.flat.view.main.panes.bottom.children.formulainput.children.textfield.events;
 
-import com.flat.tools.eventbus.base.Event;
+import com.flat.tools.buses.eventbus.components.Event;
 
 /**
  *

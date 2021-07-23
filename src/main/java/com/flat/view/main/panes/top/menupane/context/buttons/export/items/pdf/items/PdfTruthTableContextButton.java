@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.menubar.items.export.JsonLatexTruthTableMenuItem;
+import com.flat.models.data.menubar.menus.export.type.items.LatexTruthTableMenuItem;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.data.fx.pane.PaneData;
 
@@ -12,7 +12,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class PdfTruthTableContextButton extends ContextButton {
 
     public PdfTruthTableContextButton () {
-        super(Controller.getMAPPED_TEXT().getValue(JsonLatexTruthTableMenuItem.class, JsonLatexTruthTableMenuItem.Keys.LATEX_TRUTH_TABLE));
+        super(Controller.MAPPED_TEXT.getValue(LatexTruthTableMenuItem.class, LatexTruthTableMenuItem.Keys.LATEX_TRUTH_TABLE));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
     }
 

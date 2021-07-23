@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.menubar.menus.export.attributes.JsonExportAsPdfMenu;
+import com.flat.models.data.menubar.menus.export.type.pdf.ExportAsPdfMenu;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfParseTreeContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfTruthTableContextButton;
@@ -15,7 +15,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class PdfContextButton extends ContextButton {
 
     public PdfContextButton () {
-        super(Controller.getMAPPED_TEXT().getValue(JsonExportAsPdfMenu.class, JsonExportAsPdfMenu.Keys.EXPORT_AS_PDF),
+        super(Controller.MAPPED_TEXT.getValue(ExportAsPdfMenu.class, ExportAsPdfMenu.Keys.EXPORT_AS_PDF),
                 new PdfParseTreeContextButton(),
                 new PdfTruthTreeContextButton(),
                 new PdfTruthTableContextButton());

@@ -1,6 +1,8 @@
 package com.flat.view.data.fx.algorithms;
 
-import com.flat.models.json.algorithm.JsonAlgorithm;
+import com.flat.controller.Controller;
+import com.flat.models.data.algorithms.base.Algorithm;
+import com.flat.view.data.fx.algorithms.listener.AvailableAlgorithmsListener;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,39 +12,44 @@ import javafx.collections.ObservableList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class AvailableAlgorithms {
-    private final static ObservableList generalAlgorithms = FXCollections.observableArrayList();
-    private final static ObservableList propositionalAlgorithms = FXCollections.observableArrayList();
-    private final static ObservableList predicateAlgorithms = FXCollections.observableArrayList();
+    private final ObservableList generalAlgorithms = FXCollections.observableArrayList();
+    private final ObservableList propositionalAlgorithms = FXCollections.observableArrayList();
+    private final ObservableList predicateAlgorithms = FXCollections.observableArrayList();
 
-    public static void clearAlgorithms () {
-        generalAlgorithms.clear();
-        propositionalAlgorithms.clear();
-        predicateAlgorithms.clear();
+    public AvailableAlgorithms () {
+        Controller.DATA_BUS.addListener(new AvailableAlgorithmsListener(this));
     }
 
-    public static void addGeneralAlgorithms (ArrayList <JsonAlgorithm> _jsonAlgorithms) {
-        generalAlgorithms.addAll(_jsonAlgorithms);
-    }
-
-    public static void addPropositionalAlgorithms (ArrayList <JsonAlgorithm> _jsonAlgorithms) {
-        propositionalAlgorithms.addAll(_jsonAlgorithms);
-    }
-
-    public static void addPredicateAlgorithms (ArrayList <JsonAlgorithm> _jsonAlgorithms) {
-        predicateAlgorithms.addAll(_jsonAlgorithms);
+    public void clearAlgorithms () {
+        this.generalAlgorithms.clear();
+        this.propositionalAlgorithms.clear();
+        this.predicateAlgorithms.clear();
     }
 
     // Getters for object's attributes.
-    public static ObservableList getGeneralAlgorithms() {
-        return generalAlgorithms;
+    public  ObservableList getGeneralAlgorithms () {
+        return this.generalAlgorithms;
     }
 
-    public static ObservableList getPropositionalAlgorithms() {
-        return propositionalAlgorithms;
+    public  ObservableList getPropositionalAlgorithms () {
+        return this.propositionalAlgorithms;
     }
 
-    public static ObservableList getPredicateAlgorithms() {
-        return predicateAlgorithms;
+    public  ObservableList getPredicateAlgorithms () {
+        return this.predicateAlgorithms;
+    }
+
+    // Add methods for object' attributes.
+    public void addGeneralAlgorithms (ArrayList <Algorithm> _algorithms) {
+        this.generalAlgorithms.addAll(_algorithms);
+    }
+
+    public void addPropositionalAlgorithms (ArrayList <Algorithm> _algorithms) {
+        this.propositionalAlgorithms.addAll(_algorithms);
+    }
+
+    public void addPredicateAlgorithms (ArrayList <Algorithm> _algorithms) {
+        this.predicateAlgorithms.addAll(_algorithms);
     }
 
 }

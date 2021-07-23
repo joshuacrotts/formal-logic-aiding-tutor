@@ -1,15 +1,15 @@
 package com.flat.view.main.panes.center.children.algorithmvisualselection.children.resultpane.listener;
 
-import com.flat.models.algorithms.events.UpdateTruth;
-import com.flat.tools.eventbus.base.Event;
-import com.flat.tools.eventbus.base.Listener;
+import com.flat.models.algorithms.bus.events.UpdateTruth;
+import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.resultpane.AlgorithmResultPane;
+import com.flat.tools.buses.eventbus.components.EventListener;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class AlgorithmResultListener implements Listener{
+public class AlgorithmResultListener implements EventListener {
     private AlgorithmResultPane resultPane;
 
     public AlgorithmResultListener (AlgorithmResultPane _resultPane) {
@@ -17,7 +17,7 @@ public class AlgorithmResultListener implements Listener{
     }
 
     @Override
-    public void catchEvent(Event _event) {
+    public void catchEvent (Event _event) {
         switch (_event.getType()) {
             case CLEAR_LOGIC_VISUALS:
                 this.clearResult();

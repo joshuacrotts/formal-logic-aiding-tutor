@@ -27,7 +27,7 @@ public class ParseTreeButton extends Button {
 
     private void setThisOnAction () {
         super.setOnAction(event -> {
-            Controller.getEVENT_BUS().throwEvent(new ParseTreeButtonPressed());
+            Controller.EVENT_BUS.throwEvent(new ParseTreeButtonPressed());
         });
     }
 

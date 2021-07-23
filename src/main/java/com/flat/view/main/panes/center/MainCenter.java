@@ -28,7 +28,7 @@ public class MainCenter extends VBox {
 
     public MainCenter() {
         this.initializeFx();
-        Controller.getEVENT_BUS().addListener(new MainCenterListener(this));
+        Controller.EVENT_BUS.addListener(new MainCenterListener(this));
     }
 
     private void initializeFx () {

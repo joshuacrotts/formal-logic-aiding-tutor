@@ -1,7 +1,7 @@
 package com.flat.view.settings;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.settings.JsonSettings;
+import com.flat.models.data.settings.Settings;
 import com.flat.view.settings.scene.SettingsScene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,9 +21,9 @@ public class SettingsStage extends Stage {
     }
 
     private void setFxProperties() {
-        super.titleProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.TITLE).textProperty());
+        super.titleProperty().bind(Controller.MAPPED_TEXT.getValue(Settings.class, Settings.Keys.TITLE).textProperty());
         super.initModality(Modality.WINDOW_MODAL);
-        super.initOwner(Controller.getSTAGE().getScene().getWindow());
+        super.initOwner(Controller.STAGE.getScene().getWindow());
     }
 
     private void setSize() {
@@ -32,8 +32,8 @@ public class SettingsStage extends Stage {
     }
 
     private void centerOnStage() {
-        super.setX(Controller.getSTAGE().getX() + ((Controller.getSTAGE().getWidth() - super.getWidth()) / 2));
-        super.setY(Controller.getSTAGE().getY() + ((Controller.getSTAGE().getHeight() - super.getHeight()) / 2));
+        super.setX(Controller.STAGE.getX() + ((Controller.STAGE.getWidth() - super.getWidth()) / 2));
+        super.setY(Controller.STAGE.getY() + ((Controller.STAGE.getHeight() - super.getHeight()) / 2));
     }
 
 }

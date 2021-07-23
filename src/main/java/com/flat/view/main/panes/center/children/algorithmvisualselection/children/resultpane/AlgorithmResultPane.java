@@ -15,7 +15,7 @@ public class AlgorithmResultPane extends HBox {
 
     public AlgorithmResultPane () {
         this.initializeFx();
-        Controller.getEVENT_BUS().addListener(new AlgorithmResultListener(this));
+        Controller.EVENT_BUS.addListener(new AlgorithmResultListener(this));
     }
 
     private void initializeFx () {

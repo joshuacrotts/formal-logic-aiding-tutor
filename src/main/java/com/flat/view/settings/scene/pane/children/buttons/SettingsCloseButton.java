@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.buttons;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.settings.JsonSettings;
+import com.flat.models.data.settings.Settings;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 public class SettingsCloseButton extends Button {
 
     public SettingsCloseButton() {
-        super.textProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.CLOSE).textProperty());
-        super.fontProperty().bind(Controller.getMAPPED_TEXT().getValue(JsonSettings.class, JsonSettings.Keys.CLOSE).fontProperty());
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(Settings.class, Settings.Keys.CLOSE).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(Settings.class, Settings.Keys.CLOSE).fontProperty());
         super.setCancelButton(true);
         this.setOnAction();
     }

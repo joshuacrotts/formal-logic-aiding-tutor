@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.file.items;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.menubar.items.file.JsonSettingsMenuItem;
+import com.flat.models.data.menubar.menus.file.items.SettingsMenuItem;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.settings.SettingsStage;
 import com.flat.view.data.fx.pane.PaneData;
@@ -13,14 +13,14 @@ import com.flat.view.data.fx.pane.PaneData;
 public class SettingsContextButton extends ContextButton {
 
     public SettingsContextButton () {
-        super(Controller.getMAPPED_TEXT().getValue(JsonSettingsMenuItem.class, JsonSettingsMenuItem.Keys.SETTINGS));
+        super(Controller.MAPPED_TEXT.getValue(SettingsMenuItem.class, SettingsMenuItem.Keys.SETTINGS));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         this.setOnAction();
     }
 
     private void setOnAction () {
         super.setOnAction(event -> {
-            Controller.applyFont(new SettingsStage());
+            new SettingsStage();
         });
     }
 

@@ -1,6 +1,6 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.languagepane.languagelistpane.listview;
 
-import com.flat.view.data.json.settings.LanguageData;
+import com.flat.controller.Controller;
 import com.flat.models.json.language.JsonLanguage;
 import javafx.scene.control.ListView;
 
@@ -11,7 +11,7 @@ public class LanguageListView extends ListView {
     private static JsonLanguage selectedLanguage;
 
     public LanguageListView() {
-        super.getItems().addAll(LanguageData.getLanguages());
+        super.getItems().addAll(Controller.FX_DATA.getLanguages().getLanguages());
         super.setCellFactory(param -> new LanguageListCell());
         super.setMaxHeight(300);
         this.setOnMouseClicked();

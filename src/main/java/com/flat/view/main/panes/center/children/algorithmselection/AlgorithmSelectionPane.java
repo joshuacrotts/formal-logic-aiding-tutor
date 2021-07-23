@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.center.children.algorithmselection;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.algorithm.JsonAlgorithm;
+import com.flat.models.data.algorithms.base.Algorithm;
 import com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.GeneralComboBox;
 import com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.PredicateComboBox;
 import com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.PropositionalComboBox;
@@ -21,11 +21,11 @@ public class AlgorithmSelectionPane extends HBox {
     private PredicateComboBox predicateCombo = new PredicateComboBox();
     private PropositionalComboBox propositionalCombo = new PropositionalComboBox();
     private List <ComboBox> comboBoxes = Arrays.asList(generalCombo, predicateCombo, propositionalCombo);
-    private JsonAlgorithm selectedAlgorithm = null;
+    private Algorithm selectedAlgorithm = null;
 
     public AlgorithmSelectionPane () {
         this.initializeFx();
-        Controller.getEVENT_BUS().addListener(new AlgorithmSelectionPaneListener(this));
+        Controller.EVENT_BUS.addListener(new AlgorithmSelectionPaneListener(this));
     }
 
     private void initializeFx () {
@@ -57,11 +57,7 @@ public class AlgorithmSelectionPane extends HBox {
         _comboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal == null)
                 return;
-            this.selectedAlgorithm = (JsonAlgorithm)_comboBox.getValue();
-            this.comboBoxes.forEach(comboBox -> {
-                if (!_comboBox.equals(comboBox))
-                    comboBox.valueProperty().setValue(null);
-            });
+            this.selectedAlgorithm = (Algorithm)_comboBox.getValue();
         });
     }
 
@@ -82,7 +78,7 @@ public class AlgorithmSelectionPane extends HBox {
         return comboBoxes;
     }
 
-    public JsonAlgorithm getSelectedAlgorithm() {
+    public Algorithm getSelectedAlgorithm() {
         return selectedAlgorithm;
     }
 
@@ -103,7 +99,7 @@ public class AlgorithmSelectionPane extends HBox {
         this.comboBoxes = comboBoxes;
     }
 
-    public void setSelectedAlgorithm(JsonAlgorithm selectedAlgorithm) {
+    public void setSelectedAlgorithm(Algorithm selectedAlgorithm) {
         this.selectedAlgorithm = selectedAlgorithm;
     }
 

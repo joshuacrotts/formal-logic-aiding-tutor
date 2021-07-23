@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.center.listener;
 
-import com.flat.tools.eventbus.base.Event;
-import com.flat.tools.eventbus.base.Listener;
+import com.flat.tools.buses.eventbus.components.Event;
+import com.flat.tools.buses.eventbus.components.EventListener;
 import com.flat.view.main.panes.center.MainCenter;
 import com.flat.view.main.panes.center.children.trees.wrappers.HBoxWrapper;
 import com.flat.view.main.panes.center.children.trees.wrappers.TreeGroupWrapper;
@@ -11,7 +11,7 @@ import com.flat.view.main.panes.center.children.trees.wrappers.VBoxWrapper;
  *
  * @author christopherbrantley
  */
-public class MainCenterListener implements Listener {
+public class MainCenterListener implements EventListener {
     private MainCenter mainCenter;
     private HBoxWrapper hWrapper = new HBoxWrapper();
     private VBoxWrapper vWrapper = new VBoxWrapper();

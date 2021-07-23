@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.file.items;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.menubar.items.file.JsonExitMenuItem;
+import com.flat.models.data.menubar.menus.file.items.ExitMenuItem;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.data.fx.pane.PaneData;
 
@@ -12,7 +12,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class ExitContextButton extends ContextButton {
 
     public ExitContextButton () {
-        super(Controller.getMAPPED_TEXT().getValue(JsonExitMenuItem.class, JsonExitMenuItem.Keys.EXIT));
+        super(Controller.MAPPED_TEXT.getValue(ExitMenuItem.class, ExitMenuItem.Keys.EXIT));
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         this.setOnAction();
     }

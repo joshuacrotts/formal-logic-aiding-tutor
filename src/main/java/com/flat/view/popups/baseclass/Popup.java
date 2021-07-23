@@ -41,7 +41,7 @@ public class Popup extends Stage {
 
     private void setThisFx () {
         super.initModality(Modality.WINDOW_MODAL);
-        super.initOwner(Controller.getSTAGE().getScene().getWindow());
+        super.initOwner(Controller.STAGE.getScene().getWindow());
         super.initStyle(StageStyle.UNDECORATED);
     }
 
@@ -51,8 +51,8 @@ public class Popup extends Stage {
     }
 
     private void centerOnStage () {
-        super.setX(Controller.getSTAGE().getX() + ((Controller.getSTAGE().getWidth() - super.getWidth()) / 2));
-        super.setY(Controller.getSTAGE().getY() + ((Controller.getSTAGE().getHeight() - super.getHeight()) / 2));
+        super.setX(Controller.STAGE.getX() + ((Controller.STAGE.getWidth() - super.getWidth()) / 2));
+        super.setY(Controller.STAGE.getY() + ((Controller.STAGE.getHeight() - super.getHeight()) / 2));
     }
 
 }

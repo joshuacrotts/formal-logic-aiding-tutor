@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.tabpane.tabs.languagetab.languagepane.languagelistpane.listview;
 
 import com.flat.models.json.language.JsonLanguage;
-import com.flat.tools.font.enums.FontLocal;
+import com.flat.tools.font.FontTool;
 import javafx.scene.control.ListCell;
 
 /**
@@ -16,8 +16,7 @@ public class LanguageListCell extends ListCell<JsonLanguage> {
     protected void updateItem(JsonLanguage _language, boolean _empty) {
         super.updateItem(_language, _empty);
         if (!(_language == null) && !(_empty)) {
-            if (!_language.getFont().equals(FontLocal.FontFamily.DEFAULT))
-                this.setStyle("-fx-font-family: " + _language.getFont().getFamily());
+            this.setFont(FontTool.getFont(_language.getFont()));
             this.setText(_language.getNativeName());
         }
     }

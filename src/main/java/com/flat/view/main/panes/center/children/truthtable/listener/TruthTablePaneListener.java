@@ -1,21 +1,21 @@
 package com.flat.view.main.panes.center.children.truthtable.listener;
 
-import com.flat.models.algorithms.events.UpdateTruthTable;
+import com.flat.models.algorithms.bus.events.UpdateTruthTable;
 import com.flat.models.treenode.WffTree;
-import com.flat.tools.eventbus.base.Event;
-import com.flat.tools.eventbus.base.Listener;
+import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.view.main.panes.center.children.truthtable.TruthTablePane;
 import com.flat.view.main.panes.center.children.truthtable.base.tablelayout.TruthTable;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
+import com.flat.tools.buses.eventbus.components.EventListener;
 
 /**
  *
  * @author christopherbrantley
  */
-public class TruthTablePaneListener implements Listener {
+public class TruthTablePaneListener implements EventListener {
     private TruthTablePane truthTablePane;
 
     public TruthTablePaneListener (TruthTablePane _truthTablePane) {
@@ -23,7 +23,7 @@ public class TruthTablePaneListener implements Listener {
     }
 
     @Override
-    public void catchEvent(Event _event) {
+    public void catchEvent (Event _event) {
         switch (_event.getType()) {
             case CLEAR_LOGIC_VISUALS:
                 this.truthTablePane.getChildren().clear();

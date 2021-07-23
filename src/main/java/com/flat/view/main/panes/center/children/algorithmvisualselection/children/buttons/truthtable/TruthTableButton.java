@@ -27,7 +27,7 @@ public class TruthTableButton extends Button {
 
     private void setThisOnAction () {
         super.setOnAction(event -> {
-            Controller.getEVENT_BUS().throwEvent(new TruthTableButtonPressed());
+            Controller.EVENT_BUS.throwEvent(new TruthTableButtonPressed());
         });
     }
 

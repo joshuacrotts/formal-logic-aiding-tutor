@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 public class FormulaInputTextField extends TextField {
 
     public FormulaInputTextField () {
-        Controller.getEVENT_BUS().addListener(new FormulaInputTextFieldListener(this));
+        Controller.EVENT_BUS.addListener(new FormulaInputTextFieldListener(this));
     }
 
 }

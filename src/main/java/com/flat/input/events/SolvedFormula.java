@@ -1,7 +1,7 @@
 package com.flat.input.events;
 
 import com.flat.models.treenode.WffTree;
-import com.flat.tools.eventbus.base.Event;
+import com.flat.tools.buses.eventbus.components.Event;
 
 /**
  *

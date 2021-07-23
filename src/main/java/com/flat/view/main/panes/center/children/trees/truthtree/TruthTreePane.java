@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 public class TruthTreePane extends Pane {
 
     public TruthTreePane () {
-        Controller.getEVENT_BUS().addListener(new TruthTreePaneListener(this));
+        Controller.EVENT_BUS.addListener(new TruthTreePaneListener(this));
     }
 
 }

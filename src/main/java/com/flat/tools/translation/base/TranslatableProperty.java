@@ -1,11 +1,11 @@
 package com.flat.tools.translation.base;
 
+import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.models.json.language.JsonLanguage;
 import com.google.cloud.translate.Translation;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 /**
  *
@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
  */
 public interface TranslatableProperty {
 
-    LinkedList <Text> toTranslate();
+    LinkedList <TranslatableText> toTranslate();
 
     void translate (JsonLanguage _language);
 

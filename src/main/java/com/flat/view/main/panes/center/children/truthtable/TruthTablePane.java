@@ -11,7 +11,7 @@ import javafx.scene.layout.HBox;
 public class TruthTablePane extends HBox {
 
     public TruthTablePane () {
-        Controller.getEVENT_BUS().addListener(new TruthTablePaneListener(this));
+        Controller.EVENT_BUS.addListener(new TruthTablePaneListener(this));
     }
 
 }

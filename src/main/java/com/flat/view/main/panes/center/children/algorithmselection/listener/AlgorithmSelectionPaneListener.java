@@ -1,15 +1,15 @@
 package com.flat.view.main.panes.center.children.algorithmselection.listener;
 
 import com.flat.controller.Controller;
-import com.flat.tools.eventbus.base.Event;
-import com.flat.tools.eventbus.base.Listener;
 import com.flat.view.main.panes.center.children.algorithmselection.AlgorithmSelectionPane;
+import com.flat.tools.buses.eventbus.components.Event;
+import com.flat.tools.buses.eventbus.components.EventListener;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class AlgorithmSelectionPaneListener implements Listener {
+public class AlgorithmSelectionPaneListener implements EventListener {
     private AlgorithmSelectionPane algorithmSelectionPane;
 
     public AlgorithmSelectionPaneListener (AlgorithmSelectionPane _algorithmSelectionPane) {
@@ -24,6 +24,7 @@ public class AlgorithmSelectionPaneListener implements Listener {
                     Controller.applyFormula(this.algorithmSelectionPane.getSelectedAlgorithm());
                     this.algorithmSelectionPane.setSelectedAlgorithm(null);
                 }
+                break;
         }
     }
 

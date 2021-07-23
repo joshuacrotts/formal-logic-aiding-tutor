@@ -1,20 +1,27 @@
 package com.flat.models.data.logicsymbols.base.attributes;
 
 import com.flat.models.data.base.text.KeyedText;
+import com.flat.models.data.base.text.KeyedTextArrayList;
+import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.tools.translation.base.Translatable;
-import java.util.ArrayList;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.LinkedList;
-import javafx.scene.text.Text;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class Symbols extends Translatable {
-    private KeyedText general;
-    private ArrayList <KeyedText> alternate = new ArrayList ();
+public class Symbols extends Translatable implements Serializable {
 
-    public Symbols (KeyedText _general, ArrayList <KeyedText> _alternate) {
+    private KeyedText general;
+    private KeyedTextArrayList alternate = new KeyedTextArrayList();
+
+    public Symbols () {
+    }
+
+    public Symbols (KeyedText _general, KeyedTextArrayList _alternate) {
         this.general = _general;
         this.alternate = _alternate;
     }
@@ -24,7 +31,7 @@ public class Symbols extends Translatable {
         return general;
     }
 
-    public ArrayList<KeyedText> getAlternate() {
+    public KeyedTextArrayList getAlternate() {
         return alternate;
     }
 
@@ -33,13 +40,38 @@ public class Symbols extends Translatable {
         this.general = general;
     }
 
-    public void setAlternate(ArrayList<KeyedText> alternate) {
+    public void setAlternate(KeyedTextArrayList alternate) {
         this.alternate = alternate;
     }
 
     @Override
-    public LinkedList<Text> toTranslate() {
-        return new LinkedList <Text> () {{
+    public String toString() {
+        return "Symbols{" + "general=" + general + ", alternate=" + alternate + '}';
+    }
+
+    private void writeObject (ObjectOutputStream os) {
+        try {
+            os.writeObject(general);
+            os.writeObject(alternate);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void readObject (ObjectInputStream  is) {
+        try {
+            this.general = (KeyedText) is.readObject();
+            this.alternate = (KeyedTextArrayList) is.readObject();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public LinkedList <TranslatableText> toTranslate() {
+        return new LinkedList <TranslatableText> () {{
         }};
     }
 

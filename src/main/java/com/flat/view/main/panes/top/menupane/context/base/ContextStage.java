@@ -14,7 +14,7 @@ public class ContextStage extends Stage {
     public ContextStage () {
         super(StageStyle.UNDECORATED);
         super.initModality(Modality.NONE);
-        super.initOwner(Controller.getSTAGE().getScene().getWindow());
+        super.initOwner(Controller.STAGE.getScene().getWindow());
     }
 
 }

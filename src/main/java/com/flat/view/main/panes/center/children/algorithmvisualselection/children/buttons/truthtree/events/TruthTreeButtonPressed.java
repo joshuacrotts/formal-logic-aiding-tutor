@@ -1,6 +1,6 @@
 package com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.truthtree.events;
 
-import com.flat.tools.eventbus.base.Event;
+import com.flat.tools.buses.eventbus.components.Event;
 
 /**
  *

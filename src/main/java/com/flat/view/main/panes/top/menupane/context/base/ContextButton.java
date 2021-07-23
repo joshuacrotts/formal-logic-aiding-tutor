@@ -1,6 +1,5 @@
 package com.flat.view.main.panes.top.menupane.context.base;
 
-import com.flat.controller.Controller;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
@@ -34,13 +33,6 @@ public class ContextButton extends Button {
         this.setOnMouseThis();
     }
 
-    private void applyFont () {
-        if (this.stage != null)
-            if (this.stage.getScene() != null)
-                if (this.stage.getScene().getRoot() != null)
-                    Controller.applyFont(this.stage);
-    }
-
     private void layoutStage () {
         this.stage.setX(this.getScene().getWindow().getX() + this.getScene().getX() + this.getLayoutX() +  this.offsetX);
         this.stage.setY(this.getScene().getWindow().getY() + this.getScene().getY() + this.getLayoutY() + this.getHeight() + this.offsetY);
@@ -60,7 +52,6 @@ public class ContextButton extends Button {
 
     protected void setOnMouseEnteredThis () {
         super.setOnMouseEntered(event -> {
-            this.applyFont();
             this.layoutStage();
             this.toggleStage();
         });
@@ -127,7 +118,6 @@ public class ContextButton extends Button {
         if (!this.toggle)
             this.stage.hide();
         else {
-            this.applyFont();
             this.layoutStage();
             this.stage.show();
         }

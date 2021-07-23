@@ -1,7 +1,7 @@
 package com.flat.view.data.fx.pane.panes;
 
 import com.flat.view.data.fx.pane.panes.fxextension.PanePropertyExtension;
-import com.flat.view.data.fx.settings.AppearancePreviewData;
+import com.flat.view.data.fx.settings.appearance.AppearancePreviewData;
 
 /**
  *

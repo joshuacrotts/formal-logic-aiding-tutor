@@ -1,8 +1,6 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons;
 
-import com.flat.controller.Controller;
-import com.flat.models.json.logicsymbols.logictype.base.LogicSymbol;
-import com.flat.models.json.logicsymbols.logictype.base.keyed.KeyedLogicSymbol;
+import com.flat.models.data.logicsymbols.base.LogicSymbol;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 
@@ -13,9 +11,9 @@ import javafx.scene.control.Tooltip;
 public class LogicSymbolsButton extends Button {
 
     public LogicSymbolsButton (String _key, LogicSymbol _logicSymbol) {
-        super(_logicSymbol.getSymbols().getGeneral());
+        super.textProperty().bind(_logicSymbol.getSymbols().getGeneral().textProperty());
         super.setTooltip(new Tooltip());
-        super.getTooltip().textProperty().bind(Controller.getMAPPED_TEXT().getValue(_key, KeyedLogicSymbol.Keys.TOOL_TIP).textProperty());
+        //super.getTooltip().textProperty().bind(Controller.MAPPED_TEXT.getValue(_key, LogicSymbol.Keys.TOOL_TIP).textProperty());
         super.setMaxWidth(Double.MAX_VALUE);
         super.setPrefSize(30, 30);
     }

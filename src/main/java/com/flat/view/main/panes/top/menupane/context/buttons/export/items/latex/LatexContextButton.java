@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex;
 
 import com.flat.controller.Controller;
-import com.flat.models.json.menubar.menus.export.attributes.JsonExportAsLatexMenu;
+import com.flat.models.data.menubar.menus.export.type.latex.ExportAsLatexMenu;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexParseTreeContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexTruthTableContextButton;
@@ -15,7 +15,7 @@ import com.flat.view.data.fx.pane.PaneData;
 public class LatexContextButton extends ContextButton {
 
     public LatexContextButton () {
-        super(Controller.getMAPPED_TEXT().getValue(JsonExportAsLatexMenu.class, JsonExportAsLatexMenu.Keys.EXPORT_AS_LATEX),
+        super(Controller.MAPPED_TEXT.getValue(ExportAsLatexMenu.class, ExportAsLatexMenu.Keys.EXPORT_AS_LATEX),
                 new LatexParseTreeContextButton(),
                 new LatexTruthTreeContextButton(),
                 new LatexTruthTableContextButton());

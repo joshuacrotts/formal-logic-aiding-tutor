@@ -1,17 +1,49 @@
 package com.flat.models.data.logicsymbols.base;
 
 import com.flat.models.data.base.text.KeyedText;
+import com.flat.models.data.base.text.key.KeyBase;
+import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.models.data.logicsymbols.base.attributes.Axioms;
 import com.flat.models.data.logicsymbols.base.attributes.Symbols;
 import com.flat.tools.translation.base.Translatable;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.LinkedList;
-import javafx.scene.text.Text;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class LogicSymbol extends Translatable {
+public class LogicSymbol extends Translatable implements Serializable {
+
+    public enum Keys implements KeyBase {
+            LABEL,
+            // Symbol's keys.
+            GENERAL,
+            ALTERNATE_1,
+            ALTERNATE_2,
+            ALTERNATE_3,
+            ALTERNATE_4,
+            ALTERNATE_5,
+            ALTERNATE_6,
+            ALTERNATE_7,
+            // Symbol's keys.
+            TOOL_TIP,
+            DESCRIPTION,
+            READ_AS,
+            // Axioms's keys.
+            EXPLANATION,
+            EXAMPLE_1,
+            EXAMPLE_2,
+            EXAMPLE_3,
+            EXAMPLE_4,
+            EXAMPLE_5,
+            EXAMPLE_6,
+            EXAMPLE_7,
+            // Axiom's keys.
+        }
+
     private KeyedText label;
     private Symbols symbols;
     private KeyedText toolTip;
@@ -79,8 +111,42 @@ public class LogicSymbol extends Translatable {
     }
 
     @Override
-    public LinkedList <Text> toTranslate() {
-        return new LinkedList <Text> () {{
+    public String toString() {
+        return "LogicSymbol{" + "label=" + label + ", symbols=" + symbols + ", toolTip=" +
+                toolTip + ", description=" + description + ", readAs=" + readAs + ", axioms=" + axioms + '}';
+    }
+
+    private void writeObject (ObjectOutputStream os) {
+        try {
+            os.writeObject(this.label);
+            os.writeObject(this.symbols);
+            os.writeObject(this.toolTip);
+            os.writeObject(this.description);
+            os.writeObject(this.readAs);
+            os.writeObject(this.axioms);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void readObject (ObjectInputStream  is) {
+        try {
+            this.label = (KeyedText) is.readObject();
+            this.symbols = (Symbols) is.readObject();
+            this.toolTip = (KeyedText) is.readObject();
+            this.description = (KeyedText) is.readObject();
+            this.readAs = (KeyedText) is.readObject();
+            this.axioms = (Axioms) is.readObject();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public LinkedList <TranslatableText> toTranslate() {
+        return new LinkedList <TranslatableText> () {{
             add(label);
             addAll(symbols.toTranslate());
             add(toolTip);

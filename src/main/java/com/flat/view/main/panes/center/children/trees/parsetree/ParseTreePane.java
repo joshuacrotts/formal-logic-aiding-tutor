@@ -12,7 +12,7 @@ public class ParseTreePane extends Pane {
 
     public ParseTreePane() {
         this.initializeFx();
-        Controller.getEVENT_BUS().addListener(new ParseTreePaneListener(this));
+        Controller.EVENT_BUS.addListener(new ParseTreePaneListener(this));
     }
 
     private void initializeFx () {
