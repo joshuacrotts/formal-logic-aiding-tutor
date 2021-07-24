@@ -12,7 +12,7 @@ import com.flat.models.data.logicsymbols.base.attributes.Symbols;
 public class DisjunctionSymbols extends Symbols {
 
     public DisjunctionSymbols () {
-        super(new KeyedText(DisjunctionSymbols.class, LogicSymbol.Keys.GENERAL, ""),
+        super(new KeyedText(DisjunctionSymbols.class, LogicSymbol.Keys.GENERAL, "∨"),
                 new KeyedTextArrayList(
                         new KeyedText(DisjunctionSymbols.class, LogicSymbol.Keys.EXAMPLE_1, "|"),
                         new KeyedText(DisjunctionSymbols.class, LogicSymbol.Keys.EXAMPLE_2, "+"),

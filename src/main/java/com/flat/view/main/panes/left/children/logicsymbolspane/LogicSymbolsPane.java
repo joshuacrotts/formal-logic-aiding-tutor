@@ -1,6 +1,6 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane;
 
-import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.LogicSymbolsButton;
+import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.LogicButton;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.labels.PredicateLabel;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.labels.PropositionalLabel;
 import javafx.geometry.HPos;
@@ -50,9 +50,9 @@ public class LogicSymbolsPane extends GridPane {
 
     private void addPropositionalButtons () {/*
         int columnCount = 0;
-        LogicSymbolsButton curButton;
+        LogicButton curButton;
         for (String key : Controller.getMAPPED_SYMBOLS().getType(KeyedLogicSymbol.Type.PROPOSITIONAL).keySet()) {
-            curButton = new LogicSymbolsButton(key, Controller.getMAPPED_SYMBOLS().getValue(KeyedLogicSymbol.Type.PROPOSITIONAL, key));
+            curButton = new LogicButton(key, Controller.getMAPPED_SYMBOLS().getValue(KeyedLogicSymbol.Type.PROPOSITIONAL, key));
             this.setButtonFx(curButton, columnCount % max_width, this.cur_rows);
             super.getChildren().add(curButton);
             columnCount++;
@@ -68,9 +68,9 @@ public class LogicSymbolsPane extends GridPane {
 
     private void addPredicateButtons () {/*
         int columnCount = 1;
-        LogicSymbolsButton curButton;
+        LogicButton curButton;
         for (String key : Controller.getMAPPED_SYMBOLS().getType(KeyedLogicSymbol.Type.PREDICATE).keySet()) {
-            curButton = new LogicSymbolsButton(key, Controller.getMAPPED_SYMBOLS().getValue(KeyedLogicSymbol.Type.PREDICATE, key));
+            curButton = new LogicButton(key, Controller.getMAPPED_SYMBOLS().getValue(KeyedLogicSymbol.Type.PREDICATE, key));
             this.setButtonFx(curButton, columnCount % max_width, this.cur_rows);
             super.getChildren().add(curButton);
             columnCount++;
@@ -85,7 +85,7 @@ public class LogicSymbolsPane extends GridPane {
         this.setThisChildrenDefaultFx(_node);
     }
 
-    private void setButtonFx (LogicSymbolsButton _button, int _column, int _row) {
+    private void setButtonFx (LogicButton _button, int _column, int _row) {
         GridPane.setConstraints(_button, _column, _row);
         this.setThisChildrenDefaultFx(_button);
     }

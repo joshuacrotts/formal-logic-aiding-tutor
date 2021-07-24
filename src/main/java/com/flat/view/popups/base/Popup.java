@@ -1,4 +1,4 @@
-package com.flat.view.popups.baseclass;
+package com.flat.view.popups.base;
 
 import com.flat.controller.Controller;
 import javafx.scene.Scene;

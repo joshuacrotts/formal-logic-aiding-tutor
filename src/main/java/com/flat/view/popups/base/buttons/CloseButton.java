@@ -1,4 +1,4 @@
-package com.flat.view.popups.baseclass.buttons;
+package com.flat.view.popups.base.buttons;
 
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
