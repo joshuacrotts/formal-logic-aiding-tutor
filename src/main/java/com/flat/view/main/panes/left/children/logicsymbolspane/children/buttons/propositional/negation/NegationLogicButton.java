@@ -15,7 +15,7 @@ public class NegationLogicButton extends LogicButton {
 
     public NegationLogicButton () {
         super(
-                Controller.MAPPED_TEXT.getValue(NegationSymbol.class, LogicSymbol.Keys.TOOL_TIP),
+                Controller.MAPPED_TEXT.getValue(NegationSymbol.class, LogicSymbol.Keys.GENERAL),
                 new NegationTooltip(),
                 new NegationContextMenu()
         );
