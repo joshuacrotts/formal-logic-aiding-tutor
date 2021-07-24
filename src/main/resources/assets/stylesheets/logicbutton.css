@@ -1,0 +1,27 @@
+/*
+    Created on : Jul 24, 2021, 3:19:37 PM
+    Author     : Christopher Brantley <c_brantl@uncg.edu>
+*/
+.logicContextMenu, .logicToolTip, .logicContextMenuItem {
+    -fx-background-radius: 10;
+    -fx-border-width: 1;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+}
+
+.logicContextMenu, .logicToolTip {
+    -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.5) , 10, 0.0 , 0 , 3);
+}
+
+.logicContextMenu, .logicContextMenuItem {
+    -fx-background-color: lightgray;
+}
+
+.logicContextMenuItem:hover {
+    -fx-background-color: whitesmoke;
+}
+
+.logicToolTip {
+    -fx-background-color: whitesmoke;
+}

@@ -23,6 +23,8 @@ public abstract class Event {
         PARSE_TREE_BUTTON_PRESSED,
         TRUTH_TREE_BUTTON_PRESSED,
         TRUTH_TABLE_BUTTON_PRESSED,
+        // Events thrown from logic buttons.
+        LOGIC_BUTTON_PRESSED,
     }
 
     private Type type;

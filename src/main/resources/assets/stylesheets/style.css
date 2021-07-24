@@ -9,6 +9,7 @@
 @import "settings/settings.css";
 @import "separator.css";
 @import "popup.css";
+@import "logicbutton.css";
 
 .root {
     -fx-background-color: black;

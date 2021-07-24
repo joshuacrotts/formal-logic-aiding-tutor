@@ -46,16 +46,6 @@ public class LogicSymbolsPane extends GridPane {
 
     private void initializeFx () {
         this.setThisFx();
-    }
-
-    private void setThisFx () {
-        super.getChildren().addAll(this.propositional, this.biconditional, this.conjunction,
-                this.disjunction, this.doubleTurnstile, this.exclusiveDisjunction,
-                this.implication, this.negation, this.turnstile,
-                this.predicate, this.existential, this.universal
-        );
-        super.setVgap(10);
-        super.setHgap(10);
         this.setPropositionalFx();
         this.setBiconditionalFx();
         this.setConjunctionFx();
@@ -70,6 +60,28 @@ public class LogicSymbolsPane extends GridPane {
         this.setUniversalFx();
         super.getChildren().forEach(child -> {
             this.setThisChildrenDefaultFx(child);
+        });
+    }
+
+    private void setThisFx () {
+        super.getChildren().addAll(this.propositional, this.biconditional, this.conjunction,
+                this.disjunction, this.doubleTurnstile, this.exclusiveDisjunction,
+                this.implication, this.negation, this.turnstile,
+                this.predicate, this.existential, this.universal
+        );
+        super.setPrefWidth(78);
+        super.setMinWidth(0);
+        super.setVgap(10);
+        super.setHgap(10);
+        this.onThisWidthProperty();
+    }
+
+    public void onThisWidthProperty () {
+        super.widthProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() < this.getPrefWidth())
+                super.setVisible(false);
+            else
+                super.setVisible(true);
         });
     }
 

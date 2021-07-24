@@ -11,6 +11,7 @@ public class LogicContextMenuItem extends MenuItem {
 
     public LogicContextMenuItem (Text _text) {
         super.textProperty().bind(_text.textProperty());
+        super.getStyleClass().add("logicContextMenuItem");
         this.initializeFx();
     }
 
@@ -24,6 +25,7 @@ public class LogicContextMenuItem extends MenuItem {
 
     private void setThisOnAction () {
         super.setOnAction(event -> {
+            ((LogicContextMenu)super.getParentPopup()).getOwner().setText(super.getText());
         });
     }
 

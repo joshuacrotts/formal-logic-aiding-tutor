@@ -24,6 +24,7 @@ public class MainLeftWrapperPane extends VBox {
     private void setThisFx () {
         super.getChildren().addAll(this.symbolsPane);
         super.setAlignment(Pos.CENTER);
+        super.setMinWidth(0);
     }
 
     private void setSymbolsPaneFx () {
