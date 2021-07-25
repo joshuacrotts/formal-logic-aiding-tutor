@@ -6,28 +6,9 @@
 @import "alerts.css";
 @import "textfield.css";
 @import "previewborderpane.css";
-
-.tab-pane {
-    -fx-background-color: white;
-    -fx-tab-min-height: 100px;
-    -fx-tab-min-width: 100px;
-}
-
-.tab {
-    -fx-background-color: red;
-}
-
-.tab *.tab-label {
-    -fx-rotate: 90;
-}
-
-.tab:selected {
-    -fx-background-color: purple;
-}
-
-.tab:hover {
-    -fx-background-color: blue;
-}
+@import "colorpane.css";
+@import "timeoutfieldspane.css";
+@import "languagelistviewpane.css";
 
 .button {
     -fx-background-color: gray;
@@ -36,6 +17,12 @@
 
 .list-view, .list-cell {
     -fx-background-color: lightgray;
+    -fx-background-radius: 10;
+    -fx-border-width: 1;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+    -fx-alignment: center;
 }
 
 .list-cell:selected {
