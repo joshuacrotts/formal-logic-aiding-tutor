@@ -23,6 +23,7 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
 
     public ApplyAlgorithmAdapter (Algorithms _algorithms) {
         super(_algorithms);
+        Controller.DATA_BUS.throwUpdate(new ApplicableAlgorithmsUpdate(super.getApplicableAlgorithms()));
     }
 
     @Override

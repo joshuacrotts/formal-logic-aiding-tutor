@@ -140,11 +140,11 @@ public class ApplyAlgorithm {
 
     public final void setAlgorithms(Algorithms _algorithms) {
         this.algorithms = _algorithms;
-        setApplicableAlgorithms();
+        this.setApplicableAlgorithms();
     }
 
     private void setApplicableAlgorithms() {
-        applicableAlgorithms.clearAllAlgorithms();
+        this.applicableAlgorithms.clearAllAlgorithms();
         this.setPredicateAlgorithms();
         this.setPropositionalAlgorithms();
         switch (this.wffTree.size()) {

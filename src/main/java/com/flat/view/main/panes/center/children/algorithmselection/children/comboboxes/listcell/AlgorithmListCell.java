@@ -16,7 +16,7 @@ public class AlgorithmListCell extends ListCell <Algorithm> {
     protected void updateItem(Algorithm _algorithm, boolean _empty) {
         super.updateItem(_algorithm, _empty);
         if (_algorithm != null && !_empty)
-            super.textProperty().bind(_algorithm.getLabel().textProperty());
+            super.setText(_algorithm.getLabel().getText());
     }
 
 }

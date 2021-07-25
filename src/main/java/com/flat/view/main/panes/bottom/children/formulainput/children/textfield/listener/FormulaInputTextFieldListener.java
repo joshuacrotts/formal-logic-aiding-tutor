@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.bottom.children.formulainput.children.textfield.listener;
 
 import com.flat.controller.Controller;
+import com.flat.models.algorithms.bus.events.FormulaGenerated;
 import com.flat.tools.buses.eventbus.components.Event;
 import static com.flat.tools.buses.eventbus.components.Event.Type.FORMULA_SOLVE_BUTTON_PRESSED;
 import com.flat.view.main.panes.bottom.children.formulainput.children.textfield.FormulaInputTextField;
@@ -27,6 +28,11 @@ public class FormulaInputTextFieldListener implements EventListener {
                 break;
             case LOGIC_BUTTON_PRESSED:
                 this.addTextAtCaret(((LogicButtonPressed)_event).getText());
+                this.refocusTextField();
+                break;
+            case FORMULA_GENERATED:
+                this.formulaInputTextField.setText(((FormulaGenerated)_event).getFormula());
+                Controller.inputFormula(((FormulaGenerated)_event).getFormula());
                 break;
         }
     }
@@ -36,6 +42,12 @@ public class FormulaInputTextFieldListener implements EventListener {
         String postCaret = this.formulaInputTextField.getText().substring(this.formulaInputTextField.getFocusedCaretPosition(), this.formulaInputTextField.getText().length());
         this.formulaInputTextField.setText(preCaret + _text + postCaret);
         this.formulaInputTextField.setFocusedCaretPosition(this.formulaInputTextField.getFocusedCaretPosition() + 1);
+    }
+
+    private void refocusTextField () {
+        this.formulaInputTextField.requestFocus();
+                this.formulaInputTextField.deselect();
+                this.formulaInputTextField.positionCaret(this.formulaInputTextField.getFocusedCaretPosition());
     }
 
 }
