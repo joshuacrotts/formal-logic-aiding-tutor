@@ -12,6 +12,7 @@ public class PredicateLabel extends Label {
 
     public PredicateLabel () {
         super.textProperty().bind(Controller.MAPPED_TEXT.getValue(PredicateSymbols.class, PredicateSymbols.Keys.LABEL).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(PredicateSymbols.class, PredicateSymbols.Keys.LABEL).fontProperty());
     }
 
 }

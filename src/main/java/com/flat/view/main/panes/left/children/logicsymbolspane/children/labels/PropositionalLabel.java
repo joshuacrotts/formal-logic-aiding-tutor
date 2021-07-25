@@ -12,6 +12,7 @@ public class PropositionalLabel extends Label {
 
     public PropositionalLabel () {
         super.textProperty().bind(Controller.MAPPED_TEXT.getValue(PropositionalSymbols.class, PropositionalSymbols.Keys.LABEL).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(PropositionalSymbols.class, PropositionalSymbols.Keys.LABEL).fontProperty());
     }
 
 }
