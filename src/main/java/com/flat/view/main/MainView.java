@@ -58,7 +58,7 @@ public class MainView extends BorderPane {
     }
 
     private void setMainRightFx() {
-        this.mainRight.setPrefWidth(125);
+        this.mainRight.setPrefWidth(225);
     }
 
     private void setMainBottomFx() {
@@ -66,7 +66,7 @@ public class MainView extends BorderPane {
     }
 
     private void setMainLeftFx() {
-        this.mainLeft.setPrefWidth(125);
+        this.mainLeft.setPrefWidth(225);
     }
 
     private void setMainCenterFx() {

@@ -49,7 +49,6 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
             case PROPOSITIONAL_TRUTH_TREE_GENERATOR:
                 Controller.EVENT_BUS.throwEvent(new UpdateTruthTree(logicReturn.getTruthTree()));
                 Controller.EVENT_BUS.throwEvent(new UpdateParseTree(logicReturn.getWffTree()));
-                Controller.EVENT_BUS.throwEvent(new UpdateTruth(logicReturn.getTruthValue()));
                 break;
             case ARGUMENT_TRUTH_TREE_VALIDATOR:
             case LOGICAL_FALSEHOOD_DETERMINER:

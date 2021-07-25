@@ -2,6 +2,7 @@ package com.flat.view.main.panes.center.children.algorithmvisualselection.childr
 
 import com.flat.controller.Controller;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.resultpane.listener.AlgorithmResultListener;
+import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
@@ -25,6 +26,7 @@ public class AlgorithmResultPane extends HBox {
     private void setThisFx() {
         super.getChildren().addAll(this.resultLabel, this.result);
         super.setSpacing(5);
+        super.setAlignment(Pos.CENTER);
     }
 
     // Getters for object's attributes.

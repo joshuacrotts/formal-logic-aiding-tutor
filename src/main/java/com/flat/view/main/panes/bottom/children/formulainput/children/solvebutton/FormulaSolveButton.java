@@ -2,7 +2,6 @@ package com.flat.view.main.panes.bottom.children.formulainput.children.solvebutt
 
 import com.flat.controller.Controller;
 import com.flat.view.main.panes.bottom.children.formulainput.children.solvebutton.events.FormulaSolveButtonPressed;
-import com.flat.view.data.fx.pane.PaneData;
 import javafx.scene.control.Button;
 
 /**
@@ -13,7 +12,6 @@ public class FormulaSolveButton extends Button {
 
     public FormulaSolveButton () {
         super.setText("Solve");
-        super.backgroundProperty().bind(PaneData.getPrimaryButtonProperty().backgroundProperty());
         this.setOnAction();
     }
 

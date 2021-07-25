@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class RulesAxiomsWrapperPane extends ScrollPane {
+    private double minDisplayWidth = 70;
 
     public RulesAxiomsWrapperPane () {
         this.initializeFx();
@@ -28,7 +29,7 @@ public class RulesAxiomsWrapperPane extends ScrollPane {
 
     private void onWidthProperty () {
         super.widthProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal.doubleValue() < 50)
+            if (newVal.doubleValue() < this.minDisplayWidth)
                 super.setVisible(false);
             else
                 super.setVisible(true);

@@ -1,6 +1,5 @@
 package com.flat.view.popups.base.buttons;
 
-import com.flat.view.data.fx.pane.PaneData;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -20,7 +19,6 @@ public class PopupOkButton extends Button {
 
     private void setThisFx () {
         super.setText("Ok");
-        super.backgroundProperty().bind(PaneData.getPrimaryButtonProperty().backgroundProperty());
         this.setOnAction();
     }
 

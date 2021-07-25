@@ -5,7 +5,6 @@ import com.flat.models.data.menubar.menus.export.ExportMenu;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.LatexContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.PdfContextButton;
-import com.flat.view.data.fx.pane.PaneData;
 
 /**
  *
@@ -17,7 +16,6 @@ public class ExportMenuButton extends ContextButton {
         super(Controller.MAPPED_TEXT.getValue(ExportMenu.class, ExportMenu.Keys.EXPORT),
                 new LatexContextButton(),
                 new PdfContextButton());
-        super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         this.setOnMouseEntered();
     }
 

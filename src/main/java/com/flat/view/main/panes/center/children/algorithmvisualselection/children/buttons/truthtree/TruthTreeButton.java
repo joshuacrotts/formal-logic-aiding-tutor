@@ -2,7 +2,6 @@ package com.flat.view.main.panes.center.children.algorithmvisualselection.childr
 
 import com.flat.controller.Controller;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.truthtree.events.TruthTreeButtonPressed;
-import com.flat.view.data.fx.pane.PaneData;
 import javafx.scene.control.Button;
 
 /**
@@ -22,7 +21,6 @@ public class TruthTreeButton extends Button {
 
     private void setThisFx () {
         super.setText("Truth Tree");
-        super.backgroundProperty().bind(PaneData.getPrimaryButtonProperty().backgroundProperty());
     }
 
     private void setThisOnAction () {

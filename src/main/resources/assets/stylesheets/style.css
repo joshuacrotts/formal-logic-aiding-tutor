@@ -14,3 +14,17 @@
 .root {
     -fx-background-color: black;
 }
+
+.button {
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 10;
+    -fx-border-width: 1;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+}
+
+.button:hover {
+    -fx-background-insets: -.25;
+    -fx-border-insets: -.25;
+}

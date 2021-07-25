@@ -6,7 +6,6 @@ import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexParseTreeContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexTruthTableContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexTruthTreeContextButton;
-import com.flat.view.data.fx.pane.PaneData;
 
 /**
  *
@@ -19,7 +18,6 @@ public class LatexContextButton extends ContextButton {
                 new LatexParseTreeContextButton(),
                 new LatexTruthTreeContextButton(),
                 new LatexTruthTableContextButton());
-        super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         super.setOffsetY(-ContextButton.MENU_HEIGHT / 2);
         super.setOffsetX(ContextButton.MENU_WIDTH);
     }

@@ -69,7 +69,7 @@ public class LogicSymbolsPane extends GridPane {
                 this.implication, this.negation, this.turnstile,
                 this.predicate, this.existential, this.universal
         );
-        super.setPrefWidth(78);
+        super.setPrefWidth(178);
         super.setMinWidth(0);
         super.setVgap(10);
         super.setHgap(10);

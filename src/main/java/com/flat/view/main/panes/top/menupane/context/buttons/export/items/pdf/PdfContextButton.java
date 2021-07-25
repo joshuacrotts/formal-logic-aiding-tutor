@@ -6,7 +6,6 @@ import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfParseTreeContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfTruthTableContextButton;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfTruthTreeContextButton;
-import com.flat.view.data.fx.pane.PaneData;
 
 /**
  *
@@ -19,7 +18,6 @@ public class PdfContextButton extends ContextButton {
                 new PdfParseTreeContextButton(),
                 new PdfTruthTreeContextButton(),
                 new PdfTruthTableContextButton());
-        super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         super.setOffsetY(-ContextButton.MENU_HEIGHT / 2);
         super.setOffsetX(ContextButton.MENU_WIDTH);
     }

@@ -3,7 +3,6 @@ package com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.i
 import com.flat.controller.Controller;
 import com.flat.models.data.menubar.menus.export.type.items.LatexTruthTreeMenuItem;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
-import com.flat.view.data.fx.pane.PaneData;
 
 /**
  *
@@ -13,7 +12,6 @@ public class PdfTruthTreeContextButton extends ContextButton {
 
     public PdfTruthTreeContextButton () {
         super(Controller.MAPPED_TEXT.getValue(LatexTruthTreeMenuItem.class, LatexTruthTreeMenuItem.Keys.LATEX_TRUTH_TREE));
-        super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
     }
 
 }

@@ -3,7 +3,6 @@ package com.flat.view.main.panes.top.menupane.context.buttons.help.items;
 import com.flat.controller.Controller;
 import com.flat.models.data.menubar.menus.help.items.AboutMenuItem;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
-import com.flat.view.data.fx.pane.PaneData;
 
 /**
  *
@@ -13,7 +12,6 @@ public class AboutContextButton extends ContextButton {
 
     public AboutContextButton() {
         super(Controller.MAPPED_TEXT.getValue(AboutMenuItem.class, AboutMenuItem.Keys.ABOUT));
-        super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
     }
 
 }

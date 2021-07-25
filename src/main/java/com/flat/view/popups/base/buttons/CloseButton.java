@@ -18,6 +18,7 @@ public class CloseButton extends Button {
     }
 
     private void setThisFx () {
+        super.getStyleClass().removeAll(super.getStyleClass());
         super.getStyleClass().add("closeButton");
         this.setThisOnAction();
     }
