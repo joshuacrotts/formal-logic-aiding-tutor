@@ -17,7 +17,7 @@ public class UniversalSymbol extends LogicSymbol {
         super(
                 new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.LABEL, "Universal"),
                 new UniversalSymbols(),
-                new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Universal Quantification"),
+                new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Universal quantification"),
                 new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the universal quantification button."),
                 new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.READ_AS, "For all; For any; For each; All; Every"),
                 new UniversalAxioms()

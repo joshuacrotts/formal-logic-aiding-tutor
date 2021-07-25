@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.propositional.turnstile;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.logicsymbols.LogicSymbols;
 import com.flat.models.data.logicsymbols.base.LogicSymbol;
 import com.flat.models.data.logicsymbols.propositional.turnstile.TurnstileSymbol;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.LogicButton;
@@ -15,6 +16,7 @@ public class TurnstileLogicButton extends LogicButton {
 
     public TurnstileLogicButton () {
         super(
+                LogicSymbols.SymbolKey.TURNSTILE,
                 Controller.MAPPED_TEXT.getValue(TurnstileSymbol.class, LogicSymbol.Keys.GENERAL),
                 new TurnstileTooltip(),
                 new TurnstileContextMenu()

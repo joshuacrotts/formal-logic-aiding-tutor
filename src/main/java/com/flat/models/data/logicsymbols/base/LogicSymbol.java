@@ -21,6 +21,7 @@ public class LogicSymbol extends Translatable implements Serializable {
             LABEL,
             // Symbol's keys.
             GENERAL,
+            ALTERNATE,
             ALTERNATE_1,
             ALTERNATE_2,
             ALTERNATE_3,
@@ -34,6 +35,7 @@ public class LogicSymbol extends Translatable implements Serializable {
             READ_AS,
             // Axioms's keys.
             EXPLANATION,
+            EXAMPLES,
             EXAMPLE_1,
             EXAMPLE_2,
             EXAMPLE_3,

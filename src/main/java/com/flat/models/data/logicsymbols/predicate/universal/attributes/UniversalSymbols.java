@@ -15,6 +15,8 @@ public class UniversalSymbols extends Symbols {
     public UniversalSymbols () {
         super.setGeneral(new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.GENERAL, "∀"));
         super.setAlternate(new KeyedTextArrayList(
+                UniversalSymbol.class,
+                LogicSymbol.Keys.ALTERNATE,
                 new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "∀"),
                 new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "()")
         ));

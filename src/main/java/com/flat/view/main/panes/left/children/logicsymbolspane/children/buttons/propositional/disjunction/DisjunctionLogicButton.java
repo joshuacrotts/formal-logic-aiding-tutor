@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.propositional.disjunction;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.logicsymbols.LogicSymbols;
 import com.flat.models.data.logicsymbols.base.LogicSymbol;
 import com.flat.models.data.logicsymbols.propositional.disjunction.DisjunctionSymbol;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.LogicButton;
@@ -15,6 +16,7 @@ public class DisjunctionLogicButton extends LogicButton {
 
     public DisjunctionLogicButton () {
         super(
+                LogicSymbols.SymbolKey.DISJUNCTION,
                 Controller.MAPPED_TEXT.getValue(DisjunctionSymbol.class, LogicSymbol.Keys.GENERAL),
                 new DisjunctionTooltip(),
                 new DisjunctionContextMenu()

@@ -15,6 +15,8 @@ public class ExclusiveDisjunctionSymbols extends Symbols {
     public ExclusiveDisjunctionSymbols () {
         super(new KeyedText(ExclusiveDisjunctionSymbol.class, LogicSymbol.Keys.GENERAL, "⊕"),
                 new KeyedTextArrayList(
+                        ExclusiveDisjunctionSymbol.class,
+                        LogicSymbol.Keys.ALTERNATE,
                         new KeyedText(ExclusiveDisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "⊻"),
                         new KeyedText(ExclusiveDisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "≢"),
                         new KeyedText(ExclusiveDisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_3, "⩒"),

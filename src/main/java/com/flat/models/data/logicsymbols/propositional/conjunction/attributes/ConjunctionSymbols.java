@@ -16,6 +16,8 @@ public class ConjunctionSymbols extends Symbols {
         super(
                 new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.GENERAL, "∧"),
                 new KeyedTextArrayList(
+                        ConjunctionSymbol.class,
+                        LogicSymbol.Keys.ALTERNATE,
                         new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "&"),
                         new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "·"),
                         new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_3, "^"),

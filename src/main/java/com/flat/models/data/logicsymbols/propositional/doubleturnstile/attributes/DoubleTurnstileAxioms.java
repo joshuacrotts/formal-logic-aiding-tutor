@@ -15,6 +15,8 @@ public class DoubleTurnstileAxioms extends Axioms {
     public DoubleTurnstileAxioms () {
         super(new KeyedText(DoubleTurnstileSymbol.class, LogicSymbol.Keys.EXPLANATION, "(x ⊨ y) means x models (semantically entails) y. In other words, the well-formed formula x ought to imply y, but the converse should not be true. The sentences x and y must also not be equivalent."),
                 new KeyedTextArrayList(
+                        DoubleTurnstileSymbol.class,
+                        LogicSymbol.Keys.EXAMPLES,
                         new KeyedText(DoubleTurnstileSymbol.class, LogicSymbol.Keys.EXAMPLE_1, "1. P ⊨ (P ∨ Q)")
                 )
         );

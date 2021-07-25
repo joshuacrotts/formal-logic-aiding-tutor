@@ -19,6 +19,7 @@ import com.flat.view.main.MainView;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeLayout;
 import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
 import com.flat.view.data.MappedText;
+import com.flat.view.data.MappedTextArray;
 import java.util.ArrayList;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -33,6 +34,7 @@ public class Controller {
     public final static DataBus DATA_BUS = DataBus.getInstance();
     public final static FLATTranslate TRANSLATOR = new FLATTranslate();;
     public final static MappedText MAPPED_TEXT = new MappedText();
+    public final static MappedTextArray MAPPED_TEXT_ARRAY = new MappedTextArray();
     public final static SerialData SERIAL_DATA = SerialData.getInstance(JSON_LANGUAGE);;
     public final static FxData FX_DATA = FxData.getInstance();;
     public final static JsonData JSON_DATA = JsonData.getInstance(JSON_LANGUAGE);;

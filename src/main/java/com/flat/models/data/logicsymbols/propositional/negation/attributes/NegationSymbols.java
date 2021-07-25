@@ -15,6 +15,8 @@ public class NegationSymbols extends Symbols {
     public NegationSymbols () {
         super(new KeyedText(NegationSymbol.class, LogicSymbol.Keys.GENERAL, "~"),
                 new KeyedTextArrayList(
+                        NegationSymbol.class,
+                        LogicSymbol.Keys.ALTERNATE,
                         new KeyedText(NegationSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "¬"),
                         new KeyedText(NegationSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "!"),
                         new KeyedText(NegationSymbol.class, LogicSymbol.Keys.ALTERNATE_3, "˜"),

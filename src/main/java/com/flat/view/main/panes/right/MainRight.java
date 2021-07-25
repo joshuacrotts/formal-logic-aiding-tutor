@@ -2,6 +2,8 @@ package com.flat.view.main.panes.right;
 
 import com.flat.view.action.ResizePane;
 import com.flat.view.data.fx.pane.PaneData;
+import com.flat.view.main.panes.right.children.rulesaxioms.RulesAxiomsWrapperPane;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.layout.HBox;
 
 /**
@@ -9,6 +11,8 @@ import javafx.scene.layout.HBox;
  */
 public class MainRight extends HBox {
     private final ResizePane resizePane = new ResizePane(this, ResizePane.Orientation.HORIZONTAL, ResizePane.Side.LEFT);
+    private RulesAxiomsWrapperPane rulesAxiomsPane = new RulesAxiomsWrapperPane();
+    public static SimpleDoubleProperty WRAPPING_WIDTH = new SimpleDoubleProperty(0);
 
     public MainRight() {
         this.initializeFx();
@@ -22,7 +26,14 @@ public class MainRight extends HBox {
     private void setThisFx () {
         super.backgroundProperty().bind(PaneData.getRightProperty().backgroundProperty());
         super.borderProperty().bind(PaneData.getRightProperty().borderProperty());
-        super.getChildren().add(this.resizePane.getParentPane());
+        super.getChildren().addAll(this.resizePane.getParentPane(), this.rulesAxiomsPane);
+        this.setWidthProperty();
+    }
+
+    private void setWidthProperty () {
+        super.widthProperty().addListener((obs, oldVal, newVal) -> {
+            MainRight.WRAPPING_WIDTH.set(newVal.doubleValue() - 30);
+        });
     }
 
     // Getters for object's attributes.

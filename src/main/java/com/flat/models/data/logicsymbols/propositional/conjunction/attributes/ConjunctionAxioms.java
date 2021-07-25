@@ -16,6 +16,8 @@ public class ConjunctionAxioms extends Axioms {
         super(
                 new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.EXPLANATION, "The statement (A ∧ B) is true if A and B are both true. Otherwise, it is false."),
                 new KeyedTextArrayList(
+                        ConjunctionSymbol.class,
+                        LogicSymbol.Keys.EXAMPLES,
                         new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.EXAMPLE_1, "1. (A ∧ B)"),
                         new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.EXAMPLE_2, "2. ((A ⊃ B) & (B ⊃ A))"),
                         new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.EXAMPLE_3, "3. ((A ∨ B) & (A ∨ C))")

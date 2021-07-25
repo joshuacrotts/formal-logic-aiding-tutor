@@ -15,6 +15,8 @@ public class TurnstileAxioms extends Axioms {
     public TurnstileAxioms () {
         super(new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.EXPLANATION, "(x ⊢ y) means x proves (syntactically entails) y."),
                 new KeyedTextArrayList(
+                        TurnstileSymbol.class,
+                        LogicSymbol.Keys.EXAMPLES,
                         new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.EXAMPLE_1, "1. (A → B), (B → C) ⊢ (A → C). The two premises syntactically entail the conclusion through hypothetical syllogism."),
                         new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.EXAMPLE_2, "2. (P ∨ Q), ~P ∴ Q. The two premises syntactically entail the conclusion through disjunctive syllogism.")
                 )

@@ -15,6 +15,8 @@ public class DisjunctionSymbols extends Symbols {
     public DisjunctionSymbols () {
         super(new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.GENERAL, "∨"),
                 new KeyedTextArrayList(
+                        DisjunctionSymbol.class,
+                        LogicSymbol.Keys.ALTERNATE,
                         new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "|"),
                         new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "+"),
                         new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_3, "||"),

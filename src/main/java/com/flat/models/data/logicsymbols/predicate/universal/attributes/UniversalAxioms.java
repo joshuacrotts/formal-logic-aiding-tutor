@@ -15,6 +15,8 @@ public class UniversalAxioms extends Axioms {
     public UniversalAxioms () {
         super.setExplanation(new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.EXPLANATION, "(∀x)Px or (x)Px means the predicate P holds true for all inputs x from some domain D."));
         super.setExamples(new KeyedTextArrayList(
+                UniversalSymbol.class,
+                LogicSymbol.Keys.EXAMPLES,
                 new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.EXAMPLE_1, "1. (∀x)Px"),
                 new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.EXAMPLE_2, "2. (y)(Py & Qay)")
         ));

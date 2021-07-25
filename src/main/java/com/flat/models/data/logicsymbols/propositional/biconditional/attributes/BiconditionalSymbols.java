@@ -16,6 +16,8 @@ public class BiconditionalSymbols extends Symbols {
         super(
                 new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.GENERAL, "↔"),
                 new KeyedTextArrayList(
+                        BiconditionalSymbol.class,
+                        LogicSymbol.Keys.ALTERNATE,
                         new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "⇔"),
                         new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "≡"),
                         new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.ALTERNATE_3, "<->"),

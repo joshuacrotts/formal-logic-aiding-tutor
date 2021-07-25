@@ -17,6 +17,21 @@ public class LogicSymbols extends Translatable implements Serializable {
     private PredicateSymbols predicateSymbols = new PredicateSymbols();
     private PropositionalSymbols propositionalSymbols = new PropositionalSymbols();
 
+    public enum SymbolKey {
+        // Predicate.
+        EXISTENTIAL,
+        UNIVERSAL,
+        // Propositional.
+        BICONDITIONAL,
+        CONJUNCTION,
+        DISJUNCTION,
+        DOUBLE_TURNSTILE,
+        EXCLUSIVE_DISJUNCTION,
+        IMPLICATION,
+        NEGATION,
+        TURNSTILE,
+    }
+
     public LogicSymbols () {
     }
 

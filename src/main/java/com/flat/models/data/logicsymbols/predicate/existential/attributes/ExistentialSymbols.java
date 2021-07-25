@@ -15,6 +15,8 @@ public class ExistentialSymbols extends Symbols {
     public ExistentialSymbols () {
         super.setGeneral(new KeyedText(ExistentialSymbol.class, LogicSymbol.Keys.GENERAL, "∃"));
         super.setAlternate(new KeyedTextArrayList(
+                ExistentialSymbol.class,
+                LogicSymbol.Keys.ALTERNATE,
                 new KeyedText(ExistentialSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "∃")
         ));
     }

@@ -16,6 +16,8 @@ public class BiconditionalAxioms extends Axioms {
         super(
                 new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.EXPLANATION, "(A ⇔ B) is true when A and B are the same. This means that A must be true and B must be true for this sentence to be true. Likewise, A must be false and B must be false for this sentence to be true. When they differ, the sentence is false."),
                 new KeyedTextArrayList(
+                        BiconditionalSymbol.class,
+                        LogicSymbol.Keys.EXAMPLES,
                         new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.EXAMPLE_1, "1. (A ⇔ B)")
                 )
         );

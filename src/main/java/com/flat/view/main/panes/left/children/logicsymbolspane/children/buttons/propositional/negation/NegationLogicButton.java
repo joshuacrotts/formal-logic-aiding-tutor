@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.propositional.negation;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.logicsymbols.LogicSymbols;
 import com.flat.models.data.logicsymbols.base.LogicSymbol;
 import com.flat.models.data.logicsymbols.propositional.negation.NegationSymbol;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.LogicButton;
@@ -15,6 +16,7 @@ public class NegationLogicButton extends LogicButton {
 
     public NegationLogicButton () {
         super(
+                LogicSymbols.SymbolKey.NEGATION,
                 Controller.MAPPED_TEXT.getValue(NegationSymbol.class, LogicSymbol.Keys.GENERAL),
                 new NegationTooltip(),
                 new NegationContextMenu()

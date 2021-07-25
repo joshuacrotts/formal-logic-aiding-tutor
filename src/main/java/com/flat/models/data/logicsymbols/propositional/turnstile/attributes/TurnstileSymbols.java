@@ -15,6 +15,8 @@ public class TurnstileSymbols extends Symbols {
     public TurnstileSymbols () {
         super(new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.GENERAL, "⊢"),
                 new KeyedTextArrayList(
+                        TurnstileSymbol.class,
+                        LogicSymbol.Keys.ALTERNATE,
                         new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "∴"),
                         new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "⊢")
                 )

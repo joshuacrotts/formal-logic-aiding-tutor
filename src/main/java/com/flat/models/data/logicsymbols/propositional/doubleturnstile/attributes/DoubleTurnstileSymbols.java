@@ -15,6 +15,8 @@ public class DoubleTurnstileSymbols extends Symbols {
     public DoubleTurnstileSymbols () {
         super(new KeyedText(DoubleTurnstileSymbol.class, LogicSymbol.Keys.GENERAL, "⊨"),
                 new KeyedTextArrayList(
+                        DoubleTurnstileSymbol.class,
+                        LogicSymbol.Keys.ALTERNATE,
                         new KeyedText(DoubleTurnstileSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "⊧"),
                         new KeyedText(DoubleTurnstileSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "⊨")
                 ));

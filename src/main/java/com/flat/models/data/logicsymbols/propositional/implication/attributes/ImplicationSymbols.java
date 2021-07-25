@@ -16,6 +16,8 @@ public class ImplicationSymbols extends Symbols {
         super(
                 new KeyedText(ImplicationSymbol.class, LogicSymbol.Keys.GENERAL, "→"),
                 new KeyedTextArrayList(
+                        ImplicationSymbol.class,
+                        LogicSymbol.Keys.ALTERNATE,
                         new KeyedText(ImplicationSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "⇒"),
                         new KeyedText(ImplicationSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "\"⊃\""),
                         new KeyedText(ImplicationSymbol.class, LogicSymbol.Keys.ALTERNATE_3, "->"),

@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.logicsymbols.LogicSymbols.SymbolKey;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.contextmenu.LogicContextMenu;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.events.LogicButtonPressed;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.tooltip.LogicTooltip;
@@ -12,8 +13,10 @@ import javafx.scene.text.Text;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class LogicButton extends Button {
+    private SymbolKey symbolKey;
 
-    public LogicButton (Text _general, LogicTooltip _tooltip, LogicContextMenu _logicContextMenu) {
+    public LogicButton (SymbolKey _symbolKey, Text _general, LogicTooltip _tooltip, LogicContextMenu _logicContextMenu) {
+        this.symbolKey = _symbolKey;
         super.setText(_general.getText());
         super.setTooltip(_tooltip);
         super.setContextMenu(_logicContextMenu);
@@ -33,8 +36,18 @@ public class LogicButton extends Button {
 
     private void setOnAction () {
         super.setOnAction(event -> {
-            Controller.EVENT_BUS.throwEvent(new LogicButtonPressed(super.getText()));
+            Controller.EVENT_BUS.throwEvent(new LogicButtonPressed(super.getText(), this.symbolKey));
         });
+    }
+
+    // Getters for object's attributes.
+    public SymbolKey getSymbolKey() {
+        return symbolKey;
+    }
+
+    // Setters for object's attributes.
+    public void setSymbolKey(SymbolKey symbolKey) {
+        this.symbolKey = symbolKey;
     }
 
 }

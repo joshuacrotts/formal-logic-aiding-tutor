@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.propositional.implication;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.logicsymbols.LogicSymbols;
 import com.flat.models.data.logicsymbols.base.LogicSymbol;
 import com.flat.models.data.logicsymbols.propositional.implication.ImplicationSymbol;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.LogicButton;
@@ -15,6 +16,7 @@ public class ImplicationLogicButton extends LogicButton {
 
     public ImplicationLogicButton () {
         super(
+                LogicSymbols.SymbolKey.IMPLICATION,
                 Controller.MAPPED_TEXT.getValue(ImplicationSymbol.class, LogicSymbol.Keys.GENERAL),
                 new ImplicationTooltip(),
                 new ImplicationContextMenu()
