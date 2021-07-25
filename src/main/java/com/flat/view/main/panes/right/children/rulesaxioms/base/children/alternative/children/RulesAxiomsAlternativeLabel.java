@@ -11,9 +11,10 @@ import javafx.scene.text.TextAlignment;
 public class RulesAxiomsAlternativeLabel extends Text {
 
     public RulesAxiomsAlternativeLabel () {
-        super.setText("Alternative symbols");
+        super.setText("Alternative Symbols");
         super.wrappingWidthProperty().bind(MainRight.WRAPPING_WIDTH);
         super.setTextAlignment(TextAlignment.CENTER);
+        super.setUnderline(true);
     }
 
 }

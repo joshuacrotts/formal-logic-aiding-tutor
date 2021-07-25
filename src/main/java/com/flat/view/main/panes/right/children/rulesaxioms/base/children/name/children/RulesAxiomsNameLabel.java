@@ -14,6 +14,7 @@ public class RulesAxiomsNameLabel extends Text {
         super.setText("Name");
         super.wrappingWidthProperty().bind(MainRight.WRAPPING_WIDTH);
         super.setTextAlignment(TextAlignment.CENTER);
+        super.setUnderline(true);
     }
 
 }

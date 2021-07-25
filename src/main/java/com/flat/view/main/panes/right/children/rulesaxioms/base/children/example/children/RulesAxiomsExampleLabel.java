@@ -14,6 +14,7 @@ public class RulesAxiomsExampleLabel extends Text {
         super.setText("Examples");
         super.wrappingWidthProperty().bind(MainRight.WRAPPING_WIDTH);
         super.setTextAlignment(TextAlignment.CENTER);
+        super.setUnderline(true);
     }
 
 }
