@@ -17,7 +17,7 @@ public class TurnstileSymbol extends LogicSymbol {
         super(
                 new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.LABEL, "Turnstile"),
                 new TurnstileSymbols(),
-                new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Syntactic Entailment"),
+                new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Syntactic entailment"),
                 new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the \\\"proves\\\" button."),
                 new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.READ_AS, "Proves..."),
                 new TurnstileAxioms()

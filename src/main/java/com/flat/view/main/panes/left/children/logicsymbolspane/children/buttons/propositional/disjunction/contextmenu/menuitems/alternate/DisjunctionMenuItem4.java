@@ -2,7 +2,7 @@ package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons
 
 import com.flat.controller.Controller;
 import com.flat.models.data.logicsymbols.base.LogicSymbol;
-import com.flat.models.data.logicsymbols.propositional.disjunction.attributes.DisjunctionSymbols;
+import com.flat.models.data.logicsymbols.propositional.disjunction.DisjunctionSymbol;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.contextmenu.LogicContextMenuItem;
 
 /**
@@ -12,7 +12,7 @@ import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.
 public class DisjunctionMenuItem4 extends LogicContextMenuItem {
 
     public DisjunctionMenuItem4 () {
-        super(Controller.MAPPED_TEXT.getValue(DisjunctionSymbols.class, LogicSymbol.Keys.EXAMPLE_4));
+        super(Controller.MAPPED_TEXT.getValue(DisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_4));
     }
 
 }

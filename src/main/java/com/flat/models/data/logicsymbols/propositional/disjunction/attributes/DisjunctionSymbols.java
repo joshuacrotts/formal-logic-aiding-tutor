@@ -4,6 +4,7 @@ import com.flat.models.data.base.text.KeyedText;
 import com.flat.models.data.base.text.KeyedTextArrayList;
 import com.flat.models.data.logicsymbols.base.LogicSymbol;
 import com.flat.models.data.logicsymbols.base.attributes.Symbols;
+import com.flat.models.data.logicsymbols.propositional.disjunction.DisjunctionSymbol;
 
 /**
  *
@@ -12,12 +13,12 @@ import com.flat.models.data.logicsymbols.base.attributes.Symbols;
 public class DisjunctionSymbols extends Symbols {
 
     public DisjunctionSymbols () {
-        super(new KeyedText(DisjunctionSymbols.class, LogicSymbol.Keys.GENERAL, "∨"),
+        super(new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.GENERAL, "∨"),
                 new KeyedTextArrayList(
-                        new KeyedText(DisjunctionSymbols.class, LogicSymbol.Keys.EXAMPLE_1, "|"),
-                        new KeyedText(DisjunctionSymbols.class, LogicSymbol.Keys.EXAMPLE_2, "+"),
-                        new KeyedText(DisjunctionSymbols.class, LogicSymbol.Keys.EXAMPLE_3, "||"),
-                        new KeyedText(DisjunctionSymbols.class, LogicSymbol.Keys.EXAMPLE_4, "∨")
+                        new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "|"),
+                        new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "+"),
+                        new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_3, "||"),
+                        new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.ALTERNATE_4, "∨")
                 )
         );
     }

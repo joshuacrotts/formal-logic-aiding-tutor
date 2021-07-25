@@ -13,7 +13,7 @@ import com.flat.models.data.logicsymbols.predicate.universal.UniversalSymbol;
 public class UniversalSymbols extends Symbols {
 
     public UniversalSymbols () {
-        super.setGeneral(new KeyedText(UniversalSymbol.class, UniversalSymbol.Keys.GENERAL, "∀"));
+        super.setGeneral(new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.GENERAL, "∀"));
         super.setAlternate(new KeyedTextArrayList(
                 new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "∀"),
                 new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "()")

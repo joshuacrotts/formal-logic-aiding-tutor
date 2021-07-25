@@ -20,6 +20,7 @@ public class SettingsPane extends HBox {
     private LanguagePane languagePane = new LanguagePane();
     public SettingsPane() {
         this.initializeFx();
+        this.addSelectedContent(appearancePane);
     }
 
     private void initializeFx () {

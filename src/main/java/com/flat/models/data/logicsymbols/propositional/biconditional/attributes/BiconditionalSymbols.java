@@ -4,6 +4,7 @@ import com.flat.models.data.base.text.KeyedText;
 import com.flat.models.data.base.text.KeyedTextArrayList;
 import com.flat.models.data.logicsymbols.base.LogicSymbol;
 import com.flat.models.data.logicsymbols.base.attributes.Symbols;
+import com.flat.models.data.logicsymbols.propositional.biconditional.BiconditionalSymbol;
 
 /**
  *
@@ -13,12 +14,12 @@ public class BiconditionalSymbols extends Symbols {
 
     public BiconditionalSymbols () {
         super(
-                new KeyedText(BiconditionalSymbols.class, LogicSymbol.Keys.GENERAL, "↔"),
+                new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.GENERAL, "↔"),
                 new KeyedTextArrayList(
-                        new KeyedText(BiconditionalSymbols.class, LogicSymbol.Keys.ALTERNATE_1, "⇔"),
-                        new KeyedText(BiconditionalSymbols.class, LogicSymbol.Keys.ALTERNATE_2, "≡"),
-                        new KeyedText(BiconditionalSymbols.class, LogicSymbol.Keys.ALTERNATE_3, "<->"),
-                        new KeyedText(BiconditionalSymbols.class, LogicSymbol.Keys.ALTERNATE_4, "↔")
+                        new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.ALTERNATE_1, "⇔"),
+                        new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.ALTERNATE_2, "≡"),
+                        new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.ALTERNATE_3, "<->"),
+                        new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.ALTERNATE_4, "↔")
                 )
         );
     }

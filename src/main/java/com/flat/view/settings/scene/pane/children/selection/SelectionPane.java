@@ -24,6 +24,7 @@ public class SelectionPane extends VBox {
     }
 
     private void setThisFx () {
+        super.setMinWidth(100);
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
         super.getChildren().addAll(this.appearance, this.advance, this.language);
     }
