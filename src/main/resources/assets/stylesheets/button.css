@@ -19,5 +19,6 @@
 }
 
 .button:disabled {
-    -fx-background-color: lightgray;
+    -fx-background-color: #dfdfdf;
+    -fx-text-fill: #7f7f7f;
 }
