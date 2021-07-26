@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.listcell;
 
 import com.flat.models.data.algorithms.base.Algorithm;
+import com.flat.view.data.fx.pane.PaneData;
 import javafx.scene.control.ListCell;
 
 /**
@@ -17,6 +18,7 @@ public class AlgorithmListCell extends ListCell <Algorithm> {
         super.updateItem(_algorithm, _empty);
         if (_algorithm != null && !_empty)
             super.setText(_algorithm.getLabel().getText());
+        super.getListView().backgroundProperty().bind(PaneData.getPrimaryButtonProperty().backgroundProperty());
     }
 
 }

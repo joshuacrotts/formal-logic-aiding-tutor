@@ -2,6 +2,7 @@ package com.flat.view.settings.scene.pane.children.selection.language.languagepa
 
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.tools.font.FontTool;
+import com.flat.view.data.fx.pane.PaneData;
 import javafx.scene.control.ListCell;
 
 /**
@@ -18,6 +19,7 @@ public class LanguageListCell extends ListCell<JsonLanguage> {
         if (!(_language == null) && !(_empty)) {
             this.setFont(FontTool.getFont(_language.getFont()));
             this.setText(_language.getNativeName());
+            super.getListView().backgroundProperty().bind(PaneData.getPrimaryButtonProperty().backgroundProperty());
         }
     }
 
