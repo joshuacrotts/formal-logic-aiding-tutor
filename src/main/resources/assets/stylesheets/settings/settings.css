@@ -10,13 +10,7 @@
 @import "timeoutfieldspane.css";
 @import "languagelistviewpane.css";
 
-.button {
-    -fx-background-color: gray;
-    -fx-alignment: center;
-}
-
 .list-view, .list-cell {
-    -fx-background-color: lightgray;
     -fx-background-radius: 10;
     -fx-border-width: 1;
     -fx-border-color: black;
@@ -25,8 +19,16 @@
     -fx-alignment: center;
 }
 
+.list-view {
+    -fx-background-color: derive(gray, 70%);
+}
+
+.list-cell {
+    -fx-background-color: derive(gray, 90%);
+}
+
 .list-cell:selected {
-    -fx-background-color: whitesmoke;
+    -fx-background-color: white;
 }
 
 .scroll-bar:horizontal .track,

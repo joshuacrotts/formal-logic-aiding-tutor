@@ -21,6 +21,7 @@ public class TruthTreeButton extends Button {
 
     private void setThisFx () {
         super.setText("Truth Tree");
+        super.setDisable(true);
     }
 
     private void setThisOnAction () {

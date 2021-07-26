@@ -21,6 +21,7 @@ public class ParseTreeButton extends Button {
 
     private void setThisFx () {
         super.setText("Parse Tree");
+        super.setDisable(true);
     }
 
     private void setThisOnAction () {
