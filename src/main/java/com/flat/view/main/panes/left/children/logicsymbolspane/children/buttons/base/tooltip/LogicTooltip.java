@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class LogicTooltip extends Tooltip{
+public class LogicTooltip extends Tooltip {
 
     public LogicTooltip (Text _text) {
         super.textProperty().bind(_text.textProperty());

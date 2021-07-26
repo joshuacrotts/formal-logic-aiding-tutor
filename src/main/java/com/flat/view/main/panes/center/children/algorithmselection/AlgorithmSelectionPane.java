@@ -89,9 +89,9 @@ public class AlgorithmSelectionPane extends HBox {
     }
 
     private void setComboBoxWidth (double _maxWidth) {
-        this.generalCombo.setMinWidth(_maxWidth);
-        this.predicateCombo.setMinWidth(_maxWidth);
-        this.propositionalCombo.setMinWidth(_maxWidth);
+        this.generalCombo.setPrefWidth(_maxWidth);
+        this.predicateCombo.setPrefWidth(_maxWidth);
+        this.propositionalCombo.setPrefWidth(_maxWidth);
     }
 
     // Getters for object's attributes.

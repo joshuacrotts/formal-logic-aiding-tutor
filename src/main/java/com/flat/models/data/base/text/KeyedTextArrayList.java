@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -52,8 +53,9 @@ public class KeyedTextArrayList extends SimpleListProperty <KeyedText> implement
 
     private void readObject (ObjectInputStream  is) {
         try {
+            super.set(FXCollections.observableArrayList());
             for (int i = is.readInt() - 1; i >= 0; i--)
-                this.add((KeyedText)is.readObject());
+                super.add((KeyedText)is.readObject());
         }
         catch (Exception e) {
             e.printStackTrace();
