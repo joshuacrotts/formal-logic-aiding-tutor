@@ -27,8 +27,8 @@ public class SettingsStage extends Stage {
     }
 
     private void setSize() {
-        super.setWidth(1280);
-        super.setHeight(720);
+        super.setWidth(800);
+        super.setHeight(450);
     }
 
     private void centerOnStage() {
