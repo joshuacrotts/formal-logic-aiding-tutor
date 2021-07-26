@@ -16,7 +16,7 @@ public class RulesAxiomsExplanationText extends Text {
         super.textProperty().bind(Controller.MAPPED_TEXT.getValue(_class, LogicSymbol.Keys.EXPLANATION).textProperty());
         super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(_class, LogicSymbol.Keys.EXPLANATION).fontProperty());
         super.wrappingWidthProperty().bind(MainRight.WRAPPING_WIDTH);
-        super.setTextAlignment(TextAlignment.CENTER);
+        super.setTextAlignment(TextAlignment.JUSTIFY);
     }
 
 }

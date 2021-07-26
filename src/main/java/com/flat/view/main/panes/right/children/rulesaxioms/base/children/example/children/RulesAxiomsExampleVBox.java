@@ -35,7 +35,7 @@ public class RulesAxiomsExampleVBox extends VBox {
             newText.textProperty().bind(child.textProperty());
             newText.fontProperty().bind(child.fontProperty());
             newText.wrappingWidthProperty().bind(MainRight.WRAPPING_WIDTH);
-            newText.setTextAlignment(TextAlignment.CENTER);
+            newText.setTextAlignment(TextAlignment.JUSTIFY);
             super.getChildren().add(newText);
         });
     }

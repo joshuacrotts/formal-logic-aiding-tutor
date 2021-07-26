@@ -14,6 +14,7 @@ public class RulesAxiomsFormalNameLabel extends Text {
         super.setText("Formal Name");
         super.wrappingWidthProperty().bind(MainRight.WRAPPING_WIDTH);
         super.setTextAlignment(TextAlignment.CENTER);
+        super.setUnderline(true);
     }
 
 }

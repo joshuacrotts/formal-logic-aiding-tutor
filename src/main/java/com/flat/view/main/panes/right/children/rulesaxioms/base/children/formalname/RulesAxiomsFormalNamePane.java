@@ -15,10 +15,10 @@ public class RulesAxiomsFormalNamePane extends VBox {
 
     public RulesAxiomsFormalNamePane (Class _class) {
         this.text = new RulesAxiomsFormalNameText(_class);
-        this.initializFx();
+        this.initializeFx();
     }
 
-    private void initializFx () {
+    private void initializeFx () {
         this.setThisFx();
     }
 

@@ -14,6 +14,7 @@ public class RulesAxiomsExplanationLabel extends Text {
         super.setText("Explanation");
         super.wrappingWidthProperty().bind(MainRight.WRAPPING_WIDTH);
         super.setTextAlignment(TextAlignment.CENTER);
+        super.setUnderline(true);
     }
 
 }
