@@ -37,7 +37,7 @@ public class RulesAxiomsPane extends VBox {
         super.getChildren().addAll(this.name, this.formalName, this.alternative,
                 this.explanation, this.example);
         super.setSpacing(20);
-        super.setPadding(new Insets(10));
+        super.setPadding(new Insets(10, 30, 10, 10));
         super.setAlignment(Pos.CENTER);
     }
 
