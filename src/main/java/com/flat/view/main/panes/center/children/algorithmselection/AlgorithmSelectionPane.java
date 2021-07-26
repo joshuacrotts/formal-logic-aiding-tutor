@@ -8,6 +8,7 @@ import com.flat.view.main.panes.center.children.algorithmselection.children.comb
 import com.flat.view.main.panes.center.children.algorithmselection.listener.AlgorithmSelectionPaneListener;
 import java.util.Arrays;
 import java.util.List;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
@@ -39,18 +40,40 @@ public class AlgorithmSelectionPane extends HBox {
         super.getChildren().addAll(this.generalCombo, this.predicateCombo, this.propositionalCombo);
         super.setAlignment(Pos.CENTER);
         super.setSpacing(10);
+        super.setPadding(new Insets(10));
     }
 
     private void setGeneralComboFx () {
         this.setOnComboSelection(this.generalCombo);
+        this.setOnGeneralWidth();
+    }
+
+    private void setOnGeneralWidth () {
+        this.generalCombo.widthProperty().addListener((obs, oldVal, newVal) -> {
+            this.setComboBoxWidth(getMaxComboWidth());
+        });
     }
 
     private void setPredicateComboFx () {
         this.setOnComboSelection(this.predicateCombo);
+        this.setOnPredicateWidth();
+    }
+
+    private void setOnPredicateWidth () {
+        this.predicateCombo.widthProperty().addListener((obs, oldVal, newVal) -> {
+            this.setComboBoxWidth(getMaxComboWidth());
+        });
     }
 
     private void setPropositionalComboFx () {
         this.setOnComboSelection(this.propositionalCombo);
+        this.setOnPropositionalWidth();
+    }
+
+    private void setOnPropositionalWidth () {
+        this.propositionalCombo.widthProperty().addListener((obs, oldVal, newVal) -> {
+            this.setComboBoxWidth(getMaxComboWidth());
+        });
     }
 
     private void setOnComboSelection (ComboBox _comboBox) {
@@ -59,6 +82,16 @@ public class AlgorithmSelectionPane extends HBox {
                 return;
             this.selectedAlgorithm = (Algorithm)_comboBox.getValue();
         });
+    }
+
+    private double getMaxComboWidth () {
+        return Math.max(this.generalCombo.getWidth(), Math.max(this.predicateCombo.getWidth(), this.propositionalCombo.getWidth()));
+    }
+
+    private void setComboBoxWidth (double _maxWidth) {
+        this.generalCombo.setMinWidth(_maxWidth);
+        this.predicateCombo.setMinWidth(_maxWidth);
+        this.propositionalCombo.setMinWidth(_maxWidth);
     }
 
     // Getters for object's attributes.

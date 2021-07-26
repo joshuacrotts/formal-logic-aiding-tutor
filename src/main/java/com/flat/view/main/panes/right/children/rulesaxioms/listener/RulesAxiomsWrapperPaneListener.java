@@ -3,7 +3,7 @@ package com.flat.view.main.panes.right.children.rulesaxioms.listener;
 import com.flat.models.data.logicsymbols.LogicSymbols.SymbolKey;
 import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.tools.buses.eventbus.components.EventListener;
-import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.events.LogicButtonPressed;
+import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.events.LogicButtonCtrlPressed;
 import com.flat.view.main.panes.right.children.rulesaxioms.RulesAxiomsWrapperPane;
 import com.flat.view.main.panes.right.children.rulesaxioms.predicate.ExistentialRulesAxiomsPane;
 import com.flat.view.main.panes.right.children.rulesaxioms.predicate.UniversalRulesAxiomsPane;
@@ -30,8 +30,8 @@ public class RulesAxiomsWrapperPaneListener implements EventListener {
     @Override
     public void catchEvent(Event _event) {
         switch (_event.getType()) {
-            case LOGIC_BUTTON_PRESSED:
-                this.addContent(((LogicButtonPressed)_event).getSymbolKey());
+            case LOGIC_BUTTON_CTRL_PRESSED:
+                this.addContent(((LogicButtonCtrlPressed)_event).getKey());
                 break;
         }
     }

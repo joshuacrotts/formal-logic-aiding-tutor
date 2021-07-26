@@ -15,6 +15,7 @@ public class PredicateComboBox extends ComboBox {
         super.setButtonCell(new AlgorithmListCell());
         super.setCellFactory(param -> new AlgorithmListCell());
         super.setPromptText("Predicate");
+        super.setMinWidth(100);
     }
 
 }

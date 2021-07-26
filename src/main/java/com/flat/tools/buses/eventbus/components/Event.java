@@ -25,6 +25,7 @@ public abstract class Event {
         TRUTH_TABLE_BUTTON_PRESSED,
         // Events thrown from logic buttons.
         LOGIC_BUTTON_PRESSED,
+        LOGIC_BUTTON_CTRL_PRESSED,
     }
 
     private Type type;

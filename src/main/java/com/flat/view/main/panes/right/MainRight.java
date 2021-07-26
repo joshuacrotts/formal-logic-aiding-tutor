@@ -32,7 +32,7 @@ public class MainRight extends HBox {
 
     private void setWidthProperty () {
         super.widthProperty().addListener((obs, oldVal, newVal) -> {
-            MainRight.WRAPPING_WIDTH.set(newVal.doubleValue() - 30);
+            MainRight.WRAPPING_WIDTH.set(newVal.doubleValue() - 40);
         });
     }
 
