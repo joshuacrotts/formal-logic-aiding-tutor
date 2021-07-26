@@ -13,7 +13,7 @@ import com.flat.models.data.logicsymbols.propositional.negation.NegationSymbol;
 public class NegationAxioms extends Axioms {
 
     public NegationAxioms () {
-        super(new KeyedText(NegationSymbol.class, LogicSymbol.Keys.EXPLANATION, "The negation operator (~) flips the truth value of a proposition A. So, if A is true, then ~A is false. Likewise, if ~A is false, then ~A is true. The negatio operator works across any sentence and distributes over both symbols and operators."),
+        super(new KeyedText(NegationSymbol.class, LogicSymbol.Keys.EXPLANATION, "The negation operator (~) flips the truth value of a proposition A. So, if A is true, then ~A is false. Likewise, if ~A is false, then ~A is true. The negation operator works across any sentence and distributes over both symbols and operators."),
                 new KeyedTextArrayList(
                         NegationSymbol.class,
                         LogicSymbol.Keys.EXAMPLES,
