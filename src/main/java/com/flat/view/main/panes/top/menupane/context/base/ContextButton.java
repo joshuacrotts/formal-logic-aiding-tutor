@@ -22,6 +22,8 @@ public class ContextButton extends Button {
         super.fontProperty().bind(_text.fontProperty());
         super.setPrefWidth(MENU_WIDTH);
         super.setPrefHeight(MENU_HEIGHT);
+        super.getStyleClass().removeAll(super.getStyleClass());
+        super.getStyleClass().add("menuButton");
     }
 
     public ContextButton (Text _text, ContextButton... _flatMenuItems) {
