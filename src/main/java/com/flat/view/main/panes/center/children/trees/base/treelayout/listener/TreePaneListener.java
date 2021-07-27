@@ -25,6 +25,13 @@ public abstract class TreePaneListener implements EventListener {
             this.onThisScroll();
     }
 
+    protected void initializeNodeFx (FxTreeNode _treeNode) {
+        this.resetScroll();
+        this.addNodes(_treeNode);
+        this.addLines(_treeNode);
+        this.addHighlights(_treeNode);
+    }
+
     protected void addNodes (TreeNode _treeNode) {
         _treeNode.getChildren().forEach(treeNode -> {
             this.addNodes(treeNode);
@@ -41,6 +48,16 @@ public abstract class TreePaneListener implements EventListener {
         });
     }
 
+    protected void addHighlights (FxTreeNode _fxNode) {
+        _fxNode.getChildren().forEach(child -> {
+            this.addHighlights((FxTreeNode)child);
+        });
+        if (_fxNode.getHighlightRectangle() != null) {
+            this.treePane.getChildren().add(_fxNode.getHighlightRectangle());
+            _fxNode.getHighlightRectangle().toBack();
+        }
+    }
+
     private void onThisScroll () {
         this.treePane.setOnScroll(event -> {
             double newScale = this.treePane.getScaleX();
@@ -54,6 +71,11 @@ public abstract class TreePaneListener implements EventListener {
             }
             event.consume();
         });
+    }
+
+    private void resetScroll () {
+        this.treePane.setScaleX(1);
+        this.treePane.setScaleY(1);
     }
 
 }

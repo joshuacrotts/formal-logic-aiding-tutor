@@ -25,8 +25,7 @@ public class TruthTreePaneListener extends TreePaneListener {
             case UPDATE_TRUTH_TREE:
                 TruthTreeNode truthNode = new TruthTreeNode(((UpdateTruthTree)_event).getTruthTree());
                 Controller.TREE_LAYOUT.execute(truthNode);
-                this.addNodes(truthNode);
-                this.addLines(truthNode);
+                this.initializeNodeFx(truthNode);
                 break;
             case CLEAR_LOGIC_VISUALS:
                 this.truthTreePane.getChildren().clear();

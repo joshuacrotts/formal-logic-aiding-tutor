@@ -10,7 +10,7 @@ import com.flat.view.main.panes.center.children.trees.base.treelayout.FxTreeNode
 public class ParseTreeNode extends FxTreeNode {
 
     public ParseTreeNode(WffTree _wffTree) {
-        super();
+        super(_wffTree.isHighlighted());
         super.setText(_wffTree.getSymbol());
         int counter = 1;
         ParseTreeNode curNode;

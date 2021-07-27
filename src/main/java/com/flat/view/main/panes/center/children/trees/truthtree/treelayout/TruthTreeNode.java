@@ -11,7 +11,7 @@ import javafx.scene.text.TextAlignment;
 public class TruthTreeNode extends FxTreeNode {
 
     public TruthTreeNode (TruthTree _truthTree) {
-        super();
+        super(_truthTree.getWff().isHighlighted());
         super.setText(_truthTree.getWff().getStringRep());
         super.setTextAlignment(TextAlignment.CENTER);
         if (_truthTree.getLeft() == null && _truthTree.getRight() == null) {

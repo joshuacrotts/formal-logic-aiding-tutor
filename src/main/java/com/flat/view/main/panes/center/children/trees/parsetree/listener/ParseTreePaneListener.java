@@ -25,11 +25,11 @@ public class ParseTreePaneListener extends TreePaneListener {
             case UPDATE_PARSE_TREE:
                 ParseTreeNode parseNode = new ParseTreeNode(((UpdateParseTree)_event).getWffTree().getChild(0));
                 Controller.TREE_LAYOUT.execute(parseNode);
-                this.addNodes(parseNode);
-                this.addLines(parseNode);
+                this.initializeNodeFx(parseNode);
                 break;
             case CLEAR_LOGIC_VISUALS:
                 this.parseTreePane.getChildren().clear();
+                break;
         }
     }
 
