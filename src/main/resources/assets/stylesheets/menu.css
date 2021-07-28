@@ -5,8 +5,8 @@
 
 .menuButton {
     -fx-background-color: whitesmoke;
-    -fx-border-width: 1;
     -fx-border-color: black;
+    -fx-border-width: 1;
     -fx-alignment: center;
 }
 

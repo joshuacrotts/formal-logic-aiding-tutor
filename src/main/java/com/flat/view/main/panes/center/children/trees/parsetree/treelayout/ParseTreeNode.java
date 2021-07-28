@@ -1,7 +1,8 @@
 package com.flat.view.main.panes.center.children.trees.parsetree.treelayout;
 
 import com.flat.models.treenode.WffTree;
-import com.flat.view.main.panes.center.children.trees.base.treelayout.FxTreeNode;
+import com.flat.view.main.panes.center.children.trees.base.treelayout.nodes.FxTreeNode;
+import com.flat.view.main.panes.center.children.trees.base.treelayout.nodes.attributes.TreeNodeText;
 
 /**
  *
@@ -10,18 +11,27 @@ import com.flat.view.main.panes.center.children.trees.base.treelayout.FxTreeNode
 public class ParseTreeNode extends FxTreeNode {
 
     public ParseTreeNode(WffTree _wffTree) {
-        super(_wffTree.isHighlighted());
-        super.setText(_wffTree.getSymbol());
+        super(_wffTree.isHighlighted(), 50, 50);
+        super.getChildren().add(new TreeNodeText(_wffTree.getSymbol()));
         int counter = 1;
         ParseTreeNode curNode;
         for (WffTree wffTree : _wffTree.getChildren()) {
             curNode = new ParseTreeNode(wffTree);
-            curNode.setTreeNodeParent(this);
+            curNode.setTreeParent(this);
             curNode.setNumber(counter);
-            this.getChildren().add(curNode);
+            this.getTreeChildren().add(curNode);
             counter++;
         }
         super.initializeLines();
+        this.initializeFx();
+    }
+
+    private void initializeFx () {
+        this.setThisFx();
+    }
+
+    private void setThisFx () {
+        super.getStyleClass().add("parseTreeNode");
     }
 
 }

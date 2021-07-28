@@ -10,12 +10,8 @@ import javafx.scene.layout.Pane;
  */
 public class ParseTreePane extends Pane {
 
-    public ParseTreePane() {
-        this.initializeFx();
+    public ParseTreePane () {
         Controller.EVENT_BUS.addListener(new ParseTreePaneListener(this));
-    }
-
-    private void initializeFx () {
     }
 
 }

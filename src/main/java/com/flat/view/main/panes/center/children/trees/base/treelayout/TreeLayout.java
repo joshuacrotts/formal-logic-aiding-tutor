@@ -1,69 +1,74 @@
 package com.flat.view.main.panes.center.children.trees.base.treelayout;
 
+import com.flat.view.main.panes.center.children.trees.base.treelayout.nodes.TreeNode;
+
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class TreeLayout {
-    private static double widthGap = 0;
-    private static double heightGap = 0;
+    private static double WIDTH_GAP = 0;
+    private static double HEIGHT_GAP = 0;
     private double currentWidth = 0;
+
     public TreeLayout (int _widthGap, int _heightGap) {
-        this.widthGap = _widthGap;
-        this.heightGap = _heightGap;
+        TreeLayout.WIDTH_GAP = _widthGap;
+        TreeLayout.HEIGHT_GAP = _heightGap;
     }
 
     public void execute (TreeNode _treeNode) {
         this.currentWidth = 0;
         this.layoutWidth(_treeNode);
         this.executeShifts(_treeNode, 0);
-        this.layoutHeight(_treeNode, _treeNode.getHeight());
+        this.layoutHeight(_treeNode, _treeNode.getBoundsInParent().getHeight());
     }
 
     public void layoutWidth (TreeNode _treeNode) {
-        if (_treeNode.getChildren().isEmpty()) {
+        if (_treeNode.getTreeChildren().isEmpty()) {
             if (_treeNode.getLeftSibling() != null)
-                _treeNode.setX(_treeNode.getLeftSibling().getX() + _treeNode.getLeftSibling().getWidth() + this.widthGap);
+                _treeNode.setLayoutX(this.currentWidth);
             else
-                _treeNode.setX(this.currentWidth);
-            this.currentWidth += _treeNode.getWidth() + this.widthGap;
+                _treeNode.setLayoutX(this.currentWidth);
+            this.currentWidth = _treeNode.getBoundsInParent().getMaxX() + TreeLayout.WIDTH_GAP;
         }
         else {
-            for (TreeNode child : _treeNode.getChildren()) {
+            for (TreeNode child : _treeNode.getTreeChildren()) {
                 this.layoutWidth(child);
             }
-            double midpoint = (_treeNode.getFirstChild().getX() + _treeNode.getLastChild().getX() + _treeNode.getLastChild().getWidth()) / 2;
-            _treeNode.setX(midpoint - (_treeNode.getWidth()/ 2));
+            double midpoint = (_treeNode.getFirstChild().getLayoutX() + _treeNode.getLastChild().getLayoutX() + _treeNode.getLastChild().getBoundsInParent().getWidth()) / 2;
+            _treeNode.setLayoutX(midpoint - (_treeNode.getBoundsInParent().getWidth()/ 2));
             if (_treeNode.getLeftSibling() != null) {
-                double crossover = _treeNode.getX() - _treeNode.getLeftSibling().getX() - _treeNode.getLeftSibling().getWidth() - this.widthGap;
+                double crossover = _treeNode.getLayoutX() - _treeNode.getLeftSibling().getLayoutX() - _treeNode.getLeftSibling().getBoundsInParent().getWidth() - TreeLayout.WIDTH_GAP;
                 if (crossover < 0) {
                     this.executeShifts(_treeNode, -crossover);
                 }
             }
+            if (_treeNode.getBoundsInParent().getMaxX() + TreeLayout.WIDTH_GAP > this.currentWidth)
+                this.currentWidth = _treeNode.getBoundsInParent().getMaxX() + TreeLayout.WIDTH_GAP;
         }
     }
 
     private void executeShifts (TreeNode _treeNode, double _shift) {
-        _treeNode.getChildren().forEach((child) -> {
+        _treeNode.getTreeChildren().forEach((child) -> {
             this.executeShifts(child, _shift);
         });
-        _treeNode.setX(_treeNode.getX() + _shift);
+        _treeNode.setLayoutX(_treeNode.getLayoutX() + _shift);
     }
 
     public void layoutHeight (TreeNode _treeNode, double _height) {
-        _treeNode.setY(_height);
-        _treeNode.getChildren().forEach(child -> {
-            this.layoutHeight(child, _height + _treeNode.getHeight() + this.heightGap);
+        _treeNode.setLayoutY(_height);
+        _treeNode.getTreeChildren().forEach(child -> {
+            this.layoutHeight(child, _height + _treeNode.getBoundsInParent().getHeight() + TreeLayout.HEIGHT_GAP);
         });
     }
 
     // Getters for object's attributes.
-    public static double getWidthGap() {
-        return widthGap;
+    public static double getWIDTH_GAP() {
+        return WIDTH_GAP;
     }
 
-    public static double getHeightGap() {
-        return heightGap;
+    public static double getHEIGHT_GAP() {
+        return HEIGHT_GAP;
     }
 
 }

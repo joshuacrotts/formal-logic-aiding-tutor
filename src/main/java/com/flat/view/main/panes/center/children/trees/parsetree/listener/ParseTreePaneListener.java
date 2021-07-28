@@ -1,6 +1,5 @@
 package com.flat.view.main.panes.center.children.trees.parsetree.listener;
 
-import com.flat.controller.Controller;
 import com.flat.models.algorithms.bus.events.UpdateParseTree;
 import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.view.main.panes.center.children.trees.base.treelayout.listener.TreePaneListener;
@@ -23,9 +22,7 @@ public class ParseTreePaneListener extends TreePaneListener {
     public void catchEvent (Event _event) {
         switch (_event.getType()) {
             case UPDATE_PARSE_TREE:
-                ParseTreeNode parseNode = new ParseTreeNode(((UpdateParseTree)_event).getWffTree().getChild(0));
-                Controller.TREE_LAYOUT.execute(parseNode);
-                this.initializeNodeFx(parseNode);
+                this.setTreeNode(new ParseTreeNode(((UpdateParseTree)_event).getWffTree().getChild(0)));
                 break;
             case CLEAR_LOGIC_VISUALS:
                 this.parseTreePane.getChildren().clear();

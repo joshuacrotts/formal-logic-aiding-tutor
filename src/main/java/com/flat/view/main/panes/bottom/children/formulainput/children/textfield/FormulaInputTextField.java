@@ -21,6 +21,11 @@ public class FormulaInputTextField extends TextField {
     }
 
     private void setThisFx () {
+        super.getStyleClass().add("formulaInputTextField");
+        this.setOnCaretPosition();
+    }
+
+    private void setOnCaretPosition () {
         super.caretPositionProperty().addListener((obs, oldVal, newVal) -> {
             if (super.isFocused() == false)
                 this.focusedCaretPosition = oldVal.intValue();

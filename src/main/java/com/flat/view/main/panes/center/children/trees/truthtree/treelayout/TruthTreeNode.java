@@ -1,8 +1,8 @@
 package com.flat.view.main.panes.center.children.trees.truthtree.treelayout;
 
 import com.flat.algorithms.models.TruthTree;
-import com.flat.view.main.panes.center.children.trees.base.treelayout.FxTreeNode;
-import javafx.scene.text.TextAlignment;
+import com.flat.view.main.panes.center.children.trees.base.treelayout.nodes.FxTreeNode;
+import com.flat.view.main.panes.center.children.trees.base.treelayout.nodes.attributes.TreeNodeText;
 
 /**
  *
@@ -11,23 +11,22 @@ import javafx.scene.text.TextAlignment;
 public class TruthTreeNode extends FxTreeNode {
 
     public TruthTreeNode (TruthTree _truthTree) {
-        super(_truthTree.getWff().isHighlighted());
-        super.setText(_truthTree.getWff().getStringRep());
-        super.setTextAlignment(TextAlignment.CENTER);
+        super(false, 50, 0);
+        super.getChildren().add(new TreeNodeText(_truthTree.getWff().getStringRep()));
         if (_truthTree.getLeft() == null && _truthTree.getRight() == null) {
-            this.appendClosedProperty(_truthTree);
+            this.addClosedProperty(_truthTree);
         }
         else {
             TruthTree curTree = _truthTree;
             while (curTree.getLeft() != null && curTree.getRight() == null) {
-                this.appendText("\n" + curTree.getLeft().getWff().getStringRep());
+                super.getChildren().add(new TreeNodeText(curTree.getLeft().getWff().getStringRep()));
                 curTree = curTree.getLeft();
             }
             if (curTree.getLeft() != null && curTree.getRight() != null && !curTree.equals(_truthTree)) {
                 this.addChild(curTree.getLeft(), 1);
                 this.addChild(curTree.getRight(), 2);
             } else if (!curTree.equals(_truthTree)) {
-                this.appendClosedProperty(curTree);
+                this.addClosedProperty(curTree);
             }
             if (_truthTree.getLeft() != null && _truthTree.getRight() != null) {
                 this.addChild(_truthTree.getLeft(), 1);
@@ -35,21 +34,26 @@ public class TruthTreeNode extends FxTreeNode {
             }
         }
         super.initializeLines();
+        this.initializeFx();
+    }
+
+    private void initializeFx () {
+        this.setThisFx();
+    }
+
+    private void setThisFx () {
+        super.getStyleClass().add("truthTreeNode");
     }
 
     private void addChild (TruthTree _truthTree, int _number) {
         TruthTreeNode _truthNode = new TruthTreeNode(_truthTree);
-        _truthNode.setTreeNodeParent(this);
+        _truthNode.setTreeParent(this);
         _truthNode.setNumber(_number);
-        this.getChildren().add(_truthNode);
+        this.getTreeChildren().add(_truthNode);
     }
 
-    private void appendText (String _text) {
-        super.setText(super.getText() + _text);
-    }
-
-    private void appendClosedProperty (TruthTree _truthTree) {
-        this.appendText((_truthTree.isClosed()) ? "\nClosed" : "\nOpen");
+    private void addClosedProperty (TruthTree _truthTree) {
+        super.getChildren().add(new TreeNodeText((_truthTree.isClosed()) ? "Closed" : "Open"));
     }
 
 }

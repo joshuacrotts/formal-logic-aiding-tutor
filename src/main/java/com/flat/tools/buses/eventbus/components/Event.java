@@ -26,6 +26,8 @@ public abstract class Event {
         // Events thrown from logic buttons.
         LOGIC_BUTTON_PRESSED,
         LOGIC_BUTTON_CTRL_PRESSED,
+        // Events thrown from Tree Pane Listener.
+        TREE_NODE_LAYOUT_SET,
     }
 
     private Type type;

@@ -45,6 +45,9 @@ public class MainCenterListener implements EventListener {
                 this.mainCenter.getLogicVisualPane().updateContent(this.hWrapper);
                 this.mainCenter.getLogicVisualPane().centerViewPortHorizontally();
                 break;
+            case TREE_NODE_LAYOUT_SET:
+                this.mainCenter.getLogicVisualPane().centerViewPort();
+                break;
         }
     }
 

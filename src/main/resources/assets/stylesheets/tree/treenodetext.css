@@ -1,0 +1,9 @@
+/*
+    Created on : Jul 27, 2021, 11:26:25 PM
+    Author     : Christopher Brantley <c_brantl@uncg.edu>
+*/
+
+.fxTreeNodeText {
+    -fx-text-alignment: center;
+    -fx-text-origin: baseline;
+}

@@ -11,6 +11,8 @@
 @import "popup.css";
 @import "logicbutton.css";
 @import "button.css";
+@import "textfield.css";
+@import "tree/tree.css";
 
 .root {
     -fx-background-color: black;
