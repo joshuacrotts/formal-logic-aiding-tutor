@@ -29,6 +29,7 @@ public class TruthTablePaneListener implements EventListener {
                 this.truthTablePane.getChildren().clear();
                 break;
             case UPDATE_TRUTH_TABLE:
+                this.resetScale();
                 this.updateTruthTable(((UpdateTruthTable)_event).getWffTree().getChild(0));
                 break;
         }
@@ -54,6 +55,11 @@ public class TruthTablePaneListener implements EventListener {
             GridPane.setHalignment(child, HPos.CENTER);
         });
         return gridPane;
+    }
+
+    private void resetScale () {
+        this.truthTablePane.setScaleX(1);
+        this.truthTablePane.setScaleY(1);
     }
 
 }

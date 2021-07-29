@@ -5,8 +5,10 @@ import com.flat.models.data.algorithms.predicate.closedsentencedeterminer.Closed
 import com.flat.models.data.algorithms.predicate.freevariabledetector.FreeVariableDetector;
 import com.flat.models.data.algorithms.predicate.groundsentencedeterminer.GroundSentenceDeterminer;
 import com.flat.models.data.algorithms.predicate.opensentencedeterminer.OpenSentenceDeterminer;
+import com.flat.models.data.algorithms.predicate.predicatenaturaldeduction.PredicateNaturalDeduction;
 import com.flat.models.data.algorithms.predicate.predicatetruthtreegenerator.PredicateTruthTreeGenerator;
 import com.flat.models.data.algorithms.predicate.randompredicateformula.RandomPredicateFormula;
+import com.flat.models.data.algorithms.predicate.vacuousquantifierdetector.VacuousQuantifierDetector;
 import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.tools.translation.base.Translatable;
 import java.io.ObjectInputStream;
@@ -25,8 +27,10 @@ public class PredicateAlgorithms extends Translatable implements Serializable {
     private FreeVariableDetector freeVariableDetector = new FreeVariableDetector();
     private GroundSentenceDeterminer groundSentenceDeterminer = new GroundSentenceDeterminer();
     private OpenSentenceDeterminer openSentenceDeterminer = new OpenSentenceDeterminer();
+    private PredicateNaturalDeduction predicateNaturalDeduction = new PredicateNaturalDeduction();
     private PredicateTruthTreeGenerator predicateTruthTreeGenerator = new PredicateTruthTreeGenerator();
     private RandomPredicateFormula randomPredicateFormula = new RandomPredicateFormula();
+    private VacuousQuantifierDetector vacuousQuantifierDetector = new VacuousQuantifierDetector();
 
     public PredicateAlgorithms () {
     }
@@ -52,12 +56,20 @@ public class PredicateAlgorithms extends Translatable implements Serializable {
         return openSentenceDeterminer;
     }
 
+    public PredicateNaturalDeduction getPredicateNaturalDeduction() {
+        return predicateNaturalDeduction;
+    }
+
     public PredicateTruthTreeGenerator getPredicateTruthTreeGenerator() {
         return predicateTruthTreeGenerator;
     }
 
     public RandomPredicateFormula getRandomPredicateFormula() {
         return randomPredicateFormula;
+    }
+
+    public VacuousQuantifierDetector getVacuousQuantifierDetector() {
+        return vacuousQuantifierDetector;
     }
 
     // Setters for object's attributes.
@@ -81,6 +93,10 @@ public class PredicateAlgorithms extends Translatable implements Serializable {
         this.openSentenceDeterminer = openSentenceDeterminer;
     }
 
+    public void setPredicateNaturalDeduction(PredicateNaturalDeduction predicateNaturalDeduction) {
+        this.predicateNaturalDeduction = predicateNaturalDeduction;
+    }
+
     public void setPredicateTruthTreeGenerator(PredicateTruthTreeGenerator predicateTruthTreeGenerator) {
         this.predicateTruthTreeGenerator = predicateTruthTreeGenerator;
     }
@@ -89,9 +105,13 @@ public class PredicateAlgorithms extends Translatable implements Serializable {
         this.randomPredicateFormula = randomPredicateFormula;
     }
 
+    public void setVacuousQuantifierDetector(VacuousQuantifierDetector vacuousQuantifierDetector) {
+        this.vacuousQuantifierDetector = vacuousQuantifierDetector;
+    }
+
     @Override
     public String toString() {
-        return "PredicateAlgorithms{" + "boundVariableDetector=" + boundVariableDetector + ", closedSentenceDeterminer=" + closedSentenceDeterminer + ", freeVariableDetector=" + freeVariableDetector + ", groundSentenceDeterminer=" + groundSentenceDeterminer + ", openSentenceDeterminer=" + openSentenceDeterminer + ", predicateTruthTreeGenerator=" + predicateTruthTreeGenerator + ", randomPredicateFormula=" + randomPredicateFormula + '}';
+        return "PredicateAlgorithms{" + "boundVariableDetector=" + boundVariableDetector + ", closedSentenceDeterminer=" + closedSentenceDeterminer + ", freeVariableDetector=" + freeVariableDetector + ", groundSentenceDeterminer=" + groundSentenceDeterminer + ", openSentenceDeterminer=" + openSentenceDeterminer + ", predicateNaturalDeduction=" + predicateNaturalDeduction + ", predicateTruthTreeGenerator=" + predicateTruthTreeGenerator + ", randomPredicateFormula=" + randomPredicateFormula + ", vaccuousQuantifierDetector=" + vacuousQuantifierDetector + '}';
     }
 
     private void writeObject (ObjectOutputStream os) {
@@ -101,8 +121,10 @@ public class PredicateAlgorithms extends Translatable implements Serializable {
             os.writeObject(this.freeVariableDetector);
             os.writeObject(this.groundSentenceDeterminer);
             os.writeObject(this.openSentenceDeterminer);
+            os.writeObject(this.predicateNaturalDeduction);
             os.writeObject(this.predicateTruthTreeGenerator);
             os.writeObject(this.randomPredicateFormula);
+            os.writeObject(this.vacuousQuantifierDetector);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -116,8 +138,10 @@ public class PredicateAlgorithms extends Translatable implements Serializable {
             this.freeVariableDetector = (FreeVariableDetector) is.readObject();
             this.groundSentenceDeterminer = (GroundSentenceDeterminer) is.readObject();
             this.openSentenceDeterminer = (OpenSentenceDeterminer) is.readObject();
+            this.predicateNaturalDeduction = (PredicateNaturalDeduction) is.readObject();
             this.predicateTruthTreeGenerator = (PredicateTruthTreeGenerator) is.readObject();
             this.randomPredicateFormula = (RandomPredicateFormula) is.readObject();
+            this.vacuousQuantifierDetector = (VacuousQuantifierDetector) is.readObject();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -132,8 +156,10 @@ public class PredicateAlgorithms extends Translatable implements Serializable {
             addAll(freeVariableDetector.toTranslate());
             addAll(groundSentenceDeterminer.toTranslate());
             addAll(openSentenceDeterminer.toTranslate());
+            addAll(predicateNaturalDeduction.toTranslate());
             addAll(predicateTruthTreeGenerator.toTranslate());
             addAll(randomPredicateFormula.toTranslate());
+            addAll(vacuousQuantifierDetector.toTranslate());
         }};
     }
 

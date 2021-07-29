@@ -34,7 +34,7 @@ public abstract class TreePaneListener implements EventListener {
     }
 
     protected void setTreeNodeFx () {
-        this.resetScroll();
+        this.resetScale();
         this.addTreeNode(this.treeNode);
         this.addTreeNodeLines(this.treeNode);
     }
@@ -70,7 +70,7 @@ public abstract class TreePaneListener implements EventListener {
         });
     }
 
-    private void resetScroll () {
+    private void resetScale () {
         this.treePane.setScaleX(1);
         this.treePane.setScaleY(1);
     }
