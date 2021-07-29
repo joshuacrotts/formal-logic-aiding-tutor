@@ -74,7 +74,7 @@ public class ParserTest {
         if (resultList.size() == 1) {
             WffTree result = resultList.get(0);
             result.printSyntaxTree();
-
+        }
             // Print the parse tree in LaTeX.
 //            TexPrinter texParseTreePrinter = new TexParseTreePrinter(result, "latex_parse_tree.tex");
 //            texParseTreePrinter.outputToFile();
@@ -82,82 +82,82 @@ public class ParserTest {
 //            // Prints the parse tree to a Pdf.
 //            PdfPrinter pdfParseTreePrinter = new PdfParseTreePrinter(result, "latex_parse_tree.pdf");
 //            pdfParseTreePrinter.outputToFile();
-
-            BaseTruthTreeGenerator truthTreeGenerator;
-            if (result.isPredicateWff()) {
-                System.out.println("Bound variables: " + new BoundVariableDetector(result).getBoundVariables());
-                System.out.println("Vacuous Quantifiers: " + new VacuousQuantifierDetector(result).getVacuousQuantifiers());
-                System.out.println("Free variables: " + new FreeVariableDetector(result).getFreeVariables());
-                System.out.println("Open sentence: " + new OpenSentenceDeterminer(result).isOpenSentence());
-                System.out.println("Closed sentence: " + new ClosedSentenceDeterminer(result).isClosedSentence());
-                System.out.println("Ground sentence: " + new GroundSentenceDeterminer(result).isGroundSentence());
-                truthTreeGenerator = new PredicateTruthTreeGenerator(result);
-            } else {
-                // Print the truth table in LaTeX.
-                TexPrinter texTruthTablePrinter = new TexTablePrinter(result, "latex_truth_table.tex");
-                texTruthTablePrinter.outputToFile();
-                truthTreeGenerator = new PropositionalTruthTreeGenerator(result);
-
-                // Print the truth table to a Pdf.
-                PdfPrinter pdfTruthTablePrinter = new PdfTruthTablePrinter(result, "latex_truth_table.pdf");
-                pdfTruthTablePrinter.outputToFile();
-
-                QuineEvaluator quineEvaluator = new QuineEvaluator(result);
-                quineEvaluator.evaluate();
-            }
-            // Generate the truth tree and print it to the console.
-            TruthTree truthTree = truthTreeGenerator.getTruthTree();
-            System.out.println("Truth Tree: \n" + truthTreeGenerator.print(truthTree));
-
-            // Print the truth tree in LaTeX.
-            TexPrinter texTruthTreePrinter = new TexTruthTreePrinter(truthTree, "latex_truth_tree.tex");
-            texTruthTreePrinter.outputToFile();
-
-            // Prints the truth tree to a Pdf.
-            PdfPrinter pdfTruthTreePrinter = new PdfTruthTreePrinter(truthTree, "latex_truth_tree.pdf");
-            pdfTruthTreePrinter.outputToFile();
-
-            // Display the main operator.
-            System.out.println("Main operator: " + new MainOperatorDetector(result).getMainOperator());
-
-            // Determine if it's a tautology.
-            LogicalTautologyDeterminer tautologyDet = new LogicalTautologyDeterminer(result);
-            System.out.println("Logical Tautology: " + tautologyDet.isTautology());
-
-            // Determine if it's a falsehood.
-            LogicalFalsehoodDeterminer falsehoodDet = new LogicalFalsehoodDeterminer(result);
-            System.out.println("Logical Falsehood: " + falsehoodDet.isFalsehood());
-
-            // Determine if it's contingent.
-            LogicallyContingentDeterminer consistentDet = new LogicallyContingentDeterminer(result);
-            System.out.println("Logical Contingent: " + consistentDet.isContingent());
-        }
-        // If there are two, we can generate logical relationships.
-        else if (resultList.size() == 2) {
-            // Pull the two children from their root.
-            WffTree ch1 = resultList.get(0);
-            WffTree ch2 = resultList.get(1);
-            LogicallyEquivalentDeterminer logDet = new LogicallyEquivalentDeterminer(ch1, ch2);
-            System.out.println("Logically Equivalent: " + logDet.isEquivalent());
-
-            LogicallyConsistentDeterminer consistentDet = new LogicallyConsistentDeterminer(ch1, ch2);
-            System.out.println("Logically Consistent: " + consistentDet.isConsistent());
-
-            LogicallyContradictoryDeterminer contradictoryDet = new LogicallyContradictoryDeterminer(ch1, ch2);
-            System.out.println("Logically Contradictory: " + contradictoryDet.isContradictory());
-
-            LogicallyContraryDeterminer contraryDet = new LogicallyContraryDeterminer(ch1, ch2);
-            System.out.println("Logically Contrary: " + contraryDet.isContrary());
-
-            LogicallyImpliedDeterminer impliedDet = new LogicallyImpliedDeterminer(ch1, ch2);
-            System.out.println("Logically Implied: " + impliedDet.isImplied());
-        }
+//
+//            BaseTruthTreeGenerator truthTreeGenerator;
+//            if (result.isPredicateWff()) {
+//                System.out.println("Bound variables: " + new BoundVariableDetector(result).getBoundVariables());
+//                System.out.println("Vacuous Quantifiers: " + new VacuousQuantifierDetector(result).getVacuousQuantifiers());
+//                System.out.println("Free variables: " + new FreeVariableDetector(result).getFreeVariables());
+//                System.out.println("Open sentence: " + new OpenSentenceDeterminer(result).isOpenSentence());
+//                System.out.println("Closed sentence: " + new ClosedSentenceDeterminer(result).isClosedSentence());
+//                System.out.println("Ground sentence: " + new GroundSentenceDeterminer(result).isGroundSentence());
+//                truthTreeGenerator = new PredicateTruthTreeGenerator(result);
+//            } else {
+//                // Print the truth table in LaTeX.
+//                TexPrinter texTruthTablePrinter = new TexTablePrinter(result, "latex_truth_table.tex");
+//                texTruthTablePrinter.outputToFile();
+//                truthTreeGenerator = new PropositionalTruthTreeGenerator(result);
+//
+//                // Print the truth table to a Pdf.
+//                PdfPrinter pdfTruthTablePrinter = new PdfTruthTablePrinter(result, "latex_truth_table.pdf");
+//                pdfTruthTablePrinter.outputToFile();
+//
+//                QuineEvaluator quineEvaluator = new QuineEvaluator(result);
+//                quineEvaluator.evaluate();
+//            }
+//            // Generate the truth tree and print it to the console.
+//            TruthTree truthTree = truthTreeGenerator.getTruthTree();
+//            System.out.println("Truth Tree: \n" + truthTreeGenerator.print(truthTree));
+//
+//            // Print the truth tree in LaTeX.
+//            TexPrinter texTruthTreePrinter = new TexTruthTreePrinter(truthTree, "latex_truth_tree.tex");
+//            texTruthTreePrinter.outputToFile();
+//
+//            // Prints the truth tree to a Pdf.
+//            PdfPrinter pdfTruthTreePrinter = new PdfTruthTreePrinter(truthTree, "latex_truth_tree.pdf");
+//            pdfTruthTreePrinter.outputToFile();
+//
+//            // Display the main operator.
+//            System.out.println("Main operator: " + new MainOperatorDetector(result).getMainOperator());
+//
+//            // Determine if it's a tautology.
+//            LogicalTautologyDeterminer tautologyDet = new LogicalTautologyDeterminer(result);
+//            System.out.println("Logical Tautology: " + tautologyDet.isTautology());
+//
+//            // Determine if it's a falsehood.
+//            LogicalFalsehoodDeterminer falsehoodDet = new LogicalFalsehoodDeterminer(result);
+//            System.out.println("Logical Falsehood: " + falsehoodDet.isFalsehood());
+//
+//            // Determine if it's contingent.
+//            LogicallyContingentDeterminer consistentDet = new LogicallyContingentDeterminer(result);
+//            System.out.println("Logical Contingent: " + consistentDet.isContingent());
+//        }
+//        // If there are two, we can generate logical relationships.
+//        else if (resultList.size() == 2) {
+//            // Pull the two children from their root.
+//            WffTree ch1 = resultList.get(0);
+//            WffTree ch2 = resultList.get(1);
+//            LogicallyEquivalentDeterminer logDet = new LogicallyEquivalentDeterminer(ch1, ch2);
+//            System.out.println("Logically Equivalent: " + logDet.isEquivalent());
+//
+//            LogicallyConsistentDeterminer consistentDet = new LogicallyConsistentDeterminer(ch1, ch2);
+//            System.out.println("Logically Consistent: " + consistentDet.isConsistent());
+//
+//            LogicallyContradictoryDeterminer contradictoryDet = new LogicallyContradictoryDeterminer(ch1, ch2);
+//            System.out.println("Logically Contradictory: " + contradictoryDet.isContradictory());
+//
+//            LogicallyContraryDeterminer contraryDet = new LogicallyContraryDeterminer(ch1, ch2);
+//            System.out.println("Logically Contrary: " + contraryDet.isContrary());
+//
+//            LogicallyImpliedDeterminer impliedDet = new LogicallyImpliedDeterminer(ch1, ch2);
+//            System.out.println("Logically Implied: " + impliedDet.isImplied());
+//        }
 
         // If we have at least two wffs, we can see if they form a valid or invalid argument.
         if (resultList.size() >= 2) {
             // Argument validator (truth tree test).
-            ArgumentTruthTreeValidator validator = new ArgumentTruthTreeValidator(resultList);
-            System.out.println("Deductively valid: " + validator.isValid());
+            //ArgumentTruthTreeValidator validator = new ArgumentTruthTreeValidator(resultList);
+            //System.out.println("Deductively valid: " + validator.isValid());
             NaturalDeductionAlgorithm ndValidator = null;
             if (resultList.get(0).isPropositionalWff()) {
                 System.out.println("PL Natural Deduction:");
