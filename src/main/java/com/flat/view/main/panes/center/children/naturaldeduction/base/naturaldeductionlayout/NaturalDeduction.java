@@ -19,7 +19,6 @@ public class NaturalDeduction {
 
     private void setLayout () {
         int counter = 0;
-        System.out.println(this.ndWffTrees.size());
         for (NDWffTree ndWffTree : ndWffTrees) {
             this.lines.add(counter, new NaturalDeductionLine(counter, ndWffTree));
             counter++;

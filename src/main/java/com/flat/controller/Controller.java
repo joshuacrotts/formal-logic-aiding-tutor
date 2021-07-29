@@ -20,6 +20,7 @@ import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeLayout
 import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
 import com.flat.view.data.MappedText;
 import com.flat.view.data.MappedTextArray;
+import com.flat.view.popups.naturaldeduction.NaturalDeductionPopup;
 import java.util.ArrayList;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -59,16 +60,20 @@ public class Controller {
 
     public static void inputFormula (String _formula) {
         ArrayList <WffTree> linkedTree = FLATParserAdapter.getAbstractSyntaxTree(_formula);
-        Controller.throwSyntaxErrors();
+        Controller.displaySyntaxErrorsPopup();
         if (linkedTree != null)
             ALGORITHM_ADAPTER.setWffTree(linkedTree);
         else
             EVENT_BUS.throwEvent(new UnsolvedFormula());
     }
 
-    public static void throwSyntaxErrors () {
+    public static void displaySyntaxErrorsPopup () {
         if (FLATErrorListener.getErrorIterator().hasNext())
             new SyntaxErrorPopup(FLATErrorListener.getErrorIterator());
+    }
+
+    public static void displayNaturalDeductionPopup () {
+        new NaturalDeductionPopup();
     }
 
     public static void applyFormula (Algorithm _algorithm) {

@@ -172,7 +172,6 @@ public class ApplyAlgorithm {
         this.applicableAlgorithms.clearAllAlgorithms();
         this.setPredicateAlgorithms();
         this.setPropositionalAlgorithms();
-        System.out.println(this.wffTree.size());
         switch (this.wffTree.size()) {
             case 0:
                 break;
@@ -186,17 +185,17 @@ public class ApplyAlgorithm {
             case 2:
                 this.setGeneralTwoAlgorithms();
                 this.setGeneralMoreAlgorithms();
-                if (this.wffTree.get(0).isPredicateWff())
-                    this.setPredicateMoreAlgorithms();
-                else
-                    this.setPropositionalMoreAlgorithms();
                 break;
             default:
                 this.setGeneralMoreAlgorithms();
-                if (this.wffTree.get(0).isPredicateWff())
-                    this.setPredicateMoreAlgorithms();
-                else
-                    this.setPropositionalMoreAlgorithms();
+
+        }
+        if (!this.wffTree.isEmpty() && this.wffTree.get(0).isArgument()) {
+            this.setGeneralArgumentAlgorithms();
+            if (this.wffTree.get(0).isPredicateWff())
+                this.setPredicateArgumentAlgorithms();
+            else
+                this.setPropositionalArgumentAlgorithms();
         }
     }
 
@@ -218,8 +217,11 @@ public class ApplyAlgorithm {
     }
 
     private void setGeneralMoreAlgorithms () {
-        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getArgumentTruthTreeValidator());
         applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getSemanticEntailmentDeterminer());
+    }
+
+    private void setGeneralArgumentAlgorithms () {
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getArgumentTruthTreeValidator());
     }
 
     private void setPredicateAlgorithms () {
@@ -236,7 +238,7 @@ public class ApplyAlgorithm {
         applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getVacuousQuantifierDetector());
     }
 
-    private void setPredicateMoreAlgorithms () {
+    private void setPredicateArgumentAlgorithms () {
         applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getPredicateNaturalDeduction());
     }
 
@@ -249,7 +251,7 @@ public class ApplyAlgorithm {
         applicableAlgorithms.getPropositional().add(algorithms.getPropositionalAlgorithms().getTruthTableGenerator());
     }
 
-    private void setPropositionalMoreAlgorithms () {
+    private void setPropositionalArgumentAlgorithms () {
         applicableAlgorithms.getPropositional().add(algorithms.getPropositionalAlgorithms().getPropositionalNaturalDeduction());
     }
 
