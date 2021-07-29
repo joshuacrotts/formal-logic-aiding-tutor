@@ -93,7 +93,7 @@ public class ApplyAlgorithm {
             // Propositional Algorithms.
             case PROPOSITIONAL_NATURAL_DEDUCTION:
                 PropositionalNaturalDeductionValidator pndv = new PropositionalNaturalDeductionValidator(this.wffTree, ProofType.DIRECT);
-                return new LogicReturn(pndv.getNaturalDeductionProof());
+                return new LogicReturn(pndv.getNaturalDeductionProof() != null, pndv.getNaturalDeductionProof());
             case PROPOSITIONAL_TRUTH_TREE_GENERATOR:
                 PropositionalTruthTreeGenerator pttg = new PropositionalTruthTreeGenerator(this.wffTree.get(0));
                 return new LogicReturn(pttg.getTruthTree(), pttg.getWffTree());
@@ -118,7 +118,7 @@ public class ApplyAlgorithm {
                 return new LogicReturn(new OpenSentenceDeterminer(this.wffTree.get(0)).isOpenSentence(), this.wffTree.get(0));
             case PREDICATE_NATURAL_DEDUCTION:
                 PredicateNaturalDeductionValidator pndv2 = new PredicateNaturalDeductionValidator(this.wffTree, ProofType.DIRECT);
-                return new LogicReturn(pndv2.getNaturalDeductionProof());
+                return new LogicReturn(pndv2.getNaturalDeductionProof() != null, pndv2.getNaturalDeductionProof());
             case PREDICATE_TRUTH_TREE_GENERATOR:
                 PredicateTruthTreeGenerator pttg2 = new PredicateTruthTreeGenerator(this.wffTree.get(0));
                 return new LogicReturn(pttg2.getTruthTree(), pttg2.getWffTree());

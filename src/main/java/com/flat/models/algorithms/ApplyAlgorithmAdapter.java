@@ -75,10 +75,11 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
                 break;
             case PROPOSITIONAL_NATURAL_DEDUCTION:
             case PREDICATE_NATURAL_DEDUCTION:
-                if (logicReturn.getNdWffTree() != null)
+                if (logicReturn.getTruthValue())
                     Controller.EVENT_BUS.throwEvent(new UpdateNaturalDeduction(logicReturn.getNdWffTree()));
                 else
                     Controller.displayNaturalDeductionPopup();
+                Controller.EVENT_BUS.throwEvent(new UpdateTruth(logicReturn.getTruthValue()));
                 break;
         }
         return logicReturn;

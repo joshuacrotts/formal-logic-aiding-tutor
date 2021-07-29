@@ -32,7 +32,8 @@ public class LogicReturn {
         this.wffTree = _wffTree;
     }
 
-    public LogicReturn (ArrayList <NDWffTree> _ndWffTree) {
+    public LogicReturn (Boolean _truthValue, ArrayList <NDWffTree> _ndWffTree) {
+        this.truthValue = _truthValue;
         this.ndWffTree = _ndWffTree;
     }
 
