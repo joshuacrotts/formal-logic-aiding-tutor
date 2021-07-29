@@ -44,7 +44,7 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
             case BOUND_VARIABLE_DETECTOR:
             case FREE_VARIABLE_DETECTOR:
             case MAIN_OPERATOR_DETECTOR:
-            case VACCUOUS_QUANTIFIER_DETECTOR:
+            case Vacuous_QUANTIFIER_DETECTOR:
                 Controller.EVENT_BUS.throwEvent(new UpdateParseTree(logicReturn.getWffTree()));
                 break;
             case PREDICATE_TRUTH_TREE_GENERATOR:

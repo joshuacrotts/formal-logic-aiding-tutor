@@ -62,6 +62,11 @@ public class FLATParserListener extends FLATBaseListener {
      */
     private int negationCount = 0;
 
+    /**
+     *
+     */
+    private boolean isArgument;
+
     public FLATParserListener(FLATParser _flatParser) {
         super();
 
@@ -70,6 +75,12 @@ public class FLATParserListener extends FLATBaseListener {
         this.predicateTable = new FLATPredicateTable();
         this.treeRoots = new Stack<>();
         this.currentTrees = new ArrayList<>();
+    }
+
+    @Override
+    public void enterPropProof(FLATParser.PropProofContext ctx) {
+        if (FLATErrorListener.sawError()) return;
+        this.isArgument = true;
     }
 
     @Override
@@ -82,6 +93,7 @@ public class FLATParserListener extends FLATBaseListener {
 
         this.wffTree = new WffTree();
         this.wffTree.setFlags(NodeFlag.PROPOSITIONAL);
+        this.wffTree.setFlags(this.isArgument ? NodeFlag.ARGUMENT : 0);
     }
 
     @Override
@@ -204,6 +216,13 @@ public class FLATParserListener extends FLATBaseListener {
 
 //========================== PREDICATE LOGIC LISTENERS =============================//
 
+
+    @Override
+    public void enterPredProof(FLATParser.PredProofContext ctx) {
+        if (FLATErrorListener.sawError()) return;
+        this.isArgument = true;
+    }
+
     @Override
     public void enterPredicateWff(FLATParser.PredicateWffContext ctx) {
         if (FLATErrorListener.sawError()) return;
@@ -214,6 +233,7 @@ public class FLATParserListener extends FLATBaseListener {
 
         this.wffTree = new WffTree();
         this.wffTree.setFlags(NodeFlag.PREDICATE);
+        this.wffTree.setFlags(this.isArgument ? NodeFlag.ARGUMENT : 0);
     }
 
     @Override

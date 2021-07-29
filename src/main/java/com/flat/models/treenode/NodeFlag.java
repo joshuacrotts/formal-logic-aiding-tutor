@@ -18,6 +18,11 @@ public class NodeFlag {
     /**
      *
      */
+    public static final int ARGUMENT = 0x10000000;
+
+    /**
+     *
+     */
     public static final int IDENTITY = 0x00001000;
 
     /**

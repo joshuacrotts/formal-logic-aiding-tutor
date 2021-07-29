@@ -111,7 +111,7 @@ public class PredicateAlgorithms extends Translatable implements Serializable {
 
     @Override
     public String toString() {
-        return "PredicateAlgorithms{" + "boundVariableDetector=" + boundVariableDetector + ", closedSentenceDeterminer=" + closedSentenceDeterminer + ", freeVariableDetector=" + freeVariableDetector + ", groundSentenceDeterminer=" + groundSentenceDeterminer + ", openSentenceDeterminer=" + openSentenceDeterminer + ", predicateNaturalDeduction=" + predicateNaturalDeduction + ", predicateTruthTreeGenerator=" + predicateTruthTreeGenerator + ", randomPredicateFormula=" + randomPredicateFormula + ", vaccuousQuantifierDetector=" + vacuousQuantifierDetector + '}';
+        return "PredicateAlgorithms{" + "boundVariableDetector=" + boundVariableDetector + ", closedSentenceDeterminer=" + closedSentenceDeterminer + ", freeVariableDetector=" + freeVariableDetector + ", groundSentenceDeterminer=" + groundSentenceDeterminer + ", openSentenceDeterminer=" + openSentenceDeterminer + ", predicateNaturalDeduction=" + predicateNaturalDeduction + ", predicateTruthTreeGenerator=" + predicateTruthTreeGenerator + ", randomPredicateFormula=" + randomPredicateFormula + ", VacuousQuantifierDetector=" + vacuousQuantifierDetector + '}';
     }
 
     private void writeObject (ObjectOutputStream os) {

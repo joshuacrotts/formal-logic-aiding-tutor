@@ -542,6 +542,10 @@ public class WffTree implements Copyable, TexPrintable {
         return (this.flags & NodeFlag.PREDICATE) != 0;
     }
 
+    public boolean isArgument() {
+        return (this.flags & NodeFlag.ARGUMENT) != 0;
+    }
+
     public ArrayList<WffTree> getChildren() {
         return this.children;
     }
