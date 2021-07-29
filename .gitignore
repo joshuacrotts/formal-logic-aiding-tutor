@@ -35,3 +35,4 @@ target/*
 /latex_truth_table.tex
 /latex_truth_tree.tex
 *.iml
+*.DS_Store
