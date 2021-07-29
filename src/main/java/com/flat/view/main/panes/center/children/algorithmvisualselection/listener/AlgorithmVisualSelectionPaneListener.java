@@ -22,6 +22,7 @@ public class AlgorithmVisualSelectionPaneListener implements EventListener {
                 this.selectionPane.getTruthTreeButton().setDisable(true);
                 this.selectionPane.getParseTreeButton().setDisable(true);
                 this.selectionPane.getTruthTableButton().setDisable(true);
+                this.selectionPane.getNaturalDeductionButton().setDisable(true);
                 break;
             case UPDATE_PARSE_TREE:
                 this.selectionPane.getParseTreeButton().setDisable(false);
@@ -31,6 +32,9 @@ public class AlgorithmVisualSelectionPaneListener implements EventListener {
                 break;
             case UPDATE_TRUTH_TABLE:
                 this.selectionPane.getTruthTableButton().setDisable(false);
+                break;
+            case UPDATE_NATURAL_DEDUCTION:
+                this.selectionPane.getNaturalDeductionButton().setDisable(false);
                 break;
         }
     }

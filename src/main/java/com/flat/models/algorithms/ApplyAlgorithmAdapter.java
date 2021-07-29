@@ -4,6 +4,7 @@ import com.flat.controller.Controller;
 import com.flat.models.algorithms.attributes.LogicReturn;
 import com.flat.models.algorithms.bus.events.ClearLogicVisuals;
 import com.flat.models.algorithms.bus.events.FormulaGenerated;
+import com.flat.models.algorithms.bus.events.UpdateNaturalDeduction;
 import com.flat.models.algorithms.bus.events.UpdateParseTree;
 import com.flat.models.algorithms.bus.events.UpdateTruth;
 import com.flat.models.algorithms.bus.events.UpdateTruthTable;
@@ -71,6 +72,12 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
             case RANDOM_PREDICATE_FORMULA:
             case RANDOM_PROPOSITIONAL_FORMULA:
                 Controller.EVENT_BUS.throwEvent(new FormulaGenerated(logicReturn.getFormula()));
+                break;
+            case PROPOSITIONAL_NATURAL_DEDUCTION:
+            case PREDICATE_NATURAL_DEDUCTION:
+                if (logicReturn.getNdWffTree() != null)
+                    Controller.EVENT_BUS.throwEvent(new UpdateNaturalDeduction(logicReturn.getNdWffTree()));
+                //else
                 break;
         }
         return logicReturn;

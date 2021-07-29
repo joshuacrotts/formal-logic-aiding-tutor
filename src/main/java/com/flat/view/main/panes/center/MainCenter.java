@@ -3,6 +3,7 @@ package com.flat.view.main.panes.center;
 import com.flat.controller.Controller;
 import com.flat.view.main.panes.center.children.algorithmselection.AlgorithmSelectionPane;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.AlgorithmVisualSelectionPane;
+import com.flat.view.main.panes.center.children.naturaldeduction.NaturalDeductionPane;
 import com.flat.view.main.panes.center.children.trees.parsetree.ParseTreePane;
 import com.flat.view.main.panes.center.children.trees.truthtree.TruthTreePane;
 import com.flat.view.main.panes.center.children.truthtable.TruthTablePane;
@@ -25,6 +26,7 @@ public class MainCenter extends VBox {
     private TruthTreePane truthTreePane = new TruthTreePane();
     private ParseTreePane parseTreePane = new ParseTreePane();
     private TruthTablePane truthTablePane = new TruthTablePane();
+    private NaturalDeductionPane naturalDeductionPane = new NaturalDeductionPane();
 
     public MainCenter() {
         this.initializeFx();
@@ -77,6 +79,10 @@ public class MainCenter extends VBox {
 
     public TruthTablePane getTruthTablePane() {
         return truthTablePane;
+    }
+
+    public NaturalDeductionPane getNaturalDeductionPane() {
+        return naturalDeductionPane;
     }
 
 }

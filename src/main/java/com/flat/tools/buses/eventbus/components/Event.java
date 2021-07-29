@@ -19,10 +19,12 @@ public abstract class Event {
         UPDATE_TRUTH_TABLE,
         UPDATE_TRUTH_TREE,
         UPDATE_TRUTH,
+        UPDATE_NATURAL_DEDUCTION,
         // Events thrown for Algorithm Visual Selection.
         PARSE_TREE_BUTTON_PRESSED,
         TRUTH_TREE_BUTTON_PRESSED,
         TRUTH_TABLE_BUTTON_PRESSED,
+        NATURAL_DEDUCTION_BUTTON_PRESSED,
         // Events thrown from logic buttons.
         LOGIC_BUTTON_PRESSED,
         LOGIC_BUTTON_CTRL_PRESSED,

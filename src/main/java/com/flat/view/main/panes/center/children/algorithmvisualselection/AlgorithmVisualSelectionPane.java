@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.center.children.algorithmvisualselection;
 
 import com.flat.controller.Controller;
+import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.naturaldeduction.NaturalDeductionButton;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.parsetree.ParseTreeButton;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.truthtable.TruthTableButton;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.truthtree.TruthTreeButton;
@@ -17,6 +18,7 @@ public class AlgorithmVisualSelectionPane extends HBox {
     private TruthTreeButton truthTreeButton = new TruthTreeButton();
     private ParseTreeButton parseTreeButton = new ParseTreeButton();
     private TruthTableButton truthTableButton = new TruthTableButton();
+    private NaturalDeductionButton naturalDeductionButton = new NaturalDeductionButton();
 
     public AlgorithmVisualSelectionPane () {
         this.initializeFx();
@@ -28,7 +30,7 @@ public class AlgorithmVisualSelectionPane extends HBox {
     }
 
     private void setThisFx () {
-    super.getChildren().addAll(this.truthTreeButton, this.parseTreeButton, this.truthTableButton, new AlgorithmResultPane());
+    super.getChildren().addAll(this.truthTreeButton, this.parseTreeButton, this.truthTableButton, this.naturalDeductionButton, new AlgorithmResultPane());
     super.setAlignment(Pos.CENTER_LEFT);
     super.setSpacing(10);
     }
@@ -46,6 +48,10 @@ public class AlgorithmVisualSelectionPane extends HBox {
         return truthTableButton;
     }
 
+    public NaturalDeductionButton getNaturalDeductionButton() {
+        return naturalDeductionButton;
+    }
+
     // Setters for object's attributes.
     public void setTruthTreeButton(TruthTreeButton truthTreeButton) {
         this.truthTreeButton = truthTreeButton;
@@ -57,6 +63,10 @@ public class AlgorithmVisualSelectionPane extends HBox {
 
     public void setTruthTableButton(TruthTableButton truthTableButton) {
         this.truthTableButton = truthTableButton;
+    }
+
+    public void setNaturalDeductionButton(NaturalDeductionButton naturalDeductionButton) {
+        this.naturalDeductionButton = naturalDeductionButton;
     }
 
 }
