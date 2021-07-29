@@ -170,6 +170,14 @@ public class ApplyAlgorithm {
 
     private void setApplicableAlgorithms() {
         this.applicableAlgorithms.clearAllAlgorithms();
+        if (!this.wffTree.isEmpty() && this.wffTree.get(0).isArgument()) {
+            this.setGeneralArgumentAlgorithms();
+            if (this.wffTree.get(0).isPredicateWff())
+                this.setPredicateArgumentAlgorithms();
+            else
+                this.setPropositionalArgumentAlgorithms();
+            return;
+        }
         this.setPredicateAlgorithms();
         this.setPropositionalAlgorithms();
         switch (this.wffTree.size()) {
@@ -189,13 +197,6 @@ public class ApplyAlgorithm {
             default:
                 this.setGeneralMoreAlgorithms();
 
-        }
-        if (!this.wffTree.isEmpty() && this.wffTree.get(0).isArgument()) {
-            this.setGeneralArgumentAlgorithms();
-            if (this.wffTree.get(0).isPredicateWff())
-                this.setPredicateArgumentAlgorithms();
-            else
-                this.setPropositionalArgumentAlgorithms();
         }
     }
 

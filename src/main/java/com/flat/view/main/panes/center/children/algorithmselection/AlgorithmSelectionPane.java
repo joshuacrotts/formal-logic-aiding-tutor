@@ -12,6 +12,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
 /**
  *
@@ -44,36 +45,18 @@ public class AlgorithmSelectionPane extends HBox {
     }
 
     private void setGeneralComboFx () {
+        HBox.setHgrow(this.generalCombo, Priority.ALWAYS);
         this.setOnComboSelection(this.generalCombo);
-        this.setOnGeneralWidth();
-    }
-
-    private void setOnGeneralWidth () {
-        this.generalCombo.widthProperty().addListener((obs, oldVal, newVal) -> {
-            this.setComboBoxWidth(getMaxComboWidth());
-        });
     }
 
     private void setPredicateComboFx () {
+        HBox.setHgrow(this.predicateCombo, Priority.ALWAYS);
         this.setOnComboSelection(this.predicateCombo);
-        this.setOnPredicateWidth();
-    }
-
-    private void setOnPredicateWidth () {
-        this.predicateCombo.widthProperty().addListener((obs, oldVal, newVal) -> {
-            this.setComboBoxWidth(getMaxComboWidth());
-        });
     }
 
     private void setPropositionalComboFx () {
+        HBox.setHgrow(this.propositionalCombo, Priority.ALWAYS);
         this.setOnComboSelection(this.propositionalCombo);
-        this.setOnPropositionalWidth();
-    }
-
-    private void setOnPropositionalWidth () {
-        this.propositionalCombo.widthProperty().addListener((obs, oldVal, newVal) -> {
-            this.setComboBoxWidth(getMaxComboWidth());
-        });
     }
 
     private void setOnComboSelection (ComboBox _comboBox) {

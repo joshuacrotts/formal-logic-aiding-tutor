@@ -22,6 +22,7 @@ public class NaturalDeductionButton extends Button {
     private void setThisFx () {
         super.setText("Natural Deduction");
         super.setDisable(true);
+        super.setMinWidth(110);
     }
 
     private void setThisOnAction () {

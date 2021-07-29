@@ -15,7 +15,8 @@ public class PropositionalComboBox extends ComboBox {
         super.setButtonCell(new AlgorithmListCell());
         super.setCellFactory(param -> new AlgorithmListCell());
         super.setPromptText("Propositional");
-        super.setMinWidth(300);
+        super.setMinWidth(250);
+        super.setMaxWidth(500);
     }
 
 }

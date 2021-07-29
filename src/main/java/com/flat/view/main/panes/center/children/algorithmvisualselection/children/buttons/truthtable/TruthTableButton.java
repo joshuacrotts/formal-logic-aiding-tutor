@@ -22,6 +22,7 @@ public class TruthTableButton extends Button {
     private void setThisFx() {
         super.setText("Truth Table");
         super.setDisable(true);
+        super.setMinWidth(110);
     }
 
     private void setThisOnAction () {
