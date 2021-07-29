@@ -179,7 +179,6 @@ public class ParserTest {
                 System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
             }
 
-
             System.out.println("\n\nIndirect Natural Deduction Proof:");
             // Indirect proof natural deduction prover.
             ndValidator = new IndirectProofNaturalDeductionValidator(resultList);
