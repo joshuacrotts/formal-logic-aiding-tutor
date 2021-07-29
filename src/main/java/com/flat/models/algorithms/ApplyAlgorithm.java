@@ -123,7 +123,7 @@ public class ApplyAlgorithm {
                 return new LogicReturn(null, pttg2.getTruthTree(), pttg2.getWffTree());
             case RANDOM_PREDICATE_FORMULA:
                 return new LogicReturn(new RandomPredicateFormulaGenerator().genRandomPredicateFormula());
-            case VACCUOUS_QUANTIFIER_DETECTOR:
+            case Vacuous_QUANTIFIER_DETECTOR:
                 VacuousQuantifierDetector vqd = new VacuousQuantifierDetector(this.wffTree.get(0));
                 this.highlightTrees(vqd.getVacuousQuantifiers());
                 return new LogicReturn(null, null, this.wffTree.get(0));
