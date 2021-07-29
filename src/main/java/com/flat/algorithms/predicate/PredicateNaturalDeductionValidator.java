@@ -34,6 +34,11 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     private final HashSet<Character> conclusionConstants;
 
+    /**
+     *
+     */
+    private int cycles;
+
     public PredicateNaturalDeductionValidator(ArrayList<WffTree> _wffTreeList, ProofType _proofType) {
         super(_wffTreeList, _proofType);
         // Get all constants and conclusion constants...
@@ -57,11 +62,11 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      */
     @Override
     public ArrayList<NDWffTree> getNaturalDeductionProof() {
-        int cycles = 0;
         while (true) {
+            System.out.println("Here");
             // Check for a contradiction, the conclusion, and a timeout.
             // If we are in an indirect proof, we can only break via contr and timeouts.
-            boolean timeout = cycles++ > PredicateNaturalDeductionValidator.timeout;
+            boolean timeout = this.cycles++ > PredicateNaturalDeductionValidator.timeout;
             if (this.proofType == ProofType.INDIRECT) {
                 if (this.findContradictions() || timeout) break;
             } else {
@@ -82,7 +87,7 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
         }
 
         // The timeout is there to prevent completely insane proofs from never ending.
-        if (cycles > PredicateNaturalDeductionValidator.timeout) {
+        if (this.cycles > PredicateNaturalDeductionValidator.timeout) {
             return null;
         }
 
@@ -657,6 +662,8 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
      * @param _type            - type of node to insert to the tree. This should either be ReplaceType.CONSTANT or ReplaceType.VARIABLE.
      */
     private void replaceSymbol(WffTree _newRoot, char _symbolToReplace, char _symbol, ReplaceType _type) {
+        // Since we can replace symbols forever, add a timeout here.
+        if (++this.cycles > PredicateNaturalDeductionValidator.timeout) { return; }
         for (int i = 0; i < _newRoot.getChildrenSize(); i++) {
             if (_newRoot.getChild(i).isVariable() || _newRoot.getChild(0).isConstant()) {
                 char s = _newRoot.getChild(i).getSymbol().charAt(0);
