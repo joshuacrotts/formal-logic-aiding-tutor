@@ -3,7 +3,12 @@ package com.flat.view.main.panes.right.children.top.practicetoggle.pane;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.children.PracticeModeToggleSwitch;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.css.PseudoClass;
+import javafx.geometry.VPos;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 /**
  *
@@ -25,15 +30,43 @@ public class PracticeModeTogglePane extends HBox {
 
     private void setThisFx () {
         super.getChildren().addAll(this.toggleSwitch);
+        super.setWidth(70);
+        super.setHeight(20);
         super.setLayoutX(0);
+        this.setTextClip();
         super.getStyleClass().setAll("practiceModeTogglePane");
         this.onToggleSetCss();
+        this.onToggleSetClip();
     }
 
     private void onToggleSetCss () {
         this.toggle.addListener((obs, oldVal, newVal) -> {
             super.pseudoClassStateChanged(PseudoClass.getPseudoClass("on"), this.toggle.get());
         });
+    }
+
+    private void onToggleSetClip () {
+        this.toggle.addListener((obs, oldVal, newVal) -> {
+            this.setTextClip();
+        });
+    }
+
+    private void setTextClip () {
+        Rectangle rectangle = new Rectangle(super.getBoundsInParent().getWidth(), super.getBoundsInParent().getHeight());
+            Text text;
+            if (this.toggle.getValue()) {
+                text = new Text("On");
+                text.setLayoutX(5);
+            }
+            else {
+                text = new Text("Off");
+                text.setLayoutX(rectangle.getWidth() - text.getLayoutBounds().getWidth() - 5);
+            }
+            text.setTextAlignment(TextAlignment.CENTER);
+            text.setTextOrigin(VPos.CENTER);
+            text.setLayoutY(rectangle.getHeight() / 2);
+            Shape shape = Shape.subtract(rectangle, text);
+            super.setClip(shape);
     }
 
     public void toggle () {

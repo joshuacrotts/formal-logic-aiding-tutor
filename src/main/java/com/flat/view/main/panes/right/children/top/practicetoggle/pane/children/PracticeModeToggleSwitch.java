@@ -46,17 +46,23 @@ public class PracticeModeToggleSwitch extends Button {
                         super.setTranslateX(super.getParent().getBoundsInLocal().getWidth() - super.getWidth());
                     else if (super.getBoundsInParent().getMinX() - deltaX < super.getParent().getBoundsInLocal().getMinX())
                         super.setTranslateX(0);
+            double midpoint = super.getParent().getBoundsInLocal().getMaxX() / 2;
+            if (super.getTranslateX() + (super.getWidth() / 2) < midpoint) {
+
+                ((PracticeModeTogglePane)super.getParent()).setToggle(false);
+            }
+            else {
+                ((PracticeModeTogglePane)super.getParent()).setToggle(true);
+            }
         });
         super.setOnMouseReleased(event -> {
             if (this.dragProperty.getValue() == true) {
                 double midpoint = super.getParent().getBoundsInLocal().getMaxX() / 2;
                 if (super.getTranslateX() + (super.getWidth() / 2) < midpoint) {
                     super.setTranslateX(0);
-                    ((PracticeModeTogglePane)super.getParent()).setToggle(false);
                 }
                 else {
                     super.setTranslateX(super.getParent().getBoundsInLocal().getWidth() - super.getBoundsInParent().getWidth() - 2);
-                    ((PracticeModeTogglePane)super.getParent()).setToggle(true);
                 }
                 this.dragProperty.setValue(false);
             }
