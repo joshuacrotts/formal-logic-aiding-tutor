@@ -63,7 +63,6 @@ public final class PredicateNaturalDeductionValidator extends BaseNaturalDeducti
     @Override
     public ArrayList<NDWffTree> getNaturalDeductionProof() {
         while (true) {
-            System.out.println("Here");
             // Check for a contradiction, the conclusion, and a timeout.
             // If we are in an indirect proof, we can only break via contr and timeouts.
             boolean timeout = this.cycles++ > PredicateNaturalDeductionValidator.timeout;
