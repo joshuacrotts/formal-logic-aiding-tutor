@@ -13,8 +13,8 @@
 @import "button.css";
 @import "textfield.css";
 @import "tree/tree.css";
+@import "practicetoggle.css";
 
 .root {
     -fx-background-color: black;
-    /*-fx-font-family: sans-serif;*/
 }

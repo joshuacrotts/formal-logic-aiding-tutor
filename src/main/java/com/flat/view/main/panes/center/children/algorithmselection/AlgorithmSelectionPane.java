@@ -46,11 +46,13 @@ public class AlgorithmSelectionPane extends HBox {
 
     private void setGeneralComboFx () {
         HBox.setHgrow(this.generalCombo, Priority.ALWAYS);
+        this.generalCombo.prefWidthProperty().bindBidirectional(this.predicateCombo.prefWidthProperty());
         this.setOnComboSelection(this.generalCombo);
     }
 
     private void setPredicateComboFx () {
         HBox.setHgrow(this.predicateCombo, Priority.ALWAYS);
+        this.predicateCombo.prefWidthProperty().bindBidirectional(this.propositionalCombo.prefWidthProperty());
         this.setOnComboSelection(this.predicateCombo);
     }
 
