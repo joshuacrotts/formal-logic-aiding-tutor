@@ -66,7 +66,7 @@ public class PracticeModeTogglePane extends HBox {
                 text = new Text("Off");
                 text.setLayoutX(rectangle.getWidth() - text.getLayoutBounds().getWidth() - 5);
             }
-            text.setTextAlignment(TextAlignment.CENTER);
+            text.setTextAlignment(TextAlignment.JUSTIFY);
             text.setTextOrigin(VPos.CENTER);
             text.setLayoutY(rectangle.getHeight() / 2);
             Shape shape = Shape.subtract(rectangle, text);

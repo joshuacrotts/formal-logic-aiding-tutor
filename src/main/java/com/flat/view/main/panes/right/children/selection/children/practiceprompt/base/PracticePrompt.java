@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 /**
  *
@@ -37,9 +38,13 @@ public class PracticePrompt extends VBox {
 
     private void setThisFx () {
         super.getChildren().add(new PromptLabel());
-        super.getChildren().add(new PromptText(this.prompt));
+        PromptText promptText = new PromptText(this.prompt);
+        promptText.setTextAlignment(TextAlignment.JUSTIFY);
+        super.getChildren().add(promptText);
         super.getChildren().add(new InfoLabel());
-        super.getChildren().add(new PromptText(this.info));
+        PromptText infoText = new PromptText(this.info);
+        infoText.setTextAlignment(TextAlignment.JUSTIFY);
+        super.getChildren().add(infoText);
         super.getChildren().add(new PromptResultLabel());
         super.getChildren().add(this.result);
         super.getChildren().add(this.emptyRegion);

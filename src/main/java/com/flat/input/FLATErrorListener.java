@@ -175,7 +175,7 @@ public class FLATErrorListener extends BaseErrorListener {
                     errorMsg = "Missing operand on left-hand side at opening parenthesis '(' near " + surroundingText;
                 }
                 // If the PREVIOUS token (prior to the offending one) is a binary operator, then we used one where we shouldn't have.
-                else if (this.isBinaryOpToken(tokId)) {
+                else if (this.isBinaryOpToken(prevTokId)) {
                     errorMsg = "Too many binary connectives found at " + surroundingText + ". Check your input!";
                 }
                 // If the offending token is EOF or a binop then we have unbalanced parentheses.
