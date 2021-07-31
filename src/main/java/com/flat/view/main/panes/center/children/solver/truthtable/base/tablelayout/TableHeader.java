@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class TableHeader {
+
     private int column;
     private String text;
     private ArrayList <TableElement> elements = new ArrayList();

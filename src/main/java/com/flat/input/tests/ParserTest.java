@@ -66,14 +66,13 @@ public class ParserTest {
     public static void main(String[] argv) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         ArrayList<WffTree> resultList = FLATParserAdapter.getAbstractSyntaxTree(reader.readLine());
-        if (resultList == null) {
-            return;
-        }
+        if (resultList == null) { return; }
 
         // If we only have one WffTree, we can do the simple operations.
         if (resultList.size() == 1) {
             WffTree result = resultList.get(0);
             result.printSyntaxTree();
+            System.out.println(result.getPracticeOrdering());
         }
             // Print the parse tree in LaTeX.
 //            TexPrinter texParseTreePrinter = new TexParseTreePrinter(result, "latex_parse_tree.tex");
