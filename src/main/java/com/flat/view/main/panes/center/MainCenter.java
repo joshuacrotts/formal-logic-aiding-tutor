@@ -3,12 +3,8 @@ package com.flat.view.main.panes.center;
 import com.flat.controller.Controller;
 import com.flat.view.main.panes.center.children.algorithmselection.AlgorithmSelectionPane;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.AlgorithmVisualSelectionPane;
-import com.flat.view.main.panes.center.children.naturaldeduction.NaturalDeductionPane;
-import com.flat.view.main.panes.center.children.trees.parsetree.ParseTreePane;
-import com.flat.view.main.panes.center.children.trees.truthtree.TruthTreePane;
-import com.flat.view.main.panes.center.children.truthtable.TruthTablePane;
 import com.flat.view.main.panes.center.listener.MainCenterListener;
-import com.flat.view.main.panes.center.logicvisualpane.LogicVisualPane;
+import com.flat.view.main.panes.center.children.logicvisualpane.LogicVisualPane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Separator;
@@ -23,10 +19,6 @@ public class MainCenter extends VBox {
     private AlgorithmVisualSelectionPane algorithmVisualSelection = new AlgorithmVisualSelectionPane();
     private Separator separator2 = new Separator();
     private LogicVisualPane logicVisualPane = new LogicVisualPane();
-    private TruthTreePane truthTreePane = new TruthTreePane();
-    private ParseTreePane parseTreePane = new ParseTreePane();
-    private TruthTablePane truthTablePane = new TruthTablePane();
-    private NaturalDeductionPane naturalDeductionPane = new NaturalDeductionPane();
 
     public MainCenter() {
         this.initializeFx();
@@ -67,22 +59,6 @@ public class MainCenter extends VBox {
     // Getters for object's attributes.
     public LogicVisualPane getLogicVisualPane() {
         return logicVisualPane;
-    }
-
-    public TruthTreePane getTruthTreePane() {
-        return truthTreePane;
-    }
-
-    public ParseTreePane getParseTreePane() {
-        return parseTreePane;
-    }
-
-    public TruthTablePane getTruthTablePane() {
-        return truthTablePane;
-    }
-
-    public NaturalDeductionPane getNaturalDeductionPane() {
-        return naturalDeductionPane;
     }
 
 }

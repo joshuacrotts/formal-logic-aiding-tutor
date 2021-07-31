@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.bottom.children.formulainput.children.textfield.listener;
 
 import com.flat.controller.Controller;
-import com.flat.models.algorithms.bus.events.FormulaGenerated;
+import com.flat.models.algorithms.bus.events.solver.FormulaGenerated;
 import com.flat.tools.buses.eventbus.components.Event;
 import static com.flat.tools.buses.eventbus.components.Event.Type.FORMULA_SOLVE_BUTTON_PRESSED;
 import com.flat.view.main.panes.bottom.children.formulainput.children.textfield.FormulaInputTextField;

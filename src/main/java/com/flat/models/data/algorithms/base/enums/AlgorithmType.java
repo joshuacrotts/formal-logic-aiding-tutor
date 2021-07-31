@@ -5,6 +5,8 @@ package com.flat.models.data.algorithms.base.enums;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public enum AlgorithmType {
+    NULL,
+
     // General algorithms.
     GENERAL,
     CLOSED_TREE_DETERMINER,

@@ -1,6 +1,8 @@
 package com.flat.view.main.panes.right.children.top.practicetoggle.pane;
 
+import com.flat.controller.Controller;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.children.PracticeModeToggleSwitch;
+import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.PracticeModeToggle;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.css.PseudoClass;
 import javafx.geometry.VPos;
@@ -22,6 +24,7 @@ public class PracticeModeTogglePane extends HBox {
 
     public PracticeModeTogglePane () {
         this.initializeFx();
+        Controller.DATA_BUS.throwUpdate(new PracticeModeToggle(this.toggle.getValue()));
     }
 
     private void initializeFx () {
@@ -37,6 +40,7 @@ public class PracticeModeTogglePane extends HBox {
         super.getStyleClass().setAll("practiceModeTogglePane");
         this.onToggleSetCss();
         this.onToggleSetClip();
+        this.setToggleUpdate();
     }
 
     private void onToggleSetCss () {
@@ -67,6 +71,12 @@ public class PracticeModeTogglePane extends HBox {
             text.setLayoutY(rectangle.getHeight() / 2);
             Shape shape = Shape.subtract(rectangle, text);
             super.setClip(shape);
+    }
+
+    public void setToggleUpdate () {
+        this.toggle.addListener((obs, oldVal, newVal) -> {
+            Controller.DATA_BUS.throwUpdate(new PracticeModeToggle(this.toggle.getValue()));
+        });
     }
 
     public void toggle () {

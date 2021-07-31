@@ -16,7 +16,7 @@ import com.flat.tools.translation.FLATTranslate;
 import com.flat.view.data.fx.FxData;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
-import com.flat.view.main.panes.center.children.trees.base.treelayout.TreeLayout;
+import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.TreeLayout;
 import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
 import com.flat.view.data.MappedText;
 import com.flat.view.data.MappedTextArray;

@@ -1,6 +1,6 @@
 package com.flat.view.main.panes.center.children.algorithmvisualselection.children.resultpane.listener;
 
-import com.flat.models.algorithms.bus.events.UpdateTruth;
+import com.flat.models.algorithms.bus.events.solver.UpdateTruth;
 import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.resultpane.AlgorithmResultPane;
 import com.flat.tools.buses.eventbus.components.EventListener;

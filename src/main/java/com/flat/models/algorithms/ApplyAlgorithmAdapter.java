@@ -2,29 +2,36 @@ package com.flat.models.algorithms;
 
 import com.flat.controller.Controller;
 import com.flat.models.algorithms.attributes.LogicReturn;
-import com.flat.models.algorithms.bus.events.ClearLogicVisuals;
-import com.flat.models.algorithms.bus.events.FormulaGenerated;
-import com.flat.models.algorithms.bus.events.UpdateNaturalDeduction;
-import com.flat.models.algorithms.bus.events.UpdateParseTree;
-import com.flat.models.algorithms.bus.events.UpdateTruth;
-import com.flat.models.algorithms.bus.events.UpdateTruthTable;
-import com.flat.models.algorithms.bus.events.UpdateTruthTree;
+import com.flat.models.algorithms.bus.events.practice.UpdateMainOperatorDetectorPractice;
+import com.flat.models.algorithms.bus.events.solver.ClearLogicVisuals;
+import com.flat.models.algorithms.bus.events.solver.FormulaGenerated;
+import com.flat.models.algorithms.bus.events.solver.UpdateNaturalDeduction;
+import com.flat.models.algorithms.bus.events.solver.UpdateParseTree;
+import com.flat.models.algorithms.bus.events.solver.UpdateTruth;
+import com.flat.models.algorithms.bus.events.solver.UpdateTruthTable;
+import com.flat.models.algorithms.bus.events.solver.UpdateTruthTree;
 import com.flat.models.algorithms.bus.updates.ApplicableAlgorithmsUpdate;
 import com.flat.models.data.algorithms.Algorithms;
 import com.flat.models.data.algorithms.base.Algorithm;
+import com.flat.models.data.algorithms.base.enums.AlgorithmType;
 import static com.flat.models.data.algorithms.base.enums.AlgorithmType.CLOSED_SENTENCE_DETERMINER;
 import com.flat.models.treenode.WffTree;
+import com.flat.tools.buses.databus.components.DataListener;
+import com.flat.tools.buses.databus.components.Update;
+import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.PracticeModeToggle;
 import java.util.ArrayList;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
+public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListener {
+    private boolean practiceMode = false;
 
     public ApplyAlgorithmAdapter (Algorithms _algorithms) {
         super(_algorithms);
         Controller.DATA_BUS.throwUpdate(new ApplicableAlgorithmsUpdate(super.getApplicableAlgorithms()));
+        Controller.DATA_BUS.addListener(this);
     }
 
     @Override
@@ -82,13 +89,32 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm {
                 Controller.EVENT_BUS.throwEvent(new UpdateTruth(logicReturn.getTruthValue()));
                 break;
         }
+        if (this.practiceMode)
+            this.throwPracticeUpdates(_algorithm.getType(), logicReturn);
         return logicReturn;
+    }
+
+    private void throwPracticeUpdates (AlgorithmType _algorithmType, LogicReturn _logicReturn) {
+        switch (_algorithmType) {
+            case MAIN_OPERATOR_DETECTOR:
+                Controller.EVENT_BUS.throwEvent(new UpdateMainOperatorDetectorPractice(_logicReturn.getWffTree()));
+                break;
+        }
     }
 
     @Override
     public void setWffTree(ArrayList<WffTree> wffTree) {
         super.setWffTree(wffTree);
         Controller.DATA_BUS.throwUpdate(new ApplicableAlgorithmsUpdate(super.getApplicableAlgorithms()));
+    }
+
+    @Override
+    public void handleUpdate(Update _update) {
+        switch (_update.getType()) {
+            case PRACTICE_MODE_TOGGLE:
+                this.practiceMode = ((PracticeModeToggle)_update).isPractice();
+                break;
+        }
     }
 
 }

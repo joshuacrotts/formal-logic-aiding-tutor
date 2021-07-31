@@ -12,7 +12,8 @@ public abstract class Event {
         FORMULA_INPUT,
         UNSOLVED_FORMULA,
         SOLVED_FORMULA,
-        // Events thrown from ApplyAlgorithmAdapter.
+
+        // Solver events thrown from ApplyAlgorithmAdapter.
         CLEAR_LOGIC_VISUALS,
         FORMULA_GENERATED,
         UPDATE_PARSE_TREE,
@@ -20,16 +21,30 @@ public abstract class Event {
         UPDATE_TRUTH_TREE,
         UPDATE_TRUTH,
         UPDATE_NATURAL_DEDUCTION,
+        UPDATE_PRACTICE_PANE,
+        // Practice events thrown from ApplyAlgorithmAdapter.
+        UPDATE_MAIN_OPERATOR_DETECTOR_PRACTICE,
+
         // Events thrown for Algorithm Visual Selection.
         PARSE_TREE_BUTTON_PRESSED,
         TRUTH_TREE_BUTTON_PRESSED,
         TRUTH_TABLE_BUTTON_PRESSED,
         NATURAL_DEDUCTION_BUTTON_PRESSED,
+        PRACTICE_BUTTON_PRESSED,
+
         // Events thrown from logic buttons.
         LOGIC_BUTTON_PRESSED,
         LOGIC_BUTTON_CTRL_PRESSED,
+
         // Events thrown from Tree Pane Listener.
         TREE_NODE_LAYOUT_SET,
+
+        // Events thrown from right pane selection.
+        PRACTICE_SELECTION_BUTTON_PRESSED,
+        RULES_AXIOMS_SELECTION_BUTTON_PRESSED,
+
+        // Events thrown from practice prompt.
+        PRACTICE_SUBMIT_BUTTON_PRESSED,
     }
 
     private Type type;
