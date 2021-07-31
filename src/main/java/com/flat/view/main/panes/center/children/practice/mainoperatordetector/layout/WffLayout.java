@@ -19,6 +19,13 @@ public class WffLayout {
     }
 
     private void addWffPieces (WffTree _wffTree, int _leftMod, int _rightMod) {
+        if (_wffTree.isPredicate()) {
+            this.addWffPiece(_wffTree);
+            _wffTree.getChildren().forEach(child -> {
+                this.addWffPiece(child);
+            });
+            return;
+        }
         switch (_wffTree.getChildrenSize()) {
             case 1:
                 this.addParentheticalWffPiece(_leftMod, "(");
