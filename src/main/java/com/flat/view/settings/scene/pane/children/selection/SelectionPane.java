@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.selection;
 
 import com.flat.view.data.fx.pane.PaneData;
-import com.flat.view.settings.scene.pane.children.selection.advance.AdvanceButton;
+import com.flat.view.settings.scene.pane.children.selection.advanced.AdvancedButton;
 import com.flat.view.settings.scene.pane.children.selection.apperance.AppearanceButton;
 import com.flat.view.settings.scene.pane.children.selection.language.LanguageButton;
 import javafx.scene.layout.VBox;
@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
  */
 public class SelectionPane extends VBox {
     private AppearanceButton appearance = new AppearanceButton();
-    private AdvanceButton advance = new AdvanceButton();
+    private AdvancedButton advanced = new AdvancedButton();
     private LanguageButton language = new LanguageButton();
 
     public SelectionPane () {
@@ -26,7 +26,7 @@ public class SelectionPane extends VBox {
     private void setThisFx () {
         super.setMinWidth(100);
         super.backgroundProperty().bind(PaneData.getTopProperty().backgroundProperty());
-        super.getChildren().addAll(this.appearance, this.advance, this.language);
+        super.getChildren().addAll(this.appearance, this.advanced, this.language);
     }
 
     // Getters for object's attributes.
@@ -34,8 +34,8 @@ public class SelectionPane extends VBox {
         return appearance;
     }
 
-    public AdvanceButton getAdvance() {
-        return advance;
+    public AdvancedButton getAdvanced() {
+        return advanced;
     }
 
     public LanguageButton getLanguage() {
@@ -47,8 +47,8 @@ public class SelectionPane extends VBox {
         this.appearance = appearance;
     }
 
-    public void setAdvance(AdvanceButton advance) {
-        this.advance = advance;
+    public void setAdvanced(AdvancedButton advanced) {
+        this.advanced = advanced;
     }
 
     public void setLanguage(LanguageButton language) {

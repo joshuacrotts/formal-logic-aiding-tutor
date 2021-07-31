@@ -2,7 +2,7 @@ package com.flat.view.settings.scene.pane;
 
 import com.flat.view.data.fx.pane.PaneData;
 import com.flat.view.settings.scene.pane.children.selection.SelectionPane;
-import com.flat.view.settings.scene.pane.children.selection.advance.advancepane.AdvancePane;
+import com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.AdvancedPane;
 import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.AppearancePane;
 import com.flat.view.settings.scene.pane.children.selection.language.languagepane.LanguagePane;
 import javafx.scene.layout.HBox;
@@ -16,7 +16,7 @@ public class SettingsPane extends HBox {
     private SelectionPane selectionPane = new SelectionPane();
     private Pane selectedContent = null;
     private AppearancePane appearancePane = new AppearancePane();
-    private AdvancePane advancePane = new AdvancePane();
+    private AdvancedPane advancedPane = new AdvancedPane();
     private LanguagePane languagePane = new LanguagePane();
     public SettingsPane() {
         this.initializeFx();
@@ -26,10 +26,10 @@ public class SettingsPane extends HBox {
     private void initializeFx () {
         this.setThisFx();
         this.setAppearancePaneFx();
-        this.setAdvancePaneFx();
+        this.setAdvancedPaneFx();
         this.setLanguagePaneFx();
         this.setAppearanceButtonFx();
-        this.setAdvanceButtonFx();
+        this.setAdvancedButtonFx();
         this.setLanguageButtonFx();
     }
 
@@ -42,8 +42,8 @@ public class SettingsPane extends HBox {
         HBox.setHgrow(this.appearancePane, Priority.ALWAYS);
     }
 
-    private void setAdvancePaneFx () {
-        HBox.setHgrow(this.advancePane, Priority.ALWAYS);
+    private void setAdvancedPaneFx () {
+        HBox.setHgrow(this.advancedPane, Priority.ALWAYS);
     }
 
     private void setLanguagePaneFx () {
@@ -60,13 +60,13 @@ public class SettingsPane extends HBox {
         });
     }
 
-    private void setAdvanceButtonFx () {
-        this.setAdvanceButtonAction();
+    private void setAdvancedButtonFx () {
+        this.setAdvancedButtonAction();
     }
 
-    private void setAdvanceButtonAction () {
-        this.selectionPane.getAdvance().setOnAction(event -> {
-            this.addSelectedContent(this.advancePane);
+    private void setAdvancedButtonAction () {
+        this.selectionPane.getAdvanced().setOnAction(event -> {
+            this.addSelectedContent(this.advancedPane);
         });
     }
 

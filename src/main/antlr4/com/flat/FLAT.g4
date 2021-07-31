@@ -20,13 +20,13 @@ fragment NULL_CHAR      : '\\0'                                            ;
 fragment ESCAPED_CHAR   : ('\\' .)                                         ;
 
 /* Word literals for logic (if they want to type it out). */
-fragment AND_LIT: 'AND' | 'and';
-fragment OR_LIT: 'OR' | 'or';
-fragment IMP_LIT: 'IMPLIES' | 'implies';
-fragment BICOND_LIT: 'IFF' | 'iff';
-fragment NEG_LIT: 'NOT' | 'not';
-fragment XOR_LIT: 'XOR' | 'xor';
-fragment IDENTITY_LIT: 'EQUIVALENT' | 'equivalent';
+fragment AND_LIT: 'AND';
+fragment OR_LIT: 'OR';
+fragment IMP_LIT: 'IMPLIES';
+fragment BICOND_LIT: 'IFF';
+fragment NEG_LIT: 'NOT';
+fragment XOR_LIT: 'XOR';
+fragment IDENTITY_LIT: 'EQUIVALENT';
 
 /* Other symbols. */
 OPEN_PAREN : '(';
