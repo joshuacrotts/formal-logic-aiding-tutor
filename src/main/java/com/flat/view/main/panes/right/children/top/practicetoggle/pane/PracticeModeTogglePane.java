@@ -35,8 +35,8 @@ public class PracticeModeTogglePane extends Pane {
 
     private void setThisFx () {
         super.getChildren().addAll(this.toggleText, this.toggleSwitch);
-        super.setWidth(150);
-        super.setMaxWidth(150);
+        super.setWidth(140);
+        super.setMaxWidth(140);
         super.setHeight(20);
         super.setMaxHeight(20);
         super.setLayoutX(0);

@@ -12,15 +12,15 @@
 }
 
 .practiceModeTogglePane {
-    -fx-background-color: gray;
+    -fx-background-color: #FF7752;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
     -fx-border-color: black;
     -fx-border-width: 1;
-    -fx-min-width: 150;
-    -fx-max-width: 150;
+    -fx-min-width: 140;
+    -fx-max-width: 140;
 }
 
 .practiceModeTogglePane:on {
-    -fx-background-color: #0048C0;
+    -fx-background-color: #2EA3F7;
 }
