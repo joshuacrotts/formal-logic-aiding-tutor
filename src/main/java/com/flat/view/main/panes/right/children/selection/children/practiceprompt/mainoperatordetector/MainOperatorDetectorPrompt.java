@@ -1,12 +1,12 @@
 package com.flat.view.main.panes.right.children.selection.children.practiceprompt.mainoperatordetector;
 
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.PracticePrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.submit.PracticePromptSubmit;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class MainOperatorDetectorPrompt extends PracticePrompt {
+public class MainOperatorDetectorPrompt extends PracticePromptSubmit {
 
     public MainOperatorDetectorPrompt () {
         super(

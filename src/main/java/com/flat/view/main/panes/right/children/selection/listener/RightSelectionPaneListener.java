@@ -19,6 +19,7 @@ public class RightSelectionPaneListener implements EventListener {
     @Override
     public void catchEvent(Event _event) {
         switch (_event.getType()) {
+            case UPDATE_PRACTICE_PANE:
             case PRACTICE_SELECTION_BUTTON_PRESSED:
                 this.removeSelection();
                 this.selectionPane.getChildren().add(this.selectionPane.getPracticePane());

@@ -1,8 +1,7 @@
 package com.flat.view.main.panes.right.children.selection.children.practiceprompt.base;
 
 import com.flat.controller.Controller;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.listener.PracticePromptListener;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.submit.PracticeSubmitButton;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.listener.PracticePromptListener;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.text.InfoLabel;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.text.PromptResultLabel;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.text.PromptResultText;
@@ -18,7 +17,7 @@ import javafx.scene.text.TextAlignment;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class PracticePrompt extends VBox {
+public abstract class PracticePrompt extends VBox {
     private String prompt;
     private String info;
     private PromptResultText result = new PromptResultText();
@@ -48,13 +47,12 @@ public class PracticePrompt extends VBox {
         super.getChildren().add(new PromptResultLabel());
         super.getChildren().add(this.result);
         super.getChildren().add(this.emptyRegion);
-        super.getChildren().add(new PracticeSubmitButton());
         super.setSpacing(5);
         super.setAlignment(Pos.CENTER);
     }
 
     private void setThisEmptyRegionFx () {
-        this.emptyRegion.setMinHeight(50);
+        this.emptyRegion.setMinHeight(25);
         VBox.setVgrow(this.emptyRegion, Priority.ALWAYS);
     }
 

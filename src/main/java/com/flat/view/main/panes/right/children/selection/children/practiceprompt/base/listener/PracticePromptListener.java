@@ -1,4 +1,4 @@
-package com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.listener;
+package com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.listener;
 
 import com.flat.tools.buses.databus.components.DataListener;
 import com.flat.tools.buses.databus.components.Update;
@@ -20,7 +20,7 @@ public class PracticePromptListener implements DataListener {
     public void handleUpdate(Update _update) {
         switch (_update.getType()) {
             case PRACTICE_RESULT:
-                this.practicePrompt.getResult().setText(String.valueOf(((PracticeResult)_update).isResult()));
+                this.practicePrompt.getResult().setText(((PracticeResult)_update).isResult()? "Correct" : "Incorrect");
                 break;
         }
     }

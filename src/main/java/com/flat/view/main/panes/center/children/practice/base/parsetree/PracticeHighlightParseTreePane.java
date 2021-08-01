@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 public class PracticeHighlightParseTreePane extends Pane implements Practice {
     private PracticeParseTreeNode practiceNode;
     private WffTree wffTree;
+    private Object userAnswer = null;
 
     public PracticeHighlightParseTreePane (WffTree _wffTree) {
         this.initializeFx();
@@ -104,6 +105,12 @@ public class PracticeHighlightParseTreePane extends Pane implements Practice {
     @Override
     public boolean getResult() {
         return this.checkHighlights(this.practiceNode);
+    }
+
+    // Not implemented.
+    @Override
+    public void setUserAnswer(Object _answer) {
+        this.userAnswer = _answer;
     }
 
 }

@@ -1,7 +1,7 @@
-package com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.submit;
+package com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.submit.buttons;
 
 import com.flat.controller.Controller;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.submit.events.PracticeSubmitButtonPressed;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.submit.buttons.events.PracticeSubmitButtonPressed;
 import javafx.scene.control.Button;
 
 /**
@@ -23,7 +23,7 @@ public class PracticeSubmitButton extends Button {
         this.setOnAction();
     }
 
-    private void setOnAction () {
+    public void setOnAction () {
         super.setOnAction(event -> {
             Controller.EVENT_BUS.throwEvent(new PracticeSubmitButtonPressed());
         });

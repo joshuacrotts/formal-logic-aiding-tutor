@@ -1,4 +1,4 @@
-package com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.submit.events;
+package com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.submit.buttons.events;
 
 import com.flat.tools.buses.eventbus.components.Event;
 

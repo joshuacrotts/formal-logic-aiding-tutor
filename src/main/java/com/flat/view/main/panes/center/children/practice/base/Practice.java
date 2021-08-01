@@ -6,6 +6,8 @@ package com.flat.view.main.panes.center.children.practice.base;
  */
 public interface Practice {
 
-    boolean getResult();
+    boolean getResult ();
+
+    void setUserAnswer (Object _answer);
 
 }

@@ -8,6 +8,7 @@ import com.flat.view.main.panes.right.children.selection.listener.RightSelection
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 /**
@@ -29,6 +30,7 @@ public class RightSelectionPane extends VBox {
         this.setThisFx();
         super.setSpacing(10);
         this.setSelectionHBoxFx();
+        this.setPracticePaneFx();
     }
 
     private void setThisFx () {
@@ -37,6 +39,10 @@ public class RightSelectionPane extends VBox {
 
     private void setSelectionHBoxFx () {
         VBox.setMargin(this.selectionHBox, new Insets(10, 0, 0, 0));
+    }
+
+    private void setPracticePaneFx () {
+        VBox.setVgrow(this.practicePane, Priority.ALWAYS);
     }
 
     // Getters for object's attributes.

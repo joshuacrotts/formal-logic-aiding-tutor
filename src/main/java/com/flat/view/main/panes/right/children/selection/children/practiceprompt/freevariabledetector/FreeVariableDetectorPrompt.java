@@ -1,12 +1,12 @@
 package com.flat.view.main.panes.right.children.selection.children.practiceprompt.freevariabledetector;
 
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.PracticePrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.submit.PracticePromptSubmit;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class FreeVariableDetectorPrompt extends PracticePrompt {
+public class FreeVariableDetectorPrompt extends PracticePromptSubmit {
 
     public FreeVariableDetectorPrompt () {
         super(

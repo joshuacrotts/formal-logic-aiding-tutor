@@ -60,6 +60,7 @@ public class MainCenterListener implements EventListener {
                 this.group.setChild(this.naturalDeductionPane);
                 this.mainCenter.getLogicVisualPane().updateContent(this.hWrapper);
                 this.mainCenter.getLogicVisualPane().centerViewPortHorizontally();
+            case UPDATE_PRACTICE_PANE:
             case PRACTICE_BUTTON_PRESSED:
                 this.group.setChild(this.practicePane);
                 this.mainCenter.getLogicVisualPane().updateContent(this.hWrapper);

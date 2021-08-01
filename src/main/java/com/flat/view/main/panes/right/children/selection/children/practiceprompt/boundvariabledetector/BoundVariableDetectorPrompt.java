@@ -1,12 +1,12 @@
 package com.flat.view.main.panes.right.children.selection.children.practiceprompt.boundvariabledetector;
 
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.PracticePrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.submit.PracticePromptSubmit;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class BoundVariableDetectorPrompt extends PracticePrompt {
+public class BoundVariableDetectorPrompt extends PracticePromptSubmit {
 
     public BoundVariableDetectorPrompt () {
         super(

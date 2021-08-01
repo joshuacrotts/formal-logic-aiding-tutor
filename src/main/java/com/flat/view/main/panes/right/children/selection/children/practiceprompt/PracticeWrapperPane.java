@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.right.children.selection.children.practiceprompt;
 
 import com.flat.controller.Controller;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.listener.PracticeWrapperPaneListener;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.listener.PracticePromptWrapperPaneListener;
 import javafx.scene.control.ScrollPane;
 
 /**
@@ -10,11 +10,11 @@ import javafx.scene.control.ScrollPane;
  */
 public class PracticeWrapperPane extends ScrollPane {
     private double minDisplayWidth = 70;
-    private PracticeWrapperPaneListener listener;
+    private PracticePromptWrapperPaneListener listener;
 
     public PracticeWrapperPane () {
         this.initializeFx();
-        this.listener = new PracticeWrapperPaneListener(this);
+        this.listener = new PracticePromptWrapperPaneListener(this);
         Controller.EVENT_BUS.addListener(this.listener);
         Controller.DATA_BUS.addListener(this.listener);
     }

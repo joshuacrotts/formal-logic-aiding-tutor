@@ -1,12 +1,12 @@
 package com.flat.view.main.panes.right.children.selection.children.practiceprompt.vacuousquantifierdetector;
 
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.PracticePrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.submit.PracticePromptSubmit;
 
 /**
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class VacuousQuantifierDetectorPrompt extends PracticePrompt {
+public class VacuousQuantifierDetectorPrompt extends PracticePromptSubmit {
 
     public VacuousQuantifierDetectorPrompt () {
         super(

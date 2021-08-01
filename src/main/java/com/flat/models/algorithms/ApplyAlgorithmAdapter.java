@@ -2,10 +2,7 @@ package com.flat.models.algorithms;
 
 import com.flat.controller.Controller;
 import com.flat.models.algorithms.attributes.LogicReturn;
-import com.flat.models.algorithms.bus.events.practice.wfftree.EventBoundVariableDetectorPractice;
-import com.flat.models.algorithms.bus.events.practice.wfftree.EventFreeVariableDetectorPractice;
-import com.flat.models.algorithms.bus.events.practice.wfftree.EventMainOperatorDetectorPractice;
-import com.flat.models.algorithms.bus.events.practice.wfftree.EventVacuousQuantifierDetectorPractice;
+import com.flat.models.algorithms.bus.events.practice.wfftree.UpdatePracticePane;
 import com.flat.models.algorithms.bus.events.solver.ClearLogicVisuals;
 import com.flat.models.algorithms.bus.events.solver.FormulaGenerated;
 import com.flat.models.algorithms.bus.events.solver.UpdateNaturalDeduction;
@@ -41,6 +38,16 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListene
     public LogicReturn apply(Algorithm _algorithm) {
         LogicReturn logicReturn = super.apply(_algorithm);
         Controller.EVENT_BUS.throwEvent(new ClearLogicVisuals());
+        if (this.practiceMode) {
+            this.throwPracticeUpdates(_algorithm.getType(), logicReturn);
+            switch (_algorithm.getType()) {
+                case RANDOM_PREDICATE_FORMULA:
+                case RANDOM_PROPOSITIONAL_FORMULA:
+                    break;
+                default:
+                    return logicReturn;
+            }
+        }
         switch (_algorithm.getType()) {
             case CLOSED_SENTENCE_DETERMINER:
             case CLOSED_TREE_DETERMINER:
@@ -92,25 +99,19 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListene
                 Controller.EVENT_BUS.throwEvent(new UpdateTruth(logicReturn.getTruthValue()));
                 break;
         }
-        if (this.practiceMode)
-            this.throwPracticeUpdates(_algorithm.getType(), logicReturn);
         return logicReturn;
     }
 
     private void throwPracticeUpdates (AlgorithmType _algorithmType, LogicReturn _logicReturn) {
         switch (_algorithmType) {
-            case MAIN_OPERATOR_DETECTOR:
-                Controller.EVENT_BUS.throwEvent(new EventMainOperatorDetectorPractice(_logicReturn.getWffTree().getChild(0)));
-                break;
-            case FREE_VARIABLE_DETECTOR:
-                Controller.EVENT_BUS.throwEvent(new EventFreeVariableDetectorPractice(_logicReturn.getWffTree().getChild(0)));
-                break;
-            case BOUND_VARIABLE_DETECTOR:
-                Controller.EVENT_BUS.throwEvent(new EventBoundVariableDetectorPractice(_logicReturn.getWffTree().getChild(0)));
-                break;
-            case VACUOUS_QUANTIFIER_DETECTOR:
-                Controller.EVENT_BUS.throwEvent(new EventVacuousQuantifierDetectorPractice(_logicReturn.getWffTree().getChild(0)));
-                break;
+            case RANDOM_PREDICATE_FORMULA:
+            case RANDOM_PROPOSITIONAL_FORMULA:
+                return;
+            default:
+                if (_logicReturn.getTruthValue() == null)
+                    Controller.EVENT_BUS.throwEvent(new UpdatePracticePane(_algorithmType, _logicReturn.getWffTree().getChild(0)));
+                else
+                    Controller.EVENT_BUS.throwEvent(new UpdatePracticePane(_algorithmType, _logicReturn.getWffTree().getChild(0), _logicReturn.getTruthValue()));
         }
     }
 
