@@ -1,4 +1,4 @@
-package com.flat.models.algorithms.bus.events.practice;
+package com.flat.models.algorithms.bus.events.practice.wfftree;
 
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.buses.eventbus.components.Event;
@@ -7,11 +7,11 @@ import com.flat.tools.buses.eventbus.components.Event;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class UpdateMainOperatorDetectorPractice extends Event {
+public class EventMainOperatorDetectorPractice extends Event {
     private WffTree wffTree;
 
-    public UpdateMainOperatorDetectorPractice (WffTree _wffTree) {
-        super(Event.Type.UPDATE_MAIN_OPERATOR_DETECTOR_PRACTICE);
+    public EventMainOperatorDetectorPractice (WffTree _wffTree) {
+        super(Event.Type.EVENT_MAIN_OPERATOR_DETECTOR_PRACTICE);
         this.wffTree = _wffTree;
     }
 

@@ -40,7 +40,10 @@ public class AlgorithmVisualSelectionPaneListener implements EventListener, Data
             case UPDATE_NATURAL_DEDUCTION:
                 this.selectionPane.getNaturalDeductionButton().setDisable(false);
                 break;
-            case UPDATE_MAIN_OPERATOR_DETECTOR_PRACTICE:
+            case EVENT_MAIN_OPERATOR_DETECTOR_PRACTICE:
+            case EVENT_FREE_VARIABLE_DETECTOR_PRACTICE:
+            case EVENT_BOUND_VARIABLE_DETECTOR_PRACTICE:
+            case EVENT_VACUOUS_QUANTIFIER_DETECTOR_PRACTICE:
                 this.selectionPane.getPracticeButton().setDisable(false);
                 break;
         }

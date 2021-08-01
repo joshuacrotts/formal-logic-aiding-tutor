@@ -3,6 +3,7 @@ package com.flat.view.main.panes.center.children.solver.trees.truthtree.treelayo
 import com.flat.algorithms.models.TruthTree;
 import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.FxTreeNode;
 import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.attributes.TreeNodeText;
+import javafx.scene.Node;
 
 /**
  *
@@ -33,6 +34,10 @@ public class TruthTreeNode extends FxTreeNode {
                 this.addChild(_truthTree.getRight(), 2);
             }
         }
+        double estimatedHeight = this.getEstimatedHeight();
+        super.setMinHeight(estimatedHeight);
+        super.setHeight(estimatedHeight);
+        super.setMaxHeight(estimatedHeight);
         super.initializeLines();
         this.initializeFx();
     }
@@ -54,6 +59,17 @@ public class TruthTreeNode extends FxTreeNode {
 
     private void addClosedProperty (TruthTree _truthTree) {
         super.getChildren().add(new TreeNodeText((_truthTree.isClosed()) ? "Closed" : "Open"));
+    }
+
+    private double getEstimatedHeight () {
+        double height = 0;
+        for (Node node : super.getChildren()) {
+            height += ((TreeNodeText)node).getLayoutBounds().getHeight();
+            height += super.getSpacing();
+        }
+        if (height != 0)
+            height -= super.getSpacing();
+        return height;
     }
 
 }

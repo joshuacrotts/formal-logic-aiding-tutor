@@ -5,7 +5,10 @@ import com.flat.tools.buses.databus.components.Update;
 import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.tools.buses.eventbus.components.EventListener;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.PracticeWrapperPane;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.boundvariabledetector.BoundVariableDetectorPrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.freevariabledetector.FreeVariableDetectorPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.mainoperatordetector.MainOperatorDetectorPrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.vacuousquantifierdetector.VacuousQuantifierDetectorPrompt;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.PracticeModeToggle;
 
 /**
@@ -32,8 +35,17 @@ public class PracticeWrapperPaneListener implements DataListener, EventListener 
     @Override
     public void catchEvent(Event _event) {
         switch(_event.getType()) {
-            case UPDATE_MAIN_OPERATOR_DETECTOR_PRACTICE:
+            case EVENT_MAIN_OPERATOR_DETECTOR_PRACTICE:
                 this.wrapperPane.setContent(new MainOperatorDetectorPrompt());
+                break;
+            case EVENT_FREE_VARIABLE_DETECTOR_PRACTICE:
+                this.wrapperPane.setContent(new FreeVariableDetectorPrompt());
+                break;
+            case EVENT_BOUND_VARIABLE_DETECTOR_PRACTICE:
+                this.wrapperPane.setContent(new BoundVariableDetectorPrompt());
+                break;
+            case EVENT_VACUOUS_QUANTIFIER_DETECTOR_PRACTICE:
+                this.wrapperPane.setContent(new VacuousQuantifierDetectorPrompt());
                 break;
             case CLEAR_LOGIC_VISUALS:
                 this.wrapperPane.setContent(null);

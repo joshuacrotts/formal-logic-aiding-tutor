@@ -15,7 +15,6 @@ public class GeneralComboBox extends ComboBox {
         super.setButtonCell(new AlgorithmListCell());
         super.setCellFactory(param -> new AlgorithmListCell());
         super.setPromptText("General");
-
         super.setMinWidth(250);
         super.setMaxWidth(500);
     }

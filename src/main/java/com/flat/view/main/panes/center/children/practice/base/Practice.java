@@ -1,4 +1,4 @@
-package com.flat.view.main.panes.center.children.practice.base.bus;
+package com.flat.view.main.panes.center.children.practice.base;
 
 /**
  *

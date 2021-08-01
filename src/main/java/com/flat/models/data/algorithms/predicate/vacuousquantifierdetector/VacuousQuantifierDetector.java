@@ -12,7 +12,7 @@ public class VacuousQuantifierDetector extends Algorithm {
 
     public VacuousQuantifierDetector () {
         super(new KeyedText(VacuousQuantifierDetector.class, Algorithm.Keys.LABEL, "Vacuous Quantifier Detector"),
-                AlgorithmType.Vacuous_QUANTIFIER_DETECTOR
+                AlgorithmType.VACUOUS_QUANTIFIER_DETECTOR
         );
     }
 

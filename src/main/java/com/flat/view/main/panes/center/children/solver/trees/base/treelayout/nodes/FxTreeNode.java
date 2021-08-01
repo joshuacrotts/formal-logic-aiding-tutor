@@ -20,10 +20,16 @@ public class FxTreeNode extends TreeNode {
     private final SimpleDoubleProperty yMaxProperty = new SimpleDoubleProperty();
     // Lines.
     private ArrayList<Line> lines = new ArrayList();
+    // Highlight.
+    private boolean highlighted = false;
+    private boolean dragged = false;
 
     public FxTreeNode (boolean _highlighted, double _minWidth, double _minHeight) {
         if (_highlighted)
-            this.setHighlightedFx();
+            this.toggleHighlightFx();
+        super.setMaxSize(_minWidth, _minHeight);
+        super.setWidth(_minWidth);
+        super.setHeight(_minHeight);
         super.setMinSize(_minWidth, _minHeight);
         this.initializeFx();
     }
@@ -34,6 +40,8 @@ public class FxTreeNode extends TreeNode {
 
     private void setThisFx () {
         this.onBoundsInParent();
+        this.setOnMouseDragEntered();
+        this.setOnMouseDragExited();
         this.setOnMouseDrag();
         super.getStyleClass().clear();
         super.getStyleClass().add("fxTreeNode");
@@ -49,7 +57,19 @@ public class FxTreeNode extends TreeNode {
         });
     }
 
-    private void setOnMouseDrag () {
+    private void setOnMouseDragEntered () {
+        super.setOnMouseDragEntered(event -> {
+            this.dragged = true;
+        });
+    }
+
+    private void setOnMouseDragExited () {
+        super.setOnMouseDragExited(event -> {
+            this.dragged = false;
+        });
+    }
+
+    protected void setOnMouseDrag () {
         super.setOnMouseDragged(event -> {
             Point2D sceneToLocal = super.sceneToLocal(event.getSceneX(), event.getSceneY());
             double deltaX = super.getBoundsInLocal().getMinX()- sceneToLocal.getX();
@@ -81,8 +101,9 @@ public class FxTreeNode extends TreeNode {
         });
     }
 
-    private void setHighlightedFx () {
-        super.pseudoClassStateChanged(PseudoClass.getPseudoClass("highlighted"), true);
+    protected final void toggleHighlightFx () {
+        this.highlighted ^= true;
+        super.pseudoClassStateChanged(PseudoClass.getPseudoClass("highlighted"), this.highlighted);
     }
 
     // Getters for object's attributes.
@@ -108,6 +129,14 @@ public class FxTreeNode extends TreeNode {
 
     public ArrayList<Line> getLines() {
         return lines;
+    }
+
+    public boolean isHighlighted() {
+        return highlighted;
+    }
+
+    public boolean isDragged() {
+        return dragged;
     }
 
 }

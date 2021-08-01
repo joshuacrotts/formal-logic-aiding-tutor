@@ -1,6 +1,5 @@
 package com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.children;
 
-import com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.children.WffText;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 

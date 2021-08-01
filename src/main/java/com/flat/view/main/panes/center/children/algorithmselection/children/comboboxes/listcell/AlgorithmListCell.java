@@ -1,4 +1,4 @@
-package com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.listcell;
+ package com.flat.view.main.panes.center.children.algorithmselection.children.comboboxes.listcell;
 
 import com.flat.models.data.algorithms.base.Algorithm;
 import com.flat.view.data.fx.pane.PaneData;

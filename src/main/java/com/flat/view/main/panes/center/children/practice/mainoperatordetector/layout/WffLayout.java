@@ -20,10 +20,12 @@ public class WffLayout {
 
     private void addWffPieces (WffTree _wffTree, int _leftMod, int _rightMod) {
         if (_wffTree.isPredicate()) {
+            this.addParentheticalWffPiece(_leftMod, "(");
             this.addWffPiece(_wffTree);
             _wffTree.getChildren().forEach(child -> {
                 this.addWffPiece(child);
             });
+            this.addParentheticalWffPiece(_rightMod, ")");
             return;
         }
         switch (_wffTree.getChildrenSize()) {
@@ -45,10 +47,20 @@ public class WffLayout {
     }
 
     private void addWffPiece (WffTree _wffTree) {
-        if (_wffTree.isBinaryOp() || _wffTree.isNegation()) {
-            HighlightableWffPiece piece = new HighlightableWffPiece(new WffText(this.pieces.size(), _wffTree));
-            this.highlightablePieces.add(piece);
-            this.pieces.add(piece);
+        if (_wffTree.isOperator()) {
+            HighlightableWffPiece piece;
+            if (_wffTree.isBinaryOp() && !_wffTree.isIdentity()) {
+                this.pieces.add(new WffPiece(new WffText(this.pieces.size(), " ")));
+                piece = new HighlightableWffPiece(new WffText(this.pieces.size(), _wffTree));
+                this.highlightablePieces.add(piece);
+                this.pieces.add(piece);
+                this.pieces.add(new WffPiece(new WffText(this.pieces.size(), " ")));
+            }
+            else {
+                piece = new HighlightableWffPiece(new WffText(this.pieces.size(), _wffTree));
+                this.highlightablePieces.add(piece);
+                this.pieces.add(piece);
+            }
         }
         else
             this.pieces.add(new WffPiece(new WffText(this.pieces.size(), _wffTree)));

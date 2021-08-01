@@ -23,7 +23,10 @@ public abstract class Event {
         UPDATE_NATURAL_DEDUCTION,
         UPDATE_PRACTICE_PANE,
         // Practice events thrown from ApplyAlgorithmAdapter.
-        UPDATE_MAIN_OPERATOR_DETECTOR_PRACTICE,
+        EVENT_MAIN_OPERATOR_DETECTOR_PRACTICE,
+        EVENT_FREE_VARIABLE_DETECTOR_PRACTICE,
+        EVENT_BOUND_VARIABLE_DETECTOR_PRACTICE,
+        EVENT_VACUOUS_QUANTIFIER_DETECTOR_PRACTICE,
 
         // Events thrown for Algorithm Visual Selection.
         PARSE_TREE_BUTTON_PRESSED,
@@ -45,6 +48,9 @@ public abstract class Event {
 
         // Events thrown from practice prompt.
         PRACTICE_SUBMIT_BUTTON_PRESSED,
+
+        // Events thrown from parse tree practice pane.
+        PRACTICE_TREE_NODE_LAYOUT_SET,
     }
 
     private Type type;

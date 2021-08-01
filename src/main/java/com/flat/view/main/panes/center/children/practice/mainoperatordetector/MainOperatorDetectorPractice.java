@@ -1,7 +1,7 @@
 package com.flat.view.main.panes.center.children.practice.mainoperatordetector;
 
 import com.flat.models.treenode.WffTree;
-import com.flat.view.main.panes.center.children.practice.base.AlgorithmPracticePane;
+import com.flat.view.main.panes.center.children.practice.base.wff.AlgorithmPracticePane;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.children.HighlightableWffPiece;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.WffLayout;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.children.WffPiece;

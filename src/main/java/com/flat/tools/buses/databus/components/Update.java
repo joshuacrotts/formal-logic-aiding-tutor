@@ -10,8 +10,8 @@ public class Update {
         APPLICABLE_ALGORITHMS,
         PRACTICE_MODE_TOGGLE,
 
-        // Events thrown from AlgorithmPracticePanes.
-        ALGORITHM_PRACTICE_PANE,
+        // Events thrown from new practice panes.
+        PRACTICE_PANE_UPDATE,
 
         // Events thrown from practice pane.
         PRACTICE_RESULT,

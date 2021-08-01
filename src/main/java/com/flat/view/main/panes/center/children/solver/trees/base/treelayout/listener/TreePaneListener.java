@@ -2,7 +2,6 @@ package com.flat.view.main.panes.center.children.solver.trees.base.treelayout.li
 
 import com.flat.controller.Controller;
 import com.flat.tools.buses.eventbus.components.EventListener;
-import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.listener.events.TreeNodeLayoutSet;
 import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.FxTreeNode;
 import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.TreeNode;
 import javafx.scene.layout.Pane;
@@ -30,7 +29,6 @@ public abstract class TreePaneListener implements EventListener {
 
     private void setTreeNodeLayout () {
         Controller.TREE_LAYOUT.execute(this.treeNode);
-        Controller.EVENT_BUS.throwEvent(new TreeNodeLayoutSet());
     }
 
     protected void setTreeNodeFx () {
@@ -75,15 +73,6 @@ public abstract class TreePaneListener implements EventListener {
         this.treePane.setScaleY(1);
     }
 
-    private void onTreeNodeSize( ) {
-        this.treeNode.heightProperty().addListener(event -> {
-            this.setTreeNodeLayout();
-        });
-        this.treeNode.widthProperty().addListener(event -> {
-            this.setTreeNodeLayout();
-        });
-    }
-
     // Getters for object's attributes.
     public FxTreeNode getTreeNode() {
         return treeNode;
@@ -92,8 +81,8 @@ public abstract class TreePaneListener implements EventListener {
     // Setters for object's attributes.
     public void setTreeNode(FxTreeNode treeNode) {
         this.treeNode = treeNode;
-        this.onTreeNodeSize();
         this.setTreeNodeFx();
+        this.setTreeNodeLayout();
     }
 
 }

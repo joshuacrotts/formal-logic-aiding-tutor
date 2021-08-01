@@ -2,7 +2,10 @@ package com.flat.models.algorithms;
 
 import com.flat.controller.Controller;
 import com.flat.models.algorithms.attributes.LogicReturn;
-import com.flat.models.algorithms.bus.events.practice.UpdateMainOperatorDetectorPractice;
+import com.flat.models.algorithms.bus.events.practice.wfftree.EventBoundVariableDetectorPractice;
+import com.flat.models.algorithms.bus.events.practice.wfftree.EventFreeVariableDetectorPractice;
+import com.flat.models.algorithms.bus.events.practice.wfftree.EventMainOperatorDetectorPractice;
+import com.flat.models.algorithms.bus.events.practice.wfftree.EventVacuousQuantifierDetectorPractice;
 import com.flat.models.algorithms.bus.events.solver.ClearLogicVisuals;
 import com.flat.models.algorithms.bus.events.solver.FormulaGenerated;
 import com.flat.models.algorithms.bus.events.solver.UpdateNaturalDeduction;
@@ -51,7 +54,7 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListene
             case BOUND_VARIABLE_DETECTOR:
             case FREE_VARIABLE_DETECTOR:
             case MAIN_OPERATOR_DETECTOR:
-            case Vacuous_QUANTIFIER_DETECTOR:
+            case VACUOUS_QUANTIFIER_DETECTOR:
                 Controller.EVENT_BUS.throwEvent(new UpdateParseTree(logicReturn.getWffTree()));
                 break;
             case PREDICATE_TRUTH_TREE_GENERATOR:
@@ -97,7 +100,16 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListene
     private void throwPracticeUpdates (AlgorithmType _algorithmType, LogicReturn _logicReturn) {
         switch (_algorithmType) {
             case MAIN_OPERATOR_DETECTOR:
-                Controller.EVENT_BUS.throwEvent(new UpdateMainOperatorDetectorPractice(_logicReturn.getWffTree()));
+                Controller.EVENT_BUS.throwEvent(new EventMainOperatorDetectorPractice(_logicReturn.getWffTree().getChild(0)));
+                break;
+            case FREE_VARIABLE_DETECTOR:
+                Controller.EVENT_BUS.throwEvent(new EventFreeVariableDetectorPractice(_logicReturn.getWffTree().getChild(0)));
+                break;
+            case BOUND_VARIABLE_DETECTOR:
+                Controller.EVENT_BUS.throwEvent(new EventBoundVariableDetectorPractice(_logicReturn.getWffTree().getChild(0)));
+                break;
+            case VACUOUS_QUANTIFIER_DETECTOR:
+                Controller.EVENT_BUS.throwEvent(new EventVacuousQuantifierDetectorPractice(_logicReturn.getWffTree().getChild(0)));
                 break;
         }
     }
