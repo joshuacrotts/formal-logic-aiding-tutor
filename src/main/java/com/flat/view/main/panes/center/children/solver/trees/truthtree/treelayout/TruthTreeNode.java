@@ -38,6 +38,7 @@ public class TruthTreeNode extends FxTreeNode {
         super.setMinHeight(estimatedHeight);
         super.setHeight(estimatedHeight);
         super.setMaxHeight(estimatedHeight);
+        System.out.println(super.getHeight());
         super.initializeLines();
         this.initializeFx();
     }

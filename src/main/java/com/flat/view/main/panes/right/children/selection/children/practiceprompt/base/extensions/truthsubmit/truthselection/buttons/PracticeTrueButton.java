@@ -19,6 +19,7 @@ public class PracticeTrueButton extends Button {
     private void setThisFx () {
         super.setText("Truth");
         super.setMinWidth(50);
+        super.getStyleClass().add("practiceTruthButton");
     }
 
 }
