@@ -6,8 +6,11 @@ import com.flat.view.tools.ResourceManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.util.List;
 
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>
@@ -23,6 +26,10 @@ public class FLAT extends Application {
 
     @Override
     public void start(Stage _stage) {
+        List<String> fontFamilies = Font.getFamilies();
+        for (String fontFamily: fontFamilies) {
+            Font.font(fontFamily);
+        }
         System.setProperty("GOOGLE_API_KEY", "AIzaSyBWaA57xlPumWThhPfGmHSkPFj82fMRa1Y");
         Application.setUserAgentStylesheet(ResourceManager.getDefaultStyle());
         this.initializeStage(_stage);

@@ -1,0 +1,26 @@
+/*
+    Created on : Jul 29, 2021, 10:06:45 PM
+    Author     : Christopher Brantley <c_brantl@uncg.edu>
+*/
+
+.practiceModeToggleSwitch {
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
+.practiceModeTogglePane {
+    -fx-background-color: #FF7752;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-min-width: 140;
+    -fx-max-width: 140;
+}
+
+.practiceModeTogglePane:on {
+    -fx-background-color: #2EA3F7;
+}

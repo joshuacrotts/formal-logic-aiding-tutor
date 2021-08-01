@@ -1,0 +1,12 @@
+/*
+    Created on : Jul 30, 2021, 8:35:01 PM
+    Author     : Christopher Brantley <c_brantl@uncg.edu>
+*/
+
+.highlightableWffPiece {
+    -fx-cursor: hand;
+}
+
+.highlightableWffPiece:selected {
+    -fx-background-color: yellow;
+}

@@ -8,6 +8,13 @@ public class Update {
 
     public static enum Type {
         APPLICABLE_ALGORITHMS,
+        PRACTICE_MODE_TOGGLE,
+
+        // Events thrown from new practice panes.
+        PRACTICE_PANE_UPDATE,
+
+        // Events thrown from practice pane.
+        PRACTICE_RESULT,
     }
 
     private Type type;

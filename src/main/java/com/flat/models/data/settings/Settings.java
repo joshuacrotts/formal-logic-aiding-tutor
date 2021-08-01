@@ -3,7 +3,7 @@ package com.flat.models.data.settings;
 import com.flat.models.data.base.text.KeyedText;
 import com.flat.models.data.base.text.key.KeyBase;
 import com.flat.models.data.base.text.translate.TranslatableText;
-import com.flat.models.data.settings.tabs.advance.AdvanceTabData;
+import com.flat.models.data.settings.tabs.advanced.AdvancedTabData;
 import com.flat.models.data.settings.tabs.appearance.AppearanceTabData;
 import com.flat.models.data.settings.tabs.language.LanguageTabData;
 import com.flat.tools.translation.base.Translatable;
@@ -32,7 +32,7 @@ public class Settings extends Translatable implements Serializable {
     private KeyedText close = new KeyedText(Settings.class, Keys.CLOSE, "Close");
     private AppearanceTabData appearanceTab = new AppearanceTabData();
     private LanguageTabData languageTab = new LanguageTabData();
-    private AdvanceTabData advanceTab = new AdvanceTabData();
+    private AdvancedTabData advancedTab = new AdvancedTabData();
 
     public Settings () {
     }
@@ -58,8 +58,8 @@ public class Settings extends Translatable implements Serializable {
         return languageTab;
     }
 
-    public AdvanceTabData getAdvanceTab() {
-        return advanceTab;
+    public AdvancedTabData getAdvancedTab() {
+        return advancedTab;
     }
 
     // Setters for object's attributes.
@@ -83,13 +83,13 @@ public class Settings extends Translatable implements Serializable {
         this.languageTab = languageTab;
     }
 
-    public void setAdvanceTab(AdvanceTabData advanceTab) {
-        this.advanceTab = advanceTab;
+    public void setAdvancedTab(AdvancedTabData advancedTab) {
+        this.advancedTab = advancedTab;
     }
 
     @Override
     public String toString() {
-        return "Settings{" + "title=" + title + ", apply=" + apply + ", close=" + close + ", appearance=" + appearanceTab + ", languageTab=" + languageTab + ", advanceTab=" + advanceTab + '}';
+        return "Settings{" + "title=" + title + ", apply=" + apply + ", close=" + close + ", appearance=" + appearanceTab + ", languageTab=" + languageTab + ", advancedTab=" + advancedTab + '}';
     }
 
     private void writeObject (ObjectOutputStream os) {
@@ -99,7 +99,7 @@ public class Settings extends Translatable implements Serializable {
             os.writeObject(this.close);
             os.writeObject(this.appearanceTab);
             os.writeObject(this.languageTab);
-            os.writeObject(this.advanceTab);
+            os.writeObject(this.advancedTab);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -113,7 +113,7 @@ public class Settings extends Translatable implements Serializable {
             this.close = (KeyedText) is.readObject();
             this.appearanceTab = (AppearanceTabData) is.readObject();
             this.languageTab = (LanguageTabData) is.readObject();
-            this.advanceTab = (AdvanceTabData) is.readObject();
+            this.advancedTab = (AdvancedTabData) is.readObject();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -128,7 +128,7 @@ public class Settings extends Translatable implements Serializable {
             add(close);
             addAll(appearanceTab.toTranslate());
             addAll(languageTab.toTranslate());
-            addAll(advanceTab.toTranslate());
+            addAll(advancedTab.toTranslate());
         }};
     }
 

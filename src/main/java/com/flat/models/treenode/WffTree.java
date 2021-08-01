@@ -3,7 +3,6 @@ package com.flat.models.treenode;
 import com.flat.tools.FLATUtils;
 import com.flat.tools.TexPrintable;
 
-import javax.xml.soap.Node;
 import java.util.ArrayList;
 
 /**
@@ -221,6 +220,7 @@ public class WffTree implements Copyable, TexPrintable {
     }
 
     /**
+     * Performs a recursive postorder traversal on the WffTree.
      * Performs a recursive postorder traversal on the WffTree.
      *
      * @return ArrayList of WffTrees representing the postorder traversal of the parse tree.
@@ -514,6 +514,10 @@ public class WffTree implements Copyable, TexPrintable {
         return this.nodeType == NodeType.UNIVERSAL;
     }
 
+    public boolean isOperator() {
+        return this.isBinaryOp() || this.isNegation() || this.isQuantifier();
+    }
+
     public boolean isBinaryOp() {
         return this.isAnd() || this.isOr() || this.isImp() || this.isBicond() || this.isExclusiveOr() || this.isIdentity();
     }
@@ -540,6 +544,10 @@ public class WffTree implements Copyable, TexPrintable {
 
     public boolean isPredicateWff() {
         return (this.flags & NodeFlag.PREDICATE) != 0;
+    }
+
+    public boolean isArgument() {
+        return (this.flags & NodeFlag.ARGUMENT) != 0;
     }
 
     public ArrayList<WffTree> getChildren() {
@@ -610,6 +618,46 @@ public class WffTree implements Copyable, TexPrintable {
             str.append(ch.getStringRep());
         }
         return str.toString();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<WffTree> getPracticeOrdering() {
+        ArrayList<WffTree> list = new ArrayList<>();
+        this.getPracticeOrderingHelper(this.getNodeType() == NodeType.ROOT ? this.getChild(0) : this, list);
+        return list;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _list
+     */
+    private void getPracticeOrderingHelper(WffTree _wffTree, ArrayList<WffTree> _list) {
+        // If the node doesn't have any children then we just add it and return.
+        if (_wffTree.getChildrenSize() == 0) {
+            _list.add(_wffTree);
+            return;
+        }
+
+        // Otherwise, perform an in-order traversal.
+        if (_wffTree.isBinaryOp()) {
+            this.getPracticeOrderingHelper(_wffTree.getChild(0), _list);
+            _list.add(_wffTree);
+            this.getPracticeOrderingHelper(_wffTree.getChild(1), _list);
+        } else if (_wffTree.isNegation() || _wffTree.isQuantifier()) {
+            // Negations and quantifiers are added then recurse on the child.
+            _list.add(_wffTree);
+            this.getPracticeOrderingHelper(_wffTree.getChild(0), _list);
+        } else if (_wffTree.isPredicate()){
+            // Predicates are different. We just iterate through and add them all.
+            _list.add(_wffTree);
+            for (WffTree predChild : _wffTree.getChildren()) {
+                _list.add(predChild);
+            }
+        }
     }
 
     /**

@@ -1,0 +1,24 @@
+/*
+    Created on : Jul 27, 2021, 7:55:05 PM
+    Author     : Christopher Brantley <c_brantl@uncg.edu>
+*/
+
+.fxTreeNode {
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+.parseTreeNode {
+    -fx-background-color: lightgray;
+    -fx-background-radius: 8;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+.parseTreeNode:highlighted {
+    -fx-background-color: yellow;
+}
+
+.truthTreeNode {
+}

@@ -11,7 +11,11 @@
 @import "popup.css";
 @import "logicbutton.css";
 @import "button.css";
+@import "textfield.css";
+@import "tree/tree.css";
+@import "practice/practice.css";
 
 .root {
     -fx-background-color: black;
+     -fx-font-family: sans-serif; 
 }

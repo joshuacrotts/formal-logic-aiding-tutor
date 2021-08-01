@@ -1,5 +1,6 @@
 package com.flat.models.data.algorithms.propositional;
 
+import com.flat.models.data.algorithms.propositional.propositionalnaturaldeduction.PropositionalNaturalDeduction;
 import com.flat.models.data.algorithms.propositional.propositionaltruthtreegenerator.PropositionalTruthTreeGenerator;
 import com.flat.models.data.algorithms.propositional.randompropositionalformula.RandomPropositionalFormula;
 import com.flat.models.data.algorithms.propositional.truthtablegenerator.TruthTableGenerator;
@@ -15,7 +16,7 @@ import java.util.LinkedList;
  * @author christopherbrantley
  */
 public class PropositionalAlgorithms extends Translatable implements Serializable {
-
+    private PropositionalNaturalDeduction propositionalNaturalDeduction = new PropositionalNaturalDeduction();
     private PropositionalTruthTreeGenerator propositionalTruthTreeGenerator = new PropositionalTruthTreeGenerator();
     private RandomPropositionalFormula randomPropositionalFormula = new RandomPropositionalFormula();
     private TruthTableGenerator truthTableGenerator = new TruthTableGenerator();
@@ -24,6 +25,10 @@ public class PropositionalAlgorithms extends Translatable implements Serializabl
     }
 
     // Getters for object's attributes.
+    public PropositionalNaturalDeduction getPropositionalNaturalDeduction() {
+        return propositionalNaturalDeduction;
+    }
+
     public PropositionalTruthTreeGenerator getPropositionalTruthTreeGenerator() {
         return propositionalTruthTreeGenerator;
     }
@@ -37,6 +42,10 @@ public class PropositionalAlgorithms extends Translatable implements Serializabl
     }
 
     // Setters for object's attributes.
+    public void setPropositionalNaturalDeduction(PropositionalNaturalDeduction propositionalNaturalDeduction) {
+        this.propositionalNaturalDeduction = propositionalNaturalDeduction;
+    }
+
     public void setPropositionalTruthTreeGenerator(PropositionalTruthTreeGenerator propositionalTruthTreeGenerator) {
         this.propositionalTruthTreeGenerator = propositionalTruthTreeGenerator;
     }
@@ -51,11 +60,12 @@ public class PropositionalAlgorithms extends Translatable implements Serializabl
 
     @Override
     public String toString() {
-        return "PropositionalAlgorithms{" + "propositionalTruthTreeGenerator=" + propositionalTruthTreeGenerator + ", randomPropositionalFormula=" + randomPropositionalFormula + ", truthTableGenerator=" + truthTableGenerator + '}';
+        return "PropositionalAlgorithms{" + "propositionalNaturalDeduction=" + propositionalNaturalDeduction + ", propositionalTruthTreeGenerator=" + propositionalTruthTreeGenerator + ", randomPropositionalFormula=" + randomPropositionalFormula + ", truthTableGenerator=" + truthTableGenerator + '}';
     }
 
     private void writeObject (ObjectOutputStream os) {
         try {
+            os.writeObject(this.propositionalNaturalDeduction);
             os.writeObject(this.propositionalTruthTreeGenerator);
             os.writeObject(this.randomPropositionalFormula);
             os.writeObject(this.truthTableGenerator);
@@ -67,6 +77,7 @@ public class PropositionalAlgorithms extends Translatable implements Serializabl
 
     private void readObject (ObjectInputStream  is) {
         try {
+            this.propositionalNaturalDeduction = (PropositionalNaturalDeduction) is.readObject();
             this.propositionalTruthTreeGenerator = (PropositionalTruthTreeGenerator) is.readObject();
             this.randomPropositionalFormula = (RandomPropositionalFormula) is.readObject();
             this.truthTableGenerator = (TruthTableGenerator) is.readObject();
@@ -80,6 +91,7 @@ public class PropositionalAlgorithms extends Translatable implements Serializabl
     @Override
     public LinkedList <TranslatableText> toTranslate() {
         return new LinkedList <TranslatableText> () {{
+            addAll(propositionalNaturalDeduction.toTranslate());
             addAll(propositionalTruthTreeGenerator.toTranslate());
             addAll(randomPropositionalFormula.toTranslate());
             addAll(truthTableGenerator.toTranslate());

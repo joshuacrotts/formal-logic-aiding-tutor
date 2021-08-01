@@ -5,6 +5,8 @@ package com.flat.models.data.algorithms.base.enums;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public enum AlgorithmType {
+    NULL,
+
     // General algorithms.
     GENERAL,
     CLOSED_TREE_DETERMINER,
@@ -20,6 +22,7 @@ public enum AlgorithmType {
     LOGICALLY_IMPLIED_DETERMINER,
     ARGUMENT_TRUTH_TREE_VALIDATOR,
     SEMANTIC_ENTAILMENT_DETERMINER,
+    PROPOSITIONAL_NATURAL_DEDUCTION,
 
     // Propositional only algorithms.
     PROPOSITIONAL,
@@ -36,5 +39,7 @@ public enum AlgorithmType {
     GROUND_SENTENCE_DETERMINER,
     OPEN_SENTENCE_DETERMINER,
     PREDICATE_TRUTH_TREE_GENERATOR,
+    PREDICATE_NATURAL_DEDUCTION,
+    VACUOUS_QUANTIFIER_DETECTOR,
 
 }

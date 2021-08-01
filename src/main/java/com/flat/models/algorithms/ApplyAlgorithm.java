@@ -15,13 +15,17 @@ import com.flat.algorithms.LogicallyImpliedDeterminer;
 import com.flat.algorithms.MainOperatorDetector;
 import com.flat.algorithms.OpenTreeDeterminer;
 import com.flat.algorithms.SemanticEntailmentDeterminer;
+import com.flat.algorithms.models.ProofType;
 import com.flat.algorithms.predicate.BoundVariableDetector;
 import com.flat.algorithms.predicate.ClosedSentenceDeterminer;
 import com.flat.algorithms.predicate.FreeVariableDetector;
 import com.flat.algorithms.predicate.GroundSentenceDeterminer;
 import com.flat.algorithms.predicate.OpenSentenceDeterminer;
+import com.flat.algorithms.predicate.PredicateNaturalDeductionValidator;
 import com.flat.algorithms.predicate.PredicateTruthTreeGenerator;
 import com.flat.algorithms.predicate.RandomPredicateFormulaGenerator;
+import com.flat.algorithms.predicate.VacuousQuantifierDetector;
+import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
 import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.algorithms.propositional.RandomPropositionalFormulaGenerator;
 import com.flat.algorithms.propositional.TruthTableGenerator;
@@ -44,30 +48,26 @@ public class ApplyAlgorithm {
     }
 
     public LogicReturn apply (Algorithm _algorithm) {
+        this.resetHighlights();
         switch (_algorithm.getType()) {
+            // General Algorithms.
+            case ARGUMENT_TRUTH_TREE_VALIDATOR:
+                ArgumentTruthTreeValidator attv = new ArgumentTruthTreeValidator(this.wffTree);
+                return new LogicReturn(attv.isValid(), attv.getTruthTree(), attv.getCombinedTree());
             case CLOSED_TREE_DETERMINER:
-                return new LogicReturn(new ClosedTreeDeterminer(this.wffTree.get(0)).hasAllClosed(), null, this.wffTree.get(0));
+                return new LogicReturn(new ClosedTreeDeterminer(this.wffTree.get(0)).hasAllClosed(), this.wffTree.get(0));
             case LOGICAL_FALSEHOOD_DETERMINER:
                 LogicalFalsehoodDeterminer lfd = new LogicalFalsehoodDeterminer(this.wffTree.get(0));
                 return new LogicReturn(lfd.isFalsehood(), lfd.getTruthTree(), lfd.getWffTree());
-            case LOGICALLY_CONTINGENT_DETERMINER:
-                LogicallyContingentDeterminer lcd = new LogicallyContingentDeterminer(this.wffTree.get(0));
-                return new LogicReturn(lcd.isContingent(), null, lcd.getWffTree());
-            case LOGICAL_TAUTOLOGY_DETERMINER:
-                LogicalTautologyDeterminer ltd = new LogicalTautologyDeterminer(this.wffTree.get(0));
-                return new LogicReturn(ltd.isTautology(), ltd.getTruthTree(), ltd.getWffTree());
-            case MAIN_OPERATOR_DETECTOR:
-                MainOperatorDetector mod = new MainOperatorDetector(this.wffTree.get(0));
-                mod.getMainOperator().setHighlighted(true);
-                return new LogicReturn(null, null, this.wffTree.get(0));
-            case OPEN_TREE_DETERMINER:
-                return new LogicReturn(new OpenTreeDeterminer(this.wffTree.get(0)).hasSomeOpen(), null, this.wffTree.get(0));
-            case LOGICALLY_CONTRADICTORY_DETERMINER:
-                LogicallyContradictoryDeterminer lcd2 = new LogicallyContradictoryDeterminer(this.wffTree.get(0), this.wffTree.get(1));
-                return new LogicReturn(lcd2.isContradictory(), lcd2.getTruthTree(), lcd2.getCombinedTree());
             case LOGICALLY_CONSISTENT_DETERMINER:
                 LogicallyConsistentDeterminer lcd3 = new LogicallyConsistentDeterminer(this.wffTree.get(0), this.wffTree.get(1));
                 return new LogicReturn(lcd3.isConsistent(), lcd3.getCombinedTruthTree(), lcd3.getCombinedTree());
+            case LOGICALLY_CONTINGENT_DETERMINER:
+                LogicallyContingentDeterminer lcd = new LogicallyContingentDeterminer(this.wffTree.get(0));
+                return new LogicReturn(lcd.isContingent(), lcd.getWffTree());
+            case LOGICALLY_CONTRADICTORY_DETERMINER:
+                LogicallyContradictoryDeterminer lcd2 = new LogicallyContradictoryDeterminer(this.wffTree.get(0), this.wffTree.get(1));
+                return new LogicReturn(lcd2.isContradictory(), lcd2.getTruthTree(), lcd2.getCombinedTree());
             case LOGICALLY_CONTRARY_DETERMINER:
                 LogicallyContraryDeterminer lcd4 = new LogicallyContraryDeterminer(this.wffTree.get(0), this.wffTree.get(1));
                 return new LogicReturn(lcd4.isContrary(), lcd4.getCombinedTruthTree(), lcd4.getCombinedTree());
@@ -77,40 +77,65 @@ public class ApplyAlgorithm {
             case LOGICALLY_IMPLIED_DETERMINER:
                 LogicallyImpliedDeterminer lid = new LogicallyImpliedDeterminer(this.wffTree.get(0), this.wffTree.get(1));
                 return new LogicReturn(lid.isImplied(), lid.getTruthTree(), lid.getCombinedTree());
-            case ARGUMENT_TRUTH_TREE_VALIDATOR:
-                ArgumentTruthTreeValidator attv = new ArgumentTruthTreeValidator(this.wffTree);
-                return new LogicReturn(attv.isValid(), attv.getTruthTree(), attv.getCombinedTree());
+            case LOGICAL_TAUTOLOGY_DETERMINER:
+                LogicalTautologyDeterminer ltd = new LogicalTautologyDeterminer(this.wffTree.get(0));
+                return new LogicReturn(ltd.isTautology(), ltd.getTruthTree(), ltd.getWffTree());
+            case MAIN_OPERATOR_DETECTOR:
+                MainOperatorDetector mod = new MainOperatorDetector(this.wffTree.get(0));
+                mod.getMainOperator().setHighlighted(true);
+                return new LogicReturn(this.wffTree.get(0));
+            case OPEN_TREE_DETERMINER:
+                return new LogicReturn(new OpenTreeDeterminer(this.wffTree.get(0)).hasSomeOpen(), this.wffTree.get(0));
             case SEMANTIC_ENTAILMENT_DETERMINER:
                 SemanticEntailmentDeterminer sed = new SemanticEntailmentDeterminer(this.wffTree);
                 return new LogicReturn(sed.isSemanticallyEntailing(), sed.getTruthTree(), sed.getCombinedTree());
-            case RANDOM_PROPOSITIONAL_FORMULA:
-                return new LogicReturn(new RandomPropositionalFormulaGenerator().genRandomPropositionalFormula());
+
+            // Propositional Algorithms.
+            case PROPOSITIONAL_NATURAL_DEDUCTION:
+                PropositionalNaturalDeductionValidator pndv = new PropositionalNaturalDeductionValidator(this.wffTree, ProofType.DIRECT);
+                return new LogicReturn(pndv.getNaturalDeductionProof() != null, pndv.getNaturalDeductionProof());
             case PROPOSITIONAL_TRUTH_TREE_GENERATOR:
                 PropositionalTruthTreeGenerator pttg = new PropositionalTruthTreeGenerator(this.wffTree.get(0));
-                return new LogicReturn(null, pttg.getTruthTree(), pttg.getWffTree());
+                return new LogicReturn(pttg.getTruthTree(), pttg.getWffTree());
+            case RANDOM_PROPOSITIONAL_FORMULA:
+                return new LogicReturn(new RandomPropositionalFormulaGenerator().genRandomPropositionalFormula());
             case TRUTH_TABLE_GENERATOR:
-                return new LogicReturn(new TruthTableGenerator(this.wffTree.get(0)).getTruthTable(), null, this.wffTree.get(0));
-            case RANDOM_PREDICATE_FORMULA:
-                return new LogicReturn(new RandomPredicateFormulaGenerator().genRandomPredicateFormula());
+                return new LogicReturn(new TruthTableGenerator(this.wffTree.get(0)).getTruthTable(), this.wffTree.get(0));
+
+            // Predicate Algorithms.
             case BOUND_VARIABLE_DETECTOR:
                 BoundVariableDetector bvd = new BoundVariableDetector(this.wffTree.get(0));
                 this.highlightTrees(bvd.getBoundVariables());
-                return new LogicReturn(null, null, this.wffTree.get(0));
+                return new LogicReturn(this.wffTree.get(0));
             case CLOSED_SENTENCE_DETERMINER:
-                return new LogicReturn(new ClosedSentenceDeterminer(this.wffTree.get(0)).isClosedSentence(), null, this.wffTree.get(0));
+                return new LogicReturn(new ClosedSentenceDeterminer(this.wffTree.get(0)).isClosedSentence(), this.wffTree.get(0));
             case FREE_VARIABLE_DETECTOR:
                 this.highlightTrees(new FreeVariableDetector(this.wffTree.get(0)).getFreeVariables());
-                return new LogicReturn(null, null, this.wffTree.get(0));
+                return new LogicReturn(this.wffTree.get(0));
             case GROUND_SENTENCE_DETERMINER:
-                return new LogicReturn(new GroundSentenceDeterminer(this.wffTree.get(0)).isGroundSentence(), null, this.wffTree.get(0));
+                return new LogicReturn(new GroundSentenceDeterminer(this.wffTree.get(0)).isGroundSentence(), this.wffTree.get(0));
             case OPEN_SENTENCE_DETERMINER:
-                return new LogicReturn(new OpenSentenceDeterminer(this.wffTree.get(0)).isOpenSentence(), null, this.wffTree.get(0));
+                return new LogicReturn(new OpenSentenceDeterminer(this.wffTree.get(0)).isOpenSentence(), this.wffTree.get(0));
+            case PREDICATE_NATURAL_DEDUCTION:
+                PredicateNaturalDeductionValidator pndv2 = new PredicateNaturalDeductionValidator(this.wffTree, ProofType.DIRECT);
+                return new LogicReturn(pndv2.getNaturalDeductionProof() != null, pndv2.getNaturalDeductionProof());
             case PREDICATE_TRUTH_TREE_GENERATOR:
                 PredicateTruthTreeGenerator pttg2 = new PredicateTruthTreeGenerator(this.wffTree.get(0));
-                return new LogicReturn(null, pttg2.getTruthTree(), pttg2.getWffTree());
+                return new LogicReturn(pttg2.getTruthTree(), pttg2.getWffTree());
+            case RANDOM_PREDICATE_FORMULA:
+                return new LogicReturn(new RandomPredicateFormulaGenerator().genRandomPredicateFormula());
+            case VACUOUS_QUANTIFIER_DETECTOR:
+                VacuousQuantifierDetector vqd = new VacuousQuantifierDetector(this.wffTree.get(0));
+                this.highlightTrees(vqd.getVacuousQuantifiers());
+                return new LogicReturn(this.wffTree.get(0));
             default:
                 return new LogicReturn();
         }
+    }
+
+    private void resetHighlights () {
+        if (!this.wffTree.isEmpty())
+            this.wffTree.get(0).clearHighlighting();
     }
 
     private void highlightTrees (ArrayList <WffTree> _trees) {
@@ -145,6 +170,14 @@ public class ApplyAlgorithm {
 
     private void setApplicableAlgorithms() {
         this.applicableAlgorithms.clearAllAlgorithms();
+        if (!this.wffTree.isEmpty() && this.wffTree.get(0).isArgument()) {
+            this.setGeneralArgumentAlgorithms();
+            if (this.wffTree.get(0).isPredicateWff())
+                this.setPredicateArgumentAlgorithms();
+            else
+                this.setPropositionalArgumentAlgorithms();
+            return;
+        }
         this.setPredicateAlgorithms();
         this.setPropositionalAlgorithms();
         switch (this.wffTree.size()) {
@@ -163,6 +196,7 @@ public class ApplyAlgorithm {
                 break;
             default:
                 this.setGeneralMoreAlgorithms();
+
         }
     }
 
@@ -184,8 +218,11 @@ public class ApplyAlgorithm {
     }
 
     private void setGeneralMoreAlgorithms () {
-        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getArgumentTruthTreeValidator());
         applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getSemanticEntailmentDeterminer());
+    }
+
+    private void setGeneralArgumentAlgorithms () {
+        applicableAlgorithms.getGeneral().add(algorithms.getGeneralAlgorithms().getArgumentTruthTreeValidator());
     }
 
     private void setPredicateAlgorithms () {
@@ -199,6 +236,11 @@ public class ApplyAlgorithm {
         applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getGroundSentenceDeterminer());
         applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getOpenSentenceDeterminer());
         applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getPredicateTruthTreeGenerator());
+        applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getVacuousQuantifierDetector());
+    }
+
+    private void setPredicateArgumentAlgorithms () {
+        applicableAlgorithms.getPredicate().add(algorithms.getPredicateAlgorithms().getPredicateNaturalDeduction());
     }
 
     private void setPropositionalAlgorithms () {
@@ -208,6 +250,10 @@ public class ApplyAlgorithm {
     private void setPropositionalOneAlgorithms () {
         applicableAlgorithms.getPropositional().add(algorithms.getPropositionalAlgorithms().getPropositionalTruthTreeGenerator());
         applicableAlgorithms.getPropositional().add(algorithms.getPropositionalAlgorithms().getTruthTableGenerator());
+    }
+
+    private void setPropositionalArgumentAlgorithms () {
+        applicableAlgorithms.getPropositional().add(algorithms.getPropositionalAlgorithms().getPropositionalNaturalDeduction());
     }
 
 }
