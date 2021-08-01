@@ -58,8 +58,6 @@ public class TreeLayout {
     public void layoutHeight (TreeNode _treeNode, double _height) {
         _treeNode.setLayoutY(_height);
         _treeNode.getTreeChildren().forEach(child -> {
-            System.out.println(child.getWidth());
-            System.out.println(child.getHeight());
             this.layoutHeight(child, _height + _treeNode.getBoundsInParent().getHeight() + TreeLayout.HEIGHT_GAP);
         });
     }
