@@ -59,11 +59,11 @@ public class PracticeModeTogglePane extends HBox {
         Rectangle rectangle = new Rectangle(super.getBoundsInParent().getWidth(), super.getBoundsInParent().getHeight());
             Text text;
             if (this.toggle.getValue()) {
-                text = new Text("On");
+                text = new Text("Practice Mode: ON");
                 text.setLayoutX(5);
             }
             else {
-                text = new Text("Off");
+                text = new Text("Practice Mode: OFF");
                 text.setLayoutX(rectangle.getWidth() - text.getLayoutBounds().getWidth() - 5);
             }
             text.setTextAlignment(TextAlignment.JUSTIFY);
@@ -80,7 +80,7 @@ public class PracticeModeTogglePane extends HBox {
     }
 
     public void toggle () {
-        this.setToggle(this.toggle.getValue() ^ true);
+        this.setToggle(!this.toggle.getValue());
     }
 
     // Getters for object's attributes.
