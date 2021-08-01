@@ -17,8 +17,8 @@
     -fx-border-radius: 15;
     -fx-border-color: black;
     -fx-border-width: 1;
-    -fx-min-width: 70;
-    -fx-max-width: 70;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
 }
 
 .practiceModeTogglePane:on {

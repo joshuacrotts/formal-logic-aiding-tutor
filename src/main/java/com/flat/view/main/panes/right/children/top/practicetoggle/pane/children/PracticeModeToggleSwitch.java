@@ -21,7 +21,8 @@ public class PracticeModeToggleSwitch extends Button {
     }
 
     private void setThisFx () {
-        super.setMinWidth(20);
+        super.setPrefWidth(20);
+        super.setPrefHeight(20);
         this.onThisDrag();
         this.onThisWidthProperty();
         super.getStyleClass().setAll("practiceModeToggleSwitch");
@@ -38,7 +39,7 @@ public class PracticeModeToggleSwitch extends Button {
             this.dragProperty.set(true);
             Point2D sceneToLocal = super.sceneToLocal(event.getSceneX(), event.getSceneY());
             double deltaX = super.getLayoutX() - sceneToLocal.getX();
-            if (super.getBoundsInParent().getMaxX() - deltaX < super.getParent().getBoundsInLocal().getMaxX())
+            if (super.getBoundsInParent().getMaxX() - deltaX < super.getParent().getBoundsInLocal().getWidth() + 1)
                 if (super.getBoundsInParent().getMinX() - deltaX > super.getParent().getBoundsInLocal().getMinX())
                     super.setTranslateX(super.getTranslateX() - deltaX);
             else
@@ -62,7 +63,7 @@ public class PracticeModeToggleSwitch extends Button {
                     super.setTranslateX(0);
                 }
                 else {
-                    super.setTranslateX(super.getParent().getBoundsInLocal().getWidth() - super.getBoundsInParent().getWidth() - 2);
+                    super.setTranslateX(super.getParent().getBoundsInLocal().getWidth() - super.getBoundsInParent().getWidth());
                 }
                 this.dragProperty.setValue(false);
             }
@@ -73,7 +74,7 @@ public class PracticeModeToggleSwitch extends Button {
                 }
                 else {
                     ((PracticeModeTogglePane)super.getParent()).getToggle().setValue(true);
-                    super.setTranslateX(super.getParent().getBoundsInLocal().getWidth() - super.getBoundsInParent().getWidth() - 2);
+                    super.setTranslateX(super.getParent().getBoundsInLocal().getWidth() - super.getBoundsInParent().getWidth());
                 }
             }
         });

@@ -3,7 +3,6 @@ package com.flat.view.main.panes.right.children.top.practicetoggle;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.PracticeModeTogglePane;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 
 /**
  *
@@ -11,7 +10,6 @@ import javafx.scene.layout.Priority;
  */
 public class PracticeToggleWrapper extends HBox {
     private double minDisplayWidth = 140;
-    private PracticeModeToggleText toggleText = new PracticeModeToggleText();
     private PracticeModeTogglePane togglePane = new PracticeModeTogglePane();
 
     public PracticeToggleWrapper () {
@@ -24,7 +22,7 @@ public class PracticeToggleWrapper extends HBox {
     }
 
     private void setThisFx () {
-        super.getChildren().addAll(this.toggleText, this.togglePane);
+        super.getChildren().addAll(this.togglePane);
         super.setAlignment(Pos.CENTER);
         super.setSpacing(10);
         this.onWidthProperty();
@@ -32,7 +30,6 @@ public class PracticeToggleWrapper extends HBox {
     }
 
     private void setTogglePaneFx () {
-        HBox.setHgrow(this.togglePane, Priority.ALWAYS);
     }
 
     private void onWidthProperty () {

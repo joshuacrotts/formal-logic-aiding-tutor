@@ -6,7 +6,7 @@ import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.Pr
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.css.PseudoClass;
 import javafx.geometry.VPos;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
@@ -16,9 +16,10 @@ import javafx.scene.text.TextAlignment;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class PracticeModeTogglePane extends HBox {
+public class PracticeModeTogglePane extends Pane {
     // Attributes.
     private SimpleBooleanProperty toggle = new SimpleBooleanProperty(false);
+    private Text toggleText = new Text("Practice Mode: OFF");
     // Children.
     private PracticeModeToggleSwitch toggleSwitch = new PracticeModeToggleSwitch();
 
@@ -29,18 +30,26 @@ public class PracticeModeTogglePane extends HBox {
 
     private void initializeFx () {
         this.setThisFx();
+        this.setToggleTextFx();
     }
 
     private void setThisFx () {
-        super.getChildren().addAll(this.toggleSwitch);
-        super.setWidth(70);
+        super.getChildren().addAll(this.toggleText, this.toggleSwitch);
+        super.setWidth(150);
+        super.setMaxWidth(150);
         super.setHeight(20);
+        super.setMaxHeight(20);
         super.setLayoutX(0);
-        this.setTextClip();
         super.getStyleClass().setAll("practiceModeTogglePane");
         this.onToggleSetCss();
-        this.onToggleSetClip();
+        this.onToggleSetToggleText();
         this.setToggleUpdate();
+    }
+
+    private void setToggleTextFx () {
+        this.toggleText.setTextAlignment(TextAlignment.CENTER);
+        this.toggleText.setTextOrigin(VPos.CENTER);
+        this.setToggleText();
     }
 
     private void onToggleSetCss () {
@@ -49,28 +58,22 @@ public class PracticeModeTogglePane extends HBox {
         });
     }
 
-    private void onToggleSetClip () {
+    private void onToggleSetToggleText () {
         this.toggle.addListener((obs, oldVal, newVal) -> {
-            this.setTextClip();
+            this.setToggleText();
         });
     }
 
-    private void setTextClip () {
-        Rectangle rectangle = new Rectangle(super.getBoundsInParent().getWidth(), super.getBoundsInParent().getHeight());
-            Text text;
+    private void setToggleText () {
             if (this.toggle.getValue()) {
-                text = new Text("Practice Mode: ON");
-                text.setLayoutX(5);
+                this.toggleText.setText("Practice Mode: ON");
+                this.toggleText.setLayoutX(10);
             }
             else {
-                text = new Text("Practice Mode: OFF");
-                text.setLayoutX(rectangle.getWidth() - text.getLayoutBounds().getWidth() - 5);
+                this.toggleText.setText("Practice Mode: OFF");
+                this.toggleText.setLayoutX(super.getWidth() - this.toggleText.getLayoutBounds().getWidth() - 10);
             }
-            text.setTextAlignment(TextAlignment.JUSTIFY);
-            text.setTextOrigin(VPos.CENTER);
-            text.setLayoutY(rectangle.getHeight() / 2);
-            Shape shape = Shape.subtract(rectangle, text);
-            super.setClip(shape);
+            this.toggleText.setLayoutY((super.getHeight()) / 2);
     }
 
     public void setToggleUpdate () {
