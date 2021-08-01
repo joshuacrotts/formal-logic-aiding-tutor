@@ -17,7 +17,7 @@ public class PracticeModeToggleText extends Text {
     }
 
     private void setThisFx () {
-        super.setText("Practice Mode");
+        super.setText("");
         super.setUnderline(true);
     }
 

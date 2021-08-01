@@ -26,6 +26,11 @@ public class FLATErrorListener extends BaseErrorListener {
     private static final Set<Message> errors = new HashSet<>();
 
     /**
+     * Set of all errors thrown by the NaturalDeductionProofVerifier algorithm.
+     */
+    private static final Set<Message> proofVerifierErrors = new HashSet<>();
+
+    /**
      * Keeps track of whether we have encountered a parser error or not.
      */
     private static boolean gotParserError = false;
@@ -60,6 +65,16 @@ public class FLATErrorListener extends BaseErrorListener {
         }
 
         FLATErrorListener.errors.add(new Message(errorMsg, colNo));
+    }
+
+    /**
+     * Adds the errors that the NaturalDeductionProofVerifier algorithm throws
+     * to the set of errors. We only need to add the string and nothing else.
+     *
+     * @param _errorMsg - error msg generated.
+     */
+    public static void proofVerifierError(String _errorMsg) {
+        FLATErrorListener.proofVerifierErrors.add(new Message(_errorMsg, 0));
     }
 
     /**
@@ -115,12 +130,21 @@ public class FLATErrorListener extends BaseErrorListener {
     }
 
     /**
+     * Returns an iterator object for all proof verifier errors generated
+     * during that algorithm's usage.
+     *
+     * @return Iterator<Message> object.
+     */
+    public static Iterator<Message> getProofVerifierErrorIterator() { return proofVerifierErrors.iterator(); }
+
+    /**
      * Since this is a static error listener, we need to reset the warnings and
      * errors each time we use this in a unit testing environment or we'll have
      * false positives.
      */
     public static void reset() {
         FLATErrorListener.errors.clear();
+        FLATErrorListener.proofVerifierErrors.clear();
         FLATErrorListener.gotParserError = false;
         FLATErrorListener.gotLexerError = false;
     }

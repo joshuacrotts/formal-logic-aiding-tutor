@@ -3,6 +3,7 @@ package com.flat.algorithms;
 import com.flat.algorithms.models.NDFlag;
 import com.flat.algorithms.models.NDStep;
 import com.flat.algorithms.models.NDWffTree;
+import com.flat.input.FLATErrorListener;
 import com.flat.input.FLATParserAdapter;
 import com.flat.models.treenode.NodeType;
 import com.flat.models.treenode.WffTree;
@@ -44,7 +45,8 @@ public final class NaturalDeductionProofVerifier {
 
     /**
      * Adds one step to this natural deduction proof. Returns whether or not this step derived the
-     * conclusion of the proof or not.
+     * conclusion of the proof or not. If the step used was invalid for any reason, we
+     * add an error to the listener and return false.
      *
      * @param _wffTree - single WffTree to be used as the next premise.
      * @param _step - step that is being derived.
@@ -58,7 +60,10 @@ public final class NaturalDeductionProofVerifier {
         _values = _values.replaceAll("\\s+", "");
         // Now split at the comma to get the numbers.
         int[] nums = this.convertToIntArray(_values.split(","));
-        if (!this.isValidStep(_wffTree, _step, nums)) return false;
+        if (!this.isValidStep(_wffTree, _step, nums)) {
+            FLATErrorListener.proofVerifierError("Invalid step applied.");
+            return false;
+        }
         this.assignParentIndices();
         return this.findConclusion();
     }
@@ -102,7 +107,7 @@ public final class NaturalDeductionProofVerifier {
      */
     private boolean isValidStep(WffTree _wffTree, NDStep _step, int[] _parents) {
         if (_parents.length != _step.getOpCount()) {
-            throw new IllegalArgumentException(_step + " requires " + _step.getOpCount() + " parent(s) to derive but was provided " + _parents.length);
+            FLATErrorListener.proofVerifierError(_step + " requires " + _step.getOpCount() + " parent(s) to derive but was provided " + _parents.length);
         }
 
         switch (_step) {
@@ -119,8 +124,9 @@ public final class NaturalDeductionProofVerifier {
             case BCB: return this.isValidBiconditionalElimination(_wffTree, _parents);
             case BCI: return this.isValidBiconditionalIntroduction(_wffTree, _parents);
             case MI: return this.isValidMaterialImplication(_wffTree, _parents);
-            default: throw new IllegalArgumentException(_step + " is currently unsupported.");
+            default: FLATErrorListener.proofVerifierError(_step + " is currently unsupported.");
         }
+        return false;
     }
 
     public NDWffTree getConclusionWff() {
