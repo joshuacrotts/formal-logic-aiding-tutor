@@ -59,7 +59,7 @@ public class TruthTreeNode extends FxTreeNode {
     }
 
     private void addClosedProperty (TruthTree _truthTree) {
-        super.getChildren().add(new TreeNodeText((_truthTree.isClosed()) ? "Closed" : "Open"));
+        super.getChildren().add(new TreeNodeText((_truthTree.isClosed()) ? "\u2715" : "Open"));
     }
 
     private double getEstimatedHeight () {

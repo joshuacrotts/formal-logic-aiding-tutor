@@ -3,6 +3,7 @@ package com.flat.algorithms.models;
 import com.flat.algorithms.BaseTruthTreeGenerator;
 import com.flat.models.treenode.ConstantNode;
 import com.flat.models.treenode.NodeFlag;
+import com.flat.models.treenode.VariableNode;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.FLATUtils;
 
@@ -161,9 +162,12 @@ public final class TruthTree implements Comparable<TruthTree> {
                                        PriorityQueue<TruthTree> _queue, char _variableToReplace) {
         // Find the next available constant to use.
         char constant = 'a';
-        while (_existentialTruthTree.availableConstants.contains(constant)) {
-            // This could wrap around...
-            constant++;
+        // If we're guaranteed for the quantifier to not be vacuous, we can search for a valid constant to replace.
+        if (this.hasVariable(_existentialTruthTree.getWff(), _variableToReplace)) {
+            while (_existentialTruthTree.availableConstants.contains(constant)) {
+                // This could wrap around...
+                constant++;
+            }
         }
 
         // Replace all variables found with the constant.
@@ -185,6 +189,9 @@ public final class TruthTree implements Comparable<TruthTree> {
     }
 
     /**
+     * Performs a universal decomposition. If there are no constants available, we can make a generalization to use
+     * the constant 'a'.
+     *
      * @param _universalTruthTree
      * @param _leaves
      */
@@ -238,9 +245,7 @@ public final class TruthTree implements Comparable<TruthTree> {
         String constantTwo = _identityTruthTree.getWff().getChild(1).getSymbol();
 
         // If the constants are the same, then there's really nothing we can do.
-        if (constantOne.equalsIgnoreCase(constantTwo)) {
-            return;
-        }
+        if (constantOne.equalsIgnoreCase(constantTwo)) { return; }
 
         for (TruthTree l : _leaves) {
             TruthTree curr = l;
@@ -298,6 +303,32 @@ public final class TruthTree implements Comparable<TruthTree> {
                 return true;
             }
             curr = curr.getParent();
+        }
+
+        return false;
+    }
+
+    /**
+     * Sometimes, a decomposition may try to evaluate for a formula that doesn't need to be evaluated. If this is true,
+     * then we don't need to do any kind of decomposition. These are also called vacuous quantifiers. So, if a formula
+     * has a vacuous quantifier, we need to identify it.
+     *
+     * @param _wffTree - formula to check.
+     * @param _variable - constant to check.
+     * @return true if there is a VariableNode that matches _variable as the symbol; false otherwise.
+     */
+    private boolean hasVariable(WffTree _wffTree, char _variable) {
+        Queue<WffTree> queue = new LinkedList<>();
+        queue.add(_wffTree);
+
+        while (!queue.isEmpty()) {
+            WffTree wffTree = queue.poll();
+            if (wffTree.isVariable()) {
+                VariableNode variableNode = (VariableNode) wffTree;
+                if (variableNode.getSymbol().charAt(0) == _variable) return true;
+            }
+
+            queue.addAll(wffTree.getChildren());
         }
 
         return false;
