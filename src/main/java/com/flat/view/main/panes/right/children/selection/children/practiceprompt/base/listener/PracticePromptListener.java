@@ -20,7 +20,9 @@ public class PracticePromptListener implements DataListener {
     public void handleUpdate(Update _update) {
         switch (_update.getType()) {
             case PRACTICE_RESULT:
-                this.practicePrompt.getResult().setText(((PracticeResult)_update).isResult()? "Correct \u2713" : "Incorrect \u2717");
+                boolean isResult = ((PracticeResult) _update).isResult();
+                this.practicePrompt.getResult().setText(isResult ? "Correct \u2713" : "Incorrect \u2717");
+                this.practicePrompt.getResult().setStyle(isResult ? "-fx-fill: green" : "-fx-fill: red");
                 break;
         }
     }
