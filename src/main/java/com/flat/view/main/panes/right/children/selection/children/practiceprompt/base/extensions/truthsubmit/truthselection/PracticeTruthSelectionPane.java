@@ -2,6 +2,7 @@ package com.flat.view.main.panes.right.children.selection.children.practicepromp
 
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.truthsubmit.truthselection.buttons.PracticeFalseButton;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.truthsubmit.truthselection.buttons.PracticeTrueButton;
+import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -13,6 +14,7 @@ import javafx.scene.layout.HBox;
 public class PracticeTruthSelectionPane extends HBox {
     private PracticeTrueButton trueButton = new PracticeTrueButton();
     private PracticeFalseButton falseButton = new PracticeFalseButton();
+    private Button selectedButton = null;
     private boolean truthValue = false;
 
     public PracticeTruthSelectionPane () {
@@ -41,7 +43,11 @@ public class PracticeTruthSelectionPane extends HBox {
 
     private void setOnButtonClick (Button _button, boolean _value) {
         _button.setOnAction(event -> {
+            if (selectedButton != null)
+                this.selectedButton.pseudoClassStateChanged(PseudoClass.getPseudoClass("selected"), false);
             this.truthValue = _value;
+            this.selectedButton = _button;
+            this.selectedButton.pseudoClassStateChanged(PseudoClass.getPseudoClass("selected"), true);
         });
     }
 
