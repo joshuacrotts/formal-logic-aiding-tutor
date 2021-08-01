@@ -21,6 +21,7 @@ import com.flat.view.main.panes.right.children.selection.children.practiceprompt
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.logicaltautologydeterminer.LogicalTautologyDeterminerPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.mainoperatordetector.MainOperatorDetectorPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.opensentencedeterminer.OpenSentenceDeterminerPrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.semanticentailmentdeterminer.SemanticEntailmentDeterminerPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.vacuousquantifierdetector.VacuousQuantifierDetectorPrompt;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.PracticeModeToggle;
 
@@ -103,6 +104,9 @@ public class PracticePromptWrapperPaneListener implements DataListener, EventLis
                 break;
             case LOGICALLY_IMPLIED_DETERMINER:
                 this.wrapperPane.setContent(new LogicallyImpliedDeterminerPrompt());
+                break;
+            case SEMANTIC_ENTAILMENT_DETERMINER:
+                this.wrapperPane.setContent(new SemanticEntailmentDeterminerPrompt());
                 break;
         }
     }

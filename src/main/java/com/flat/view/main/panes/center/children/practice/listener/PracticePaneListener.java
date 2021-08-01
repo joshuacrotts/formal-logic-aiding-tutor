@@ -24,6 +24,7 @@ import com.flat.view.main.panes.center.children.practice.logicallyimplieddetermi
 import com.flat.view.main.panes.center.children.practice.logicaltautologydeterminer.LogicalTautologyDeterminerPractice;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.MainOperatorDetectorPractice;
 import com.flat.view.main.panes.center.children.practice.opensentencedeterminer.OpenSentenceDeterminerPractice;
+import com.flat.view.main.panes.center.children.practice.semanticentailmentdeterminer.SemanticEntailmentDeterminerPractice;
 import com.flat.view.main.panes.center.children.practice.vacuousquantifierdetector.VacuousQuantiferDetectorPractice;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.truthsubmit.buttons.events.PracticeSubmitTruthButtonPressed;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.PracticeModeToggle;
@@ -123,6 +124,10 @@ public class PracticePaneListener implements EventListener, DataListener {
             case LOGICALLY_IMPLIED_DETERMINER:
                 this.practicePane.getChildren().clear();
                 this.practicePane.getChildren().add(new LogicallyImpliedDeterminerPractice(_updatePane.getAlgorithmResult(), _updatePane.getWffTree()));
+                break;
+            case SEMANTIC_ENTAILMENT_DETERMINER:
+                this.practicePane.getChildren().clear();
+                this.practicePane.getChildren().add(new SemanticEntailmentDeterminerPractice(_updatePane.getAlgorithmResult(), _updatePane.getWffTree()));
                 break;
         }
     }
