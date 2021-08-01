@@ -11,7 +11,7 @@ public class LogicalContingencyDeterminerPrompt extends PracticePromptTruthSubmi
     public LogicalContingencyDeterminerPrompt () {
         super(
                 "Determine if the following well-formed formula is a logical contingency.",
-                ""
+                "A formula is logically contingent if there is at least one row in the truth table that is true and one that is false. A logical contingency is neither a falsehood nor a tautology."
         );
     }
 

@@ -11,7 +11,7 @@ public class LogicallyContradictoryDeterminerPrompt extends PracticePromptTruthS
     public LogicallyContradictoryDeterminerPrompt () {
         super(
                 "Determine if the following well-formed formulas are logically contradictory.",
-                ""
+                "Two formulas are logically contradictory if they have the opposite truth values in the main operator of their truth table. For the truth tree, if we combine the formulas with a biconditional, it should result in every branch closing."
         );
     }
 

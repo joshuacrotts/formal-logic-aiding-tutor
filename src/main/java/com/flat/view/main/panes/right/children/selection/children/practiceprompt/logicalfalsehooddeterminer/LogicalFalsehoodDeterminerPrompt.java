@@ -11,7 +11,7 @@ public class LogicalFalsehoodDeterminerPrompt extends PracticePromptTruthSubmit 
     public LogicalFalsehoodDeterminerPrompt () {
         super(
                 "Determine if the following well-formed formula is a logical falsehood.",
-                ""
+                "A formula is a logical falsehood if the truth table is F in all models. A truth tree is a falsehood if it has all closed branches."
         );
     }
 
