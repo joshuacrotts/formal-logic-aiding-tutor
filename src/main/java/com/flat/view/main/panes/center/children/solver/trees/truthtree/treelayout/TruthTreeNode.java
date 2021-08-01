@@ -3,6 +3,7 @@ package com.flat.view.main.panes.center.children.solver.trees.truthtree.treelayo
 import com.flat.algorithms.models.TruthTree;
 import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.FxTreeNode;
 import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.attributes.TreeNodeText;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 
 /**
@@ -12,7 +13,7 @@ import javafx.scene.Node;
 public class TruthTreeNode extends FxTreeNode {
 
     public TruthTreeNode (TruthTree _truthTree) {
-        super(false, 50, 0);
+        super(false);
         super.getChildren().add(new TreeNodeText(_truthTree.getWff().getStringRep()));
         if (_truthTree.getLeft() == null && _truthTree.getRight() == null) {
             this.addClosedProperty(_truthTree);
@@ -34,11 +35,6 @@ public class TruthTreeNode extends FxTreeNode {
                 this.addChild(_truthTree.getRight(), 2);
             }
         }
-        double estimatedHeight = this.getEstimatedHeight();
-        super.setMinHeight(estimatedHeight);
-        super.setHeight(estimatedHeight);
-        super.setMaxHeight(estimatedHeight);
-        System.out.println(super.getHeight());
         super.initializeLines();
         this.initializeFx();
     }
@@ -48,6 +44,16 @@ public class TruthTreeNode extends FxTreeNode {
     }
 
     private void setThisFx () {
+        super.setSpacing(0);
+        super.setPadding(new Insets(0));
+        double estimatedHeight = this.getEstimatedHeight();
+        super.setMinHeight(estimatedHeight);
+        super.setHeight(estimatedHeight);
+        super.setMaxHeight(estimatedHeight);
+        double estimatedWidth = this.getEstimatedWidth();
+        super.setMinWidth(estimatedWidth);
+        super.setWidth(estimatedWidth);
+        super.setMaxWidth(estimatedWidth);
         super.getStyleClass().add("truthTreeNode");
     }
 
@@ -71,6 +77,14 @@ public class TruthTreeNode extends FxTreeNode {
         if (height != 0)
             height -= super.getSpacing();
         return height;
+    }
+
+    private double getEstimatedWidth () {
+        double width = 0;
+        for (Node node: super.getChildren()) {
+            width = Math.max(width, ((TreeNodeText)node).getLayoutBounds().getWidth());
+        }
+        return width;
     }
 
 }

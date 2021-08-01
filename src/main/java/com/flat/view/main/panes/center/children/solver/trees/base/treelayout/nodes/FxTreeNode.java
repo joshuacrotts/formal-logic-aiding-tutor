@@ -24,6 +24,13 @@ public class FxTreeNode extends TreeNode {
     private boolean highlighted = false;
     private boolean dragged = false;
 
+    // To be used if size is already set.
+    public FxTreeNode (boolean _highlighted) {
+        if (_highlighted)
+            this.toggleHighlightFx();
+        this.initializeFx();
+    }
+
     public FxTreeNode (boolean _highlighted, double _minWidth, double _minHeight) {
         if (_highlighted)
             this.toggleHighlightFx();

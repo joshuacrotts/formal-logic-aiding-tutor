@@ -1,7 +1,5 @@
 package com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.attributes;
 
-import javafx.geometry.Insets;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -23,7 +21,6 @@ public class TreeNodeText extends Text {
     }
 
     private void setThisFx () {
-        VBox.setMargin(this, new Insets(5));
         super.getStyleClass().removeAll(super.getStyleClass());
         super.getStyleClass().add("fxTreeNodeText");
     }
