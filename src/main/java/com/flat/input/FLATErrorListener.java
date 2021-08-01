@@ -144,6 +144,7 @@ public class FLATErrorListener extends BaseErrorListener {
      */
     public static void reset() {
         FLATErrorListener.errors.clear();
+        FLATErrorListener.proofVerifierErrors.clear();
         FLATErrorListener.gotParserError = false;
         FLATErrorListener.gotLexerError = false;
     }
