@@ -6,7 +6,6 @@ import com.flat.algorithms.models.NDWffTree;
 import com.flat.input.FLATErrorListener;
 import com.flat.input.FLATParserAdapter;
 import com.flat.models.treenode.*;
-import com.sun.org.apache.xpath.internal.operations.Neg;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -348,7 +347,11 @@ public final class NaturalDeductionProofVerifier {
         NDWffTree parentOne = this.getPremise(_parents[0]);
         WffTree parentOneWff = parentOne.getWffTree();
         // The only condition is that the parent is equivalent to this node if the DN is removed.
-        return parentOneWff.isDoubleNegation() && parentOneWff.getChild(0).getChild(0).stringEquals(_wffTree);
+        if (parentOneWff.isDoubleNegation() && parentOneWff.getChild(0).getChild(0).stringEquals(_wffTree)) {
+            this.addPremise(new NDWffTree(_wffTree, NDStep.DNE, parentOne));
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -361,7 +364,11 @@ public final class NaturalDeductionProofVerifier {
         NDWffTree parentOne = this.getPremise(_parents[0]);
         WffTree parentOneWff = parentOne.getWffTree();
         // The only condition is that the parent is equivalent to the node is the DN is introduced.
-        return _wffTree.isDoubleNegation() && _wffTree.getChild(0).getChild(0).stringEquals(parentOneWff);
+        if (_wffTree.isDoubleNegation() && _wffTree.getChild(0).getChild(0).stringEquals(parentOneWff)) {
+            this.addPremise(new NDWffTree(_wffTree, NDStep.DNI, parentOne));
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -449,8 +456,11 @@ public final class NaturalDeductionProofVerifier {
      */
     private boolean isValidUniversalIntroduction(WffTree _wffTree, int[] _parents) {
         NDWffTree parentOne = this.getPremise(_parents[0]);
-        // We'll just assume for now that if the wff has a universal then it's fine.
-        return _wffTree.isUniversal();
+        if (_wffTree.isUniversal() && !parentOne.getWffTree().isUniversal()) {
+            this.addPremise(new NDWffTree(_wffTree, NDStep.UI, parentOne));
+            return true;
+        }
+        return true;
     }
 
     /**
@@ -462,7 +472,11 @@ public final class NaturalDeductionProofVerifier {
     private boolean isValidUniversalElimination(WffTree _wffTree, int[] _parents) {
         NDWffTree parentOne = this.getPremise(_parents[0]);
         // We'll just assume for now that if the wff does not have a universal then it's fine.
-        return !_wffTree.isUniversal();
+        if (!_wffTree.isUniversal() && parentOne.getWffTree().isUniversal()) {
+            this.addPremise(new NDWffTree(_wffTree, NDStep.UE, parentOne));
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -474,7 +488,11 @@ public final class NaturalDeductionProofVerifier {
     private boolean isValidExistentialIntroduction(WffTree _wffTree, int[] _parents) {
         NDWffTree parentOne = this.getPremise(_parents[0]);
         // We'll just assume for now that if the wff has an existential then it's fine.
-        return _wffTree.isExistential();
+        if (_wffTree.isExistential() && !parentOne.getWffTree().isExistential()) {
+            this.addPremise(new NDWffTree(_wffTree, NDStep.EI, parentOne));
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -486,7 +504,11 @@ public final class NaturalDeductionProofVerifier {
     private boolean isValidExistentialElimination(WffTree _wffTree, int[] _parents) {
         NDWffTree parentOne = this.getPremise(_parents[0]);
         // We'll just assume for now that if the wff does not have an existential then it's fine.
-        return !_wffTree.isExistential();
+        if (!_wffTree.isExistential() && !parentOne.getWffTree().isExistential()) {
+            this.addPremise(new NDWffTree(_wffTree, NDStep.EE, parentOne));
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -497,7 +519,8 @@ public final class NaturalDeductionProofVerifier {
      */
     private boolean isValidDeMorgans(WffTree _wffTree, int[] _parents) {
         NDWffTree parentOne = this.getPremise(_parents[0]);
-        WffTree parentOneWff = parentOne.getWffTree();
+        // Just assume it's okay for now.
+        this.addPremise(new NDWffTree(_wffTree, NDStep.DEM, parentOne));
         return true;
     }
 
@@ -508,6 +531,11 @@ public final class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidConstructiveDilemma(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        NDWffTree parentTwo = this.getPremise(_parents[1]);
+        NDWffTree parentThree = this.getPremise(_parents[2]);
+        // Just assume it's okay for now.
+        this.addPremise(new NDWffTree(_wffTree, NDStep.CD, parentOne, parentTwo, parentThree));
         return true;
     }
 
@@ -518,6 +546,11 @@ public final class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidDestructiveDilemma(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        NDWffTree parentTwo = this.getPremise(_parents[1]);
+        NDWffTree parentThree = this.getPremise(_parents[2]);
+        // Just assume it's okay for now.
+        this.addPremise(new NDWffTree(_wffTree, NDStep.DD, parentOne, parentTwo, parentThree));
         return true;
     }
 
