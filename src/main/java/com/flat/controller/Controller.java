@@ -2,6 +2,7 @@ package com.flat.controller;
 
 import com.flat.input.FLATErrorListener;
 import com.flat.input.FLATParserAdapter;
+import com.flat.input.events.SolvedFormula;
 import com.flat.input.events.UnsolvedFormula;
 import com.flat.models.TimeoutManager;
 import com.flat.models.algorithms.ApplyAlgorithmAdapter;
@@ -21,6 +22,7 @@ import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
 import com.flat.view.data.MappedText;
 import com.flat.view.data.MappedTextArray;
 import com.flat.view.popups.naturaldeduction.NaturalDeductionPopup;
+import com.flat.view.popups.proofverifier.error.ProofVerifierErrorPopup;
 import java.util.ArrayList;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -58,7 +60,16 @@ public class Controller {
         }
     }
 
-    public static void inputFormula (String _formula) {
+    public static void inputNDPracticeFormula (String _formula) {
+        ArrayList <WffTree> linkedTree = FLATParserAdapter.getAbstractSyntaxTree(_formula);
+        Controller.displaySyntaxErrorsPopup();
+        if (linkedTree != null)
+            EVENT_BUS.throwEvent(new SolvedFormula(linkedTree));
+        else
+            EVENT_BUS.throwEvent(new UnsolvedFormula());
+    }
+
+    public static void inputFormulaToAdapter (String _formula) {
         ArrayList <WffTree> linkedTree = FLATParserAdapter.getAbstractSyntaxTree(_formula);
         Controller.displaySyntaxErrorsPopup();
         if (linkedTree != null)
@@ -72,8 +83,13 @@ public class Controller {
             new SyntaxErrorPopup(FLATErrorListener.getErrorIterator());
     }
 
-    public static void displayNaturalDeductionPopup () {
+    public static void displayNaturalDeductionErrorPopup () {
         new NaturalDeductionPopup();
+    }
+
+    public static void displayProofVerifierErrorPopup () {
+        if (FLATErrorListener.getProofVerifierErrorIterator().hasNext())
+            new ProofVerifierErrorPopup(FLATErrorListener.getProofVerifierErrorIterator());
     }
 
     public static void applyFormula (Algorithm _algorithm) {

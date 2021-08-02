@@ -14,8 +14,6 @@
 }
 
 .button:hover {
-    -fx-background-insets: -.25;
-    -fx-border-insets: -.25;
     -fx-background-color: lightgray;
 }
 

@@ -170,6 +170,8 @@ public class ApplyAlgorithm {
 
     private void setApplicableAlgorithms() {
         this.applicableAlgorithms.clearAllAlgorithms();
+        this.setPredicateAlgorithms();
+        this.setPropositionalAlgorithms();
         if (!this.wffTree.isEmpty() && this.wffTree.get(0).isArgument()) {
             this.setGeneralArgumentAlgorithms();
             if (this.wffTree.get(0).isPredicateWff())
@@ -178,8 +180,6 @@ public class ApplyAlgorithm {
                 this.setPropositionalArgumentAlgorithms();
             return;
         }
-        this.setPredicateAlgorithms();
-        this.setPropositionalAlgorithms();
         switch (this.wffTree.size()) {
             case 0:
                 break;

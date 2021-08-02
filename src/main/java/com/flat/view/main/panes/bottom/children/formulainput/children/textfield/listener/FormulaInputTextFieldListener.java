@@ -24,7 +24,7 @@ public class FormulaInputTextFieldListener implements EventListener {
         switch (_event.getType()) {
             case FORMULA_SOLVE_BUTTON_PRESSED:
                 if (!this.formulaInputTextField.getText().isEmpty())
-                    Controller.inputFormula(this.formulaInputTextField.getText());
+                    Controller.inputFormulaToAdapter(this.formulaInputTextField.getText());
                 break;
             case LOGIC_BUTTON_PRESSED:
                 this.addTextAtCaret(((LogicButtonPressed)_event).getText());
@@ -32,7 +32,7 @@ public class FormulaInputTextFieldListener implements EventListener {
                 break;
             case FORMULA_GENERATED:
                 this.formulaInputTextField.setText(((FormulaGenerated)_event).getFormula());
-                Controller.inputFormula(((FormulaGenerated)_event).getFormula());
+                Controller.inputFormulaToAdapter(((FormulaGenerated)_event).getFormula());
                 break;
         }
     }

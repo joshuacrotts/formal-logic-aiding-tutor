@@ -17,6 +17,7 @@ public class PropositionalComboBox extends ComboBox {
         super.setPromptText("Propositional");
         super.setMinWidth(250);
         super.setMaxWidth(500);
+        super.setVisibleRowCount(5);
     }
 
 }

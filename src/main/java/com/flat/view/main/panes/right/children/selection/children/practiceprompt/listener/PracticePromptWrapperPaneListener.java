@@ -20,6 +20,7 @@ import com.flat.view.main.panes.right.children.selection.children.practiceprompt
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.logicallyimplieddeterminer.LogicallyImpliedDeterminerPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.logicaltautologydeterminer.LogicalTautologyDeterminerPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.mainoperatordetector.MainOperatorDetectorPrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.naturaldeduction.NaturalDeductionPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.opensentencedeterminer.OpenSentenceDeterminerPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.semanticentailmentdeterminer.SemanticEntailmentDeterminerPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.vacuousquantifierdetector.VacuousQuantifierDetectorPrompt;
@@ -107,6 +108,10 @@ public class PracticePromptWrapperPaneListener implements DataListener, EventLis
                 break;
             case SEMANTIC_ENTAILMENT_DETERMINER:
                 this.wrapperPane.setContent(new SemanticEntailmentDeterminerPrompt());
+                break;
+            case PREDICATE_NATURAL_DEDUCTION:
+            case PROPOSITIONAL_NATURAL_DEDUCTION:
+                this.wrapperPane.setContent(new NaturalDeductionPrompt());
                 break;
         }
     }

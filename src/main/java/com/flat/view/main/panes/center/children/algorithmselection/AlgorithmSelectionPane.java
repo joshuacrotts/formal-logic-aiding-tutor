@@ -66,6 +66,10 @@ public class AlgorithmSelectionPane extends HBox {
             if (newVal == null)
                 return;
             this.selectedAlgorithm = (Algorithm)_comboBox.getValue();
+            this.comboBoxes.forEach(child -> {
+                if (child != _comboBox)
+                    child.getSelectionModel().clearSelection();
+            });
         });
     }
 

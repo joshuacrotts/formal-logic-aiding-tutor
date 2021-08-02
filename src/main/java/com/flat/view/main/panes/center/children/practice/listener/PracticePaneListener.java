@@ -23,6 +23,7 @@ import com.flat.view.main.panes.center.children.practice.logicallyequivalentdete
 import com.flat.view.main.panes.center.children.practice.logicallyimplieddeterminer.LogicallyImpliedDeterminerPractice;
 import com.flat.view.main.panes.center.children.practice.logicaltautologydeterminer.LogicalTautologyDeterminerPractice;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.MainOperatorDetectorPractice;
+import com.flat.view.main.panes.center.children.practice.naturaldeduction.NaturalDeductionPractice;
 import com.flat.view.main.panes.center.children.practice.opensentencedeterminer.OpenSentenceDeterminerPractice;
 import com.flat.view.main.panes.center.children.practice.semanticentailmentdeterminer.SemanticEntailmentDeterminerPractice;
 import com.flat.view.main.panes.center.children.practice.vacuousquantifierdetector.VacuousQuantiferDetectorPractice;
@@ -36,6 +37,7 @@ import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.Pr
 public class PracticePaneListener implements EventListener, DataListener {
     private PracticePane practicePane;
     private Practice selectedPractice = null;
+    private NaturalDeductionPractice naturalDeductionPractice = new NaturalDeductionPractice();
 
     public PracticePaneListener (PracticePane _practicePane) {
         this.practicePane = _practicePane;
@@ -128,6 +130,12 @@ public class PracticePaneListener implements EventListener, DataListener {
             case SEMANTIC_ENTAILMENT_DETERMINER:
                 this.practicePane.getChildren().clear();
                 this.practicePane.getChildren().add(new SemanticEntailmentDeterminerPractice(_updatePane.getAlgorithmResult(), _updatePane.getWffTree()));
+                break;
+            case PREDICATE_NATURAL_DEDUCTION:
+            case PROPOSITIONAL_NATURAL_DEDUCTION:
+                this.practicePane.getChildren().clear();
+                this.naturalDeductionPractice.setProofWff(_updatePane.getWffTrees());
+                this.practicePane.getChildren().add(this.naturalDeductionPractice);
                 break;
         }
     }

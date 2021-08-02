@@ -7,20 +7,20 @@ import com.flat.tools.buses.databus.components.Update;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class PracticeResult extends Update {
-    private boolean result;
+    private Boolean result;
 
-    public PracticeResult (boolean _result) {
+    public PracticeResult (Boolean _result) {
         super(Update.Type.PRACTICE_RESULT);
         this.result = _result;
     }
 
     // Getters for object's attributes.
-    public boolean isResult() {
+    public Boolean isResult() {
         return result;
     }
 
     // Setters for object's attributes.
-    public void setResult(boolean result) {
+    public void setResult(Boolean result) {
         this.result = result;
     }
 

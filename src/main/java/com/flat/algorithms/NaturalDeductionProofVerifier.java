@@ -9,7 +9,6 @@ import com.flat.models.treenode.NodeType;
 import com.flat.models.treenode.WffTree;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -20,7 +19,7 @@ public final class NaturalDeductionProofVerifier {
     /**
      * Premises list - this is updated throughout the verification.
      */
-    private final ArrayList<NDWffTree> premisesList;
+    private final ArrayList<NDWffTree> premisesList = new ArrayList();
 
     /**
      * Conclusion NDWffTree - this is the last element in the original WffTree list.
@@ -28,7 +27,6 @@ public final class NaturalDeductionProofVerifier {
     private final NDWffTree conclusionWff;
 
     public NaturalDeductionProofVerifier(ArrayList<WffTree> _wffTreeList) {
-        this.premisesList = new ArrayList<>();
         this.conclusionWff = new NDWffTree(_wffTreeList.get(_wffTreeList.size() - 1).getNodeType() == NodeType.ROOT
                 ? _wffTreeList.get(_wffTreeList.size() - 1).getChild(0)
                 : _wffTreeList.get(_wffTreeList.size() - 1), NDStep.C);

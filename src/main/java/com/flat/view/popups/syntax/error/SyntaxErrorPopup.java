@@ -11,7 +11,7 @@ import java.util.Iterator;
  */
 public class SyntaxErrorPopup extends Popup {
 
-    public SyntaxErrorPopup (Iterator<Message> _errors) {
+    public SyntaxErrorPopup (Iterator <Message> _errors) {
         super(new SyntaxErrorPane(_errors));
     }
 

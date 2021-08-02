@@ -17,6 +17,7 @@ public class PredicateComboBox extends ComboBox {
         super.setPromptText("Predicate");
         super.setMinWidth(250);
         super.setMaxWidth(500);
+        super.setVisibleRowCount(5);
     }
 
 }

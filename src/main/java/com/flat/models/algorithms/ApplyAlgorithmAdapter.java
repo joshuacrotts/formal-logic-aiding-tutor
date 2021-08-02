@@ -95,7 +95,7 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListene
                 if (logicReturn.getTruthValue())
                     Controller.EVENT_BUS.throwEvent(new UpdateNaturalDeduction(logicReturn.getNdWffTree()));
                 else
-                    Controller.displayNaturalDeductionPopup();
+                    Controller.displayNaturalDeductionErrorPopup();
                 Controller.EVENT_BUS.throwEvent(new UpdateTruth(logicReturn.getTruthValue()));
                 break;
         }
@@ -107,6 +107,10 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListene
             case RANDOM_PREDICATE_FORMULA:
             case RANDOM_PROPOSITIONAL_FORMULA:
                 return;
+            case PROPOSITIONAL_NATURAL_DEDUCTION:
+            case PREDICATE_NATURAL_DEDUCTION:
+                Controller.EVENT_BUS.throwEvent(new UpdatePracticePane(_algorithmType, this.getWffTree()));
+                break;
             default:
                 if (_logicReturn.getTruthValue() == null)
                     Controller.EVENT_BUS.throwEvent(new UpdatePracticePane(_algorithmType, _logicReturn.getWffTree().getChild(0)));
@@ -116,7 +120,7 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListene
     }
 
     @Override
-    public void setWffTree(ArrayList<WffTree> wffTree) {
+    public void setWffTree (ArrayList<WffTree> wffTree) {
         super.setWffTree(wffTree);
         Controller.DATA_BUS.throwUpdate(new ApplicableAlgorithmsUpdate(super.getApplicableAlgorithms()));
     }

@@ -17,6 +17,7 @@ public class GeneralComboBox extends ComboBox {
         super.setPromptText("General");
         super.setMinWidth(250);
         super.setMaxWidth(500);
+        super.setVisibleRowCount(5);
     }
 
 }

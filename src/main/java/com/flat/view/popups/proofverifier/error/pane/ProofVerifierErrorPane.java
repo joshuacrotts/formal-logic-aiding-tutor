@@ -1,4 +1,4 @@
-package com.flat.view.popups.syntax.error.pane;
+package com.flat.view.popups.proofverifier.error.pane;
 
 import com.flat.input.FLATErrorListener.Message;
 import com.flat.view.popups.base.PopupPane;
@@ -8,10 +8,10 @@ import java.util.Iterator;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class SyntaxErrorPane extends PopupPane {
+public class ProofVerifierErrorPane extends PopupPane {
 
-    public SyntaxErrorPane (Iterator <Message> _errors) {
-        super.getMessageHeader().setText("Syntax Error");
+    public ProofVerifierErrorPane (Iterator <Message> _errors) {
+        super.getMessageHeader().setText("Proof Verifier Error");
         this.setMessages(_errors);
     }
 
