@@ -445,11 +445,15 @@ public final class NaturalDeductionProofVerifier {
         int[] nums = new int[_strs.length];
         for (int i = 0; i < _strs.length; i++) {
             // Check to see if the number is valid. Offset by 1.
-            int idx = Integer.parseInt(_strs[i]) - 1;
-            if (idx < 0 || idx >= this.premisesList.size()) {
-                throw new IllegalArgumentException((idx + 1) + " is not a valid premise!");
+            try {
+                int idx = Integer.parseInt(_strs[i]) - 1;
+                if (idx < 0 || idx >= this.premisesList.size()) {
+                    FLATErrorListener.proofVerifierError((idx + 1) + " is not a valid premise.");
+                }
+                nums[i] = idx;
+            } catch (NumberFormatException ex) {
+                FLATErrorListener.proofVerifierError(_strs[i] + " is not a line number.");
             }
-            nums[i] = idx;
         }
         return nums;
     }
