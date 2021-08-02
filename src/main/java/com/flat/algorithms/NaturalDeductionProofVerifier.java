@@ -5,8 +5,8 @@ import com.flat.algorithms.models.NDStep;
 import com.flat.algorithms.models.NDWffTree;
 import com.flat.input.FLATErrorListener;
 import com.flat.input.FLATParserAdapter;
-import com.flat.models.treenode.NodeType;
-import com.flat.models.treenode.WffTree;
+import com.flat.models.treenode.*;
+import com.sun.org.apache.xpath.internal.operations.Neg;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -113,6 +113,7 @@ public final class NaturalDeductionProofVerifier {
             case MT: return this.isValidModusTollens(_wffTree, _parents);
             case AE: return this.isValidConjunctionElimination(_wffTree, _parents);
             case AI: return this.isValidConjunctionIntroduction(_wffTree, _parents);
+            case TP: return this.isValidTransposition(_wffTree, _parents);
             case II: return this.isValidImplicationIntroduction(_wffTree, _parents);
             case OI: return this.isValidDisjunctionIntroduction(_wffTree, _parents);
             case HS: return this.isValidHypotheticalSyllogism(_wffTree, _parents);
@@ -494,7 +495,9 @@ public final class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidDeMorgans(WffTree _wffTree, int[] _parents) {
-        return false;
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        WffTree parentOneWff = parentOne.getWffTree();
+        return true;
     }
 
     /**
@@ -504,7 +507,7 @@ public final class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidConstructiveDilemma(WffTree _wffTree, int[] _parents) {
-        return false;
+        return true;
     }
 
     /**
@@ -514,7 +517,7 @@ public final class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidDestructiveDilemma(WffTree _wffTree, int[] _parents) {
-        return false;
+        return true;
     }
 
     /**
@@ -524,7 +527,12 @@ public final class NaturalDeductionProofVerifier {
      * @return
      */
     private boolean isValidTransposition(WffTree _wffTree, int[] _parents) {
-        return false;
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        WffTree parentOneWff = parentOne.getWffTree();
+        NegNode negConsequent = new NegNode(_wffTree.getChild(1));
+        NegNode negAntecedent = new NegNode(_wffTree.getChild(0));
+
+        return parentOneWff.getChild(0).stringEquals(negAntecedent) && parentOneWff.getChild(1).stringEquals(negConsequent);
     }
 
     /**
