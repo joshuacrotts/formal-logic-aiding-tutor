@@ -106,6 +106,7 @@ public final class NaturalDeductionProofVerifier {
     private boolean isValidStep(WffTree _wffTree, NDStep _step, int[] _parents) {
         if (_parents.length != _step.getOpCount()) {
             FLATErrorListener.proofVerifierError(_step + " requires " + _step.getOpCount() + " parent(s) to derive but was provided " + _parents.length);
+            return false;
         }
 
         switch (_step) {
