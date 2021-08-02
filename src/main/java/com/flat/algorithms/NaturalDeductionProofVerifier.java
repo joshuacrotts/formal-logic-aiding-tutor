@@ -5,8 +5,8 @@ import com.flat.algorithms.models.NDStep;
 import com.flat.algorithms.models.NDWffTree;
 import com.flat.input.FLATErrorListener;
 import com.flat.input.FLATParserAdapter;
-import com.flat.models.treenode.NodeType;
-import com.flat.models.treenode.WffTree;
+import com.flat.models.treenode.*;
+import com.sun.org.apache.xpath.internal.operations.Neg;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -113,6 +113,7 @@ public final class NaturalDeductionProofVerifier {
             case MT: return this.isValidModusTollens(_wffTree, _parents);
             case AE: return this.isValidConjunctionElimination(_wffTree, _parents);
             case AI: return this.isValidConjunctionIntroduction(_wffTree, _parents);
+            case TP: return this.isValidTransposition(_wffTree, _parents);
             case II: return this.isValidImplicationIntroduction(_wffTree, _parents);
             case OI: return this.isValidDisjunctionIntroduction(_wffTree, _parents);
             case HS: return this.isValidHypotheticalSyllogism(_wffTree, _parents);
@@ -122,6 +123,10 @@ public final class NaturalDeductionProofVerifier {
             case BCB: return this.isValidBiconditionalElimination(_wffTree, _parents);
             case BCI: return this.isValidBiconditionalIntroduction(_wffTree, _parents);
             case MI: return this.isValidMaterialImplication(_wffTree, _parents);
+            case UI: return this.isValidUniversalIntroduction(_wffTree, _parents);
+            case UE: return this.isValidUniversalElimination(_wffTree, _parents);
+            case EI: return this.isValidExistentialIntroduction(_wffTree, _parents);
+            case EE: return this.isValidExistentialElimination(_wffTree, _parents);
             default: FLATErrorListener.proofVerifierError(_step + " is currently unsupported.");
         }
         return false;
@@ -340,10 +345,9 @@ public final class NaturalDeductionProofVerifier {
      */
     private boolean isValidDoubleNegationElimination(WffTree _wffTree, int[] _parents) {
         NDWffTree parentOne = this.getPremise(_parents[0]);
+        WffTree parentOneWff = parentOne.getWffTree();
         // The only condition is that the parent is equivalent to this node if the DN is removed.
-
-
-        return false;
+        return parentOneWff.isDoubleNegation() && parentOneWff.getChild(0).getChild(0).stringEquals(_wffTree);
     }
 
     /**
@@ -354,9 +358,9 @@ public final class NaturalDeductionProofVerifier {
      */
     private boolean isValidDoubleNegationIntroduction(WffTree _wffTree, int[] _parents) {
         NDWffTree parentOne = this.getPremise(_parents[0]);
+        WffTree parentOneWff = parentOne.getWffTree();
         // The only condition is that the parent is equivalent to the node is the DN is introduced.
-
-        return false;
+        return _wffTree.isDoubleNegation() && _wffTree.getChild(0).getChild(0).stringEquals(parentOneWff);
     }
 
     /**
@@ -438,6 +442,101 @@ public final class NaturalDeductionProofVerifier {
 
     /**
      *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidUniversalIntroduction(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        // We'll just assume for now that if the wff has a universal then it's fine.
+        return _wffTree.isUniversal();
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidUniversalElimination(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        // We'll just assume for now that if the wff does not have a universal then it's fine.
+        return !_wffTree.isUniversal();
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidExistentialIntroduction(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        // We'll just assume for now that if the wff has an existential then it's fine.
+        return _wffTree.isExistential();
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidExistentialElimination(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        // We'll just assume for now that if the wff does not have an existential then it's fine.
+        return !_wffTree.isExistential();
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidDeMorgans(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        WffTree parentOneWff = parentOne.getWffTree();
+        return true;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidConstructiveDilemma(WffTree _wffTree, int[] _parents) {
+        return true;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidDestructiveDilemma(WffTree _wffTree, int[] _parents) {
+        return true;
+    }
+
+    /**
+     *
+     * @param _wffTree
+     * @param _parents
+     * @return
+     */
+    private boolean isValidTransposition(WffTree _wffTree, int[] _parents) {
+        NDWffTree parentOne = this.getPremise(_parents[0]);
+        WffTree parentOneWff = parentOne.getWffTree();
+        NegNode negConsequent = new NegNode(_wffTree.getChild(1));
+        NegNode negAntecedent = new NegNode(_wffTree.getChild(0));
+
+        return parentOneWff.getChild(0).stringEquals(negAntecedent) && parentOneWff.getChild(1).stringEquals(negConsequent);
+    }
+
+    /**
+     *
      * @param _strs
      * @return
      */
@@ -445,11 +544,15 @@ public final class NaturalDeductionProofVerifier {
         int[] nums = new int[_strs.length];
         for (int i = 0; i < _strs.length; i++) {
             // Check to see if the number is valid. Offset by 1.
-            int idx = Integer.parseInt(_strs[i]) - 1;
-            if (idx < 0 || idx >= this.premisesList.size()) {
-                throw new IllegalArgumentException((idx + 1) + " is not a valid premise!");
+            try {
+                int idx = Integer.parseInt(_strs[i]) - 1;
+                if (idx < 0 || idx >= this.premisesList.size()) {
+                    FLATErrorListener.proofVerifierError((idx + 1) + " is not a valid premise.");
+                }
+                nums[i] = idx;
+            } catch (NumberFormatException ex) {
+                FLATErrorListener.proofVerifierError(_strs[i] + " is not a line number.");
             }
-            nums[i] = idx;
         }
         return nums;
     }

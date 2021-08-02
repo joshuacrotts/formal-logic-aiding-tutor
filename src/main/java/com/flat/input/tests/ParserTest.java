@@ -167,30 +167,33 @@ public class ParserTest {
             }
 
             // Natural deduction prover.
-            ArrayList<NDWffTree> ndArgs = ndValidator.getNaturalDeductionProof();
-            if (ndArgs == null) {
-                System.err.println("Either the argument is invalid (check the above result) or it timed out!");
-            } else {
-                for (int i = 0; i < ndArgs.size(); i++) {
-                    NDWffTree wff = ndArgs.get(i);
-                    System.out.println((i + 1) + ": " + wff);
-                }
-                System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
-            }
-
-            System.out.println("\n\nIndirect Natural Deduction Proof:");
-            // Indirect proof natural deduction prover.
-            ndValidator = new IndirectProofNaturalDeductionValidator(resultList);
-            ndArgs = ndValidator.getNaturalDeductionProof();
-            if (ndArgs == null) {
-                System.err.println("Either the argument is invalid (check the above result) or it timed out!");
-            } else {
-                for (int i = 0; i < ndArgs.size(); i++) {
-                    NDWffTree wff = ndArgs.get(i);
-                    System.out.println((i + 1) + ": " + wff);
-                }
-                System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
-            }
+            NaturalDeductionProofVerifier ndpv = new NaturalDeductionProofVerifier(resultList);
+            System.out.println(ndpv.getConclusionWff().getWffTree().getStringRep());
+//            ArrayList<NDWffTree> ndArgs = ndValidator.getNaturalDeductionProof();
+//            System.out.println();
+//            if (ndArgs == null) {
+//                System.err.println("Either the argument is invalid (check the above result) or it timed out!");
+//            } else {
+//                for (int i = 0; i < ndArgs.size(); i++) {
+//                    NDWffTree wff = ndArgs.get(i);
+//                    System.out.println((i + 1) + ": " + wff);
+//                }
+//                System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
+//            }
+//
+//            System.out.println("\n\nIndirect Natural Deduction Proof:");
+//            // Indirect proof natural deduction prover.
+//            ndValidator = new IndirectProofNaturalDeductionValidator(resultList);
+//            ndArgs = ndValidator.getNaturalDeductionProof();
+//            if (ndArgs == null) {
+//                System.err.println("Either the argument is invalid (check the above result) or it timed out!");
+//            } else {
+//                for (int i = 0; i < ndArgs.size(); i++) {
+//                    NDWffTree wff = ndArgs.get(i);
+//                    System.out.println((i + 1) + ": " + wff);
+//                }
+//                System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
+//            }
         }
     }
 

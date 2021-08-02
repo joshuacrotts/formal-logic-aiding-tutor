@@ -56,8 +56,8 @@ public class NaturalDeductionPractice extends VBox implements Practice {
 
     private void setProveText () {
         for (int i = 0; i < this.userProof.getPremisesList().size() - 1; i++)
-            this.prove.setText(this.prove.getText() + this.userProof.getPremisesList().get(i).getWffTree().getStringRep());
-        this.prove.setText(this.prove.getText() + ", " + this.userProof.getPremisesList().get(this.userProof.getPremisesList().size() - 1).getWffTree().getStringRep());
+            this.prove.setText(this.prove.getText() + this.userProof.getPremisesList().get(i).getWffTree().getStringRep() + ", ");
+        this.prove.setText(this.prove.getText() + this.userProof.getPremisesList().get(this.userProof.getPremisesList().size() - 1).getWffTree().getStringRep());
         this.prove.setText(this.prove.getText() + " therefore ");
         this.prove.setText(this.prove.getText() + this.userProof.getConclusionWff().getWffTree().getStringRep());
     }
