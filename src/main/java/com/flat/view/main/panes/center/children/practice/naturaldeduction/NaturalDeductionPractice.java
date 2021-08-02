@@ -105,8 +105,6 @@ public class NaturalDeductionPractice extends VBox implements Practice {
 
     private void onStepInputSelection () {
         this.ndInputPane.getStepInput().getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            System.out.println("here");
-            System.out.println(newVal);
             if (newVal == null)
                 this.ndPracticeButtonPane.getEnter().setDisable(true);
             else {
