@@ -93,7 +93,7 @@ public class NaturalDeductionPractice extends VBox implements Practice {
                 this.ndPracticeButtonPane.getEnter().setDisable(true);
             else {
                 if (this.ndInputPane.getStepInput().getSelectionModel().getSelectedItem() != null)
-                    if (this.ndInputPane.getLineInput().getText() != null)
+                    if (!this.ndInputPane.getLineInput().getText().isEmpty())
                         this.ndPracticeButtonPane.getEnter().setDisable(false);
             }
         });
@@ -104,12 +104,14 @@ public class NaturalDeductionPractice extends VBox implements Practice {
     }
 
     private void onStepInputSelection () {
-        this.ndInputPane.getStepInput().selectionModelProperty().addListener((obs, oldVal, newVal) -> {
+        this.ndInputPane.getStepInput().getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            System.out.println("here");
+            System.out.println(newVal);
             if (newVal == null)
                 this.ndPracticeButtonPane.getEnter().setDisable(true);
             else {
-                if (this.ndInputPane.getWffInput().getText() != null)
-                    if (this.ndInputPane.getLineInput().getText() != null)
+                if (!this.ndInputPane.getWffInput().getText().isEmpty())
+                    if (!this.ndInputPane.getLineInput().getText().isEmpty())
                         this.ndPracticeButtonPane.getEnter().setDisable(false);
             }
         });
@@ -125,7 +127,7 @@ public class NaturalDeductionPractice extends VBox implements Practice {
                 this.ndPracticeButtonPane.getEnter().setDisable(true);
             else {
                 if (this.ndInputPane.getStepInput().getSelectionModel().getSelectedItem() != null)
-                        if (this.ndInputPane.getWffInput().getText() != null)
+                        if (!this.ndInputPane.getWffInput().getText().isEmpty())
                             this.ndPracticeButtonPane.getEnter().setDisable(false);
             }
         });
