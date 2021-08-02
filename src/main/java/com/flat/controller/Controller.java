@@ -87,9 +87,13 @@ public class Controller {
         new NaturalDeductionPopup();
     }
 
-    public static void displayProofVerifierErrorPopup () {
-        if (FLATErrorListener.getProofVerifierErrorIterator().hasNext())
+    public static boolean displayProofVerifierErrorPopup () {
+        if (FLATErrorListener.getProofVerifierErrorIterator().hasNext()) {
             new ProofVerifierErrorPopup(FLATErrorListener.getProofVerifierErrorIterator());
+            return true;
+        }
+        else
+            return false;
     }
 
     public static void applyFormula (Algorithm _algorithm) {

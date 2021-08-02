@@ -148,6 +148,7 @@ public class NaturalDeductionPractice extends VBox implements Practice {
     public void clearContent () {
         this.prove.setText("Prove ");
         this.proofPane.clear();
+        this.ndInputPane.clearInput();
         this.userProof = null;
     }
 

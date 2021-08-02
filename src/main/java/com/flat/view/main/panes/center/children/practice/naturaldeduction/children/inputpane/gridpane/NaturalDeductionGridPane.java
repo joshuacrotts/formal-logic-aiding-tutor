@@ -31,8 +31,8 @@ public class NaturalDeductionGridPane extends GridPane {
         super.add(new Text(_ndWff.getDerivationStep().toString()), 2, this.lineCount);
         if (!_ndWff.getDerivedParentIndices().isEmpty()) {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < _ndWff.getDerivedParentIndices().size() - 2; i++) {
-                sb.append(i).append(", ");
+            for (int i = 0; i < _ndWff.getDerivedParentIndices().size() - 1; i++) {
+                sb.append(_ndWff.getDerivedParentIndices().get(i)).append(", ");
             }
             sb.append(_ndWff.getDerivedParentIndices().get(_ndWff.getDerivedParentIndices().size() - 1));
             super.add(new Text(sb.toString()), 3, this.lineCount);

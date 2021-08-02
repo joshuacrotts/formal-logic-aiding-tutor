@@ -41,7 +41,7 @@ public class NaturalDeductionPaneListener implements EventListener {
 
     private GridPane createNaturalDeduction (NaturalDeduction _naturalDeduction) {
         GridPane naturalDeduction = new GridPane();
-        naturalDeduction.setHgap(5);
+        naturalDeduction.setHgap(20);
         _naturalDeduction.getLines().forEach(line -> {
             naturalDeduction.add(new Text(String.valueOf(line.getLine() + 1) + "."), 0, line.getLine());
             naturalDeduction.add(new Text(line.getWff()), 1, line.getLine());

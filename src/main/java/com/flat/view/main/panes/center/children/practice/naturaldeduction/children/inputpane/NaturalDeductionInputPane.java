@@ -29,7 +29,7 @@ public class NaturalDeductionInputPane extends HBox {
         super.setAlignment(Pos.CENTER);
     }
 
-    public void clear () {
+    public void clearInput () {
         this.wffInput.clear();
         this.stepInput.getSelectionModel().clearSelection();
         this.lineInput.clear();

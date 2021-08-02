@@ -29,11 +29,13 @@ public class NaturalDeductionPracticeListener implements EventListener {
                     this.pane.userProof = (new NaturalDeductionProofVerifier(this.pane.getProofWff()));
                 if (this.pane.getUserProof().proveNaturalDeduction(((SolvedFormula)_event).getWffTree().get(0), ((NDStep)this.pane.getNdInputPane().getStepInput().getSelectionModel().getSelectedItem()), this.pane.getNdInputPane().getLineInput().getText()))
                     Controller.DATA_BUS.throwUpdate(new PracticeResult(true));
-                else
+                if (!Controller.displayProofVerifierErrorPopup()) {
+                    this.pane.addLastPremise();
+                    this.pane.getNdInputPane().clearInput();
+                }
+                else {
                     Controller.DATA_BUS.throwUpdate(new PracticeResult(false));
-                Controller.displayProofVerifierErrorPopup();
-                this.pane.addLastPremise();
-                this.pane.getNdInputPane().clear();
+                }
                 break;
         }
     }
