@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class PropositionalTruthTreeGenerator extends Algorithm {
 
     public PropositionalTruthTreeGenerator () {
-        super(new KeyedText(PropositionalTruthTreeGenerator.class, Algorithm.Keys.LABEL, "Propositional Truth tree Generator"),
+        super(new KeyedText(PropositionalTruthTreeGenerator.class, Algorithm.Keys.LABEL, "Propositional Truth Tree Generator"),
                 AlgorithmType.PROPOSITIONAL_TRUTH_TREE_GENERATOR
         );
     }
