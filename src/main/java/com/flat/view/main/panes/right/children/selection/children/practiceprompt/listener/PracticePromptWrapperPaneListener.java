@@ -23,6 +23,7 @@ import com.flat.view.main.panes.right.children.selection.children.practiceprompt
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.naturaldeduction.NaturalDeductionPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.opensentencedeterminer.OpenSentenceDeterminerPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.semanticentailmentdeterminer.SemanticEntailmentDeterminerPrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.truthtable.TruthTablePrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.vacuousquantifierdetector.VacuousQuantifierDetectorPrompt;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.PracticeModeToggle;
 
@@ -112,6 +113,9 @@ public class PracticePromptWrapperPaneListener implements DataListener, EventLis
             case PREDICATE_NATURAL_DEDUCTION:
             case PROPOSITIONAL_NATURAL_DEDUCTION:
                 this.wrapperPane.setContent(new NaturalDeductionPrompt());
+                break;
+            case TRUTH_TABLE_GENERATOR:
+                this.wrapperPane.setContent(new TruthTablePrompt());
                 break;
         }
     }
