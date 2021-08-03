@@ -5,6 +5,7 @@ import com.flat.FLATParser;
 import com.flat.algorithms.*;
 import com.flat.algorithms.models.NDWffTree;
 import com.flat.algorithms.models.ProofType;
+import com.flat.algorithms.models.QuineTree;
 import com.flat.algorithms.models.TruthTree;
 import com.flat.algorithms.predicate.*;
 import com.flat.algorithms.propositional.*;
@@ -72,7 +73,11 @@ public class ParserTest {
         if (resultList.size() == 1) {
             WffTree result = resultList.get(0);
             result.printSyntaxTree();
-            System.out.println(result.getPracticeOrdering());
+            if (result.isPropositionalWff()) {
+                QuineEvaluator quineEvaluator = new QuineEvaluator(result);
+                QuineTree quineTree = quineEvaluator.evaluate();
+                System.out.println(quineTree.printQuineTree());
+            }
         }
             // Print the parse tree in LaTeX.
 //            TexPrinter texParseTreePrinter = new TexParseTreePrinter(result, "latex_parse_tree.tex");
