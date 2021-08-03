@@ -145,9 +145,20 @@ public class WffTree implements Copyable, TexPrintable {
      * @param _atoms - ArrayList of AtomNodes to add onto.
      */
     private void getAtomsHelper(WffTree _wffTreeNode, ArrayList<AtomNode> _atoms) {
-        if (_wffTreeNode == null) return;
+        if (_wffTreeNode == null) { return; }
         for (WffTree ch : _wffTreeNode.getChildren()) {
-            if (ch.isAtom() && !_atoms.contains(ch)) { _atoms.add((AtomNode) ch); }
+            if (ch.isAtom()) {
+                boolean found = false;
+                // Iterate through the atoms since the default equals compares object references.
+                for (WffTree atom : _atoms) {
+                    if (ch.stringEquals(atom)) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) { _atoms.add((AtomNode) ch); }
+            }
+
             this.getAtomsHelper(ch, _atoms);
         }
     }
@@ -204,15 +215,15 @@ public class WffTree implements Copyable, TexPrintable {
             this.inorderTraversalHelper(_wffTree.children.get(0), _inorderTraversal);
             _inorderTraversal.add(_wffTree);
         } else {
-            // All the children except the last
+            // All the children except the last.
             for (int i = 0; i < total - 1; i++) {
                 this.inorderTraversalHelper(_wffTree.children.get(i), _inorderTraversal);
             }
 
-            // Print the current node's data
+            // Print the current node's data.
             _inorderTraversal.add(_wffTree);
 
-            // Last child
+            // Last child.
             if (!_wffTree.children.isEmpty()) {
                 this.inorderTraversalHelper(_wffTree.children.get(total - 1), _inorderTraversal);
             }
@@ -303,9 +314,7 @@ public class WffTree implements Copyable, TexPrintable {
         String wff1Equiv = WffTree.getStandardizedEquiv(this.getStringRep());
         String wff2Equiv = WffTree.getStandardizedEquiv(o.getStringRep());
 
-        if (wff1Equiv.equals(wff2Equiv)) {
-            return true;
-        }
+        if (wff1Equiv.equals(wff2Equiv)) { return true; }
 
         StringBuilder w1 = new StringBuilder(wff1Equiv);
         StringBuilder w2 = new StringBuilder(wff2Equiv);
@@ -345,12 +354,12 @@ public class WffTree implements Copyable, TexPrintable {
      */
     private static String getStandardizedEquiv(String _strRep) {
         String s = _strRep.replaceAll(" ", "");
-        s = s.replaceAll("[~¬!]|(not|NOT)", "~"); // NEG
-        s = s.replaceAll("[∧^⋅]|(and|AND)", "&"); // AND
-        s = s.replaceAll("[\\|+\\|\\|]|(or|OR)", "∨"); // OR
-        s = s.replaceAll("[→⇒⊃>]|(implies|IMPLIES)", "→"); // IMP
-        s = s.replaceAll("[⇔≡↔]|(<>|iff|IFF)", "↔"); // BICOND
-        s = s.replaceAll("[⊻≢⩒↮]|(xor|XOR)", "⊕"); // XOR
+        s = s.replaceAll("[~¬!]|(NOT)", "~"); // NEG
+        s = s.replaceAll("[∧^⋅]|(AND)", "&"); // AND
+        s = s.replaceAll("[\\|+\\|\\|]|(OR)", "∨"); // OR
+        s = s.replaceAll("[→⇒⊃>]|(IMPLIES)", "→"); // IMP
+        s = s.replaceAll("[⇔≡↔]|(<>|IFF)", "↔"); // BICOND
+        s = s.replaceAll("[⊻≢⩒↮]|(XOR)", "⊕"); // XOR
         s = s.replaceAll("[(]", "#");
         s = s.replaceAll("[)]", "#"); // We need to standardize these as well!
         return s;
@@ -654,9 +663,7 @@ public class WffTree implements Copyable, TexPrintable {
         } else if (_wffTree.isPredicate()){
             // Predicates are different. We just iterate through and add them all.
             _list.add(_wffTree);
-            for (WffTree predChild : _wffTree.getChildren()) {
-                _list.add(predChild);
-            }
+            _list.addAll(_wffTree.getChildren());
         }
     }
 
