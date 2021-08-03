@@ -167,8 +167,8 @@ public class ParserTest {
             }
 
             // Natural deduction prover.
-            NaturalDeductionProofVerifier ndpv = new NaturalDeductionProofVerifier(resultList);
-            System.out.println(ndpv.getConclusionWff().getWffTree().getStringRep());
+//            NaturalDeductionProofVerifier ndpv = new NaturalDeductionProofVerifier(resultList);
+//            ndpv.proveNaturalDeductionStdin();
 //            ArrayList<NDWffTree> ndArgs = ndValidator.getNaturalDeductionProof();
 //            System.out.println();
 //            if (ndArgs == null) {
