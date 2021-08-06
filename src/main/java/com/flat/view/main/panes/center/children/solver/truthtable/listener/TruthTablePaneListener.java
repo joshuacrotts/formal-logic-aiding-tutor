@@ -5,11 +5,13 @@ import com.flat.models.treenode.WffTree;
 import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.view.main.panes.center.children.solver.truthtable.TruthTablePane;
 import com.flat.view.main.panes.center.children.solver.truthtable.base.tablelayout.TruthTable;
-import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.text.Text;
 import com.flat.tools.buses.eventbus.components.EventListener;
+import com.flat.view.main.panes.center.children.solver.truthtable.base.tablelayout.TableElement;
+import com.flat.view.main.panes.center.children.solver.truthtable.base.tablelayout.TableHeader;
+import com.flat.view.main.panes.center.children.solver.truthtable.listener.children.HorizontalTruthTableSeparator;
+import com.flat.view.main.panes.center.children.solver.truthtable.listener.children.TruthTableHeaderTextVBox;
+import com.flat.view.main.panes.center.children.solver.truthtable.listener.children.TruthTableTextVBox;
 
 /**
  *
@@ -43,17 +45,15 @@ public class TruthTablePaneListener implements EventListener {
 
     private GridPane createTruthTable (TruthTable _table) {
         GridPane gridPane = new GridPane();
-        gridPane.setHgap(5);
         _table.getHeaders().forEach(header -> {
-            gridPane.add(new Text(header.getText()), header.getColumn(), 0);
-            header.getElements().forEach(element -> {
-                gridPane.add(new Text(element.getText()), header.getColumn(), element.getRow());
-            });
+                gridPane.getChildren().add(new TruthTableHeaderTextVBox(header));
+                if (header.getType() != TableHeader.Type.VERTICAL)
+                    header.getElements().forEach(element -> {
+                        if (element.getType() == TableElement.Type.REGULAR)
+                            gridPane.add(new TruthTableTextVBox(element), header.getColumn(), element.getRow());
+                    });
         });
-        gridPane.getChildren().forEach(child -> {
-            GridPane.setHgrow(child, Priority.ALWAYS);
-            GridPane.setHalignment(child, HPos.CENTER);
-        });
+        gridPane.add(new HorizontalTruthTableSeparator(), 0, 1, _table.getHeaders().size(), 1);
         return gridPane;
     }
 
