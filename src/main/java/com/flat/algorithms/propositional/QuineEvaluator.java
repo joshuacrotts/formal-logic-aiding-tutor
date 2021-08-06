@@ -17,7 +17,7 @@ public class QuineEvaluator {
     /**
      * Constructs the root of this QuineTree, which then instantiates its two children.
      */
-    public void evaluate() {
-        QuineTree root = new QuineTree(this.wffTree, this.wffTree.getAtoms());
+    public QuineTree evaluate() {
+        return new QuineTree(this.wffTree, this.wffTree.getAtoms());
     }
 }

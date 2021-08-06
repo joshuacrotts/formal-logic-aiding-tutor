@@ -51,9 +51,7 @@ public final class QuineTree {
     private int depth;
 
     public QuineTree(WffTree _wffTree, ArrayList<AtomNode> _atomNodeList) {
-        System.out.println(FLATUtils.repeatString(this.depth, "\t")
-                + "(" + "ROOT"
-                + "), " + _wffTree.getStringRep());
+        this.wffTree = _wffTree;
         this.leftQuineTree = new QuineTree(_wffTree, _atomNodeList, true, 1);
         this.rightQuineTree = new QuineTree(_wffTree, _atomNodeList, false, 1);
     }
@@ -82,7 +80,6 @@ public final class QuineTree {
      */
     private void evaluateQuineTree() {
         this.evaluateWff(this.wffTree);
-        System.out.println(this);
         ArrayList<AtomNode> newAtoms = this.getNewAtoms();
         this.leftQuineTree = new QuineTree(this.wffTree, newAtoms, true, this.depth + 1);
         this.rightQuineTree = new QuineTree(this.wffTree, newAtoms, false, this.depth + 1);
@@ -283,7 +280,7 @@ public final class QuineTree {
             // If the wff is a T/F node then it won't have children, but neither do
             // atoms so we have to make sure it's not true or false before returning false.
             if (wff.getChildren().isEmpty() && !wff.isTrue() && !wff.isFalse()) { return false; }
-            for (WffTree ch : wff.getChildren()) { queue.add(ch); }
+            queue.addAll(wff.getChildren());
         }
 
         return true;
@@ -300,29 +297,77 @@ public final class QuineTree {
         while (!queue.isEmpty()) {
             WffTree wff = queue.poll();
             if (wff.isTrue() || wff.isFalse()) { return true; }
-            for (WffTree ch : wff.getChildren()) { queue.add(ch); }
+            queue.addAll(wff.getChildren());
         }
 
         return false;
     }
 
+    /**
+     * Recursively constructs a string representation of the quine tree.
+     *
+     * @return String representation to output to the console.
+     */
+    public String printQuineTree() {
+        StringBuilder sb = new StringBuilder("(ROOT)" + ", " + this.wffTree.getStringRep() + "\n");
+        this.printQuineTreeHelper(this, sb);
+        return sb.toString();
+    }
+
+    /**
+     * Recursively builds a stringbuilder representation of this QuineTree and its children. If the
+     * toString() of the QuineTree is null then nothing is added. Otherwise, a new line is appended.
+     *
+     * @param _quineTree
+     */
+    private void printQuineTreeHelper(QuineTree _quineTree, StringBuilder sb) {
+        if (_quineTree == null) { return; }
+        // If the toString() is not null then we can do stuff.
+        if (_quineTree.toString() != null) {
+            sb.append(FLATUtils.repeatString(_quineTree.depth, " "));
+            sb.append(_quineTree);
+            sb.append("\n");
+        }
+        if (_quineTree.getLeftQuineTree() != null) { this.printQuineTreeHelper(_quineTree.getLeftQuineTree(), sb); }
+        if (_quineTree.getRightQuineTree() != null) { this.printQuineTreeHelper(_quineTree.getRightQuineTree(), sb); }
+    }
+
     @Override
     public String toString() {
-        assert this.depth >= 0;
+        if (this.depth <= 0 || this.atomNode == null) { return null; }
         // Tabs, I followed by "depth" ticks, (, atom, interpretation, ), formula.
-        return String.format("%s%s(%s/%b), %s", FLATUtils.repeatString(this.depth, "\t"),
-                                                QuineTree.INTERPRETATIONS[this.depth - 1],
-                                                this.atomNode.getStringRep(),
-                                                this.interpretation,
-                                                this.wffTree.getStringRep());
+        return String.format("%s(%s/%b), %s", QuineTree.INTERPRETATIONS[this.depth - 1],
+                this.atomNode.getStringRep(),
+                this.interpretation,
+                this.wffTree.getStringRep());
     }
 
     public WffTree getInterpretationNode() {
         return this.isTerminalNode() ? this.wffTree : null;
     }
 
+    public AtomNode getAtomNode() {
+        return this.atomNode;
+    }
+
+    public boolean getInterpretation() {
+        return this.interpretation;
+    }
+
+    public int getDepth() {
+        return this.depth;
+    }
+
     private boolean isTerminalNode() {
         return this.wffTree.isRoot()
                 && (this.wffTree.getChild(0).isTrue() || this.wffTree.getChild(0).isFalse());
+    }
+
+    public QuineTree getLeftQuineTree() {
+        return this.leftQuineTree;
+    }
+
+    public QuineTree getRightQuineTree() {
+        return this.rightQuineTree;
     }
 }
