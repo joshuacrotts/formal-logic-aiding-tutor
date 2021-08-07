@@ -1,6 +1,5 @@
 package com.flat.algorithms.models;
 
-import com.flat.FLAT;
 import com.flat.models.treenode.*;
 import com.flat.tools.FLATUtils;
 

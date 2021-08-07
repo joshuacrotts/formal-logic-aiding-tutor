@@ -115,7 +115,7 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListene
                 break;
             case OPEN_TREE_DETERMINER:
             case CLOSED_TREE_DETERMINER:
-                if (this.getWffTree().get(0).isPredicate())
+                if (this.getWffTree().get(0).isPredicateWff())
                     Controller.EVENT_BUS.throwEvent(new UpdatePracticePane(_algorithmType, new PredicateTruthTreeGenerator(this.getWffTree().get(0)).getTruthTree()));
                 else
                     Controller.EVENT_BUS.throwEvent(new UpdatePracticePane(_algorithmType, new PropositionalTruthTreeGenerator(this.getWffTree().get(0)).getTruthTree()));
