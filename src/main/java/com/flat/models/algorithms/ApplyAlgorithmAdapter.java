@@ -1,5 +1,7 @@
 package com.flat.models.algorithms;
 
+import com.flat.algorithms.predicate.PredicateTruthTreeGenerator;
+import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.controller.Controller;
 import com.flat.models.algorithms.attributes.LogicReturn;
 import com.flat.models.algorithms.bus.events.practice.wfftree.UpdatePracticePane;
@@ -110,6 +112,13 @@ public class ApplyAlgorithmAdapter extends ApplyAlgorithm implements DataListene
             case PROPOSITIONAL_NATURAL_DEDUCTION:
             case PREDICATE_NATURAL_DEDUCTION:
                 Controller.EVENT_BUS.throwEvent(new UpdatePracticePane(_algorithmType, this.getWffTree()));
+                break;
+            case OPEN_TREE_DETERMINER:
+            case CLOSED_TREE_DETERMINER:
+                if (this.getWffTree().get(0).isPredicate())
+                    Controller.EVENT_BUS.throwEvent(new UpdatePracticePane(_algorithmType, new PredicateTruthTreeGenerator(this.getWffTree().get(0)).getTruthTree()));
+                else
+                    Controller.EVENT_BUS.throwEvent(new UpdatePracticePane(_algorithmType, new PropositionalTruthTreeGenerator(this.getWffTree().get(0)).getTruthTree()));
                 break;
             default:
                 if (_logicReturn.getTruthValue() == null)

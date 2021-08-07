@@ -1,6 +1,6 @@
 package com.flat.models.algorithms.bus.events.practice.wfftree;
 
-import com.flat.algorithms.BaseNaturalDeductionValidator;
+import com.flat.algorithms.models.TruthTree;
 import com.flat.models.data.algorithms.base.enums.AlgorithmType;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.buses.eventbus.components.Event;
@@ -15,7 +15,7 @@ public class UpdatePracticePane extends Event {
     private WffTree wffTree = null;
     private Boolean algorithmResult = null;
     private ArrayList <WffTree> wffTrees = null;
-
+    private TruthTree truthTree = null;
     private UpdatePracticePane () {
         super(Event.Type.UPDATE_PRACTICE_PANE);
     }
@@ -24,6 +24,12 @@ public class UpdatePracticePane extends Event {
         this();
         this.algorithmType = _algorithmType;
         this.wffTrees = _wffTrees;
+    }
+
+    public UpdatePracticePane (AlgorithmType _algorithmType, TruthTree _truthTree) {
+        this();
+        this.algorithmType = _algorithmType;
+        this.truthTree = _truthTree;
     }
 
     public UpdatePracticePane (AlgorithmType _algorithmType, WffTree _wffTree) {
@@ -56,6 +62,10 @@ public class UpdatePracticePane extends Event {
         return wffTrees;
     }
 
+    public TruthTree getTruthTree() {
+        return truthTree;
+    }
+
     // Setters for object's attributes.
     public void setAlgorithmType(AlgorithmType algorithmType) {
         this.algorithmType = algorithmType;
@@ -71,6 +81,10 @@ public class UpdatePracticePane extends Event {
 
     public void setWffTrees(ArrayList<WffTree> wffTrees) {
         this.wffTrees = wffTrees;
+    }
+
+    public void setTruthTree(TruthTree truthTree) {
+        this.truthTree = truthTree;
     }
 
 }

@@ -26,6 +26,7 @@ import com.flat.view.main.panes.center.children.practice.mainoperatordetector.Ma
 import com.flat.view.main.panes.center.children.practice.naturaldeduction.NaturalDeductionPractice;
 import com.flat.view.main.panes.center.children.practice.opensentencedeterminer.OpenSentenceDeterminerPractice;
 import com.flat.view.main.panes.center.children.practice.semanticentailmentdeterminer.SemanticEntailmentDeterminerPractice;
+import com.flat.view.main.panes.center.children.practice.treedeterminer.TreeDeterminerPractice;
 import com.flat.view.main.panes.center.children.practice.truthtable.TruthTablePractice;
 import com.flat.view.main.panes.center.children.practice.vacuousquantifierdetector.VacuousQuantiferDetectorPractice;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.extensions.truthsubmit.buttons.events.PracticeSubmitTruthButtonPressed;
@@ -141,6 +142,11 @@ public class PracticePaneListener implements EventListener, DataListener {
             case TRUTH_TABLE_GENERATOR:
                 this.practicePane.getChildren().clear();
                 this.practicePane.getChildren().add(new TruthTablePractice(_updatePane.getWffTree()));
+                break;
+            case OPEN_TREE_DETERMINER:
+            case CLOSED_TREE_DETERMINER:
+                this.practicePane.getChildren().clear();
+                this.practicePane.getChildren().add(new TreeDeterminerPractice(_updatePane.getTruthTree()));
                 break;
         }
     }

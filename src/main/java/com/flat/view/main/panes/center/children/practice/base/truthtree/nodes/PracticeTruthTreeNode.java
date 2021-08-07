@@ -1,7 +1,9 @@
-package com.flat.view.main.panes.center.children.solver.trees.truthtree.treelayout;
+package com.flat.view.main.panes.center.children.practice.base.truthtree.nodes;
 
 import com.flat.algorithms.models.TruthTree;
+import com.flat.view.main.panes.center.children.practice.base.truthtree.nodes.children.TreeNodePracticeText;
 import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.FxTreeNode;
+import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.TreeNode;
 import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes.attributes.TreeNodeText;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -11,9 +13,10 @@ import javafx.scene.text.Text;
  *
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
-public class TruthTreeNode extends FxTreeNode {
+public class PracticeTruthTreeNode extends FxTreeNode {
+    private TreeNodePracticeText practiceNode = null;
 
-    public TruthTreeNode (TruthTree _truthTree) {
+    public PracticeTruthTreeNode (TruthTree _truthTree) {
         super(false);
         super.getChildren().add(new TreeNodeText(_truthTree.getWff().getStringRep()));
         if (_truthTree.getLeft() == null && _truthTree.getRight() == null) {
@@ -59,14 +62,10 @@ public class TruthTreeNode extends FxTreeNode {
     }
 
     private void addChild (TruthTree _truthTree, int _number) {
-        TruthTreeNode _truthNode = new TruthTreeNode(_truthTree);
+        PracticeTruthTreeNode _truthNode = new PracticeTruthTreeNode(_truthTree);
         _truthNode.setTreeParent(this);
         _truthNode.setNumber(_number);
         this.getTreeChildren().add(_truthNode);
-    }
-
-    protected void addClosedProperty (TruthTree _truthTree) {
-        super.getChildren().add(new TreeNodeText((_truthTree.isClosed()) ? "\u2715" : "Open"));
     }
 
     private double getEstimatedHeight () {
@@ -83,9 +82,30 @@ public class TruthTreeNode extends FxTreeNode {
     private double getEstimatedWidth () {
         double width = 0;
         for (Node node: super.getChildren()) {
-            width = Math.max(width, ((TreeNodeText)node).getLayoutBounds().getWidth());
+            width = Math.max(width, ((Text)node).getLayoutBounds().getWidth());
         }
         return width;
+    }
+
+    protected void addClosedProperty(TruthTree _truthTree) {
+        TreeNodePracticeText node = new TreeNodePracticeText(_truthTree.isClosed());
+        super.getChildren().add(node);
+        this.practiceNode = node;
+    }
+
+    public boolean checkPractice () {
+        boolean returnValue = true;
+        for (TreeNode node : super.getTreeChildren())
+            returnValue = returnValue & ((PracticeTruthTreeNode)node).checkPractice();
+        if (this.practiceNode != null)
+            return returnValue & this.practiceNode.checkAnswer();
+        else
+            return returnValue;
+
+    }
+
+    @Override
+    protected void setOnMouseDrag() {
     }
 
 }
