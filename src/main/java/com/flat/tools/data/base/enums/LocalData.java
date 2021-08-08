@@ -10,7 +10,9 @@ public class LocalData {
         LOGIC_SYMBOLS("logicsymbols"),
         MENU_BAR("menubar"),
         LANGUAGE("languages"),
-        SETTINGS("settings");
+        SETTINGS("settings"),
+        RULES_AXIOMS("rulesaxioms"),
+        BUTTONS_LABELS("buttonslabels");
 
         private final String fileName;
 

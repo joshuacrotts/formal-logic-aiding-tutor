@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.right.children.selection.children.selections.buttons.rulesaxioms;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.miscellaneous.ButtonsLabels;
 import com.flat.view.main.panes.right.children.selection.children.selections.buttons.rulesaxioms.events.RulesAxiomsSelectionButtonPressed;
 import javafx.scene.control.Button;
 
@@ -19,7 +20,8 @@ public class RulesAxiomsSelectionButton extends Button {
     }
 
     private void setThisFx () {
-        super.setText("Rules/Axioms");
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.RULES_AXIOMS).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.RULES_AXIOMS).fontProperty());
         super.setMinWidth(80);
         this.setOnAction();
     }

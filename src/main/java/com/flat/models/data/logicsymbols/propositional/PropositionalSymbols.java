@@ -113,6 +113,7 @@ public class PropositionalSymbols extends Translatable implements Serializable {
 
     private void writeObject (ObjectOutputStream os) {
         try {
+            os.writeObject(this.propositional);
             os.writeObject(this.biconditional);
             os.writeObject(this.conjunction);
             os.writeObject(this.disjunction);
@@ -129,6 +130,7 @@ public class PropositionalSymbols extends Translatable implements Serializable {
 
     private void readObject (ObjectInputStream  is) {
         try {
+            this.propositional = (KeyedText) is.readObject();
             this.biconditional = (BiconditionalSymbol) is.readObject();
             this.conjunction = (ConjunctionSymbol) is.readObject();
             this.disjunction = (DisjunctionSymbol) is.readObject();

@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.truthtable;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.miscellaneous.ButtonsLabels;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.truthtable.events.TruthTableButtonPressed;
 import javafx.scene.control.Button;
 
@@ -20,7 +21,8 @@ public class TruthTableButton extends Button {
     }
 
     private void setThisFx() {
-        super.setText("Truth Table");
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.TRUTH_TABLE).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.TRUTH_TABLE).fontProperty());
         super.setDisable(true);
         super.setMinWidth(110);
     }

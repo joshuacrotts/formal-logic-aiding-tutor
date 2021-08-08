@@ -3,6 +3,8 @@ package com.flat.tools.data.serial;
 import com.flat.models.data.algorithms.Algorithms;
 import com.flat.models.data.logicsymbols.LogicSymbols;
 import com.flat.models.data.menubar.MenuBar;
+import com.flat.models.data.miscellaneous.ButtonsLabels;
+import com.flat.models.data.rulesaxioms.RulesAxioms;
 import com.flat.models.data.settings.Settings;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.tools.data.base.enums.LocalData;
@@ -18,6 +20,8 @@ public class SerialData {
     private LogicSymbols logicSymbols;
     private MenuBar menuBar;
     private Settings settings;
+    private RulesAxioms rulesAxioms;
+    private ButtonsLabels buttonsLabels;
 
     private SerialData (JsonLanguage _language) {
         this.update(_language);
@@ -46,6 +50,14 @@ public class SerialData {
         return settings;
     }
 
+    public RulesAxioms getRulesAxioms() {
+        return rulesAxioms;
+    }
+
+    public ButtonsLabels getButtonsLabels() {
+        return buttonsLabels;
+    }
+
     // Setters for object's attributes.
     public void setAlgorithms(Algorithms algorithms) {
         this.algorithms = algorithms;
@@ -61,6 +73,14 @@ public class SerialData {
 
     public void setSettings(Settings settings) {
         this.settings = settings;
+    }
+
+    public void setRulesAxioms(RulesAxioms rulesAxioms) {
+        this.rulesAxioms = rulesAxioms;
+    }
+
+    public void setButtonsLabels(ButtonsLabels buttonsLabels) {
+        this.buttonsLabels = buttonsLabels;
     }
 
     public final void update (JsonLanguage _language) {
@@ -80,10 +100,12 @@ public class SerialData {
         this.logicSymbols = new LogicSymbols();
         this.menuBar = new MenuBar();
         this.settings = new Settings();
+        this.rulesAxioms = new RulesAxioms();
+        this.buttonsLabels = new ButtonsLabels();
     }
 
     public final boolean languageDirectoryExists (JsonLanguage _language) {
-        return new File(LocalData.Paths.SERIAL_ROOT.getFilePath() + "/" + _language.getCode()).isDirectory();
+        return new File(LocalData.Paths.SERIAL_ROOT.getFilePath() + _language.getCode()).isDirectory();
     }
 
     private void readData (JsonLanguage _language) {
@@ -91,6 +113,8 @@ public class SerialData {
         this.logicSymbols = SerialTools.deserializeObject(_language, LocalData.File.LOGIC_SYMBOLS, LogicSymbols.class);
         this.menuBar = SerialTools.deserializeObject(_language, LocalData.File.MENU_BAR, MenuBar.class);
         this.settings = SerialTools.deserializeObject(_language, LocalData.File.SETTINGS, Settings.class);
+        this.rulesAxioms = SerialTools.deserializeObject(_language, LocalData.File.RULES_AXIOMS, RulesAxioms.class);
+        this.buttonsLabels = SerialTools.deserializeObject(_language, LocalData.File.BUTTONS_LABELS, ButtonsLabels.class);
     }
 
     private void translateData (JsonLanguage _language) {
@@ -98,6 +122,8 @@ public class SerialData {
         this.logicSymbols.translate(_language);
         this.menuBar.translate(_language);
         this.settings.translate(_language);
+        this.rulesAxioms.translate(_language);
+        this.buttonsLabels.translate(_language);
     }
 
     private void writeData (JsonLanguage _language) {
@@ -105,6 +131,8 @@ public class SerialData {
         SerialTools.serializeObject(_language, LocalData.File.LOGIC_SYMBOLS, this.logicSymbols, LogicSymbols.class);
         SerialTools.serializeObject(_language, LocalData.File.MENU_BAR, this.menuBar, MenuBar.class);
         SerialTools.serializeObject(_language, LocalData.File.SETTINGS, this.settings, Settings.class);
+        SerialTools.serializeObject(_language, LocalData.File.RULES_AXIOMS, this.rulesAxioms, RulesAxioms.class);
+        SerialTools.serializeObject(_language, LocalData.File.BUTTONS_LABELS, this.buttonsLabels, ButtonsLabels.class);
     }
 
 }

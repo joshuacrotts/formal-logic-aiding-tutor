@@ -1,13 +1,14 @@
 package com.flat.view.main.panes.right.children.top.practicetoggle.pane;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.miscellaneous.ButtonsLabels;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.children.PracticeModeToggleSwitch;
+import com.flat.view.main.panes.right.children.top.practicetoggle.pane.children.ToggleText;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.PracticeModeToggle;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.css.PseudoClass;
 import javafx.geometry.VPos;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 /**
@@ -17,7 +18,7 @@ import javafx.scene.text.TextAlignment;
 public class PracticeModeTogglePane extends Pane {
     // Attributes.
     private SimpleBooleanProperty toggle = new SimpleBooleanProperty(false);
-    private Text toggleText = new Text("Practice Mode: OFF");
+    private ToggleText toggleText = new ToggleText();
     // Children.
     private PracticeModeToggleSwitch toggleSwitch = new PracticeModeToggleSwitch();
 
@@ -35,6 +36,7 @@ public class PracticeModeTogglePane extends Pane {
         super.getChildren().addAll(this.toggleText, this.toggleSwitch);
         super.setWidth(140);
         super.setMaxWidth(140);
+        super.setMinHeight(20);
         super.setHeight(20);
         super.setMaxHeight(20);
         super.setLayoutX(0);
@@ -64,11 +66,11 @@ public class PracticeModeTogglePane extends Pane {
 
     private void setToggleText () {
             if (this.toggle.getValue()) {
-                this.toggleText.setText("Practice Mode: ON");
+                this.toggleText.textProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.PRACTICE_MODE_ON).textProperty());
                 this.toggleText.setLayoutX(10);
             }
             else {
-                this.toggleText.setText("Practice Mode: OFF");
+                this.toggleText.textProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.PRACTICE_MODE_OFF).textProperty());
                 this.toggleText.setLayoutX(super.getWidth() - this.toggleText.getLayoutBounds().getWidth() - 10);
             }
             this.toggleText.setLayoutY((super.getHeight()) / 2);

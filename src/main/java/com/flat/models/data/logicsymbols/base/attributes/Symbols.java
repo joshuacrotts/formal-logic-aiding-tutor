@@ -14,7 +14,6 @@ import java.util.LinkedList;
  * @author Christopher Brantley <c_brantl@uncg.edu>
  */
 public class Symbols extends Translatable implements Serializable {
-
     private KeyedText general;
     private KeyedTextArrayList alternate = new KeyedTextArrayList();
 

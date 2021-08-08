@@ -53,6 +53,7 @@ public class PredicateSymbols extends Translatable implements Serializable {
 
     private void writeObject (ObjectOutputStream os) {
         try {
+            os.writeObject(this.predicate);
             os.writeObject(this.existential);
             os.writeObject(this.universal);
         }
@@ -63,6 +64,7 @@ public class PredicateSymbols extends Translatable implements Serializable {
 
     private void readObject (ObjectInputStream  is) {
         try {
+            this.predicate = (KeyedText) is.readObject();
             this.existential = (ExistentialSymbol) is.readObject();
             this.universal = (UniversalSymbol) is.readObject();
         }

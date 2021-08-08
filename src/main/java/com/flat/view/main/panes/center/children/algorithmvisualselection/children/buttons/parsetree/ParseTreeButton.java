@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.parsetree;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.miscellaneous.ButtonsLabels;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.parsetree.events.ParseTreeButtonPressed;
 import javafx.scene.control.Button;
 
@@ -20,7 +21,8 @@ public class ParseTreeButton extends Button {
     }
 
     private void setThisFx () {
-        super.setText("Parse Tree");
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.PARSE_TREE).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.PARSE_TREE).fontProperty());
         super.setDisable(true);
         super.setMinWidth(110);
     }

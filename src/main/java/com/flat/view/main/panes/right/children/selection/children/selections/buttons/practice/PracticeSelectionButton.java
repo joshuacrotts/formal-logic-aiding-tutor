@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.right.children.selection.children.selections.buttons.practice;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.miscellaneous.ButtonsLabels;
 import com.flat.view.main.panes.right.children.selection.children.selections.buttons.practice.events.PracticeSelectionButtonPressed;
 import javafx.scene.control.Button;
 
@@ -19,7 +20,8 @@ public class PracticeSelectionButton extends Button {
     }
 
     private void setThisFx () {
-        super.setText("Practice");
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.PRACTICE).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.PRACTICE).fontProperty());
         super.setMinWidth(80);
         this.setOnAction();
     }

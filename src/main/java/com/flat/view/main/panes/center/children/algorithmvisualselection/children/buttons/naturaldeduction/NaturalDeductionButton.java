@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.naturaldeduction;
 
 import com.flat.controller.Controller;
+import com.flat.models.data.miscellaneous.ButtonsLabels;
 import com.flat.view.main.panes.center.children.algorithmvisualselection.children.buttons.naturaldeduction.events.NaturalDeductionButtonPressed;
 import javafx.scene.control.Button;
 
@@ -20,7 +21,8 @@ public class NaturalDeductionButton extends Button {
     }
 
     private void setThisFx () {
-        super.setText("Natural Deduction");
+        super.textProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.NATURAL_DEDUCTION).textProperty());
+        super.fontProperty().bind(Controller.MAPPED_TEXT.getValue(ButtonsLabels.class, ButtonsLabels.Keys.NATURAL_DEDUCTION).fontProperty());
         super.setDisable(true);
         super.setMinWidth(110);
     }
