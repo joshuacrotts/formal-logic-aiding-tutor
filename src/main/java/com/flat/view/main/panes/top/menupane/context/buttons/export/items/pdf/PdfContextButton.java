@@ -3,9 +3,9 @@ package com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf;
 import com.flat.controller.Controller;
 import com.flat.models.data.menubar.menus.export.type.pdf.ExportAsPdfMenu;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
-import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfParseTreeContextButton;
-import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfTruthTableContextButton;
-import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.PdfTruthTreeContextButton;
+import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.parsetree.PdfParseTreeContextButton;
+import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.truthtable.PdfTruthTableContextButton;
+import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.truthtree.PdfTruthTreeContextButton;
 
 /**
  *

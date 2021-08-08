@@ -49,6 +49,14 @@ public abstract class Event {
 
         // Events thrown from parse tree practice pane.
         PRACTICE_TREE_NODE_LAYOUT_SET,
+
+        // Export events.
+        EXPORT_PDF_TRUTH_TREE,
+        EXPORT_PDF_TRUTH_TABLE,
+        EXPORT_PDF_PARSE_TREE,
+        EXPORT_LATEX_TRUTH_TREE,
+        EXPORT_LATEX_TRUTH_TABLE,
+        EXPORT_LATEX_PARSE_TREE,
     }
 
     private Type type;

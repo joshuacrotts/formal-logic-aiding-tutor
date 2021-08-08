@@ -14,3 +14,7 @@
     -fx-background-insets: -.25;
     -fx-border-insets: -.25;
 }
+
+.menuButton:disabled {
+    -fx-text-fill: gray;
+}

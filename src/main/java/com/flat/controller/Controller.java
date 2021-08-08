@@ -13,6 +13,7 @@ import com.flat.tools.buses.databus.DataBus;
 import com.flat.tools.data.json.JsonData;
 import com.flat.tools.data.serial.SerialData;
 import com.flat.tools.buses.eventbus.EventBus;
+import com.flat.tools.exporter.ViewExporter;
 import com.flat.tools.translation.FLATTranslate;
 import com.flat.view.data.fx.FxData;
 import com.flat.view.enums.View;
@@ -43,6 +44,7 @@ public class Controller {
     public final static JsonData JSON_DATA = JsonData.getInstance(JSON_LANGUAGE);;
     public final static ApplyAlgorithmAdapter ALGORITHM_ADAPTER = new ApplyAlgorithmAdapter(SERIAL_DATA.getAlgorithms());;
     public final static TreeLayout TREE_LAYOUT = new TreeLayout(50, 40);
+    public final static ViewExporter VIEW_EXPORTER = new ViewExporter();
 
     // Retrieves view associated with the enum and displays it on STAGE.
     public static void changeView (View _view) {
@@ -63,8 +65,10 @@ public class Controller {
     public static void inputNDPracticeFormula (String _formula) {
         ArrayList <WffTree> linkedTree = FLATParserAdapter.getAbstractSyntaxTree(_formula);
         Controller.displaySyntaxErrorsPopup();
-        if (linkedTree != null)
+        if (linkedTree != null) {
             EVENT_BUS.throwEvent(new SolvedFormula(linkedTree));
+            VIEW_EXPORTER.setWffTree(linkedTree.get(0));
+        }
         else
             EVENT_BUS.throwEvent(new UnsolvedFormula());
     }
@@ -72,8 +76,10 @@ public class Controller {
     public static void inputFormulaToAdapter (String _formula) {
         ArrayList <WffTree> linkedTree = FLATParserAdapter.getAbstractSyntaxTree(_formula);
         Controller.displaySyntaxErrorsPopup();
-        if (linkedTree != null)
+        if (linkedTree != null) {
             ALGORITHM_ADAPTER.setWffTree(linkedTree);
+            VIEW_EXPORTER.setWffTree(linkedTree.get(0));
+        }
         else
             EVENT_BUS.throwEvent(new UnsolvedFormula());
     }

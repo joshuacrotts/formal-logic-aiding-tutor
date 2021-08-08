@@ -3,9 +3,9 @@ package com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex
 import com.flat.controller.Controller;
 import com.flat.models.data.menubar.menus.export.type.latex.ExportAsLatexMenu;
 import com.flat.view.main.panes.top.menupane.context.base.ContextButton;
-import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexParseTreeContextButton;
-import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexTruthTableContextButton;
-import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.LatexTruthTreeContextButton;
+import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.parsetree.LatexParseTreeContextButton;
+import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.truthtable.LatexTruthTableContextButton;
+import com.flat.view.main.panes.top.menupane.context.buttons.export.items.latex.items.truthtree.LatexTruthTreeContextButton;
 
 /**
  *
