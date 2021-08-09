@@ -26,6 +26,7 @@ In the settings menu, there is an __Advanced__ section. For the beginning studen
 
 <h2>Using FLAT</h2>
 To use FLAT:
+
 1. Make sure you have Java 8 installed (necessary for JavaFX). We recommend Amazon Corretto 8. Then, download the FLAT-Jar directory to your computer, and click ```FLAT.jar```.
 2. Type a well-formed formula in propositional or first-order predicate logic in the bottom text input field.
 
