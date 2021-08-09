@@ -1,0 +1,8 @@
+/*
+    Created on : Aug 1, 2021, 3:33:42 PM
+    Author     : Christopher Brantley <c_brantl@uncg.edu>
+*/
+
+.practiceTruthButton:selected {
+    -fx-background-color: #2EA3F7;
+}

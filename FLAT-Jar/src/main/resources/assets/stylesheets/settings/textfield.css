@@ -1,0 +1,17 @@
+/*
+    Created on : Jun 30, 2021, 9:43:24 AM
+    Author     : Christopher Brantley <c_brantl@uncg.edu>
+*/
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: lightblue;
+    -fx-background-insets: 2 2 0 0;
+    -fx-background-outsets: 1 1 1 1;
+}
+
+.text-field:focused {
+    -fx-border-color: lightskyblue;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-outsets: 2 2 2 2;
+}

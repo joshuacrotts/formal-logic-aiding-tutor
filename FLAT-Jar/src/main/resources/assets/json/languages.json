@@ -1,0 +1,632 @@
+[
+  {
+    "languageName": "Afrikaans",
+    "nativeName": "Afrikaans",
+    "code": "af",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Albanian",
+    "nativeName": "Shqip",
+    "code": "sq",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Amharic",
+    "nativeName": "አማርኛ",
+    "code": "am",
+    "font": "AMHARIC"
+  },
+  {
+    "languageName": "Arabic",
+    "nativeName": "العربية",
+    "code": "ar",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Armenian",
+    "nativeName": "Հայերեն",
+    "code": "hy",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Azerbaijani",
+    "nativeName": "azərbaycan",
+    "code": "az",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Basque",
+    "nativeName": "euskara",
+    "code": "eu",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Belarusian",
+    "nativeName": "беларуская",
+    "code": "be",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Bengali",
+    "nativeName": "বাংলা",
+    "code": "bn",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Bosnian",
+    "nativeName": "bosanski",
+    "code": "bs",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Bulgarian",
+    "nativeName": "български",
+    "code": "bg",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Burmese",
+    "nativeName": "ဗမာစာ",
+    "code": "my",
+    "font": "BURMESE"
+  },
+  {
+    "languageName": "Catalan",
+    "nativeName": "català",
+    "code": "ca",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Chichewa",
+    "nativeName": "chiCheŵa",
+    "code": "ny",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Chinese",
+    "nativeName": "中文",
+    "code": "zh",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Corsican",
+    "nativeName": "corsu",
+    "code": "co",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Croatian",
+    "nativeName": "hrvatski",
+    "code": "hr",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Czech",
+    "nativeName": "čeština",
+    "code": "cs",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Danish",
+    "nativeName": "dansk",
+    "code": "da",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Dutch",
+    "nativeName": "Nederlands",
+    "code": "nl",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "English",
+    "nativeName": "English",
+    "code": "en",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Esperanto",
+    "nativeName": "Esperanto",
+    "code": "eo",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Estonian",
+    "nativeName": "eesti",
+    "code": "et",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Finnish",
+    "nativeName": "suomi",
+    "code": "fi",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "French",
+    "nativeName": "français",
+    "code": "fr",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Galician",
+    "nativeName": "Galego",
+    "code": "gl",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Georgian",
+    "nativeName": "ქართული",
+    "code": "ka",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "German",
+    "nativeName": "Deutsch",
+    "code": "de",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Greek",
+    "nativeName": "ελληνικά",
+    "code": "el",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Gujarati",
+    "nativeName": "ગુજરાતી",
+    "code": "gu",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Haitian",
+    "nativeName": "Kreyòl",
+    "code": "ht",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Hausa",
+    "nativeName": "(Hausa)",
+    "code": "ha",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Hebrew",
+    "nativeName": "עברית",
+    "code": "he",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Hindi",
+    "nativeName": "हिन्दी",
+    "code": "hi",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Hungarian",
+    "nativeName": "magyar",
+    "code": "hu",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Indonesian",
+    "nativeName": "Bahasa",
+    "code": "id",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Irish",
+    "nativeName": "Gaeilge",
+    "code": "ga",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Igbo",
+    "nativeName": "Asụsụ",
+    "code": "ig",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Icelandic",
+    "nativeName": "Íslenska",
+    "code": "is",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Italian",
+    "nativeName": "Italiano",
+    "code": "it",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Japanese",
+    "nativeName": "日本語",
+    "code": "ja",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Javanese",
+    "nativeName": "ꦧꦱꦗꦮ",
+    "code": "jv",
+    "font": "JAVANESE"
+  },
+  {
+    "languageName": "Kannada",
+    "nativeName": "ಕನ್ನಡ",
+    "code": "kn",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Kazakh",
+    "nativeName": "қазақ",
+    "code": "kk",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Central",
+    "nativeName": "ខ្មែរ",
+    "code": "km",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Kinyarwanda",
+    "nativeName": "Ikinyarwanda",
+    "code": "rw",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Kirghiz",
+    "nativeName": "Кыргызча",
+    "code": "ky",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Korean",
+    "nativeName": "한국어",
+    "code": "ko",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Kurdish",
+    "nativeName": "Kurdî",
+    "code": "ku",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Latin",
+    "nativeName": "latine",
+    "code": "la",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Luxembourgish",
+    "nativeName": "Lëtzebuergesch",
+    "code": "lb",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Lao",
+    "nativeName": "ພາສາລາວ",
+    "code": "lo",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Lithuanian",
+    "nativeName": "lietuvių",
+    "code": "lt",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Latvian",
+    "nativeName": "latviešu",
+    "code": "lv",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Macedonian",
+    "nativeName": "македонски",
+    "code": "mk",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Malagasy",
+    "nativeName": "fiteny",
+    "code": "mg",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Malay",
+    "nativeName": "Bahasa",
+    "code": "ms",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Malayalam",
+    "nativeName": "മലയാളം",
+    "code": "ml",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Maltese",
+    "nativeName": "Malti",
+    "code": "mt",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Maori",
+    "nativeName": "te",
+    "code": "mi",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Marathi",
+    "nativeName": "मराठी",
+    "code": "mr",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Mongolian",
+    "nativeName": "Монгол",
+    "code": "mn",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Nepali",
+    "nativeName": "नेपाली",
+    "code": "ne",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Norwegian",
+    "nativeName": "Norsk",
+    "code": "no",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Oriya",
+    "nativeName": "ଓଡ଼ିଆ",
+    "code": "or",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Punjabi",
+    "nativeName": "ਪੰਜਾਬੀ",
+    "code": "pa",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Persian",
+    "nativeName": "فارسی",
+    "code": "fa",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Polish",
+    "nativeName": "język",
+    "code": "pl",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Pashto",
+    "nativeName": "پښتو",
+    "code": "ps",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Portuguese",
+    "nativeName": "Português",
+    "code": "pt",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Romanian",
+    "nativeName": "Română",
+    "code": "ro",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Russian",
+    "nativeName": "русский",
+    "code": "ru",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Sindhi",
+    "nativeName": "सिन्धी",
+    "code": "sd",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Samoan",
+    "nativeName": "gagana",
+    "code": "sm",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Serbian",
+    "nativeName": "српски",
+    "code": "sr",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Gaelic",
+    "nativeName": "Gàidhlig",
+    "code": "gd",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Shona",
+    "nativeName": "chiShona",
+    "code": "sn",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Sinhala",
+    "nativeName": "සිංහල",
+    "code": "si",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Slovak",
+    "nativeName": "Slovenčina",
+    "code": "sk",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Slovenian",
+    "nativeName": "Slovenski",
+    "code": "sl",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Somali",
+    "nativeName": "Soomaaliga",
+    "code": "so",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Southern",
+    "nativeName": "Sesotho",
+    "code": "st",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Spanish",
+    "nativeName": "Español",
+    "code": "es",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Sundanese",
+    "nativeName": "Basa",
+    "code": "su",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Swahili",
+    "nativeName": "Kiswahili",
+    "code": "sw",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Swedish",
+    "nativeName": "Svenska",
+    "code": "sv",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Tamil",
+    "nativeName": "தமிழ்",
+    "code": "ta",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Telugu",
+    "nativeName": "తెలుగు",
+    "code": "te",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Tajik",
+    "nativeName": "тоҷикӣ",
+    "code": "tg",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Thai",
+    "nativeName": "ไทย",
+    "code": "th",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Turkmen",
+    "nativeName": "Türkmen",
+    "code": "tk",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Tagalog",
+    "nativeName": "Wikang",
+    "code": "tl",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Turkish",
+    "nativeName": "Türkçe",
+    "code": "tr",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Tatar",
+    "nativeName": "татар",
+    "code": "tt",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Uighur",
+    "nativeName": "ئۇيغۇرچە‎",
+    "code": "ug",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Ukrainian",
+    "nativeName": "Українська",
+    "code": "uk",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Urdu",
+    "nativeName": "اردو",
+    "code": "ur",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Uzbek",
+    "nativeName": "Oʻzbek",
+    "code": "uz",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Vietnamese",
+    "nativeName": "Tiếng",
+    "code": "vi",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Welsh",
+    "nativeName": "Cymraeg",
+    "code": "cy",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Western",
+    "nativeName": "Frysk",
+    "code": "fy",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Xhosa",
+    "nativeName": "isiXhosa",
+    "code": "xh",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Yiddish",
+    "nativeName": "ייִדיש",
+    "code": "yi",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Yoruba",
+    "nativeName": "Yorùbá",
+    "code": "yo",
+    "font": "DEFAULT"
+  },
+  {
+    "languageName": "Zulu",
+    "nativeName": "isiZulu",
+    "code": "zu",
+    "font": "DEFAULT"
+  }
+]

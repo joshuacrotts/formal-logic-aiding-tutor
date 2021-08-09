@@ -1,0 +1,28 @@
+/*
+    Created on : Jun 30, 2021, 6:04:39 PM
+    Author     : Christopher Brantley <c_brantl@uncg.edu>
+*/
+
+.dialog-pane .header-panel {
+    -fx-background-color: white;
+}
+
+.dialog-pane .header-panel .BorderPane {
+    -fx-background-color: white;
+}
+
+.dialog-pane .header-panel .graphic-container {
+    -fx-background-color: white;
+}
+
+.dialog-pane .header-panel .graphic-container .StackPane {
+    -fx-background-color: white;
+}
+
+.dialog-pane .content {
+    -fx-background-color: white;
+}
+
+.dialog-pane .button-bar {
+    -fx-background-color: white;
+}

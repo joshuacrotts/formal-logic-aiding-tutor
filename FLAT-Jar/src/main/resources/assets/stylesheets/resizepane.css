@@ -1,0 +1,26 @@
+/*
+    Created on : Jun 20, 2021, 5:10:21 PM
+    Author     : Christopher Brantley
+*/
+
+#resizePaneVertical, #resizePaneHorizontal {
+    -fx-background-color: gray;
+}
+
+#resizePaneVertical {
+    -fx-min-height: 5px;
+    -fx-max-height: 5px;
+}
+
+#resizePaneVertical:hover {
+    -fx-cursor: n-resize;
+}
+
+#resizePaneHorizontal {
+    -fx-min-width: 5px;
+    -fx-max-width: 5px;
+}
+
+#resizePaneHorizontal:hover {
+    -fx-cursor: e-resize;
+}
