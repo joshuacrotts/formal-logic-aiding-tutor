@@ -26,13 +26,13 @@ In the settings menu, there is an __Advanced__ section. For the beginning studen
 
 <h2>Using FLAT</h2>
 To use FLAT:
-
-1. Open the application and type a well-formed formula in propositional or first-order predicate logic in the bottom text input field.
+1. Make sure you have Java 8 installed (necessary for JavaFX). We recommend Amazon Corretto 8. Then, download the FLAT-Jar directory to your computer, and click ```FLAT.jar```.
+2. Type a well-formed formula in propositional or first-order predicate logic in the bottom text input field.
 
    _Note:_ Make sure to use parentheses around the wffs and to avoid parentheses when typing predicates (i.e., use Pxyz and not P(x, y, z)). Unary operators such as negation do not use parentheses. All binary operators require parentheses. In other words, there is __no implicit precedence of operators!__
-2. Click the Solve button. If an error pops up, read it, then re-enter your wff making sure to correct any mistakes. After this, the top three drop-downs should be populated with algorithms appropriate for your input.
-3. Now, click the algorithm you want to try. Then, click the Apply button. Assuming everything is done correctly, the buttons below the three drop-downs will light up (again, depending on which algorithm you used). Click these to investigate the output.
-4. Trees are draggable and adjustable. To adjust a subtree, just click and drag it around. To zoom in and out, use the mouse wheel.
+3. Click the Solve button. If an error pops up, read it, then re-enter your wff making sure to correct any mistakes. After this, the top three drop-downs should be populated with algorithms appropriate for your input.
+4. Now, click the algorithm you want to try. Then, click the Apply button. Assuming everything is done correctly, the buttons below the three drop-downs will light up (again, depending on which algorithm you used). Click these to investigate the output.
+5. Trees are draggable and adjustable. To adjust a subtree, just click and drag it around. To zoom in and out, use the mouse wheel.
 
 __Practice Mode__ is the switch that allows students to test their understanding of the algorithms. When the switch is enabled, the "solver" functionality temporarily disables itself. From here, use the above process to choose an algorithm, but after hitting apply, the right-hand pane should populate with a question and input field. Follow the instructions to solve the question.
 
