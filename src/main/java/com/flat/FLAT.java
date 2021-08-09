@@ -30,7 +30,6 @@ public class FLAT extends Application {
         for (String fontFamily: fontFamilies) {
             Font.font(fontFamily);
         }
-        System.setProperty("GOOGLE_API_KEY", "AIzaSyBWaA57xlPumWThhPfGmHSkPFj82fMRa1Y");
         Application.setUserAgentStylesheet(ResourceManager.getDefaultStyle());
         this.initializeStage(_stage);
         Controller.setSTAGE(_stage);

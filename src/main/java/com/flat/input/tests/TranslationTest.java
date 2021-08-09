@@ -7,7 +7,6 @@ import com.google.cloud.translate.Translation;
 public class TranslationTest {
 
     public static void main(String[] args) {
-        System.setProperty("GOOGLE_API_KEY", "");
         Translate translate = TranslateOptions.getDefaultInstance().getService();
         Translation translation = translate.translate("Hola mundo");
         System.out.printf("Translated text:\n\t%s\n", translation.getTranslatedText());
