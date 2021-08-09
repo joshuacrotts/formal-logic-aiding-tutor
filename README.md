@@ -4,7 +4,7 @@
 FLAT (the Formal Logic Aiding Tutor) is an extension to LLAT (the Logic Learning Assistant Tool) that aims to improve the overall pedagogical value. That is, rather than being only a brute-force solver, we have included new features that help students better understand the logic.
 
 <h2>Features</h2>
-FLAT features several algorithms, or subfeatures, for students to use. These include
+FLAT has several algorithms, or subfeatures, for students to use. These include
 
 - Natural Deduction Prover (no conditional or indirect proofs)
 - Truth Tree (semantic tableaux) Generator
