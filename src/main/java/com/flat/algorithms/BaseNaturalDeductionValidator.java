@@ -255,9 +255,11 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      */
     protected boolean findTransposition(WffTree _impNode, NDWffTree _parent) {
         if (_impNode.isImp() && !_parent.isTPActive() && !this.isConclusion(_parent)) {
-            // Binary negation transposition.
-            WffTree binAntecedent = BaseTruthTreeGenerator.getFlippedNode(_impNode.getChild(1));
-            WffTree binConsequent = BaseTruthTreeGenerator.getFlippedNode(_impNode.getChild(0));
+            // Binary negation transposition. Binary negation causes problems
+            // with quantifiers, so this only either removes or adds a negation -
+            // there are no flipped operators.
+            WffTree binAntecedent = BaseTruthTreeGenerator.getFlippedNode(_impNode.getChild(1), true);
+            WffTree binConsequent = BaseTruthTreeGenerator.getFlippedNode(_impNode.getChild(0), true);
             ImpNode binTranspositionNode = new ImpNode(binAntecedent, binConsequent);
 
             // Direct transposition.
@@ -265,7 +267,6 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
             WffTree directConsequent = BaseTruthTreeGenerator.getNegatedNode(_impNode.getChild(0));
             ImpNode directTranspositionNode = new ImpNode(directAntecedent, directConsequent);
 
-            // Add to premise list.
             _parent.setFlags(NDFlag.TP);
             this.addPremise(new NDWffTree(directTranspositionNode, NDFlag.TP, NDStep.TP, _parent));
             this.addPremise(new NDWffTree(binTranspositionNode, NDFlag.TP, NDStep.TP, _parent));

@@ -174,17 +174,17 @@ public class ParserTest {
             // Natural deduction prover.
 //            NaturalDeductionProofVerifier ndpv = new NaturalDeductionProofVerifier(resultList);
 //            ndpv.proveNaturalDeductionStdin();
-//            ArrayList<NDWffTree> ndArgs = ndValidator.getNaturalDeductionProof();
-//            System.out.println();
-//            if (ndArgs == null) {
-//                System.err.println("Either the argument is invalid (check the above result) or it timed out!");
-//            } else {
-//                for (int i = 0; i < ndArgs.size(); i++) {
-//                    NDWffTree wff = ndArgs.get(i);
-//                    System.out.println((i + 1) + ": " + wff);
-//                }
-//                System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
-//            }
+            ArrayList<NDWffTree> ndArgs = ndValidator.getNaturalDeductionProof();
+            System.out.println();
+            if (ndArgs == null) {
+                System.err.println("Either the argument is invalid (check the above result) or it timed out!");
+            } else {
+                for (int i = 0; i < ndArgs.size(); i++) {
+                    NDWffTree wff = ndArgs.get(i);
+                    System.out.println((i + 1) + ": " + wff);
+                }
+                System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "  ■");
+            }
 //
 //            System.out.println("\n\nIndirect Natural Deduction Proof:");
 //            // Indirect proof natural deduction prover.

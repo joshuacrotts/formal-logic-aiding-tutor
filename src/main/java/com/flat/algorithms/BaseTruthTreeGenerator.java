@@ -127,6 +127,9 @@ public abstract class BaseTruthTreeGenerator {
      * <p>
      * If our input is a wff P, then we return ~P. Similarly,
      * If our input is a wff ~P, then we return P.
+     * If our input is ~(x)P, then we return (Ex)~P
+     * If our input is ~(E)P, then we return (x)~P
+     * The converse is true for the quantifiers.
      *
      * @param _wff - WffTree object to negate.
      * @return negated version of WffTree.
@@ -154,6 +157,27 @@ public abstract class BaseTruthTreeGenerator {
         }
 
         return negWff;
+    }
+
+    /**
+     * Computes the flipped version of a wff that excludes quantifiers. For instance,
+     * If our input is (x)Px, we return ~(x)Px.
+     * Similarly, if our input is (Ex)Px, we return ~(Ex)Px.
+     *
+     * @param _wff
+     * @param quant
+     * @return
+     */
+    public static WffTree getFlippedNode(WffTree _wff, boolean quant) {
+        if (quant) {
+            if (_wff.isNegation()) {
+                return _wff.getChild(0);
+            } else {
+                return new NegNode(_wff);
+            }
+        }
+        throw new IllegalArgumentException("Error - this method should only be called with a wff that has a quantifier. " +
+                "Try calling getFlippedNode(tree);");
     }
 
     /**
