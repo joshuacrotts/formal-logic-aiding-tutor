@@ -245,7 +245,9 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
 
     /**
      * Determines if we can apply the transposition rule to an implication node. Transposition is the contrapositive
-     * of an implication.
+     * of an implication. Transposition is valid when we have an implication (A -> B), and
+     * we return (~B -> ~A). If the original implication has negations e.g., (~A -> B), both (~B -> ~~A) and (~B -> A)
+     * are valid transposition transformations.
      *
      * @param _impNode
      * @param _parent
@@ -253,11 +255,20 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      */
     protected boolean findTransposition(WffTree _impNode, NDWffTree _parent) {
         if (_impNode.isImp() && !_parent.isTPActive() && !this.isConclusion(_parent)) {
-            NegNode antecedent = new NegNode(_impNode.getChild(1));
-            NegNode consequent = new NegNode(_impNode.getChild(0));
-            ImpNode transpositionNode = new ImpNode(antecedent, consequent);
+            // Binary negation transposition.
+            WffTree binAntecedent = BaseTruthTreeGenerator.getFlippedNode(_impNode.getChild(1));
+            WffTree binConsequent = BaseTruthTreeGenerator.getFlippedNode(_impNode.getChild(0));
+            ImpNode binTranspositionNode = new ImpNode(binAntecedent, binConsequent);
+
+            // Direct transposition.
+            WffTree directAntecedent = BaseTruthTreeGenerator.getNegatedNode(_impNode.getChild(1));
+            WffTree directConsequent = BaseTruthTreeGenerator.getNegatedNode(_impNode.getChild(0));
+            ImpNode directTranspositionNode = new ImpNode(directAntecedent, directConsequent);
+
+            // Add to premise list.
             _parent.setFlags(NDFlag.TP);
-            this.addPremise(new NDWffTree(transpositionNode, NDFlag.TP, NDStep.TP, _parent));
+            this.addPremise(new NDWffTree(directTranspositionNode, NDFlag.TP, NDStep.TP, _parent));
+            this.addPremise(new NDWffTree(binTranspositionNode, NDFlag.TP, NDStep.TP, _parent));
             return true;
         }
         return false;
