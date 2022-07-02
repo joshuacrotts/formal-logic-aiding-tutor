@@ -285,9 +285,9 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return
      */
     protected boolean findConstructiveDilemma(WffTree _disjNode, NDWffTree _parent) {
-        if (_disjNode.isOr() && !_parent.isCDActive()) {
-            WffTree lhs = _disjNode.getChild(0);
-            WffTree rhs = _disjNode.getChild(1);
+        if (_parent.getWffTree().isOr() && !_parent.isCDActive()) {
+            WffTree lhs = _parent.getWffTree().getChild(0);
+            WffTree rhs = _parent.getWffTree().getChild(1);
             NDWffTree lhsImp = null;
             NDWffTree rhsImp = null;
             for (NDWffTree ndWffTree : this.premisesList) {
@@ -319,9 +319,9 @@ public abstract class BaseNaturalDeductionValidator implements NaturalDeductionA
      * @return
      */
     protected boolean findDestructiveDilemma(WffTree _disjNode, NDWffTree _parent) {
-        if (_disjNode.isOr() && !_parent.isDDActive()) {
-            WffTree lhs = _disjNode.getChild(0);
-            WffTree rhs = _disjNode.getChild(1);
+        if (_parent.getWffTree().isOr() && !_parent.isDDActive()) {
+            WffTree lhs = _parent.getWffTree().getChild(0);
+            WffTree rhs = _parent.getWffTree().getChild(1);
             NDWffTree lhsImp = null;
             NDWffTree rhsImp = null;
             for (NDWffTree ndWffTree : this.premisesList) {
