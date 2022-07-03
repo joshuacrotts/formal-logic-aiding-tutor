@@ -26,7 +26,7 @@ public class TreeNodePracticeText extends Text {
 
     private void setThisOnMousePressed () {
         super.setOnMousePressed(event -> {
-            System.out.println("is pressed");
+            System.out.println(event.getButton() + " is pressed");
             if (userAnswer == null)
                 userAnswer = false;
             else

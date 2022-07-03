@@ -15,10 +15,6 @@ public class ParseTreeNode extends FxTreeNode {
         super.getChildren().add(new TreeNodeText(_wffTree.getSymbol()));
         int counter = 1;
         ParseTreeNode curNode;
-        System.out.println("THIS: " + _wffTree.getStringRep() + ", ch: " + _wffTree.getChildrenSize());
-        for (WffTree wffTree : _wffTree.getChildren()) {
-            System.out.println(": " + wffTree.getStringRep());
-        }
         for (WffTree wffTree : _wffTree.getChildren()) {
             curNode = new ParseTreeNode(wffTree);
             curNode.setTreeParent(this);
