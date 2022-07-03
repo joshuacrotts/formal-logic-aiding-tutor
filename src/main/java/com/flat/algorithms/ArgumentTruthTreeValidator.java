@@ -9,6 +9,7 @@ import com.flat.models.treenode.WffTree;
 
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.function.Predicate;
 
 /**
  *
@@ -29,7 +30,6 @@ public final class ArgumentTruthTreeValidator {
     public ArgumentTruthTreeValidator(ArrayList<WffTree> _wffTreeList) {
         this.combinedTree = new WffTree();
         Stack<WffTree> nodes = new Stack<>();
-        WffTree leaf = null;
 
         // Construct the truth tree by stacking all premises and the negated conclusion.
         for (int i = 0; i < _wffTreeList.size() - 1; i++) {
@@ -38,11 +38,7 @@ public final class ArgumentTruthTreeValidator {
             if (nodes.size() == 2) {
                 WffTree ch2 = nodes.pop();
                 WffTree ch1 = nodes.pop();
-                AndNode andNode = new AndNode(ch1, ch2);
-                // Save the leaf so we can continue adding children.
-                if (leaf != null) { leaf.addChild(andNode); }
-                leaf = andNode;
-                nodes.push(andNode);
+                nodes.push(new AndNode(ch1, ch2));
             }
         }
 
@@ -62,7 +58,7 @@ public final class ArgumentTruthTreeValidator {
         if (this.combinedTree.isPropositionalWff()) {
             this.truthTreeGenerator = new PropositionalTruthTreeGenerator(this.combinedTree);
         } else {
-            this.truthTreeGenerator = new PropositionalTruthTreeGenerator(this.combinedTree);
+            this.truthTreeGenerator = new PredicateTruthTreeGenerator(this.combinedTree);
         }
     }
 

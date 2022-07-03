@@ -59,7 +59,6 @@ public class FLATParserAdapter {
         ParseTreeWalker walker = new ParseTreeWalker();
         FLATParserListener compiler = new FLATParserListener(parser);
         walker.walk(compiler, tree);
-
         return compiler;
     }
 }
