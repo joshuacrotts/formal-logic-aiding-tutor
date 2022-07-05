@@ -47,7 +47,9 @@ We built FLAT using the Maven architecture and IntelliJ IDE. We have, however, d
 To rebuild the project, clone the repository to your computer and open it in whichever IDE you wish. Assuming it detects Maven projects correctly (Eclipse, NetBeans, and IntelliJ work), it should open and compile correctly.
 
 <h2>References</h2>
-To cite this project, use the following paper citation: to put here...
+To cite this project, use the following paper citation:
+
+Larry Joshua Crotts. 2022. *Construction and Evaluation of a Gold Standard Syntax for Formal Logic Formulas and Systems.* Master's thesis. University of North Carolina Greensboro (UNCG), Greensboro, North Carolina, USA.
 
 PDF generation uses the following remote API: https://github.com/YtoTech/latex-on-http
 
