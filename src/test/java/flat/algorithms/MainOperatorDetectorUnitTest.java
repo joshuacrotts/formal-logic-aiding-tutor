@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class MainOperatorDetectorUnitTester {
+public class MainOperatorDetectorUnitTest {
 
     private static MainOperatorDetector mainOperatorDetector;
 

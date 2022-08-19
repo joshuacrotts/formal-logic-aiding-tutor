@@ -1,5 +1,7 @@
-package flat.input;
+package flat.algorithms;
 
+import com.flat.algorithms.models.TruthTree;
+import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.input.FLATParserListener;
 import com.flat.input.tests.ParserTest;
 import com.flat.models.treenode.WffTree;
@@ -17,7 +19,9 @@ import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class AbstractSyntaxTreeUnitTester {
+public class PropositionalTruthTreeGeneratorUnitTest {
+
+    private static PropositionalTruthTreeGenerator truthTreeGenerator;
 
     /**
      * Helper function to count number of newlines in a string
@@ -103,8 +107,8 @@ public class AbstractSyntaxTreeUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "src/main/resources/testdata/ast/" + testName + ".in";
-        String expName = "src/main/resources/testdata/ast/" + testName + ".out";
+        String inName = "src/main/resources/testdata/propositionaltree/" + testName + ".in";
+        String expName = "src/main/resources/testdata/propositionaltree/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;
@@ -115,7 +119,9 @@ public class AbstractSyntaxTreeUnitTester {
         if (parser == null)
             throw new AssertionFailedError("Failed reading test input file " + inName);
         WffTree syntaxTree = parser.getSyntaxTrees().get(0);
-        syntaxTree.printSyntaxTree();
+        truthTreeGenerator = new PropositionalTruthTreeGenerator(syntaxTree);
+        TruthTree tt = truthTreeGenerator.getTruthTree();
+        System.out.println(truthTreeGenerator.print(tt));
         System.setErr(origErr);
         System.setOut(origOut);
         byte[] actual = captureOut.toByteArray();
@@ -126,7 +132,6 @@ public class AbstractSyntaxTreeUnitTester {
         } catch (IOException e) {
             throw new AssertionFailedError("Missing expected output file " + expName);
         }
-
         compare(actual, expected);
     }
 
@@ -135,7 +140,6 @@ public class AbstractSyntaxTreeUnitTester {
         goodFileTest("test001");
     }
 
-    /*
     @Test
     public void test002() {
         goodFileTest("test002");
@@ -180,80 +184,4 @@ public class AbstractSyntaxTreeUnitTester {
     public void test010() {
         goodFileTest("test010");
     }
-
-    @Test
-    public void test011() {
-        goodFileTest("test011");
-    }
-
-    @Test
-    public void test012() {
-        goodFileTest("test012");
-    }
-
-    @Test
-    public void test013() {
-        goodFileTest("test013");
-    }
-
-    @Test
-    public void test014() {
-        goodFileTest("test014");
-    }
-
-    @Test
-    public void test015() {
-        goodFileTest("test015");
-    }
-
-    @Test
-    public void test016() {
-        goodFileTest("test016");
-    }
-
-    @Test
-    public void test017() {
-        goodFileTest("test017");
-    }
-
-    @Test
-    public void test018() {
-        goodFileTest("test018");
-    }
-
-    @Test
-    public void test019() {
-        goodFileTest("test019");
-    }
-
-    @Test
-    public void test020() {
-        goodFileTest("test020");
-    }
-
-    @Test
-    public void test021() {
-        goodFileTest("test021");
-    }
-
-    @Test
-    public void test022() {
-        goodFileTest("test022");
-    }
-
-    @Test
-    public void test023() {
-        goodFileTest("test023");
-    }
-
-    @Test
-    public void test024() {
-        goodFileTest("test024");
-    }
-
-    @Test
-    public void test025() {
-        goodFileTest("test025");
-    }
-     */
 }

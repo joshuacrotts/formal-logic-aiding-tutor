@@ -1,9 +1,10 @@
 package flat.algorithms;
 
-import com.flat.algorithms.predicate.BoundVariableDetector;
+import com.flat.algorithms.models.NDWffTree;
+import com.flat.algorithms.models.ProofType;
+import com.flat.algorithms.predicate.PredicateNaturalDeductionValidator;
 import com.flat.input.FLATParserListener;
 import com.flat.input.tests.ParserTest;
-import com.flat.models.treenode.WffTree;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
@@ -13,14 +14,15 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class BoundVariableDetectorUnitTester {
+public class PredicateNaturalDeductionValidatorUnitTest {
 
-    private static BoundVariableDetector boundVariableDetector;
+    private static PredicateNaturalDeductionValidator naturalDeductionValidator;
 
     /**
      * Helper function to count number of newlines in a string
@@ -106,8 +108,8 @@ public class BoundVariableDetectorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "src/main/resources/testdata/bound/" + testName + ".in";
-        String expName = "src/main/resources/testdata/bound/" + testName + ".out";
+        String inName = "src/main/resources/testdata/predicatend/" + testName + ".in";
+        String expName = "src/main/resources/testdata/predicatend/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;
@@ -117,9 +119,13 @@ public class BoundVariableDetectorUnitTester {
         FLATParserListener parser = ParserTest.parseFromFile(inName);
         if (parser == null)
             throw new AssertionFailedError("Failed reading test input file " + inName);
-        WffTree syntaxTree = parser.getSyntaxTrees().get(0);
-        boundVariableDetector = new BoundVariableDetector(syntaxTree);
-        System.out.println(boundVariableDetector.getBoundVariables());
+        naturalDeductionValidator = new PredicateNaturalDeductionValidator(parser.getSyntaxTrees(), ProofType.DIRECT);
+        ArrayList<NDWffTree> ndArgs = naturalDeductionValidator.getNaturalDeductionProof();
+        for (int i = 0; i < ndArgs.size(); i++) {
+            NDWffTree wff = ndArgs.get(i);
+            System.out.println((i + 1) + ": " + wff);
+        }
+        System.out.println("∴ " + ndArgs.get(ndArgs.size() - 1).getWffTree().getStringRep() + "\t\t■");
         System.setErr(origErr);
         System.setOut(origOut);
         byte[] actual = captureOut.toByteArray();
@@ -130,7 +136,6 @@ public class BoundVariableDetectorUnitTester {
         } catch (IOException e) {
             throw new AssertionFailedError("Missing expected output file " + expName);
         }
-
         compare(actual, expected);
     }
 
@@ -173,4 +178,113 @@ public class BoundVariableDetectorUnitTester {
     public void test008() {
         goodFileTest("test008");
     }
+
+    @Test
+    public void test009() {
+        goodFileTest("test009");
+    }
+
+    @Test
+    public void test010() {
+        goodFileTest("test010");
+    }
+
+    @Test
+    public void test011() {
+        goodFileTest("test011");
+    }
+
+    @Test
+    public void test012() {
+        goodFileTest("test012");
+    }
+
+    @Test
+    public void test013() {
+        goodFileTest("test013");
+    }
+
+    @Test
+    public void test014() {
+        goodFileTest("test014");
+    }
+
+    @Test
+    public void test015() {
+        goodFileTest("test015");
+    }
+
+    @Test
+    public void test016() {
+        goodFileTest("test016");
+    }
+
+    @Test
+    public void test017() {
+        goodFileTest("test017");
+    }
+
+    @Test
+    public void test018() {
+        goodFileTest("test018");
+    }
+
+    @Test
+    public void test019() {
+        goodFileTest("test019");
+    }
+
+    @Test
+    public void test020() {
+        goodFileTest("test020");
+    }
+
+    @Test
+    public void test021() {
+        goodFileTest("test021");
+    }
+
+//    @Test
+//    public void test022() {
+//        goodFileTest("test022");
+//    }
+//
+//    @Test
+//    public void test023() {
+//        goodFileTest("test023");
+//    }
+//
+//    @Test
+//    public void test024() {
+//        goodFileTest("test024");
+//    }
+//
+//    @Test
+//    public void test025() {
+//        goodFileTest("test025");
+//    }
+//
+//    @Test
+//    public void test026() {
+//        goodFileTest("test026");
+//    }
+//
+//    @Test
+//    public void test027() {
+//        goodFileTest("test027");
+//    }
+//    @Test
+//    public void test028() {
+//        goodFileTest("test028");
+//    }
+//
+//    @Test
+//    public void test029() {
+//        goodFileTest("test029");
+//    }
+//
+//    @Test
+//    public void test030() {
+//        goodFileTest("test030");
+//    }
 }

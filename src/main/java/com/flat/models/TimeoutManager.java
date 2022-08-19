@@ -7,7 +7,6 @@ import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.algorithms.propositional.TruthTableGenerator;
 import com.flat.tools.FLATUtils;
 import javafx.scene.text.Text;
-import org.junit.platform.commons.util.StringUtils;
 
 /**
  *

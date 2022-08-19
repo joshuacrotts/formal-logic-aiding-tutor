@@ -1,8 +1,8 @@
-package flat.algorithms;
+package flat.input;
 
-import com.flat.algorithms.ArgumentTruthTreeValidator;
 import com.flat.input.FLATParserListener;
 import com.flat.input.tests.ParserTest;
+import com.flat.models.treenode.WffTree;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
@@ -17,9 +17,7 @@ import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class ArgumentTruthTreeValidatorUnitTester {
-
-    private static ArgumentTruthTreeValidator argumentTruthTreeValidator;
+public class AbstractSyntaxTreeUnitTest {
 
     /**
      * Helper function to count number of newlines in a string
@@ -105,8 +103,8 @@ public class ArgumentTruthTreeValidatorUnitTester {
      *                 extensions.
      */
     private static void goodFileTest(String testName) {
-        String inName = "src/main/resources/testdata/argumenttruthtreevalidator/" + testName + ".in";
-        String expName = "src/main/resources/testdata/argumenttruthtreevalidator/" + testName + ".out";
+        String inName = "src/main/resources/testdata/ast/" + testName + ".in";
+        String expName = "src/main/resources/testdata/ast/" + testName + ".out";
 
         PrintStream origOut = System.out;
         PrintStream origErr = System.err;
@@ -116,8 +114,8 @@ public class ArgumentTruthTreeValidatorUnitTester {
         FLATParserListener parser = ParserTest.parseFromFile(inName);
         if (parser == null)
             throw new AssertionFailedError("Failed reading test input file " + inName);
-        argumentTruthTreeValidator = new ArgumentTruthTreeValidator(parser.getSyntaxTrees());
-        System.out.println(argumentTruthTreeValidator.isValid());
+        WffTree syntaxTree = parser.getSyntaxTrees().get(0);
+        syntaxTree.printSyntaxTree();
         System.setErr(origErr);
         System.setOut(origOut);
         byte[] actual = captureOut.toByteArray();
@@ -128,6 +126,7 @@ public class ArgumentTruthTreeValidatorUnitTester {
         } catch (IOException e) {
             throw new AssertionFailedError("Missing expected output file " + expName);
         }
+
         compare(actual, expected);
     }
 
@@ -136,6 +135,7 @@ public class ArgumentTruthTreeValidatorUnitTester {
         goodFileTest("test001");
     }
 
+    /*
     @Test
     public void test002() {
         goodFileTest("test002");
@@ -230,4 +230,30 @@ public class ArgumentTruthTreeValidatorUnitTester {
     public void test020() {
         goodFileTest("test020");
     }
+
+    @Test
+    public void test021() {
+        goodFileTest("test021");
+    }
+
+    @Test
+    public void test022() {
+        goodFileTest("test022");
+    }
+
+    @Test
+    public void test023() {
+        goodFileTest("test023");
+    }
+
+    @Test
+    public void test024() {
+        goodFileTest("test024");
+    }
+
+    @Test
+    public void test025() {
+        goodFileTest("test025");
+    }
+     */
 }
