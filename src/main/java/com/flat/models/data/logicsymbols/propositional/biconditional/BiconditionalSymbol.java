@@ -15,11 +15,11 @@ public class BiconditionalSymbol extends LogicSymbol {
 
     public BiconditionalSymbol () {
         super(
-                new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.LABEL, "Biconditional"),
+                new KeyedText(BiconditionalSymbol.class, Keys.LABEL, "Biconditional"),
                 new BiconditionalSymbols(),
-                new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Equivalence"),
-                new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the equivalence button."),
-                new KeyedText(BiconditionalSymbol.class, LogicSymbol.Keys.READ_AS, "If and only if; \"iff\"; means the same as"),
+                new KeyedText(BiconditionalSymbol.class, Keys.TOOL_TIP, "Equivalence"),
+                new KeyedText(BiconditionalSymbol.class, Keys.DESCRIPTION, "This is the equivalence button."),
+                new KeyedText(BiconditionalSymbol.class, Keys.READ_AS, "If and only if; \"iff\"; means the same as"),
                 new BiconditionalAxioms()
         );
     }

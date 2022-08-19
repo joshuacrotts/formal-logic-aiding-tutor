@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.timeoutpane.children.truthtablegenerator;
 
-import com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.timeoutpane.children.truthtablegenerator.children.TruthTableGeneratorTimeoutTextField;
 import com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.timeoutpane.children.truthtablegenerator.children.TruthTableGeneratorTimeoutLabel;
+import com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.timeoutpane.children.truthtablegenerator.children.TruthTableGeneratorTimeoutTextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;

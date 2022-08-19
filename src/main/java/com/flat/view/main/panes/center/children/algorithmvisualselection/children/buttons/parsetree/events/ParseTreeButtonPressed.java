@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class ParseTreeButtonPressed extends Event {
 
     public ParseTreeButtonPressed () {
-        super(Event.Type.PARSE_TREE_BUTTON_PRESSED);
+        super(Type.PARSE_TREE_BUTTON_PRESSED);
     }
 
 }

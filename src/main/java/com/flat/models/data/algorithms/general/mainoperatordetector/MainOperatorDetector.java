@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class MainOperatorDetector extends Algorithm {
 
     public MainOperatorDetector () {
-        super(new KeyedText(MainOperatorDetector.class, Algorithm.Keys.LABEL, "Main Operator Detector"),
+        super(new KeyedText(MainOperatorDetector.class, Keys.LABEL, "Main Operator Detector"),
                 AlgorithmType.MAIN_OPERATOR_DETECTOR
         );
     }

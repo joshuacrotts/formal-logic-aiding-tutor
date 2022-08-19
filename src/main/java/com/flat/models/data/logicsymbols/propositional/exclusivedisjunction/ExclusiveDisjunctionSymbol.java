@@ -15,11 +15,11 @@ public class ExclusiveDisjunctionSymbol extends LogicSymbol {
 
     public ExclusiveDisjunctionSymbol () {
         super(
-                new KeyedText(ExclusiveDisjunctionSymbol.class, LogicSymbol.Keys.LABEL, "Exclusive Disjunction"),
+                new KeyedText(ExclusiveDisjunctionSymbol.class, Keys.LABEL, "Exclusive Disjunction"),
                 new ExclusiveDisjunctionSymbols(),
-                new KeyedText(ExclusiveDisjunctionSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Exclusive Disjunction"),
-                new KeyedText(ExclusiveDisjunctionSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the exclusive or button."),
-                new KeyedText(ExclusiveDisjunctionSymbol.class, LogicSymbol.Keys.READ_AS, "Either... or; xor"),
+                new KeyedText(ExclusiveDisjunctionSymbol.class, Keys.TOOL_TIP, "Exclusive Disjunction"),
+                new KeyedText(ExclusiveDisjunctionSymbol.class, Keys.DESCRIPTION, "This is the exclusive or button."),
+                new KeyedText(ExclusiveDisjunctionSymbol.class, Keys.READ_AS, "Either... or; xor"),
                 new ExclusiveDisjunctionAxioms()
         );
     }

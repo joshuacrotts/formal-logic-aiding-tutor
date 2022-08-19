@@ -5,7 +5,6 @@ import com.flat.algorithms.models.NDStep;
 import com.flat.controller.Controller;
 import com.flat.input.events.SolvedFormula;
 import com.flat.tools.buses.eventbus.components.Event;
-import static com.flat.tools.buses.eventbus.components.Event.Type.SOLVED_FORMULA;
 import com.flat.tools.buses.eventbus.components.EventListener;
 import com.flat.view.main.panes.center.children.practice.listener.events.PracticeResult;
 import com.flat.view.main.panes.center.children.practice.naturaldeduction.NaturalDeductionPractice;

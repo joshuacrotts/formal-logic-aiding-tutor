@@ -1,9 +1,10 @@
 package com.flat.view.data.fx.settings.languages;
 
 import com.flat.models.json.language.JsonLanguage;
-import edu.emory.mathcs.backport.java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.Arrays;
 
 /**
  *

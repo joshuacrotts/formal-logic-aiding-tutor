@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class ExportPdfParseTree extends Event {
 
     public ExportPdfParseTree () {
-        super(Event.Type.EXPORT_PDF_PARSE_TREE);
+        super(Type.EXPORT_PDF_PARSE_TREE);
     }
 
 }

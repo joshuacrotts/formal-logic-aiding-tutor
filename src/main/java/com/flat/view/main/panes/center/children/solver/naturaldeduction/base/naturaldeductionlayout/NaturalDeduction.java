@@ -2,6 +2,7 @@ package com.flat.view.main.panes.center.children.solver.naturaldeduction.base.na
 
 import com.flat.algorithms.models.NDWffTree;
 import com.flat.view.main.panes.center.children.solver.naturaldeduction.base.naturaldeductionlayout.attributes.NaturalDeductionLine;
+
 import java.util.ArrayList;
 
 /**

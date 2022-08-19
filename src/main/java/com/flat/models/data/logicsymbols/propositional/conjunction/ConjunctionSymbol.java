@@ -15,11 +15,11 @@ public class ConjunctionSymbol extends LogicSymbol {
 
     public ConjunctionSymbol () {
         super(
-                new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.LABEL, "Conjunction"),
+                new KeyedText(ConjunctionSymbol.class, Keys.LABEL, "Conjunction"),
                 new ConjunctionSymbols(),
-                new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Conjunction"),
-                new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the conjunction button."),
-                new KeyedText(ConjunctionSymbol.class, LogicSymbol.Keys.READ_AS, "And"),
+                new KeyedText(ConjunctionSymbol.class, Keys.TOOL_TIP, "Conjunction"),
+                new KeyedText(ConjunctionSymbol.class, Keys.DESCRIPTION, "This is the conjunction button."),
+                new KeyedText(ConjunctionSymbol.class, Keys.READ_AS, "And"),
                 new ConjunctionAxioms()
         );
     }

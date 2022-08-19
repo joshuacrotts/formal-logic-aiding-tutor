@@ -12,7 +12,7 @@ public class PredicateNaturalDeduction extends Algorithm {
 
     public PredicateNaturalDeduction () {
         super(
-                new KeyedText(PredicateNaturalDeduction.class, Algorithm.Keys.LABEL, "Predicate Natural Deduction"),
+                new KeyedText(PredicateNaturalDeduction.class, Keys.LABEL, "Predicate Natural Deduction"),
                 AlgorithmType.PREDICATE_NATURAL_DEDUCTION
         );
     }

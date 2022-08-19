@@ -1,8 +1,8 @@
 package com.flat.view.main.panes.bottom.children.formulainput;
 
 import com.flat.view.main.panes.bottom.children.formulainput.children.applybutton.FormulaApplyButton;
-import com.flat.view.main.panes.bottom.children.formulainput.children.textfield.FormulaInputTextField;
 import com.flat.view.main.panes.bottom.children.formulainput.children.solvebutton.FormulaSolveButton;
+import com.flat.view.main.panes.bottom.children.formulainput.children.textfield.FormulaInputTextField;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;

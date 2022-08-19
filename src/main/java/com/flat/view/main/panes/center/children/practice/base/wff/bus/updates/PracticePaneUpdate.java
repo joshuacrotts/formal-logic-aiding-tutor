@@ -11,7 +11,7 @@ public class PracticePaneUpdate extends Update {
     private Practice practicePane;
 
     public PracticePaneUpdate (Practice _practicePane) {
-        super(Update.Type.PRACTICE_PANE_UPDATE);
+        super(Type.PRACTICE_PANE_UPDATE);
         this.practicePane = _practicePane;
     }
 

@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class GroundSentenceDeterminer extends Algorithm {
 
     public GroundSentenceDeterminer () {
-        super(new KeyedText(GroundSentenceDeterminer.class, Algorithm.Keys.LABEL, "Ground Sentence Determiner"),
+        super(new KeyedText(GroundSentenceDeterminer.class, Keys.LABEL, "Ground Sentence Determiner"),
                 AlgorithmType.GROUND_SENTENCE_DETERMINER
         );
     }

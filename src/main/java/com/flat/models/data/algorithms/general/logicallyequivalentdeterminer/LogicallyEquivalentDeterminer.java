@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class LogicallyEquivalentDeterminer extends Algorithm {
 
     public LogicallyEquivalentDeterminer () {
-        super(new KeyedText(LogicallyEquivalentDeterminer.class, Algorithm.Keys.LABEL, "Logically Equivalent Determiner"),
+        super(new KeyedText(LogicallyEquivalentDeterminer.class, Keys.LABEL, "Logically Equivalent Determiner"),
                 AlgorithmType.LOGICALLY_EQUIVALENT_DETERMINER
         );
     }

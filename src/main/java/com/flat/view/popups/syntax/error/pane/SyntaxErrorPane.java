@@ -2,6 +2,7 @@ package com.flat.view.popups.syntax.error.pane;
 
 import com.flat.input.FLATErrorListener.Message;
 import com.flat.view.popups.base.PopupPane;
+
 import java.util.Iterator;
 
 /**

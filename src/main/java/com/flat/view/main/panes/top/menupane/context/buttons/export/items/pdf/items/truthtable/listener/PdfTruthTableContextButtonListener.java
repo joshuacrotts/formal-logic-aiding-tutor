@@ -1,8 +1,6 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.truthtable.listener;
 
 import com.flat.tools.buses.eventbus.components.Event;
-import static com.flat.tools.buses.eventbus.components.Event.Type.CLEAR_LOGIC_VISUALS;
-import static com.flat.tools.buses.eventbus.components.Event.Type.UPDATE_TRUTH_TABLE;
 import com.flat.tools.buses.eventbus.components.EventListener;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.truthtable.PdfTruthTableContextButton;
 

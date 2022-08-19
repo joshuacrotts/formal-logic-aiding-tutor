@@ -3,6 +3,7 @@ package com.flat.view.popups.proofverifier.error;
 import com.flat.input.FLATErrorListener.Message;
 import com.flat.view.popups.base.Popup;
 import com.flat.view.popups.proofverifier.error.pane.ProofVerifierErrorPane;
+
 import java.util.Iterator;
 
 /**

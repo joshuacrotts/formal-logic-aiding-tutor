@@ -2,6 +2,7 @@ package com.flat.input.events;
 
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.buses.eventbus.components.Event;
+
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ public class SolvedFormula extends Event {
     private ArrayList <WffTree> wffTree;
 
     public SolvedFormula(ArrayList <WffTree> _wffTree) {
-        super(Event.Type.SOLVED_FORMULA);
+        super(Type.SOLVED_FORMULA);
         this.wffTree = _wffTree;
     }
 

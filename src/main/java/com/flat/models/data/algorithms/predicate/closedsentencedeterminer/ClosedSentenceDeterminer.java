@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class ClosedSentenceDeterminer extends Algorithm {
 
     public ClosedSentenceDeterminer () {
-        super(new KeyedText(ClosedSentenceDeterminer.class, Algorithm.Keys.LABEL, "Closed Sentence Determiner"),
+        super(new KeyedText(ClosedSentenceDeterminer.class, Keys.LABEL, "Closed Sentence Determiner"),
                 AlgorithmType.CLOSED_SENTENCE_DETERMINER
         );
     }

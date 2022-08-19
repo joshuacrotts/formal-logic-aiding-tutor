@@ -1,7 +1,8 @@
 package com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes;
 
-import java.util.ArrayList;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 /**
  *

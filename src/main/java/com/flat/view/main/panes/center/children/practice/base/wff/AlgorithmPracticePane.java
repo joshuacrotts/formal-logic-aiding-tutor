@@ -2,10 +2,10 @@ package com.flat.view.main.panes.center.children.practice.base.wff;
 
 import com.flat.controller.Controller;
 import com.flat.models.treenode.WffTree;
-import com.flat.view.main.panes.center.children.practice.base.wff.bus.updates.PracticePaneUpdate;
-import javafx.scene.layout.HBox;
 import com.flat.view.main.panes.center.children.practice.base.Practice;
+import com.flat.view.main.panes.center.children.practice.base.wff.bus.updates.PracticePaneUpdate;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.WffLayout;
+import javafx.scene.layout.HBox;
 
 /**
  *

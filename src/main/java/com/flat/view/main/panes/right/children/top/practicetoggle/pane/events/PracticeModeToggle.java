@@ -10,7 +10,7 @@ public class PracticeModeToggle extends Update {
     private boolean practice;
 
     public PracticeModeToggle (boolean _value) {
-        super(Update.Type.PRACTICE_MODE_TOGGLE);
+        super(Type.PRACTICE_MODE_TOGGLE);
         this.practice = _value;
     }
 

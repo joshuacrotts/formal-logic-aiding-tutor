@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class FormulaApplyButtonPressed extends Event {
 
     public FormulaApplyButtonPressed () {
-        super(Event.Type.FORMULA_APPLY_BUTTON_PRESSED);
+        super(Type.FORMULA_APPLY_BUTTON_PRESSED);
     }
 
 }

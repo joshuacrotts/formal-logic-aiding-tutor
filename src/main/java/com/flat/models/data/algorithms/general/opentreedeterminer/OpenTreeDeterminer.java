@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class OpenTreeDeterminer extends Algorithm {
 
     public OpenTreeDeterminer () {
-        super(new KeyedText(OpenTreeDeterminer.class, Algorithm.Keys.LABEL, "Open Tree Determiner"),
+        super(new KeyedText(OpenTreeDeterminer.class, Keys.LABEL, "Open Tree Determiner"),
                 AlgorithmType.OPEN_TREE_DETERMINER
         );
     }

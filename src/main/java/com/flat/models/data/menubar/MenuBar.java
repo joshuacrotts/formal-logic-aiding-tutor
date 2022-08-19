@@ -5,6 +5,7 @@ import com.flat.models.data.menubar.menus.export.ExportMenu;
 import com.flat.models.data.menubar.menus.file.FileMenu;
 import com.flat.models.data.menubar.menus.help.HelpMenu;
 import com.flat.tools.translation.base.Translatable;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

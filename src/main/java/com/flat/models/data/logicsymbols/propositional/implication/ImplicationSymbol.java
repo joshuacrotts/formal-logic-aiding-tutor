@@ -15,11 +15,11 @@ public class ImplicationSymbol extends LogicSymbol {
 
     public ImplicationSymbol () {
         super(
-                new KeyedText(ImplicationSymbol.class, LogicSymbol.Keys.LABEL, "Implication"),
+                new KeyedText(ImplicationSymbol.class, Keys.LABEL, "Implication"),
                 new ImplicationSymbols(),
-                new KeyedText(ImplicationSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Implication"),
-                new KeyedText(ImplicationSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the implication button."),
-                new KeyedText(ImplicationSymbol.class, LogicSymbol.Keys.READ_AS, "implies; if ... then"),
+                new KeyedText(ImplicationSymbol.class, Keys.TOOL_TIP, "Implication"),
+                new KeyedText(ImplicationSymbol.class, Keys.DESCRIPTION, "This is the implication button."),
+                new KeyedText(ImplicationSymbol.class, Keys.READ_AS, "implies; if ... then"),
                 new ImplicationAxioms()
         );
     }

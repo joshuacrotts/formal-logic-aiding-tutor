@@ -2,13 +2,13 @@ package com.flat.input.tests;
 
 import com.flat.FLATLexer;
 import com.flat.FLATParser;
-import com.flat.algorithms.*;
+import com.flat.algorithms.NaturalDeductionAlgorithm;
 import com.flat.algorithms.models.NDWffTree;
 import com.flat.algorithms.models.ProofType;
 import com.flat.algorithms.models.QuineTree;
-import com.flat.algorithms.models.TruthTree;
-import com.flat.algorithms.predicate.*;
-import com.flat.algorithms.propositional.*;
+import com.flat.algorithms.predicate.PredicateNaturalDeductionValidator;
+import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
+import com.flat.algorithms.propositional.QuineEvaluator;
 import com.flat.input.FLATErrorListener;
 import com.flat.input.FLATParserAdapter;
 import com.flat.input.FLATParserListener;

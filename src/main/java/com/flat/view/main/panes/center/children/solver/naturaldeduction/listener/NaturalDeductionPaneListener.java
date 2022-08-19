@@ -6,9 +6,10 @@ import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.tools.buses.eventbus.components.EventListener;
 import com.flat.view.main.panes.center.children.solver.naturaldeduction.NaturalDeductionPane;
 import com.flat.view.main.panes.center.children.solver.naturaldeduction.base.naturaldeductionlayout.NaturalDeduction;
-import java.util.ArrayList;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+
+import java.util.ArrayList;
 
 /**
  *

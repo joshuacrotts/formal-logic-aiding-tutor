@@ -1,8 +1,8 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.predicate.universal;
 
-import com.flat.models.data.logicsymbols.predicate.universal.UniversalSymbol;
 import com.flat.controller.Controller;
 import com.flat.models.data.logicsymbols.LogicSymbols;
+import com.flat.models.data.logicsymbols.predicate.universal.UniversalSymbol;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.LogicButton;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.predicate.universal.contextmenu.UniversalContextMenu;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.predicate.universal.tooltip.UniversalTooltip;

@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class NaturalDeductionButtonPressed extends Event {
 
     public NaturalDeductionButtonPressed () {
-        super(Event.Type.NATURAL_DEDUCTION_BUTTON_PRESSED);
+        super(Type.NATURAL_DEDUCTION_BUTTON_PRESSED);
     }
 
 }

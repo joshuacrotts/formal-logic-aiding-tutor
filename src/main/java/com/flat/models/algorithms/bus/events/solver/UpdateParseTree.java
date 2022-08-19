@@ -11,7 +11,7 @@ public class UpdateParseTree extends Event {
     private WffTree wffTree;
 
     public UpdateParseTree (WffTree _wffTree) {
-        super(Event.Type.UPDATE_PARSE_TREE);
+        super(Type.UPDATE_PARSE_TREE);
         this.wffTree = _wffTree;
     }
 

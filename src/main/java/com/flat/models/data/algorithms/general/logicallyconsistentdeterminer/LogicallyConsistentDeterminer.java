@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class LogicallyConsistentDeterminer extends Algorithm {
 
     public LogicallyConsistentDeterminer () {
-        super(new KeyedText(LogicallyConsistentDeterminer.class, Algorithm.Keys.LABEL, "Logically Consistent Determiner"),
+        super(new KeyedText(LogicallyConsistentDeterminer.class, Keys.LABEL, "Logically Consistent Determiner"),
                 AlgorithmType.LOGICALLY_CONSISTENT_DETERMINER
         );
     }

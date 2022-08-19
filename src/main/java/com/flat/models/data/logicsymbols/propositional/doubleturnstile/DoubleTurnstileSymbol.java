@@ -15,11 +15,11 @@ public class DoubleTurnstileSymbol extends LogicSymbol {
 
     public DoubleTurnstileSymbol () {
         super(
-                new KeyedText(DoubleTurnstileSymbol.class, LogicSymbol.Keys.LABEL, "Double Turnstile"),
+                new KeyedText(DoubleTurnstileSymbol.class, Keys.LABEL, "Double Turnstile"),
                 new DoubleTurnstileSymbols(),
-                new KeyedText(DoubleTurnstileSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Semantic entailment"),
-                new KeyedText(DoubleTurnstileSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the \\\"models\\\" button."),
-                new KeyedText(DoubleTurnstileSymbol.class, LogicSymbol.Keys.READ_AS, "Models..."),
+                new KeyedText(DoubleTurnstileSymbol.class, Keys.TOOL_TIP, "Semantic entailment"),
+                new KeyedText(DoubleTurnstileSymbol.class, Keys.DESCRIPTION, "This is the \\\"models\\\" button."),
+                new KeyedText(DoubleTurnstileSymbol.class, Keys.READ_AS, "Models..."),
                 new DoubleTurnstileAxioms()
         );
     }

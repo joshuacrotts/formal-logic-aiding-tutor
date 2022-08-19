@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class PracticeSelectionButtonPressed extends Event {
 
     public PracticeSelectionButtonPressed () {
-        super(Event.Type.PRACTICE_SELECTION_BUTTON_PRESSED);
+        super(Type.PRACTICE_SELECTION_BUTTON_PRESSED);
     }
 
 }

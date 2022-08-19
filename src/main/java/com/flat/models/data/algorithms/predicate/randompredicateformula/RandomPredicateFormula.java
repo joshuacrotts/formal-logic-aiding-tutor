@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class RandomPredicateFormula extends Algorithm {
 
     public RandomPredicateFormula () {
-        super(new KeyedText(RandomPredicateFormula.class, Algorithm.Keys.LABEL, "Random Predicate Formula"),
+        super(new KeyedText(RandomPredicateFormula.class, Keys.LABEL, "Random Predicate Formula"),
                 AlgorithmType.RANDOM_PREDICATE_FORMULA
         );
     }

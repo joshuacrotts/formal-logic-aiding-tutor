@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class SemanticEntailmentDeterminer extends Algorithm {
 
     public SemanticEntailmentDeterminer () {
-        super(new KeyedText(SemanticEntailmentDeterminer.class, Algorithm.Keys.LABEL, "Semantic Entailment Determiner"),
+        super(new KeyedText(SemanticEntailmentDeterminer.class, Keys.LABEL, "Semantic Entailment Determiner"),
                 AlgorithmType.SEMANTIC_ENTAILMENT_DETERMINER
         );
     }

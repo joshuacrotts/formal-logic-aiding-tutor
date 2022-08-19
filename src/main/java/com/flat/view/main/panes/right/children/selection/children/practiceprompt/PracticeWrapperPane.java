@@ -25,7 +25,7 @@ public class PracticeWrapperPane extends ScrollPane {
 
     private void setThisFx (){
         super.setFitToWidth(true);
-        super.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        super.setHbarPolicy(ScrollBarPolicy.NEVER);
         super.setMinWidth(0);
         this.onWidthProperty();
     }

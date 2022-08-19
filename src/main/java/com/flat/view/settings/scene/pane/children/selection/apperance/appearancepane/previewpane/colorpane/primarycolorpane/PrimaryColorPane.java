@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.colorpane.primarycolorpane;
 
-import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.colorpane.primarycolorpane.children.PrimaryColorPicker;
 import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.colorpane.primarycolorpane.children.PrimaryColorLabel;
+import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.colorpane.primarycolorpane.children.PrimaryColorPicker;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;

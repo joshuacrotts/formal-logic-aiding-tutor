@@ -1,11 +1,7 @@
 package com.flat.view.data.fx.pane;
 
 import com.flat.view.data.fx.pane.buttons.PrimaryButtonProperties;
-import com.flat.view.data.fx.pane.panes.BorderPaneProperties;
-import com.flat.view.data.fx.pane.panes.BottomPaneProperties;
-import com.flat.view.data.fx.pane.panes.LeftPaneProperties;
-import com.flat.view.data.fx.pane.panes.RightPaneProperties;
-import com.flat.view.data.fx.pane.panes.TopPaneProperties;
+import com.flat.view.data.fx.pane.panes.*;
 
 /**
  *

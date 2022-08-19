@@ -1,10 +1,7 @@
 package com.flat.algorithms.propositional;
 
 import com.flat.algorithms.models.QuineTree;
-import com.flat.models.treenode.AtomNode;
 import com.flat.models.treenode.WffTree;
-
-import java.util.ArrayList;
 
 public class QuineEvaluator {
 

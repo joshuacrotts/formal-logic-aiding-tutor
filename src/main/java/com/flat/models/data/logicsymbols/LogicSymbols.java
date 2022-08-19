@@ -4,6 +4,7 @@ import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.models.data.logicsymbols.predicate.PredicateSymbols;
 import com.flat.models.data.logicsymbols.propositional.PropositionalSymbols;
 import com.flat.tools.translation.base.Translatable;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

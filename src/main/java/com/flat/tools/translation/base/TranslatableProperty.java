@@ -3,9 +3,10 @@ package com.flat.tools.translation.base;
 import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.models.json.language.JsonLanguage;
 import com.google.cloud.translate.Translation;
+import javafx.scene.text.Font;
+
 import java.util.LinkedList;
 import java.util.List;
-import javafx.scene.text.Font;
 
 /**
  *

@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class TreeNodeLayoutSet extends Event {
 
     public TreeNodeLayoutSet () {
-        super(Event.Type.TREE_NODE_LAYOUT_SET);
+        super(Type.TREE_NODE_LAYOUT_SET);
     }
 
 }

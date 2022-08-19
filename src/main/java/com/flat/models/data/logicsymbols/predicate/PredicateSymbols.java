@@ -6,6 +6,7 @@ import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.models.data.logicsymbols.predicate.existential.ExistentialSymbol;
 import com.flat.models.data.logicsymbols.predicate.universal.UniversalSymbol;
 import com.flat.tools.translation.base.Translatable;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

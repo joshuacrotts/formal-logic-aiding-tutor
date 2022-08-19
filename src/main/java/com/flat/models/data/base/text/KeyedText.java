@@ -1,8 +1,9 @@
 package com.flat.models.data.base.text;
 
-import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.controller.Controller;
 import com.flat.models.data.base.text.key.KeyBase;
+import com.flat.models.data.base.text.translate.TranslatableText;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

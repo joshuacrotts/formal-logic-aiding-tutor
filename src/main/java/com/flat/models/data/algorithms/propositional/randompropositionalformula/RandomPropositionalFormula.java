@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class RandomPropositionalFormula extends Algorithm {
 
     public RandomPropositionalFormula () {
-        super(new KeyedText(RandomPropositionalFormula.class, Algorithm.Keys.LABEL, "Random Propositional Formula"),
+        super(new KeyedText(RandomPropositionalFormula.class, Keys.LABEL, "Random Propositional Formula"),
                 AlgorithmType.RANDOM_PROPOSITIONAL_FORMULA
         );
     }

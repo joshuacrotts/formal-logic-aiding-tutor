@@ -5,8 +5,9 @@ import com.flat.algorithms.predicate.PredicateTruthTreeGenerator;
 import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
 import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.algorithms.propositional.TruthTableGenerator;
+import com.flat.tools.FLATUtils;
 import javafx.scene.text.Text;
-import org.codehaus.plexus.util.StringUtils;
+import org.junit.platform.commons.util.StringUtils;
 
 /**
  *
@@ -68,8 +69,8 @@ public class TimeoutManager {
     }
 
     private static int textToNumeric (Text _text) {
-        if (StringUtils.isNumeric(_text.getText()))
-            return Integer.valueOf(_text.getText());
+        if (FLATUtils.isNumeric(_text.getText()))
+            return Integer.parseInt(_text.getText());
         return Integer.MIN_VALUE;
     }
 

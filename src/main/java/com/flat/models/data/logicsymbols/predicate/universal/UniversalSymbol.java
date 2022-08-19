@@ -15,11 +15,11 @@ public class UniversalSymbol extends LogicSymbol {
 
     public UniversalSymbol () {
         super(
-                new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.LABEL, "Universal"),
+                new KeyedText(UniversalSymbol.class, Keys.LABEL, "Universal"),
                 new UniversalSymbols(),
-                new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Universal quantification"),
-                new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the universal quantification button."),
-                new KeyedText(UniversalSymbol.class, LogicSymbol.Keys.READ_AS, "For all; For any; For each; All; Every"),
+                new KeyedText(UniversalSymbol.class, Keys.TOOL_TIP, "Universal quantification"),
+                new KeyedText(UniversalSymbol.class, Keys.DESCRIPTION, "This is the universal quantification button."),
+                new KeyedText(UniversalSymbol.class, Keys.READ_AS, "For all; For any; For each; All; Every"),
                 new UniversalAxioms()
         );
     }

@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class LogicallyContingentDeterminer extends Algorithm {
 
     public LogicallyContingentDeterminer () {
-        super(new KeyedText(LogicallyContingentDeterminer.class, Algorithm.Keys.LABEL, "Logically Contingent Determiner"),
+        super(new KeyedText(LogicallyContingentDeterminer.class, Keys.LABEL, "Logically Contingent Determiner"),
                 AlgorithmType.LOGICALLY_CONTINGENT_DETERMINER
         );
     }

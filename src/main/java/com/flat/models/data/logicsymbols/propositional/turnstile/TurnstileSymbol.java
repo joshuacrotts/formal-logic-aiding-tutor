@@ -15,11 +15,11 @@ public class TurnstileSymbol extends LogicSymbol {
 
     public TurnstileSymbol () {
         super(
-                new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.LABEL, "Turnstile"),
+                new KeyedText(TurnstileSymbol.class, Keys.LABEL, "Turnstile"),
                 new TurnstileSymbols(),
-                new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Syntactic entailment"),
-                new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the \\\"proves\\\" button."),
-                new KeyedText(TurnstileSymbol.class, LogicSymbol.Keys.READ_AS, "Proves..."),
+                new KeyedText(TurnstileSymbol.class, Keys.TOOL_TIP, "Syntactic entailment"),
+                new KeyedText(TurnstileSymbol.class, Keys.DESCRIPTION, "This is the \\\"proves\\\" button."),
+                new KeyedText(TurnstileSymbol.class, Keys.READ_AS, "Proves..."),
                 new TurnstileAxioms()
         );
     }

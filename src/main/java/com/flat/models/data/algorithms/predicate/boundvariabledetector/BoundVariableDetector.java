@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class BoundVariableDetector extends Algorithm {
 
     public BoundVariableDetector () {
-        super(new KeyedText(BoundVariableDetector.class, Algorithm.Keys.LABEL, "Bound Variable Detector"),
+        super(new KeyedText(BoundVariableDetector.class, Keys.LABEL, "Bound Variable Detector"),
                 AlgorithmType.BOUND_VARIABLE_DETECTOR
         );
     }

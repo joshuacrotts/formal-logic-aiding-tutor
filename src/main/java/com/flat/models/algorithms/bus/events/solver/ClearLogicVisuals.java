@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class ClearLogicVisuals extends Event {
 
     public ClearLogicVisuals () {
-        super(Event.Type.CLEAR_LOGIC_VISUALS);
+        super(Type.CLEAR_LOGIC_VISUALS);
     }
 
 }

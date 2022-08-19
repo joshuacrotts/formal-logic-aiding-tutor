@@ -7,6 +7,7 @@ import com.flat.models.data.settings.tabs.advanced.AdvancedTabData;
 import com.flat.models.data.settings.tabs.appearance.AppearanceTabData;
 import com.flat.models.data.settings.tabs.language.LanguageTabData;
 import com.flat.tools.translation.base.Translatable;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

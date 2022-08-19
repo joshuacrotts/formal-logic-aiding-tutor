@@ -3,7 +3,9 @@ package com.flat.tools.font;
 import com.flat.tools.font.enums.FontLocal;
 import com.flat.tools.font.enums.FontLocal.FontFamily;
 import javafx.scene.text.Font;
+
 import java.io.FileInputStream;
+
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
 
 /**

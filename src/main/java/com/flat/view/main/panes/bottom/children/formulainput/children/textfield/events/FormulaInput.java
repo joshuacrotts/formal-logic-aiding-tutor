@@ -10,7 +10,7 @@ public class FormulaInput extends Event{
     private String formula;
 
     public FormulaInput(String _formula) {
-        super(Event.Type.FORMULA_INPUT);
+        super(Type.FORMULA_INPUT);
     }
 
     // Getters for object's attributes.

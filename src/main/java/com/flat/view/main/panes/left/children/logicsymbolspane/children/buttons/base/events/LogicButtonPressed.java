@@ -10,7 +10,7 @@ public class LogicButtonPressed extends Event {
     private String text;
 
     public LogicButtonPressed (String _text) {
-        super(Event.Type.LOGIC_BUTTON_PRESSED);
+        super(Type.LOGIC_BUTTON_PRESSED);
         this.text = _text;
     }
 

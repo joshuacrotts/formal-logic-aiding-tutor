@@ -3,6 +3,7 @@ package com.flat.models.algorithms.attributes;
 import com.flat.algorithms.models.NDWffTree;
 import com.flat.algorithms.models.TruthTree;
 import com.flat.models.treenode.WffTree;
+
 import java.util.ArrayList;
 
 /**

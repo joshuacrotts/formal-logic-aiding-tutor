@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class ExportLatexTruthTree extends Event {
 
     public ExportLatexTruthTree () {
-        super(Event.Type.EXPORT_LATEX_TRUTH_TREE);
+        super(Type.EXPORT_LATEX_TRUTH_TREE);
     }
 
 }

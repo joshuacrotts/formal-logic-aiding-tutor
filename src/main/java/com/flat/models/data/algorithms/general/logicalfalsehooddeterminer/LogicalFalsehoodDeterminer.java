@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class LogicalFalsehoodDeterminer extends Algorithm {
 
     public LogicalFalsehoodDeterminer () {
-        super(new KeyedText(LogicalFalsehoodDeterminer.class, Algorithm.Keys.LABEL, "Logical Falsehood Determiner"),
+        super(new KeyedText(LogicalFalsehoodDeterminer.class, Keys.LABEL, "Logical Falsehood Determiner"),
                 AlgorithmType.LOGICAL_FALSEHOOD_DETERMINER
         );
     }

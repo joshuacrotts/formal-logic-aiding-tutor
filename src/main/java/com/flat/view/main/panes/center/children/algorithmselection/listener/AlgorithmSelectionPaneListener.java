@@ -1,9 +1,9 @@
 package com.flat.view.main.panes.center.children.algorithmselection.listener;
 
 import com.flat.controller.Controller;
-import com.flat.view.main.panes.center.children.algorithmselection.AlgorithmSelectionPane;
 import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.tools.buses.eventbus.components.EventListener;
+import com.flat.view.main.panes.center.children.algorithmselection.AlgorithmSelectionPane;
 
 /**
  *

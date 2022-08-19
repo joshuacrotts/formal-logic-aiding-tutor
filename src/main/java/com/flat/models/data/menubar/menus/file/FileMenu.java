@@ -7,6 +7,7 @@ import com.flat.models.data.menubar.menus.file.items.ExitMenuItem;
 import com.flat.models.data.menubar.menus.file.items.ResetViewMenuItem;
 import com.flat.models.data.menubar.menus.file.items.SettingsMenuItem;
 import com.flat.tools.translation.base.Translatable;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

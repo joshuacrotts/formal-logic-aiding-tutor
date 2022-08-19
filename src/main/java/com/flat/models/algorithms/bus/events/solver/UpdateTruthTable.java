@@ -11,7 +11,7 @@ public class UpdateTruthTable extends Event {
     private WffTree wffTree;
 
     public UpdateTruthTable (WffTree _wffTree) {
-        super(Event.Type.UPDATE_TRUTH_TABLE);
+        super(Type.UPDATE_TRUTH_TABLE);
         this.wffTree = _wffTree;
     }
 

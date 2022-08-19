@@ -15,11 +15,11 @@ public class NegationSymbol extends LogicSymbol {
 
     public NegationSymbol () {
         super(
-                new KeyedText(NegationSymbol.class, LogicSymbol.Keys.LABEL, "Negation"),
+                new KeyedText(NegationSymbol.class, Keys.LABEL, "Negation"),
                 new NegationSymbols(),
-                new KeyedText(NegationSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Negation"),
-                new KeyedText(NegationSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the negation button."),
-                new KeyedText(NegationSymbol.class, LogicSymbol.Keys.READ_AS, "Not"),
+                new KeyedText(NegationSymbol.class, Keys.TOOL_TIP, "Negation"),
+                new KeyedText(NegationSymbol.class, Keys.DESCRIPTION, "This is the negation button."),
+                new KeyedText(NegationSymbol.class, Keys.READ_AS, "Not"),
                 new NegationAxioms()
         );
     }

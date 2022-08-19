@@ -6,6 +6,7 @@ import com.flat.view.data.fx.settings.appearance.observables.color.extend.Observ
 import com.flat.view.data.fx.settings.appearance.observables.color.extend.ObservableSecondaryColor;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
+
 import java.util.Observable;
 import java.util.Observer;
 

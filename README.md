@@ -27,7 +27,7 @@ In the settings menu, there is an __Advanced__ section. For the beginning studen
 <h2>Using FLAT</h2>
 To use FLAT:
 
-1. Make sure you have Java 8 installed (necessary for JavaFX). We recommend Amazon Corretto 8. Then, download the FLAT-Jar directory to your computer, and click ```FLAT.jar```.
+1. Make sure you have Java 18 installed. We recommend OpenJDK 18.
 2. Type a well-formed formula in propositional or first-order predicate logic in the bottom text input field.
 
    _Note:_ Make sure to use parentheses around the wffs and to avoid parentheses when typing predicates (i.e., use Pxyz and not P(x, y, z)). Unary operators such as negation do not use parentheses. All binary operators require parentheses. In other words, there is __no implicit precedence of operators!__
@@ -42,9 +42,11 @@ __Rules/Axioms__ is the other viewable pane on the right-hand side which display
 __Symbols__ in the left-hand side are swappable. If, for instance, you use a different symbol than the ones displayed, you can change it to your liking. Simply right-click the symbol and a drop-down will appear, allowing you to select one of several alternatives.
 
 <h2>Rebuilding FLAT</h2>
-We built FLAT using the Maven architecture and IntelliJ IDE. We have, however, designed the project to be IDE-agnostic. Though, because we use JavaFX without modules, Java 8 is the only supported version. We used Amazon Corretto's JRE8/JDK8, so it's recommended that you do as well.
+We built FLAT using the Maven architecture and IntelliJ IDE. We have, however, designed the project to be IDE-agnostic. Java 18 is the only supported version. We used OpenJDK 18, so it's recommended that you do as well.
 
-To rebuild the project, clone the repository to your computer and open it in whichever IDE you wish. Assuming it detects Maven projects correctly (Eclipse, NetBeans, and IntelliJ work), it should open and compile correctly.
+To rebuild the project, clone the repository to your computer and open it in whichever IDE you wish. Assuming it detects Maven projects correctly (Eclipse, NetBeans, and IntelliJ work), it should open correctly. 
+
+You may need to resolve the Maven dependencies, so make sure you update them before trying to compile the program. Do not try to use a non-Maven goal when executing, as it will almost certainly not work. Use `mvn javafx:run` instead to ensure Maven loads the necessary JavaFX modules.
 
 <h2>References</h2>
 To cite this project, use the following paper citation:

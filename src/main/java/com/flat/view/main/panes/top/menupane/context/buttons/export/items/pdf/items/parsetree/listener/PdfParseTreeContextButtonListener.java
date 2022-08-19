@@ -1,8 +1,6 @@
 package com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.parsetree.listener;
 
 import com.flat.tools.buses.eventbus.components.Event;
-import static com.flat.tools.buses.eventbus.components.Event.Type.CLEAR_LOGIC_VISUALS;
-import static com.flat.tools.buses.eventbus.components.Event.Type.UPDATE_PARSE_TREE;
 import com.flat.tools.buses.eventbus.components.EventListener;
 import com.flat.view.main.panes.top.menupane.context.buttons.export.items.pdf.items.parsetree.PdfParseTreeContextButton;
 

@@ -10,7 +10,7 @@ public class FormulaGenerated extends Event {
     private String formula = null;
 
     public FormulaGenerated (String _formula) {
-        super(Event.Type.FORMULA_GENERATED);
+        super(Type.FORMULA_GENERATED);
         this.formula = _formula;
     }
 

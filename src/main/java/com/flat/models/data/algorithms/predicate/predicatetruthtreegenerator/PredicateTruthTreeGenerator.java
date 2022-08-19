@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class PredicateTruthTreeGenerator extends Algorithm {
 
     public PredicateTruthTreeGenerator () {
-        super(new KeyedText(PredicateTruthTreeGenerator.class, Algorithm.Keys.LABEL, "Predicate Truth Tree Generator"),
+        super(new KeyedText(PredicateTruthTreeGenerator.class, Keys.LABEL, "Predicate Truth Tree Generator"),
                 AlgorithmType.PREDICATE_TRUTH_TREE_GENERATOR
         );
     }

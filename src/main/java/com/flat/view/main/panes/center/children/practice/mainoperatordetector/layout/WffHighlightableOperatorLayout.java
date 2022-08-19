@@ -1,9 +1,10 @@
 package com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout;
 
+import com.flat.models.treenode.WffTree;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.children.HighlightableWffPiece;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.children.WffPiece;
-import com.flat.models.treenode.WffTree;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.children.WffText;
+
 import java.util.ArrayList;
 
 /**

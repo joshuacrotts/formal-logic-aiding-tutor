@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class ClosedTreeDeterminer extends Algorithm {
 
     public ClosedTreeDeterminer () {
-        super(new KeyedText(ClosedTreeDeterminer.class, Algorithm.Keys.LABEL, "Closed Tree Determiner"),
+        super(new KeyedText(ClosedTreeDeterminer.class, Keys.LABEL, "Closed Tree Determiner"),
                 AlgorithmType.CLOSED_TREE_DETERMINER
         );
     }

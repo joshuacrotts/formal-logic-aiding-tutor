@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class VacuousQuantifierDetector extends Algorithm {
 
     public VacuousQuantifierDetector () {
-        super(new KeyedText(VacuousQuantifierDetector.class, Algorithm.Keys.LABEL, "Vacuous Quantifier Detector"),
+        super(new KeyedText(VacuousQuantifierDetector.class, Keys.LABEL, "Vacuous Quantifier Detector"),
                 AlgorithmType.VACUOUS_QUANTIFIER_DETECTOR
         );
     }

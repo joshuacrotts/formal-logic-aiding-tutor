@@ -3,9 +3,10 @@ package com.flat.view.data.fx.algorithms;
 import com.flat.controller.Controller;
 import com.flat.models.data.algorithms.base.Algorithm;
 import com.flat.view.data.fx.algorithms.listener.AvailableAlgorithmsListener;
-import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
 
 /**
  *

@@ -14,8 +14,8 @@ public class AdvancedButtonBar extends ButtonBar {
     private SettingsCloseButton closeButton = new SettingsCloseButton();
 
     public AdvancedButtonBar () {
-        ButtonBar.setButtonData(this.applyButton, ButtonBar.ButtonData.APPLY);
-        ButtonBar.setButtonData(this.closeButton, ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonBar.setButtonData(this.applyButton, ButtonData.APPLY);
+        ButtonBar.setButtonData(this.closeButton, ButtonData.CANCEL_CLOSE);
         super.getButtons().addAll(this.applyButton, this.closeButton);
         super.setPadding(new Insets(10, 10, 10, 10));
     }

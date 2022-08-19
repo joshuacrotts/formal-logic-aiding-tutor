@@ -1,6 +1,5 @@
 package com.flat.tools.exporter.listener;
 
-import com.flat.input.events.SolvedFormula;
 import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.tools.buses.eventbus.components.EventListener;
 import com.flat.tools.exporter.ViewExporter;

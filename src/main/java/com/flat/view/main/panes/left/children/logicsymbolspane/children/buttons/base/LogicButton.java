@@ -3,8 +3,8 @@ package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons
 import com.flat.controller.Controller;
 import com.flat.models.data.logicsymbols.LogicSymbols.SymbolKey;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.contextmenu.LogicContextMenu;
-import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.events.LogicButtonPressed;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.events.LogicButtonCtrlPressed;
+import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.events.LogicButtonPressed;
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.tooltip.LogicTooltip;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;

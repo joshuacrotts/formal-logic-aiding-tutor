@@ -3,15 +3,15 @@ package com.flat.view.main.panes.center.children.solver.truthtable.listener;
 import com.flat.models.algorithms.bus.events.solver.UpdateTruthTable;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.buses.eventbus.components.Event;
-import com.flat.view.main.panes.center.children.solver.truthtable.TruthTablePane;
-import com.flat.view.main.panes.center.children.solver.truthtable.base.tablelayout.TruthTable;
-import javafx.scene.layout.GridPane;
 import com.flat.tools.buses.eventbus.components.EventListener;
+import com.flat.view.main.panes.center.children.solver.truthtable.TruthTablePane;
 import com.flat.view.main.panes.center.children.solver.truthtable.base.tablelayout.TableElement;
 import com.flat.view.main.panes.center.children.solver.truthtable.base.tablelayout.TableHeader;
+import com.flat.view.main.panes.center.children.solver.truthtable.base.tablelayout.TruthTable;
 import com.flat.view.main.panes.center.children.solver.truthtable.listener.children.HorizontalTruthTableSeparator;
 import com.flat.view.main.panes.center.children.solver.truthtable.listener.children.TruthTableHeaderTextVBox;
 import com.flat.view.main.panes.center.children.solver.truthtable.listener.children.TruthTableTextVBox;
+import javafx.scene.layout.GridPane;
 
 /**
  *

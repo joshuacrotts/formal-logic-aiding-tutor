@@ -10,7 +10,7 @@ public class UpdateTruth extends Event {
     private boolean truth;
 
     public UpdateTruth(boolean _truth) {
-        super(Event.Type.UPDATE_TRUTH);
+        super(Type.UPDATE_TRUTH);
         this.truth = _truth;
     }
 

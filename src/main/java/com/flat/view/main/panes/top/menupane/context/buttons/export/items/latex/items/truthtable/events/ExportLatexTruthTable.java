@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class ExportLatexTruthTable extends Event {
 
     public ExportLatexTruthTable () {
-        super(Event.Type.EXPORT_LATEX_TRUTH_TABLE);
+        super(Type.EXPORT_LATEX_TRUTH_TABLE);
     }
 
 }

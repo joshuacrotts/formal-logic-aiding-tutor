@@ -1,10 +1,11 @@
 package com.flat.view.main.panes.center.children.solver.trees.base.treelayout.nodes;
 
-import java.util.ArrayList;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.css.PseudoClass;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Line;
+
+import java.util.ArrayList;
 
 /**
  *

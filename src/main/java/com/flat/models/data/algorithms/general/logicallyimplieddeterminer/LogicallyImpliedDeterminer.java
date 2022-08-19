@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class LogicallyImpliedDeterminer extends Algorithm {
 
     public LogicallyImpliedDeterminer () {
-        super(new KeyedText(LogicallyImpliedDeterminer.class, Algorithm.Keys.LABEL, "Logically implied determiner"),
+        super(new KeyedText(LogicallyImpliedDeterminer.class, Keys.LABEL, "Logically implied determiner"),
                 AlgorithmType.LOGICALLY_IMPLIED_DETERMINER
         );
     }

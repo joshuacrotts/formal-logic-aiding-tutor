@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class ExportLatexParseTree extends Event {
 
     public ExportLatexParseTree () {
-        super(Event.Type.EXPORT_LATEX_PARSE_TREE);
+        super(Type.EXPORT_LATEX_PARSE_TREE);
     }
 
 }

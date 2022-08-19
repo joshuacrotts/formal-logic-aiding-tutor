@@ -1,7 +1,7 @@
 package com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.timeoutpane.children.propositionalndv;
 
-import com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.timeoutpane.children.propositionalndv.children.PropositionalNDVTimeoutTextField;
 import com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.timeoutpane.children.propositionalndv.children.PropositionalNDVTimeoutLabel;
+import com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.timeoutpane.children.propositionalndv.children.PropositionalNDVTimeoutTextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;

@@ -2,13 +2,13 @@ package com.flat.algorithms.predicate;
 
 import com.flat.algorithms.BaseTruthTreeGenerator;
 import com.flat.algorithms.models.TruthTree;
-import com.flat.models.treenode.*;
-import com.google.errorprone.annotations.Var;
+import com.flat.models.treenode.ExistentialQuantifierNode;
+import com.flat.models.treenode.NodeType;
+import com.flat.models.treenode.UniversalQuantifierNode;
+import com.flat.models.treenode.WffTree;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 /**
  * TODO Document

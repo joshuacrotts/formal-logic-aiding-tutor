@@ -10,7 +10,7 @@ public class PracticeResult extends Update {
     private Boolean result;
 
     public PracticeResult (Boolean _result) {
-        super(Update.Type.PRACTICE_RESULT);
+        super(Type.PRACTICE_RESULT);
         this.result = _result;
     }
 

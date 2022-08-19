@@ -1,10 +1,10 @@
 package com.flat.view.settings.scene.pane.children.selection.advanced.advancedpane.timeoutpane.children.base;
 
 import com.flat.models.TimeoutManager;
+import com.flat.tools.FLATUtils;
 import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.KeyCode;
-import org.codehaus.plexus.util.StringUtils;
 
 /**
  *
@@ -41,7 +41,7 @@ public class NumericTextField extends TextField {
     }
 
     private boolean validInput (String _string) {
-        if (!StringUtils.isNumeric(_string)) {
+        if (!FLATUtils.isNumeric(_string)) {
             return false;
         }
         String newValue;
@@ -54,7 +54,7 @@ public class NumericTextField extends TextField {
                     + _string
                     + super.getText(super.getSelection().getEnd(), super.getText().length());
         }
-        return !(newValue.startsWith("0") || Integer.valueOf(newValue) > TimeoutManager.getMaxValue() || Integer.valueOf(newValue) <= TimeoutManager.getMinValue());
+        return !(newValue.startsWith("0") || Integer.parseInt(newValue) > TimeoutManager.getMaxValue() || Integer.valueOf(newValue) <= TimeoutManager.getMinValue());
     }
 
 }

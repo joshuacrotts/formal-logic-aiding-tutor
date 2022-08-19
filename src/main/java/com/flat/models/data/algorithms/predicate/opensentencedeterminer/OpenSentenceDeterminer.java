@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class OpenSentenceDeterminer extends Algorithm {
 
     public OpenSentenceDeterminer () {
-        super(new KeyedText(OpenSentenceDeterminer.class, Algorithm.Keys.LABEL, "Open Sentence Determiner"),
+        super(new KeyedText(OpenSentenceDeterminer.class, Keys.LABEL, "Open Sentence Determiner"),
                 AlgorithmType.OPEN_SENTENCE_DETERMINER
         );
     }

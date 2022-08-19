@@ -15,6 +15,7 @@ import com.flat.models.data.algorithms.general.opentreedeterminer.OpenTreeDeterm
 import com.flat.models.data.algorithms.general.semanticentailmentdeterminer.SemanticEntailmentDeterminer;
 import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.tools.translation.base.Translatable;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

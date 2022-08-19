@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class LogicalTautologyDeterminer extends Algorithm {
 
     public LogicalTautologyDeterminer () {
-        super(new KeyedText(LogicalTautologyDeterminer.class, Algorithm.Keys.LABEL, "Logical Tautology Determiner"),
+        super(new KeyedText(LogicalTautologyDeterminer.class, Keys.LABEL, "Logical Tautology Determiner"),
                 AlgorithmType.LOGICAL_TAUTOLOGY_DETERMINER
         );
     }

@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class TruthTreeButtonPressed extends Event {
 
     public TruthTreeButtonPressed() {
-        super(Event.Type.TRUTH_TREE_BUTTON_PRESSED);
+        super(Type.TRUTH_TREE_BUTTON_PRESSED);
     }
 
 }

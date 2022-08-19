@@ -11,10 +11,11 @@ import com.flat.view.main.panes.center.children.practice.naturaldeduction.childr
 import com.flat.view.main.panes.center.children.practice.naturaldeduction.children.inputpane.buttonpane.NDPracticeButtonPane;
 import com.flat.view.main.panes.center.children.practice.naturaldeduction.children.inputpane.gridpane.NaturalDeductionGridPane;
 import com.flat.view.main.panes.center.children.practice.naturaldeduction.listener.NaturalDeductionPracticeListener;
-import java.util.ArrayList;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
+import java.util.ArrayList;
 
 /**
  *

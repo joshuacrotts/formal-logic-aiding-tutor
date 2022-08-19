@@ -2,13 +2,13 @@ package com.flat.models.data.base.text;
 
 import com.flat.controller.Controller;
 import com.flat.models.data.base.text.key.KeyBase;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Arrays;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  *

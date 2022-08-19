@@ -1,37 +1,18 @@
 package com.flat.models.algorithms;
 
-import com.flat.models.algorithms.attributes.LogicReturn;
-import com.flat.models.algorithms.attributes.ApplicableAlgorithms;
-import com.flat.algorithms.ArgumentTruthTreeValidator;
-import com.flat.algorithms.ClosedTreeDeterminer;
-import com.flat.algorithms.LogicalFalsehoodDeterminer;
-import com.flat.algorithms.LogicalTautologyDeterminer;
-import com.flat.algorithms.LogicallyConsistentDeterminer;
-import com.flat.algorithms.LogicallyContingentDeterminer;
-import com.flat.algorithms.LogicallyContradictoryDeterminer;
-import com.flat.algorithms.LogicallyContraryDeterminer;
-import com.flat.algorithms.LogicallyEquivalentDeterminer;
-import com.flat.algorithms.LogicallyImpliedDeterminer;
-import com.flat.algorithms.MainOperatorDetector;
-import com.flat.algorithms.OpenTreeDeterminer;
-import com.flat.algorithms.SemanticEntailmentDeterminer;
+import com.flat.algorithms.*;
 import com.flat.algorithms.models.ProofType;
-import com.flat.algorithms.predicate.BoundVariableDetector;
-import com.flat.algorithms.predicate.ClosedSentenceDeterminer;
-import com.flat.algorithms.predicate.FreeVariableDetector;
-import com.flat.algorithms.predicate.GroundSentenceDeterminer;
-import com.flat.algorithms.predicate.OpenSentenceDeterminer;
-import com.flat.algorithms.predicate.PredicateNaturalDeductionValidator;
-import com.flat.algorithms.predicate.PredicateTruthTreeGenerator;
-import com.flat.algorithms.predicate.RandomPredicateFormulaGenerator;
-import com.flat.algorithms.predicate.VacuousQuantifierDetector;
+import com.flat.algorithms.predicate.*;
 import com.flat.algorithms.propositional.PropositionalNaturalDeductionValidator;
 import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.algorithms.propositional.RandomPropositionalFormulaGenerator;
 import com.flat.algorithms.propositional.TruthTableGenerator;
+import com.flat.models.algorithms.attributes.ApplicableAlgorithms;
+import com.flat.models.algorithms.attributes.LogicReturn;
 import com.flat.models.data.algorithms.Algorithms;
 import com.flat.models.data.algorithms.base.Algorithm;
 import com.flat.models.treenode.WffTree;
+
 import java.util.ArrayList;
 
 /**

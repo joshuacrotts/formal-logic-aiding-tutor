@@ -5,6 +5,7 @@ import com.flat.models.data.algorithms.predicate.PredicateAlgorithms;
 import com.flat.models.data.algorithms.propositional.PropositionalAlgorithms;
 import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.tools.translation.base.Translatable;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

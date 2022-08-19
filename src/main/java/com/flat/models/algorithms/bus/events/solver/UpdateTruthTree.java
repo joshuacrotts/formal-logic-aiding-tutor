@@ -11,7 +11,7 @@ public class UpdateTruthTree extends Event {
     private TruthTree truthTree;
 
     public UpdateTruthTree (TruthTree _truthTree) {
-        super(Event.Type.UPDATE_TRUTH_TREE);
+        super(Type.UPDATE_TRUTH_TREE);
         this.truthTree = _truthTree;
     }
 

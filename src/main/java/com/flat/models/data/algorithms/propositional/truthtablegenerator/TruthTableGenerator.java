@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class TruthTableGenerator extends Algorithm {
 
     public TruthTableGenerator () {
-        super(new KeyedText(TruthTableGenerator.class, Algorithm.Keys.LABEL, "Truth Table Generator"),
+        super(new KeyedText(TruthTableGenerator.class, Keys.LABEL, "Truth Table Generator"),
                 AlgorithmType.TRUTH_TABLE_GENERATOR
         );
     }

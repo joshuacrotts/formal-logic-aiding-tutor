@@ -2,6 +2,7 @@ package com.flat.view.main.panes.center.children.practice.mainoperatordetector.l
 
 import com.flat.models.treenode.WffTree;
 import com.flat.view.main.panes.center.children.practice.mainoperatordetector.layout.children.WffPiece;
+
 import java.util.ArrayList;
 
 /**

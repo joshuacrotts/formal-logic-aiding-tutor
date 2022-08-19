@@ -5,7 +5,9 @@ import com.flat.algorithms.models.NDStep;
 import com.flat.algorithms.models.NDWffTree;
 import com.flat.input.FLATErrorListener;
 import com.flat.input.FLATParserAdapter;
-import com.flat.models.treenode.*;
+import com.flat.models.treenode.NegNode;
+import com.flat.models.treenode.NodeType;
+import com.flat.models.treenode.WffTree;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class ArgumentTruthTreeValidator extends Algorithm {
 
     public ArgumentTruthTreeValidator () {
-        super(new KeyedText(ArgumentTruthTreeValidator.class, Algorithm.Keys.LABEL, "Argument Truth Tree Validator" ),
+        super(new KeyedText(ArgumentTruthTreeValidator.class, Keys.LABEL, "Argument Truth Tree Validator" ),
                 AlgorithmType.ARGUMENT_TRUTH_TREE_VALIDATOR
         );
     }

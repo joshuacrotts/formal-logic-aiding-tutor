@@ -10,7 +10,7 @@ public class PracticeSubmitTruthButtonPressed extends Event {
     private boolean truth;
 
     public PracticeSubmitTruthButtonPressed (boolean _truth) {
-        super(Event.Type.PRACTICE_SUBMIT_TRUTH_BUTTON_PRESSED);
+        super(Type.PRACTICE_SUBMIT_TRUTH_BUTTON_PRESSED);
         this.truth = _truth;
     }
 

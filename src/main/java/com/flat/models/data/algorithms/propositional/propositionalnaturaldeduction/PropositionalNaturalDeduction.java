@@ -12,7 +12,7 @@ public class PropositionalNaturalDeduction extends Algorithm {
 
     public PropositionalNaturalDeduction () {
         super(
-                new KeyedText(PropositionalNaturalDeduction.class, Algorithm.Keys.LABEL, "Propositional Natural Deduction"),
+                new KeyedText(PropositionalNaturalDeduction.class, Keys.LABEL, "Propositional Natural Deduction"),
                 AlgorithmType.PROPOSITIONAL_NATURAL_DEDUCTION
         );
     }

@@ -1,15 +1,14 @@
 package com.flat.view.main.panes.right.children.selection.children.practiceprompt.listener;
 
 import com.flat.models.algorithms.bus.events.practice.wfftree.UpdatePracticePane;
-import static com.flat.models.data.algorithms.base.enums.AlgorithmType.MAIN_OPERATOR_DETECTOR;
 import com.flat.tools.buses.databus.components.DataListener;
 import com.flat.tools.buses.databus.components.Update;
 import com.flat.tools.buses.eventbus.components.Event;
 import com.flat.tools.buses.eventbus.components.EventListener;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.PracticeWrapperPane;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.boundvariabledetector.BoundVariableDetectorPrompt;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.freevariabledetector.FreeVariableDetectorPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.closedsentencedeterminer.ClosedSentenceDeterminerPrompt;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.freevariabledetector.FreeVariableDetectorPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.groundsentencedeterminer.GroundSentenceDeterminerPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.logicalcontingencydeterminer.LogicalContingencyDeterminerPrompt;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.logicalfalsehooddeterminer.LogicalFalsehoodDeterminerPrompt;

@@ -1,6 +1,5 @@
 package com.flat.view.action;
 
-import com.flat.view.action.ResizePane.Side;
 import com.flat.view.main.panes.top.menupane.FlatMenuPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;

@@ -22,7 +22,7 @@ public class RulesAxiomsWrapperPane extends ScrollPane {
 
     private void setThisFx (){
         super.setFitToWidth(true);
-        super.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        super.setHbarPolicy(ScrollBarPolicy.NEVER);
         super.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
         super.setMinWidth(0);
         this.onWidthProperty();

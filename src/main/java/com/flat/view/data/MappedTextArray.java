@@ -2,6 +2,7 @@ package com.flat.view.data;
 
 import com.flat.models.data.base.text.KeyedTextArrayList;
 import com.flat.models.data.base.text.key.KeyBase;
+
 import java.util.HashMap;
 
 /**

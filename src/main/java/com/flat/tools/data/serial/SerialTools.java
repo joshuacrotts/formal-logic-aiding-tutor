@@ -1,8 +1,9 @@
 package com.flat.tools.data.serial;
 
 import com.flat.models.json.language.JsonLanguage;
-import com.flat.tools.data.base.tool.DataTool;
 import com.flat.tools.data.base.enums.LocalData;
+import com.flat.tools.data.base.tool.DataTool;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;

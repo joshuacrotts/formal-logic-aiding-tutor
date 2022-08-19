@@ -5,22 +5,16 @@ import com.flat.algorithms.propositional.PropositionalTruthTreeGenerator;
 import com.flat.controller.Controller;
 import com.flat.models.algorithms.attributes.LogicReturn;
 import com.flat.models.algorithms.bus.events.practice.wfftree.UpdatePracticePane;
-import com.flat.models.algorithms.bus.events.solver.ClearLogicVisuals;
-import com.flat.models.algorithms.bus.events.solver.FormulaGenerated;
-import com.flat.models.algorithms.bus.events.solver.UpdateNaturalDeduction;
-import com.flat.models.algorithms.bus.events.solver.UpdateParseTree;
-import com.flat.models.algorithms.bus.events.solver.UpdateTruth;
-import com.flat.models.algorithms.bus.events.solver.UpdateTruthTable;
-import com.flat.models.algorithms.bus.events.solver.UpdateTruthTree;
+import com.flat.models.algorithms.bus.events.solver.*;
 import com.flat.models.algorithms.bus.updates.ApplicableAlgorithmsUpdate;
 import com.flat.models.data.algorithms.Algorithms;
 import com.flat.models.data.algorithms.base.Algorithm;
 import com.flat.models.data.algorithms.base.enums.AlgorithmType;
-import static com.flat.models.data.algorithms.base.enums.AlgorithmType.CLOSED_SENTENCE_DETERMINER;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.buses.databus.components.DataListener;
 import com.flat.tools.buses.databus.components.Update;
 import com.flat.view.main.panes.right.children.top.practicetoggle.pane.events.PracticeModeToggle;
+
 import java.util.ArrayList;
 
 /**

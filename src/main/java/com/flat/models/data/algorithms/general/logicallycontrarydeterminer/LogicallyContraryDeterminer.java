@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class LogicallyContraryDeterminer extends Algorithm {
 
     public LogicallyContraryDeterminer () {
-        super(new KeyedText(LogicallyContraryDeterminer.class, Algorithm.Keys.LABEL, "Logically Contrary Determiner"),
+        super(new KeyedText(LogicallyContraryDeterminer.class, Keys.LABEL, "Logically Contrary Determiner"),
                 AlgorithmType.LOGICALLY_CONTRARY_DETERMINER
         );
     }

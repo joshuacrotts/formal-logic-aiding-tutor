@@ -1,6 +1,7 @@
 package com.flat.view.main.panes.center.children.solver.truthtable.base.tablelayout;
 
 import com.flat.models.treenode.WffTree;
+
 import java.util.ArrayList;
 
 /**

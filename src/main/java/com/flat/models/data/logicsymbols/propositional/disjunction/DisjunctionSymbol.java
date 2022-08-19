@@ -15,11 +15,11 @@ public class DisjunctionSymbol extends LogicSymbol {
 
     public DisjunctionSymbol () {
         super(
-                new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.LABEL, "Disjunction"),
+                new KeyedText(DisjunctionSymbol.class, Keys.LABEL, "Disjunction"),
                 new DisjunctionSymbols(),
-                new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Disjunction"),
-                new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the disjunction button."),
-                new KeyedText(DisjunctionSymbol.class, LogicSymbol.Keys.READ_AS, "Or"),
+                new KeyedText(DisjunctionSymbol.class, Keys.TOOL_TIP, "Disjunction"),
+                new KeyedText(DisjunctionSymbol.class, Keys.DESCRIPTION, "This is the disjunction button."),
+                new KeyedText(DisjunctionSymbol.class, Keys.READ_AS, "Or"),
                 new DisjunctionAxioms()
         );
     }

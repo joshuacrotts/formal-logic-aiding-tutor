@@ -1,10 +1,6 @@
 package com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.previewborderpane;
 
-import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.previewborderpane.panes.PreviewBottomPane;
-import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.previewborderpane.panes.PreviewCenterPane;
-import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.previewborderpane.panes.PreviewLeftPane;
-import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.previewborderpane.panes.PreviewRightPane;
-import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.previewborderpane.panes.PreviewTopPane;
+import com.flat.view.settings.scene.pane.children.selection.apperance.appearancepane.previewpane.previewborderpane.panes.*;
 import javafx.scene.layout.BorderPane;
 
 /**

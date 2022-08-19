@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class UnsolvedFormula extends Event {
 
     public UnsolvedFormula() {
-        super(Event.Type.UNSOLVED_FORMULA);
+        super(Type.UNSOLVED_FORMULA);
     }
 
 }

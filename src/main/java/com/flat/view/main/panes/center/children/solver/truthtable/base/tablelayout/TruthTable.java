@@ -2,6 +2,7 @@ package com.flat.view.main.panes.center.children.solver.truthtable.base.tablelay
 
 import com.flat.models.treenode.AtomNode;
 import com.flat.models.treenode.WffTree;
+
 import java.util.ArrayList;
 
 /**

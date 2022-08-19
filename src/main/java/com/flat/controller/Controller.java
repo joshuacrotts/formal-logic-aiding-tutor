@@ -10,23 +10,24 @@ import com.flat.models.data.algorithms.base.Algorithm;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.buses.databus.DataBus;
+import com.flat.tools.buses.eventbus.EventBus;
 import com.flat.tools.data.json.JsonData;
 import com.flat.tools.data.serial.SerialData;
-import com.flat.tools.buses.eventbus.EventBus;
 import com.flat.tools.exporter.ViewExporter;
 import com.flat.tools.translation.FLATTranslate;
+import com.flat.view.data.MappedText;
+import com.flat.view.data.MappedTextArray;
 import com.flat.view.data.fx.FxData;
 import com.flat.view.enums.View;
 import com.flat.view.main.MainView;
 import com.flat.view.main.panes.center.children.solver.trees.base.treelayout.TreeLayout;
-import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
-import com.flat.view.data.MappedText;
-import com.flat.view.data.MappedTextArray;
 import com.flat.view.popups.naturaldeduction.NaturalDeductionPopup;
 import com.flat.view.popups.proofverifier.error.ProofVerifierErrorPopup;
-import java.util.ArrayList;
+import com.flat.view.popups.syntax.error.SyntaxErrorPopup;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>

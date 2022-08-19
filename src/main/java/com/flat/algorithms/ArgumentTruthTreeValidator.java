@@ -9,7 +9,6 @@ import com.flat.models.treenode.WffTree;
 
 import java.util.ArrayList;
 import java.util.Stack;
-import java.util.function.Predicate;
 
 /**
  *

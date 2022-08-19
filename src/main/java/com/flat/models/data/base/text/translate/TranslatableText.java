@@ -4,12 +4,14 @@ import com.flat.controller.Controller;
 import com.flat.models.json.language.JsonLanguage;
 import com.flat.tools.translation.base.TranslateProperty;
 import com.google.cloud.translate.Translation;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 /**
  *

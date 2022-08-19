@@ -4,8 +4,9 @@ import com.flat.controller.Controller;
 import com.flat.models.data.base.text.translate.TranslatableText;
 import com.flat.models.json.language.JsonLanguage;
 import com.google.cloud.translate.Translation;
-import java.util.List;
 import javafx.scene.text.Font;
+
+import java.util.List;
 
 /**
  * @author Christopher Brantley <c_brantl@uncg.edu>

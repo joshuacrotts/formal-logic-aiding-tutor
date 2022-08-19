@@ -4,6 +4,7 @@ import com.flat.algorithms.models.TruthTree;
 import com.flat.models.data.algorithms.base.enums.AlgorithmType;
 import com.flat.models.treenode.WffTree;
 import com.flat.tools.buses.eventbus.components.Event;
+
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,7 @@ public class UpdatePracticePane extends Event {
     private ArrayList <WffTree> wffTrees = null;
     private TruthTree truthTree = null;
     private UpdatePracticePane () {
-        super(Event.Type.UPDATE_PRACTICE_PANE);
+        super(Type.UPDATE_PRACTICE_PANE);
     }
 
     public UpdatePracticePane (AlgorithmType _algorithmType, ArrayList <WffTree> _wffTrees) {

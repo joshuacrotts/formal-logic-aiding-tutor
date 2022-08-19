@@ -11,7 +11,7 @@ import com.flat.models.data.base.text.KeyedText;
 public class FreeVariableDetector extends Algorithm {
 
     public FreeVariableDetector () {
-        super(new KeyedText(FreeVariableDetector.class, Algorithm.Keys.LABEL, "Free Variable Detector"),
+        super(new KeyedText(FreeVariableDetector.class, Keys.LABEL, "Free Variable Detector"),
                 AlgorithmType.FREE_VARIABLE_DETECTOR
         );
     }

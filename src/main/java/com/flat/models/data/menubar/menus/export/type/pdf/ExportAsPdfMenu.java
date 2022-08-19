@@ -7,6 +7,7 @@ import com.flat.models.data.menubar.menus.export.type.items.LatexParseTreeMenuIt
 import com.flat.models.data.menubar.menus.export.type.items.LatexTruthTableMenuItem;
 import com.flat.models.data.menubar.menus.export.type.items.LatexTruthTreeMenuItem;
 import com.flat.tools.translation.base.Translatable;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class RulesAxiomsSelectionButtonPressed extends Event {
 
     public RulesAxiomsSelectionButtonPressed () {
-        super(Event.Type.RULES_AXIOMS_SELECTION_BUTTON_PRESSED);
+        super(Type.RULES_AXIOMS_SELECTION_BUTTON_PRESSED);
     }
 
 }

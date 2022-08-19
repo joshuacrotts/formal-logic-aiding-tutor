@@ -14,7 +14,7 @@ public class RulesAxiomsAlternativePane extends VBox {
     private RulesAxiomsAlternativeVBox alternatives;
 
     public RulesAxiomsAlternativePane (Class _class) {
-        this.alternatives = new com.flat.view.main.panes.right.children.selection.children.rulesaxioms.base.children.alternative.children.RulesAxiomsAlternativeVBox(_class);
+        this.alternatives = new RulesAxiomsAlternativeVBox(_class);
         this.initializeFx();
     }
 

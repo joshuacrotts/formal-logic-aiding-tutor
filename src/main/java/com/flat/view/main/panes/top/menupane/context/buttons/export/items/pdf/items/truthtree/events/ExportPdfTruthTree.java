@@ -9,7 +9,7 @@ import com.flat.tools.buses.eventbus.components.Event;
 public class ExportPdfTruthTree extends Event {
 
     public ExportPdfTruthTree () {
-        super(Event.Type.EXPORT_PDF_TRUTH_TREE);
+        super(Type.EXPORT_PDF_TRUTH_TREE);
     }
 
 }

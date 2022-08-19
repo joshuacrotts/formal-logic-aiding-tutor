@@ -1,12 +1,8 @@
 package com.flat.view.main.panes.right.children.selection.children.practiceprompt.base;
 
 import com.flat.controller.Controller;
+import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.text.*;
 import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.listener.PracticePromptListener;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.text.InfoLabel;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.text.PromptResultLabel;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.text.PromptResultText;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.text.PromptLabel;
-import com.flat.view.main.panes.right.children.selection.children.practiceprompt.base.children.text.PromptText;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;

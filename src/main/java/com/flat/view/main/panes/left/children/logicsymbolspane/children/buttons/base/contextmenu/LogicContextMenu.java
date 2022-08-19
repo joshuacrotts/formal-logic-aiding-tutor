@@ -1,8 +1,9 @@
 package com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.contextmenu;
 
 import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.base.LogicButton;
-import java.util.Arrays;
 import javafx.scene.control.ContextMenu;
+
+import java.util.Arrays;
 
 /**
  *

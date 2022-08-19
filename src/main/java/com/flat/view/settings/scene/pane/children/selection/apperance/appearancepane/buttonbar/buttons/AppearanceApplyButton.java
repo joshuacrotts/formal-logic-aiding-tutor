@@ -2,8 +2,8 @@ package com.flat.view.settings.scene.pane.children.selection.apperance.appearanc
 
 import com.flat.controller.Controller;
 import com.flat.models.data.settings.Settings;
-import com.flat.view.data.fx.settings.appearance.AppearancePreviewData;
 import com.flat.view.data.fx.pane.PaneData;
+import com.flat.view.data.fx.settings.appearance.AppearancePreviewData;
 import javafx.scene.control.Button;
 
 /**

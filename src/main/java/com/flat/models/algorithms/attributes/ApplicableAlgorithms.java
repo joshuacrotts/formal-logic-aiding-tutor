@@ -1,6 +1,7 @@
 package com.flat.models.algorithms.attributes;
 
 import com.flat.models.data.algorithms.base.Algorithm;
+
 import java.util.ArrayList;
 
 /**

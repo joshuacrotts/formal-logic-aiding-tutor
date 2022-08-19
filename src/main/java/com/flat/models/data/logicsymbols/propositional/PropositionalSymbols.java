@@ -12,6 +12,7 @@ import com.flat.models.data.logicsymbols.propositional.implication.ImplicationSy
 import com.flat.models.data.logicsymbols.propositional.negation.NegationSymbol;
 import com.flat.models.data.logicsymbols.propositional.turnstile.TurnstileSymbol;
 import com.flat.tools.translation.base.Translatable;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;

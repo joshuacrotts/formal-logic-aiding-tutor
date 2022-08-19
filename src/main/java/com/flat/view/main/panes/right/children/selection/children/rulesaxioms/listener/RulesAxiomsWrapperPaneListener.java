@@ -7,14 +7,7 @@ import com.flat.view.main.panes.left.children.logicsymbolspane.children.buttons.
 import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.RulesAxiomsWrapperPane;
 import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.predicate.ExistentialRulesAxiomsPane;
 import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.predicate.UniversalRulesAxiomsPane;
-import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.propositional.BiconditionalRulesAxiomsPane;
-import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.propositional.ConjunctionRulesAxiomsPane;
-import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.propositional.DisjunctionRulesAxiomsPane;
-import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.propositional.DoubleTurnstileRulesAxiomsPane;
-import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.propositional.ExclusiveDisjunctionRulesAxiomsPane;
-import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.propositional.ImplicationRulesAxiomsPane;
-import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.propositional.NegationRulesAxiomsPane;
-import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.propositional.TurnstileRulesAxiomsPane;
+import com.flat.view.main.panes.right.children.selection.children.rulesaxioms.propositional.*;
 
 /**
  *

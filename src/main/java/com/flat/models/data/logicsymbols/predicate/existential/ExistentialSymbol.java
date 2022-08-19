@@ -15,11 +15,11 @@ public class ExistentialSymbol extends LogicSymbol {
 
     public ExistentialSymbol () {
         super(
-                new KeyedText(ExistentialSymbol.class, LogicSymbol.Keys.LABEL, "Universal"),
+                new KeyedText(ExistentialSymbol.class, Keys.LABEL, "Universal"),
                 new ExistentialSymbols(),
-                new KeyedText(ExistentialSymbol.class, LogicSymbol.Keys.TOOL_TIP, "Existential quantification"),
-                new KeyedText(ExistentialSymbol.class, LogicSymbol.Keys.DESCRIPTION, "This is the existential quantification button."),
-                new KeyedText(ExistentialSymbol.class, LogicSymbol.Keys.READ_AS, "There exists; Some; Many; At least one"),
+                new KeyedText(ExistentialSymbol.class, Keys.TOOL_TIP, "Existential quantification"),
+                new KeyedText(ExistentialSymbol.class, Keys.DESCRIPTION, "This is the existential quantification button."),
+                new KeyedText(ExistentialSymbol.class, Keys.READ_AS, "There exists; Some; Many; At least one"),
                 new ExistentialAxioms()
         );
     }
